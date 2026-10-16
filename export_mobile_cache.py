@@ -40,8 +40,8 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from medizy_search import MedizySearchEngine, OFFICIAL_WILAYAS, WILAYA_BY_CODE, strip_accents
 
-DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "medizy_scraper.db"))
-EXPECTED_SHA256 = "948fda84d6375b6b1dbd7ba822cdcfe09f7301f81f8779bc803e717b582c493d"
+DB_PATH = os.environ.get("MEDIZY_DB_PATH") or os.path.abspath(os.path.join(os.path.dirname(__file__), "medizy_scraper.db"))
+EXPECTED_SHA256 = "69b94b3ca03d80d5ea33f8395482c6763e72d1fba5c491300b0e92dcd6d12e65"
 DEFAULT_OUT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "exports", "mobile"))
 
 
@@ -102,10 +102,12 @@ def export_records_to_gzip(
 def export_wilaya(
     wilaya_input: str,
     output_dir: str = DEFAULT_OUT_DIR,
-    db_sha: str = ""
+    db_sha: str = "",
+    db_path: Optional[str] = None
 ) -> Dict[str, Any]:
     """Exporte une wilaya spécifique sous forme de cache mobile GZIP."""
-    engine = MedizySearchEngine(db_path=DB_PATH)
+    target_db = db_path or DB_PATH
+    engine = MedizySearchEngine(db_path=target_db)
     resolved_name = engine.resolve_wilaya(wilaya_input)
 
     # Récupération et validation du code officiel
@@ -119,7 +121,7 @@ def export_wilaya(
     if not wilaya_code:
         raise ValueError(f"Wilaya officielle introuvable ou non reconnue : {wilaya_input}")
 
-    conn = get_readonly_connection()
+    conn = get_readonly_connection(target_db)
     cur = conn.cursor()
     cur.execute("""
         SELECT 
@@ -187,10 +189,11 @@ def export_wilaya(
     return export_records_to_gzip(records, metadata, output_path)
 
 
-def export_all_wilayas_individual(output_dir: str = DEFAULT_OUT_DIR) -> List[Dict[str, Any]]:
+def export_all_wilayas_individual(output_dir: str = DEFAULT_OUT_DIR, db_path: Optional[str] = None) -> List[Dict[str, Any]]:
     """Génère 58 archives GZIP individuelles pour chaque wilaya."""
+    target_db = db_path or DB_PATH
     target_dir = os.path.join(output_dir, "wilayas")
-    db_sha = calculate_sha256(DB_PATH)
+    db_sha = calculate_sha256(target_db)
     results = []
     print(f"Export des 58 wilayas individuelles vers {target_dir}...")
     
@@ -199,7 +202,7 @@ def export_all_wilayas_individual(output_dir: str = DEFAULT_OUT_DIR) -> List[Dic
     total_recs = 0
     
     for code, name in OFFICIAL_WILAYAS:
-        stat = export_wilaya(name, output_dir=target_dir, db_sha=db_sha)
+        stat = export_wilaya(name, output_dir=target_dir, db_sha=db_sha, db_path=target_db)
         results.append(stat)
         total_raw += stat["raw_bytes"]
         total_comp += stat["compressed_bytes"]
@@ -213,10 +216,11 @@ def export_all_wilayas_individual(output_dir: str = DEFAULT_OUT_DIR) -> List[Dic
     return results
 
 
-def export_national_cache(output_dir: str = DEFAULT_OUT_DIR) -> Dict[str, Any]:
+def export_national_cache(output_dir: str = DEFAULT_OUT_DIR, db_path: Optional[str] = None) -> Dict[str, Any]:
     """Exporte l'intégralité des 23 669 établissements en un seul package compressé."""
-    db_sha = calculate_sha256(DB_PATH)
-    conn = get_readonly_connection()
+    target_db = db_path or DB_PATH
+    db_sha = calculate_sha256(target_db)
+    conn = get_readonly_connection(target_db)
     cur = conn.cursor()
     cur.execute("""
         SELECT 
@@ -295,31 +299,32 @@ def export_national_cache(output_dir: str = DEFAULT_OUT_DIR) -> Dict[str, Any]:
 
 def main():
     parser = argparse.ArgumentParser(description="Export compressé pour cache mobile Santé DZ Medizy")
+    parser.add_argument("--db", default=None, help="Chemin vers la base SQLite (défaut: MEDIZY_DB_PATH ou medizy_scraper.db)")
     parser.add_argument("--wilaya", help="Nom ou code de wilaya à exporter (ex: 16 ou Alger)")
     parser.add_argument("--all-wilayas", action="store_true", help="Générer 58 fichiers distincts pour chaque wilaya")
     parser.add_argument("--national", action="store_true", help="Générer l'archive nationale consolidée complète")
-    parser.add_argument("--out-dir", default=DEFAULT_OUT_DIR, help="Répertoire de destination")
+    parser.add_argument("--output-dir", "--out-dir", dest="out_dir", default=DEFAULT_OUT_DIR, help="Répertoire de destination")
 
     args = parser.parse_args()
 
     # Si aucun argument n'est fourni, exécuter les exports par défaut (wilaya 16 + national)
     if not args.wilaya and not args.all_wilayas and not args.national:
         print("Aucun mode spécifié. Exécution par défaut : export Wilaya 16 (Alger) et Package National.")
-        stat_w = export_wilaya("16", output_dir=args.out_dir)
+        stat_w = export_wilaya("16", output_dir=args.out_dir, db_path=args.db)
         print(f"[Wilaya 16] Généré : {stat_w['filepath']} ({stat_w['compressed_bytes']/1024:.1f} KB)")
-        stat_nat = export_national_cache(output_dir=args.out_dir)
+        stat_nat = export_national_cache(output_dir=args.out_dir, db_path=args.db)
         return
 
     if args.wilaya:
-        stat = export_wilaya(args.wilaya, output_dir=args.out_dir)
+        stat = export_wilaya(args.wilaya, output_dir=args.out_dir, db_path=args.db)
         print(f"Export terminé : {stat['filepath']}")
         print(f"Établissements : {stat['records_count']} | GZIP : {stat['compressed_bytes']/1024:.1f} KB (-{stat['compression_ratio_pct']}%)")
 
     if args.all_wilayas:
-        export_all_wilayas_individual(output_dir=args.out_dir)
+        export_all_wilayas_individual(output_dir=args.out_dir, db_path=args.db)
 
     if args.national:
-        export_national_cache(output_dir=args.out_dir)
+        export_national_cache(output_dir=args.out_dir, db_path=args.db)
 
 
 if __name__ == "__main__":

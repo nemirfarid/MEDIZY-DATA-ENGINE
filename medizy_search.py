@@ -136,8 +136,9 @@ class SearchResult:
 class MedizySearchEngine:
     """Moteur de recherche géospatiale et plein texte Medizy ultra-performant."""
 
-    def __init__(self, db_path: str = r"C:\SANTE_DZ_SCRAPER\medizy_scraper.db"):
-        self.db_path = os.path.abspath(db_path)
+    def __init__(self, db_path: Optional[str] = None):
+        target = db_path or os.environ.get("MEDIZY_DB_PATH") or r"C:\SANTE_DZ_SCRAPER\medizy_scraper.db"
+        self.db_path = os.path.abspath(target)
         if not os.path.exists(self.db_path):
             raise FileNotFoundError(f"Base de données introuvable : {self.db_path}")
         import threading

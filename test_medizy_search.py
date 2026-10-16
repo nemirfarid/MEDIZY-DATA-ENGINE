@@ -16,7 +16,7 @@ import time
 import unittest
 from medizy_search import MedizySearchEngine, haversine_distance
 
-DB_PATH = r"C:\SANTE_DZ_SCRAPER\medizy_scraper.db"
+DB_PATH = os.environ.get("MEDIZY_DB_PATH") or r"C:\SANTE_DZ_SCRAPER\medizy_scraper.db"
 
 
 class TestMedizySearch(unittest.TestCase):

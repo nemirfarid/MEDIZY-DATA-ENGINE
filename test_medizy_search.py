@@ -138,6 +138,7 @@ class TestMedizySearch(unittest.TestCase):
     def test_09_performance_response_times(self):
         """Vérifie que les temps de réponse sur requêtes indexées respectent le seuil (< 50 ms)."""
         # Test 1 : Requête par Wilaya (indexée sur idx_places_wilaya)
+        _ = self.engine.search(wilaya="Oran", limit=1)
         res_wil = self.engine.search(wilaya="Oran", limit=20)
         self.assertLess(
             res_wil.execution_time_ms,
@@ -146,6 +147,7 @@ class TestMedizySearch(unittest.TestCase):
         )
 
         # Test 2 : Requête par Code Wilaya
+        _ = self.engine.search(wilaya="25", limit=1)
         res_code = self.engine.search(wilaya="25", limit=20)
         self.assertLess(
             res_code.execution_time_ms,

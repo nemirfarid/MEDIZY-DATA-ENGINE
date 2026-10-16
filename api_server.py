@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-MEDIZY / SANTÉ DZ — API REST Standard (Phase 9)
-===============================================
+MEDIZY / SANTÉ DZ — API REST Standard & Swagger Docs (Phase 9 & 10)
+===================================================================
 Micro-serveur HTTP REST pour exposer les données de santé des 58 wilayas
 aux applications Web, Mobile et Bots.
 
@@ -10,6 +10,10 @@ Points d'entrée (Endpoints) :
 -----------------------------
 - GET /health
     Statut du service, volume total d'entrées, intégrité SQLite et empreinte SHA-256.
+- GET /docs
+    Interface interactive Swagger UI de documentation de l'API.
+- GET /openapi.json
+    Spécification OpenAPI 3.0.3 complète des routes et schémas.
 - GET /api/v1/search
     Recherche multicritère : q, wilaya, commune, specialite, has_phone, limit, offset.
 - GET /api/v1/nearby
@@ -52,20 +56,251 @@ def calculate_sha256(filepath: str) -> str:
     return h.hexdigest()
 
 
-class MedizyAPIHandler(BaseHTTPRequestHandler):
-    """Gestionnaire de requêtes HTTP REST standard avec sérialisation JSON et CORS."""
+def get_openapi_specification() -> Dict[str, Any]:
+    """Retourne le document de spécification OpenAPI 3.0.3 complet."""
+    return {
+        "openapi": "3.0.3",
+        "info": {
+            "title": "Santé DZ Medizy API",
+            "version": "1.0.9",
+            "description": "API REST géospatiale et plein texte pour les 23 669 établissements de santé des 58 wilayas d'Algérie.",
+            "contact": {
+                "name": "Équipe Santé DZ Medizy",
+                "url": "https://medizy.dz"
+            }
+        },
+        "servers": [
+            {"url": "/", "description": "Serveur API Local"}
+        ],
+        "paths": {
+            "/health": {
+                "get": {
+                    "summary": "État de santé et métadonnées de la base",
+                    "description": "Vérifie l'intégrité SQLite, le statut de lecture seule et l'empreinte SHA-256.",
+                    "responses": {
+                        "200": {
+                            "description": "Système opérationnel",
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/HealthResponse"}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/api/v1/search": {
+                "get": {
+                    "summary": "Recherche multicritère d'établissements de santé",
+                    "description": "Recherche par texte libre, wilaya (code ou nom), commune, et spécialité médicale.",
+                    "parameters": [
+                        {"name": "q", "in": "query", "description": "Mots-clés libres", "schema": {"type": "string"}},
+                        {"name": "wilaya", "in": "query", "description": "Code (ex: 16) ou nom (ex: Alger)", "schema": {"type": "string"}},
+                        {"name": "commune", "in": "query", "description": "Nom de commune (ex: Kouba)", "schema": {"type": "string"}},
+                        {"name": "specialite", "in": "query", "description": "Spécialité (ex: cardio, dentiste)", "schema": {"type": "string"}},
+                        {"name": "has_phone", "in": "query", "description": "Filtrer avec numéro de téléphone (true/1)", "schema": {"type": "boolean"}},
+                        {"name": "limit", "in": "query", "description": "Nombre maximum de résultats (1-100)", "schema": {"type": "integer", "default": 20}},
+                        {"name": "offset", "in": "query", "description": "Décalage pour pagination", "schema": {"type": "integer", "default": 0}}
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Résultats de la recherche",
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/SearchResult"}
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/api/v1/nearby": {
+                "get": {
+                    "summary": "Recherche géospatiale par rayon géographique",
+                    "description": "Recherche les établissements dans un rayon donné (formule Haversine, tri ascendant par distance).",
+                    "parameters": [
+                        {"name": "lat", "in": "query", "required": True, "description": "Latitude décimale (ex: 36.7538)", "schema": {"type": "number", "format": "float"}},
+                        {"name": "lon", "in": "query", "required": True, "description": "Longitude décimale (ex: 3.0588)", "schema": {"type": "number", "format": "float"}},
+                        {"name": "radius_km", "in": "query", "description": "Rayon en km (défaut 5.0, max 100.0)", "schema": {"type": "number", "default": 5.0}},
+                        {"name": "specialite", "in": "query", "description": "Filtre par spécialité", "schema": {"type": "string"}},
+                        {"name": "q", "in": "query", "description": "Mots-clés additionnels", "schema": {"type": "string"}},
+                        {"name": "limit", "in": "query", "schema": {"type": "integer", "default": 20}},
+                        {"name": "offset", "in": "query", "schema": {"type": "integer", "default": 0}}
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Établissements ordonnés par distance",
+                            "content": {
+                                "application/json": {
+                                    "schema": {"$ref": "#/components/schemas/NearbyResult"}
+                                }
+                            }
+                        },
+                        "400": {"description": "Paramètres manquants ou invalides"}
+                    }
+                }
+            },
+            "/api/v1/places/{id}": {
+                "get": {
+                    "summary": "Détail d'un établissement par ID",
+                    "parameters": [
+                        {"name": "id", "in": "path", "required": True, "description": "ID SQLite ou place_id", "schema": {"type": "string"}}
+                    ],
+                    "responses": {
+                        "200": {"description": "Fiche complète de l'établissement"},
+                        "404": {"description": "Établissement non trouvé"}
+                    }
+                }
+            },
+            "/api/v1/wilayas": {
+                "get": {
+                    "summary": "Liste et statistiques des 58 wilayas",
+                    "responses": {
+                        "200": {"description": "Décompte des établissements par wilaya"}
+                    }
+                }
+            },
+            "/api/v1/categories": {
+                "get": {
+                    "summary": "Spécialités et catégories médicales",
+                    "responses": {
+                        "200": {"description": "Statistiques par spécialité"}
+                    }
+                }
+            }
+        },
+        "components": {
+            "schemas": {
+                "Facility": {
+                    "type": "object",
+                    "properties": {
+                        "id": {"type": "integer"},
+                        "place_id": {"type": "string", "nullable": True},
+                        "nom": {"type": "string"},
+                        "categorie_recherche": {"type": "string", "nullable": True},
+                        "wilaya": {"type": "string", "nullable": True},
+                        "commune": {"type": "string", "nullable": True},
+                        "adresse": {"type": "string", "nullable": True},
+                        "telephone": {"type": "string", "nullable": True},
+                        "telephone_normalized": {"type": "string", "nullable": True},
+                        "site_web": {"type": "string", "nullable": True},
+                        "note": {"type": "string", "nullable": True},
+                        "nombre_avis": {"type": "string", "nullable": True},
+                        "latitude": {"type": "number", "nullable": True},
+                        "longitude": {"type": "number", "nullable": True},
+                        "google_maps_url": {"type": "string", "nullable": True},
+                        "source": {"type": "string", "nullable": True},
+                        "distance_km": {"type": "number", "nullable": True}
+                    }
+                },
+                "SearchResult": {
+                    "type": "object",
+                    "properties": {
+                        "status": {"type": "string", "example": "success"},
+                        "total_count": {"type": "integer"},
+                        "page": {"type": "integer"},
+                        "limit": {"type": "integer"},
+                        "execution_time_ms": {"type": "number"},
+                        "filters_applied": {"type": "object"},
+                        "data": {"type": "array", "items": {"$ref": "#/components/schemas/Facility"}}
+                    }
+                },
+                "NearbyResult": {
+                    "type": "object",
+                    "properties": {
+                        "status": {"type": "string", "example": "success"},
+                        "total_count": {"type": "integer"},
+                        "page": {"type": "integer"},
+                        "limit": {"type": "integer"},
+                        "radius_km": {"type": "number"},
+                        "execution_time_ms": {"type": "number"},
+                        "filters_applied": {"type": "object"},
+                        "data": {"type": "array", "items": {"$ref": "#/components/schemas/Facility"}}
+                    }
+                },
+                "HealthResponse": {
+                    "type": "object",
+                    "properties": {
+                        "status": {"type": "string", "example": "healthy"},
+                        "service": {"type": "string"},
+                        "version": {"type": "string"},
+                        "database": {
+                            "type": "object",
+                            "properties": {
+                                "path": {"type": "string"},
+                                "mode": {"type": "string"},
+                                "total_entries": {"type": "integer"},
+                                "sqlite_integrity": {"type": "string"},
+                                "sha256": {"type": "string"}
+                            }
+                        },
+                        "coverage": {
+                            "type": "object",
+                            "properties": {
+                                "wilayas_covered": {"type": "integer"},
+                                "gps_coordinates_pct": {"type": "number"}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-    # Moteur de recherche partagé
+
+SWAGGER_UI_HTML = """<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Santé DZ Medizy — Documentation Swagger API</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css" />
+  <link rel="icon" type="image/png" href="https://unpkg.com/swagger-ui-dist@5/favicon-32x32.png" sizes="32x32" />
+  <style>
+    html { box-sizing: border-box; overflow: -moz-scrollbars-vertical; overflow-y: scroll; }
+    *, *:before, *:after { box-sizing: inherit; }
+    body { margin: 0; background: #fafafa; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .topbar { background-color: #0d9488 !important; }
+    .swagger-ui .topbar .topbar-wrapper .link span { color: #fff; font-weight: bold; font-size: 1.1em; }
+  </style>
+</head>
+<body>
+  <div id="swagger-ui"></div>
+  <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-bundle.js" charset="UTF-8"></script>
+  <script src="https://unpkg.com/swagger-ui-dist@5/swagger-ui-standalone-preset.js" charset="UTF-8"></script>
+  <script>
+    window.onload = function() {
+      window.ui = SwaggerUIBundle({
+        url: "/openapi.json",
+        dom_id: '#swagger-ui',
+        deepLinking: true,
+        presets: [
+          SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
+        ],
+        plugins: [
+          SwaggerUIBundle.plugins.DownloadUrl
+        ],
+        layout: "StandaloneLayout"
+      });
+    };
+  </script>
+</body>
+</html>
+"""
+
+
+class MedizyAPIHandler(BaseHTTPRequestHandler):
+    """Gestionnaire de requêtes HTTP REST standard avec sérialisation JSON, OpenAPI et CORS."""
+
     engine: MedizySearchEngine = None
     db_sha256: str = ""
 
     def log_message(self, format, *args):
-        """Format de log personnalisé court."""
         sys.stderr.write(f"[{self.log_date_time_string()}] {self.command} {self.path} -> {args[1]}\n")
 
-    def _set_headers(self, status_code: int = HTTPStatus.OK):
+    def _set_headers(self, status_code: int = HTTPStatus.OK, content_type: str = "application/json; charset=utf-8"):
         self.send_response(status_code)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Type", content_type)
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods", "GET, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization")
@@ -73,12 +308,16 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
     def do_OPTIONS(self):
-        """Répond aux requêtes CORS preflight."""
         self._set_headers(HTTPStatus.NO_CONTENT)
 
     def _send_json(self, data: Any, status_code: int = HTTPStatus.OK):
         body = json.dumps(data, ensure_ascii=False, indent=2).encode("utf-8")
-        self._set_headers(status_code)
+        self._set_headers(status_code, "application/json; charset=utf-8")
+        self.wfile.write(body)
+
+    def _send_html(self, html_content: str, status_code: int = HTTPStatus.OK):
+        body = html_content.encode("utf-8")
+        self._set_headers(status_code, "text/html; charset=utf-8")
         self.wfile.write(body)
 
     def _send_error(self, message: str, status_code: int = HTTPStatus.BAD_REQUEST):
@@ -91,17 +330,24 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
             path = "/"
         params = parse_qs(parsed.query)
 
-        # Helper extraction mono-valeur
         def get_param(name: str, default: Optional[str] = None) -> Optional[str]:
             vals = params.get(name)
             return vals[0].strip() if vals and vals[0].strip() else default
 
         try:
-            # Route 1 : /health
-            if path in ("/health", "/api/v1/health"):
+            # 1. Documentation Swagger UI
+            if path in ("/docs", "/swagger"):
+                self._send_html(SWAGGER_UI_HTML)
+
+            # 2. Spécification OpenAPI 3.0
+            elif path in ("/openapi.json", "/api/v1/openapi.json"):
+                self._send_json(get_openapi_specification())
+
+            # 3. Contrôle de santé
+            elif path in ("/health", "/api/v1/health"):
                 self.handle_health()
 
-            # Route 2 : /api/v1/search
+            # 4. Recherche multicritère
             elif path == "/api/v1/search":
                 q = get_param("q")
                 wilaya = get_param("wilaya")
@@ -136,7 +382,7 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
                     "data": res.results
                 })
 
-            # Route 3 : /api/v1/nearby
+            # 5. Recherche par proximité géospatiale
             elif path == "/api/v1/nearby":
                 lat_str = get_param("lat")
                 lon_str = get_param("lon")
@@ -182,7 +428,7 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
                     "data": res.results
                 })
 
-            # Route 4 : /api/v1/places/<id>
+            # 6. Fiche détaillée d'un établissement
             elif path.startswith("/api/v1/places/"):
                 place_id_val = path[len("/api/v1/places/"):]
                 if not place_id_val:
@@ -194,7 +440,7 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
                     return
                 self._send_json({"status": "success", "data": place})
 
-            # Route 5 : /api/v1/wilayas
+            # 7. Liste des wilayas
             elif path == "/api/v1/wilayas":
                 wilayas = self.engine.get_wilayas_stats()
                 self._send_json({
@@ -203,7 +449,7 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
                     "data": wilayas
                 })
 
-            # Route 6 : /api/v1/categories
+            # 8. Référentiel des catégories
             elif path == "/api/v1/categories":
                 cats = self.engine.get_categories_stats()
                 self._send_json({
@@ -231,7 +477,7 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
         payload = {
             "status": "healthy",
             "service": "Santé DZ Medizy REST API",
-            "version": "1.0.0",
+            "version": "1.0.9",
             "database": {
                 "path": DB_PATH,
                 "mode": "read_only",
@@ -249,7 +495,7 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
 
 def run_server(host: str = "127.0.0.1", port: int = 8000):
     print("=" * 70)
-    print("SANTÉ DZ MEDIZY — DÉMARRAGE DU SERVEUR API REST (PHASE 9)")
+    print("SANTÉ DZ MEDIZY — DÉMARRAGE DU SERVEUR API REST (PHASE 9 & 10)")
     print("=" * 70)
     print(f"Base de données : {DB_PATH}")
 
@@ -263,7 +509,6 @@ def run_server(host: str = "127.0.0.1", port: int = 8000):
     if actual_sha == EXPECTED_SHA256:
         print("[SUCCÈS] SHA-256 CONFORME à la production Phase 8.4")
 
-    # Initialisation du moteur de recherche en lecture seule
     engine = MedizySearchEngine(db_path=DB_PATH)
     MedizyAPIHandler.engine = engine
     MedizyAPIHandler.db_sha256 = actual_sha
@@ -271,11 +516,13 @@ def run_server(host: str = "127.0.0.1", port: int = 8000):
     server_address = (host, port)
     httpd = ThreadingHTTPServer(server_address, MedizyAPIHandler)
     print(f"\nServeur API en écoute sur http://{host}:{port}/")
-    print(f"  * GET http://{host}:{port}/health")
-    print(f"  * GET http://{host}:{port}/api/v1/search?wilaya=16&specialite=cardio")
-    print(f"  * GET http://{host}:{port}/api/v1/nearby?lat=36.7538&lon=3.0588&radius_km=5.0")
-    print(f"  * GET http://{host}:{port}/api/v1/wilayas")
-    print(f"  * GET http://{host}:{port}/api/v1/categories")
+    print(f"  * Documentation Swagger UI : http://{host}:{port}/docs")
+    print(f"  * Spécification OpenAPI    : http://{host}:{port}/openapi.json")
+    print(f"  * Santé système             : http://{host}:{port}/health")
+    print(f"  * Recherche multicritère   : http://{host}:{port}/api/v1/search?wilaya=16&specialite=cardio")
+    print(f"  * Recherche proximité GPS  : http://{host}:{port}/api/v1/nearby?lat=36.7538&lon=3.0588&radius_km=5.0")
+    print(f"  * Liste des wilayas        : http://{host}:{port}/api/v1/wilayas")
+    print(f"  * Catégories médicales     : http://{host}:{port}/api/v1/categories")
     print("\nAppuyez sur Ctrl+C pour arrêter le serveur.")
 
     try:

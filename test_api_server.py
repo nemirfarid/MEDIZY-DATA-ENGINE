@@ -130,6 +130,27 @@ class TestMedizyAPIServer(unittest.TestCase):
             self._get("/api/v1/nearby")
         self.assertEqual(ctx.exception.code, 400)
 
+    def test_08_openapi_spec(self):
+        """Valide la spécification OpenAPI 3.0 sur /openapi.json."""
+        status, data = self._get("/openapi.json")
+        self.assertEqual(status, 200)
+        self.assertEqual(data["openapi"], "3.0.3")
+        self.assertIn("info", data)
+        self.assertEqual(data["info"]["version"], "1.0.9")
+        self.assertIn("/api/v1/search", data["paths"])
+        self.assertIn("/api/v1/nearby", data["paths"])
+        self.assertIn("Facility", data["components"]["schemas"])
+
+    def test_09_swagger_docs(self):
+        """Valide la page Swagger UI sur /docs."""
+        url = f"http://{TEST_HOST}:{TEST_PORT}/docs"
+        req = urllib.request.Request(url, headers={"User-Agent": "MedizyTestClient/1.0"})
+        with urllib.request.urlopen(req) as resp:
+            content = resp.read().decode("utf-8")
+            self.assertEqual(resp.status, 200)
+            self.assertIn("SwaggerUIBundle", content)
+            self.assertIn("/openapi.json", content)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

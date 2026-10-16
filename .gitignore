@@ -18,3 +18,5 @@ backups/
 *.tmp
 *.bak
 *.pdf
+exports/
+*.gz

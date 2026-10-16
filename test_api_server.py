@@ -12,6 +12,7 @@ Valide :
 - GET /api/v1/categories
 """
 
+import gzip
 import json
 import threading
 import time
@@ -150,6 +151,57 @@ class TestMedizyAPIServer(unittest.TestCase):
             self.assertEqual(resp.status, 200)
             self.assertIn("SwaggerUIBundle", content)
             self.assertIn("/openapi.json", content)
+
+    def test_10_cache_version(self):
+        """Valide la route /api/v1/cache/version pour la synchronisation client."""
+        status, data = self._get("/api/v1/cache/version")
+        self.assertEqual(status, 200)
+        self.assertEqual(data["status"], "success")
+        self.assertEqual(data["total_facilities"], 23669)
+        self.assertEqual(data["total_wilayas"], 58)
+        self.assertEqual(data["database_sha256"], MedizyAPIHandler.db_sha256)
+        self.assertIn("national_cache", data)
+        self.assertEqual(data["national_cache"]["download_url"], "/api/v1/cache/national")
+
+    def test_11_cache_national_download(self):
+        """Valide le téléchargement et la décompression de l'archive nationale complète."""
+        url = f"http://{TEST_HOST}:{TEST_PORT}/api/v1/cache/national"
+        req = urllib.request.Request(url, headers={"User-Agent": "MedizyTestClient/1.0"})
+        with urllib.request.urlopen(req) as resp:
+            self.assertEqual(resp.status, 200)
+            self.assertIn("application/gzip", resp.headers.get("Content-Type", ""))
+            self.assertIn("medizy_national_cache.json.gz", resp.headers.get("Content-Disposition", ""))
+            raw_bytes = resp.read()
+            # Vérification du nombre magique GZIP (0x1f, 0x8b)
+            self.assertEqual(raw_bytes[:2], b"\x1f\x8b")
+            
+            # Décompression et validation JSON
+            decompressed = gzip.decompress(raw_bytes).decode("utf-8")
+            parsed = json.loads(decompressed)
+            self.assertEqual(parsed["metadata"]["package_type"], "national_consolidated")
+            self.assertEqual(len(parsed["facilities"]), 23669)
+
+    def test_12_cache_wilaya_download(self):
+        """Valide le téléchargement du cache partitionné par wilaya (ex: 16 Alger)."""
+        url = f"http://{TEST_HOST}:{TEST_PORT}/api/v1/cache/wilaya/16"
+        req = urllib.request.Request(url, headers={"User-Agent": "MedizyTestClient/1.0"})
+        with urllib.request.urlopen(req) as resp:
+            self.assertEqual(resp.status, 200)
+            self.assertIn("application/gzip", resp.headers.get("Content-Type", ""))
+            raw_bytes = resp.read()
+            self.assertEqual(raw_bytes[:2], b"\x1f\x8b")
+
+            decompressed = gzip.decompress(raw_bytes).decode("utf-8")
+            parsed = json.loads(decompressed)
+            self.assertEqual(parsed["metadata"]["wilaya"], "Alger")
+            self.assertEqual(parsed["metadata"]["wilaya_code"], "16")
+            self.assertGreater(len(parsed["facilities"]), 0)
+
+    def test_13_cache_invalid_wilaya(self):
+        """Valide le rejet d'une wilaya inexistante sur le cache."""
+        with self.assertRaises(urllib.error.HTTPError) as ctx:
+            self._get("/api/v1/cache/wilaya/999")
+        self.assertEqual(ctx.exception.code, 404)
 
 
 if __name__ == "__main__":

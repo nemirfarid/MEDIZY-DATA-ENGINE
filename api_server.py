@@ -32,6 +32,7 @@ Sécurité :
 - Validation stricte des types de paramètres (lat/lon, radius, pagination).
 """
 
+import datetime
 import hashlib
 import json
 import os
@@ -42,7 +43,8 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any, Dict, Optional
 from urllib.parse import parse_qs, urlparse
 
-from medizy_search import MedizySearchEngine
+from medizy_search import MedizySearchEngine, OFFICIAL_WILAYAS, strip_accents
+from export_mobile_cache import export_wilaya, export_national_cache, DEFAULT_OUT_DIR
 
 DB_PATH = os.path.abspath(os.path.join(os.path.dirname(__file__), "medizy_scraper.db"))
 EXPECTED_SHA256 = "948fda84d6375b6b1dbd7ba822cdcfe09f7301f81f8779bc803e717b582c493d"
@@ -165,6 +167,43 @@ def get_openapi_specification() -> Dict[str, Any]:
                     "summary": "Spécialités et catégories médicales",
                     "responses": {
                         "200": {"description": "Statistiques par spécialité"}
+                    }
+                }
+            },
+            "/api/v1/cache/version": {
+                "get": {
+                    "summary": "Version et métadonnées du cache hors-ligne mobile",
+                    "description": "Fournit l'empreinte SHA-256, le décompte global et les liens de téléchargement pour la synchronisation delta.",
+                    "responses": {
+                        "200": {"description": "Informations de version et statut du cache"}
+                    }
+                }
+            },
+            "/api/v1/cache/national": {
+                "get": {
+                    "summary": "Téléchargement de l'archive nationale complète (GZIP)",
+                    "description": "Stream binaire de l'archive medizy_national_cache.json.gz (23 669 établissements).",
+                    "responses": {
+                        "200": {
+                            "description": "Archive binaire GZIP",
+                            "headers": {
+                                "Content-Type": {"schema": {"type": "string", "example": "application/gzip"}},
+                                "Content-Disposition": {"schema": {"type": "string", "example": "attachment; filename=\"medizy_national_cache.json.gz\""}}
+                            }
+                        }
+                    }
+                }
+            },
+            "/api/v1/cache/wilaya/{code}": {
+                "get": {
+                    "summary": "Téléchargement du cache partitionné par wilaya (GZIP)",
+                    "description": "Stream binaire de l'archive spécifique à une wilaya (ex: 16 pour Alger).",
+                    "parameters": [
+                        {"name": "code", "in": "path", "required": True, "description": "Code officiel (01-58) ou nom de wilaya", "schema": {"type": "string"}}
+                    ],
+                    "responses": {
+                        "200": {"description": "Archive GZIP de la wilaya demandée"},
+                        "404": {"description": "Wilaya introuvable"}
                     }
                 }
             }
@@ -458,11 +497,95 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
                     "data": cats
                 })
 
+            # 9. Version et métadonnées du cache mobile
+            elif path == "/api/v1/cache/version":
+                self.handle_cache_version()
+
+            # 10. Téléchargement de l'archive nationale complète
+            elif path == "/api/v1/cache/national":
+                national_path = os.path.join(DEFAULT_OUT_DIR, "medizy_national_cache.json.gz")
+                if not os.path.exists(national_path):
+                    export_national_cache(output_dir=DEFAULT_OUT_DIR)
+                self._send_file(national_path, "medizy_national_cache.json.gz", "application/gzip")
+
+            # 11. Téléchargement du cache partitionné par wilaya
+            elif path.startswith("/api/v1/cache/wilaya/"):
+                wil_param = path[len("/api/v1/cache/wilaya/"):].strip()
+                if not wil_param:
+                    self._send_error("Code ou nom de wilaya requis.")
+                    return
+                resolved = self.engine.resolve_wilaya(wil_param)
+                wilaya_code = None
+                for code, name in OFFICIAL_WILAYAS:
+                    if name.lower() == str(resolved).lower():
+                        wilaya_code = code
+                        resolved = name
+                        break
+                if not wilaya_code:
+                    self._send_error(f"Wilaya inconnue ou non officielle : {wil_param}", status_code=HTTPStatus.NOT_FOUND)
+                    return
+                norm_clean = strip_accents(resolved).replace(" ", "_").replace("'", "")
+                filename = f"medizy_wilaya_{wilaya_code}_{norm_clean}.json.gz"
+
+                candidates = [
+                    os.path.join(DEFAULT_OUT_DIR, "wilayas", filename),
+                    os.path.join(DEFAULT_OUT_DIR, filename)
+                ]
+                found_path = next((p for p in candidates if os.path.exists(p)), None)
+                if not found_path:
+                    stat = export_wilaya(resolved, output_dir=os.path.join(DEFAULT_OUT_DIR, "wilayas"))
+                    found_path = stat["filepath"]
+
+                self._send_file(found_path, filename, "application/gzip")
+
             else:
                 self._send_error(f"Route introuvable : {path}", status_code=HTTPStatus.NOT_FOUND)
 
         except Exception as e:
             self._send_error(f"Erreur interne du serveur : {str(e)}", status_code=HTTPStatus.INTERNAL_SERVER_ERROR)
+
+    def _send_file(self, filepath: str, filename: str, content_type: str = "application/gzip"):
+        """Envoie un fichier binaire avec en-têtes de téléchargement et cache."""
+        if not os.path.exists(filepath):
+            self._send_error(f"Fichier introuvable : {filename}", status_code=HTTPStatus.NOT_FOUND)
+            return
+        file_size = os.path.getsize(filepath)
+        self.send_response(HTTPStatus.OK)
+        self.send_header("Content-Type", content_type)
+        self.send_header("Content-Length", str(file_size))
+        self.send_header("Content-Disposition", f'attachment; filename="{filename}"')
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Cache-Control", "public, max-age=3600")
+        self.end_headers()
+        with open(filepath, "rb") as f:
+            while chunk := f.read(65536):
+                self.wfile.write(chunk)
+
+    def handle_cache_version(self):
+        """Retourne les métadonnées de version du cache client mobile pour synchronisation delta."""
+        national_path = os.path.join(DEFAULT_OUT_DIR, "medizy_national_cache.json.gz")
+        national_size = os.path.getsize(national_path) if os.path.exists(national_path) else None
+        
+        db_stat = os.stat(DB_PATH) if os.path.exists(DB_PATH) else None
+        last_modified = datetime.datetime.fromtimestamp(db_stat.st_mtime, tz=datetime.timezone.utc).isoformat() if db_stat else None
+
+        payload = {
+            "status": "success",
+            "version": "1.0.9",
+            "schema_version": "1.0",
+            "last_updated": last_modified,
+            "database_sha256": MedizyAPIHandler.db_sha256,
+            "total_facilities": 23669,
+            "total_wilayas": 58,
+            "national_cache": {
+                "available": national_size is not None,
+                "download_url": "/api/v1/cache/national",
+                "size_bytes": national_size,
+                "size_human": f"{national_size / (1024*1024):.2f} MB" if national_size else None
+            },
+            "wilaya_cache_template": "/api/v1/cache/wilaya/{code}"
+        }
+        self._send_json(payload)
 
     def handle_health(self):
         """Retourne la santé de l'API, le volume et l'intégrité de la base."""

@@ -157,7 +157,7 @@ class TestMedizyAPIServer(unittest.TestCase):
         status, data = self._get("/api/v1/cache/version")
         self.assertEqual(status, 200)
         self.assertEqual(data["status"], "success")
-        self.assertEqual(data["total_facilities"], 23669)
+        self.assertEqual(data["total_facilities"], 30568)
         self.assertEqual(data["total_wilayas"], 58)
         self.assertEqual(data["database_sha256"], MedizyAPIHandler.db_sha256)
         self.assertIn("national_cache", data)

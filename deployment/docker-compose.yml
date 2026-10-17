@@ -1,0 +1,36 @@
+# ==============================================================================
+# SANTÉ DZ / MEDIZY — DOCKER COMPOSE DE PRODUCTION (Phase 7)
+# ==============================================================================
+version: '3.8'
+
+services:
+  medizy-api:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    image: medizy-api:1.0.14
+    container_name: medizy-api
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - HOST=0.0.0.0
+      - MEDIZY_DB_PATH=/app/medizy_scraper.db
+    volumes:
+      # Montage de la base SQLite certifiée en lecture seule stricte (:ro)
+      - ./medizy_scraper.db:/app/medizy_scraper.db:ro
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.1'
+          memory: 64M
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request, sys; sys.exit(0 if urllib.request.urlopen('http://localhost:8000/api/v1/health', timeout=3).getcode() == 200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s

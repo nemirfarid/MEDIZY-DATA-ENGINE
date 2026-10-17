@@ -39,6 +39,7 @@ import json
 import os
 import re
 import sys
+import time
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any, Dict, Optional
@@ -343,6 +344,11 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
 
     engine: MedizySearchEngine = None
     db_sha256: str = ""
+    db_integrity: str = "ok"
+
+    def address_string(self):
+        """Évite la résolution DNS inverse bloquante (socket.getfqdn) sur Windows/Linux."""
+        return str(self.client_address[0])
 
     def log_message(self, format, *args):
         sys.stderr.write(f"[{self.log_date_time_string()}] {self.command} {self.path} -> {args[1]}\n")
@@ -590,8 +596,11 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
         self.send_header("Cache-Control", "public, max-age=3600")
         self.end_headers()
         with open(filepath, "rb") as f:
-            while chunk := f.read(65536):
-                self.wfile.write(chunk)
+            try:
+                while chunk := f.read(65536):
+                    self.wfile.write(chunk)
+            except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError):
+                pass
 
     def handle_cache_version(self):
         """Retourne les métadonnées de version du cache client mobile pour synchronisation delta."""
@@ -603,11 +612,11 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
 
         payload = {
             "status": "success",
-            "version": "1.0.9",
+            "version": "1.0.14",
             "schema_version": "1.0",
             "last_updated": last_modified,
             "database_sha256": MedizyAPIHandler.db_sha256,
-            "total_facilities": 23669,
+            "total_facilities": 30568,
             "total_wilayas": 58,
             "national_cache": {
                 "available": national_size is not None,
@@ -623,16 +632,16 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
         """Retourne la santé de l'API, le volume et l'intégrité de la base."""
         conn = self.engine._get_connection()
         cur = conn.cursor()
-        cur.execute("PRAGMA integrity_check;")
-        integrity = cur.fetchone()[0]
+        cur.execute("SELECT 1;")
         cur.execute("SELECT COUNT(*) FROM places;")
         total_places = cur.fetchone()[0]
         cur.close()
+        integrity = getattr(MedizyAPIHandler, "db_integrity", "ok")
 
         payload = {
             "status": "healthy",
             "service": "Santé DZ Medizy REST API",
-            "version": "1.0.9",
+            "version": "1.0.14",
             "database": {
                 "path": DB_PATH,
                 "mode": "read_only",
@@ -649,24 +658,32 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
 
     def handle_stats(self):
         """Retourne les métriques en direct : total établissements, couverture 58 wilayas, ventilation par source."""
-        conn = self.engine._get_connection()
-        cur = conn.cursor()
-        cur.execute("SELECT COUNT(*) FROM places;")
-        total_places = cur.fetchone()[0]
-        cur.execute("SELECT COUNT(DISTINCT wilaya) FROM places WHERE wilaya IS NOT NULL AND TRIM(wilaya) != '';")
-        wilayas_covered = cur.fetchone()[0]
-        cur.execute("SELECT COALESCE(source, 'Inconnue') as src, COUNT(*) as cnt FROM places GROUP BY src ORDER BY cnt DESC;")
-        sources_breakdown = {r["src"]: r["cnt"] for r in cur.fetchall()}
-        cur.execute("SELECT COUNT(*) FROM places WHERE telephone IS NOT NULL AND TRIM(telephone) != '';")
-        phone_count = cur.fetchone()[0]
-        cur.execute("SELECT COUNT(*) FROM places WHERE latitude IS NOT NULL AND longitude IS NOT NULL AND latitude != 0 AND longitude != 0;")
-        gps_count = cur.fetchone()[0]
-        cur.close()
+        now = time.time()
+        cached = getattr(MedizyAPIHandler, "cached_stats", None)
+        cached_time = getattr(MedizyAPIHandler, "cached_stats_time", 0)
 
-        payload = {
-            "status": "success",
-            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
-            "metrics": {
+        if cached is None or (now - cached_time) > 60:
+            conn = self.engine._get_connection()
+            cur = conn.cursor()
+            cur.execute("""
+                SELECT 
+                    COUNT(*) as total_places,
+                    COUNT(DISTINCT wilaya) as wilayas_covered,
+                    COUNT(CASE WHEN telephone IS NOT NULL AND TRIM(telephone) != '' THEN 1 END) as phone_count,
+                    COUNT(CASE WHEN latitude IS NOT NULL AND longitude IS NOT NULL AND latitude != 0 AND longitude != 0 THEN 1 END) as gps_count
+                FROM places;
+            """)
+            row = cur.fetchone()
+            total_places = row[0]
+            wilayas_covered = row[1]
+            phone_count = row[2]
+            gps_count = row[3]
+
+            cur.execute("SELECT COALESCE(source, 'Inconnue') as src, COUNT(*) as cnt FROM places GROUP BY src ORDER BY cnt DESC;")
+            sources_breakdown = {r["src"]: r["cnt"] for r in cur.fetchall()}
+            cur.close()
+
+            cached = {
                 "total_facilities": total_places,
                 "wilayas_covered": wilayas_covered,
                 "sources_breakdown": sources_breakdown,
@@ -675,6 +692,13 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
                 "gps_coverage_pct": round(gps_count / total_places * 100.0, 2) if total_places else 0.0,
                 "database_sha256": MedizyAPIHandler.db_sha256
             }
+            MedizyAPIHandler.cached_stats = cached
+            MedizyAPIHandler.cached_stats_time = now
+
+        payload = {
+            "status": "success",
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "metrics": cached
         }
         self._send_json(payload)
 
@@ -698,6 +722,14 @@ def run_server(host: str = "127.0.0.1", port: int = 8000):
     engine = MedizySearchEngine(db_path=DB_PATH)
     MedizyAPIHandler.engine = engine
     MedizyAPIHandler.db_sha256 = actual_sha
+
+    print("Vérification de l'intégrité SQLite au démarrage...")
+    cur = engine._get_connection().cursor()
+    cur.execute("PRAGMA quick_check;")
+    actual_integrity = cur.fetchone()[0]
+    cur.close()
+    MedizyAPIHandler.db_integrity = actual_integrity
+    print(f"Intégrité SQLite : {actual_integrity}")
 
     server_address = (host, port)
     httpd = ThreadingHTTPServer(server_address, MedizyAPIHandler)
@@ -723,7 +755,7 @@ def run_server(host: str = "127.0.0.1", port: int = 8000):
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser(description="Serveur API REST Santé DZ Medizy")
-    parser.add_argument("--host", default="127.0.0.1", help="Adresse d'écoute")
-    parser.add_argument("--port", type=int, default=8000, help="Port d'écoute")
+    parser.add_argument("--host", default=os.environ.get("HOST", "127.0.0.1"), help="Adresse d'écoute")
+    parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", "8000")), help="Port d'écoute")
     args = parser.parse_args()
     run_server(host=args.host, port=args.port)

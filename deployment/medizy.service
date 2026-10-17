@@ -1,0 +1,38 @@
+[Unit]
+Description=Santé DZ Medizy REST API Service (Programme National Sanitaire Algérie)
+Documentation=https://medizy.dz
+After=network.target network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=medizy
+Group=medizy
+WorkingDirectory=/opt/medizy
+Environment=PYTHONUNBUFFERED=1
+Environment=PORT=8000
+Environment=HOST=0.0.0.0
+Environment=WORKERS=2
+Environment=MEDIZY_DB_PATH=/opt/medizy/medizy_scraper.db
+
+# Exécution de l'API REST en lecture seule
+ExecStart=/usr/bin/python3 /opt/medizy/api_server.py --host 0.0.0.0 --port 8000
+
+# Redémarrage automatique en cas d'incident
+Restart=always
+RestartSec=5s
+
+# Sécurité & Isolation système
+KillMode=mixed
+TimeoutStopSec=10s
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+NoNewPrivileges=true
+
+# Limites de ressources
+LimitNOFILE=65536
+MemoryMax=256M
+
+[Install]
+WantedBy=multi-user.target

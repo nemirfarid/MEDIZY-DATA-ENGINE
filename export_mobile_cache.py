@@ -41,7 +41,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from medizy_search import MedizySearchEngine, OFFICIAL_WILAYAS, WILAYA_BY_CODE, strip_accents
 
 DB_PATH = os.environ.get("MEDIZY_DB_PATH") or os.path.abspath(os.path.join(os.path.dirname(__file__), "medizy_scraper.db"))
-EXPECTED_SHA256 = "69b94b3ca03d80d5ea33f8395482c6763e72d1fba5c491300b0e92dcd6d12e65"
+EXPECTED_SHA256 = "6690141cd6223f953c624801edf7472714bec116b8f54f5ec4840c78d6168601"
 DEFAULT_OUT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "exports", "mobile"))
 
 

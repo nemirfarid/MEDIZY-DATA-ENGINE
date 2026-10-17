@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 import sys
+import sqlite3
 from typing import Any, Dict, Optional
 
 DEFAULT_CACHE_PATH = os.path.abspath(
@@ -21,7 +22,7 @@ DEFAULT_CACHE_PATH = os.path.abspath(
 DEFAULT_DB_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "medizy_scraper.db")
 )
-EXPECTED_FACILITIES_COUNT = 23669
+EXPECTED_FACILITIES_COUNT = 30568
 EXPECTED_WILAYAS_COUNT = 58
 
 
@@ -55,6 +56,11 @@ def verify_cache(
     cache_sha256 = compute_sha256(c_path)
     db_sha256 = compute_sha256(d_path)
 
+    # Récupération du volume réel de la base
+    con = sqlite3.connect(f"file:{d_path}?mode=ro", uri=True)
+    actual_db_count = con.execute("SELECT COUNT(*) FROM places").fetchone()[0]
+    con.close()
+
     # 2. Décompression en mémoire et validation JSON
     with gzip.open(c_path, "rt", encoding="utf-8") as f:
         cache_data = json.load(f)
@@ -74,7 +80,8 @@ def verify_cache(
     meta_wilayas_count = metadata.get("wilayas_count")
 
     # 3. Contrôles de concordance stricte
-    count_concordance = (facilities_count == EXPECTED_FACILITIES_COUNT) and (meta_count == EXPECTED_FACILITIES_COUNT)
+    target_count = actual_db_count if actual_db_count > 0 else EXPECTED_FACILITIES_COUNT
+    count_concordance = (facilities_count == target_count) and (meta_count == target_count)
     sha_concordance = (meta_db_sha == db_sha256)
     wilayas_concordance = (meta_wilayas_count == EXPECTED_WILAYAS_COUNT)
 

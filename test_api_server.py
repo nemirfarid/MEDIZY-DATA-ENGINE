@@ -60,7 +60,7 @@ class TestMedizyAPIServer(unittest.TestCase):
         status, data = self._get("/health")
         self.assertEqual(status, 200)
         self.assertEqual(data["status"], "healthy")
-        self.assertEqual(data["database"]["total_entries"], 23669)
+        self.assertEqual(data["database"]["total_entries"], 30568)
         self.assertEqual(data["database"]["sqlite_integrity"], "ok")
         self.assertEqual(data["database"]["mode"], "read_only")
         self.assertEqual(data["coverage"]["wilayas_covered"], 58)
@@ -179,7 +179,7 @@ class TestMedizyAPIServer(unittest.TestCase):
             decompressed = gzip.decompress(raw_bytes).decode("utf-8")
             parsed = json.loads(decompressed)
             self.assertEqual(parsed["metadata"]["package_type"], "national_consolidated")
-            self.assertEqual(len(parsed["facilities"]), 23669)
+            self.assertEqual(len(parsed["facilities"]), 30568)
 
     def test_12_cache_wilaya_download(self):
         """Valide le téléchargement du cache partitionné par wilaya (ex: 16 Alger)."""

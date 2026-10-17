@@ -33,6 +33,7 @@ Sécurité :
 """
 
 import datetime
+import gzip
 import hashlib
 import json
 import os
@@ -167,6 +168,15 @@ def get_openapi_specification() -> Dict[str, Any]:
                     "summary": "Spécialités et catégories médicales",
                     "responses": {
                         "200": {"description": "Statistiques par spécialité"}
+                    }
+                }
+            },
+            "/api/v1/stats": {
+                "get": {
+                    "summary": "Métriques en direct de la base de production",
+                    "description": "Fournit le total certifié d'établissements, la couverture des 58 wilayas, la ventilation par source et les taux GPS/téléphone.",
+                    "responses": {
+                        "200": {"description": "Métriques consolidées en temps réel"}
                     }
                 }
             },
@@ -351,8 +361,26 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
 
     def _send_json(self, data: Any, status_code: int = HTTPStatus.OK):
         body = json.dumps(data, ensure_ascii=False, indent=2).encode("utf-8")
-        self._set_headers(status_code, "application/json; charset=utf-8")
-        self.wfile.write(body)
+        accept_encoding = self.headers.get("Accept-Encoding", "") if hasattr(self, "headers") and self.headers else ""
+        use_gzip = "gzip" in accept_encoding.lower() and len(body) > 256
+
+        self.send_response(status_code)
+        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, Accept-Encoding")
+        self.send_header("Cache-Control", "no-cache")
+
+        if use_gzip:
+            compressed = gzip.compress(body)
+            self.send_header("Content-Encoding", "gzip")
+            self.send_header("Content-Length", str(len(compressed)))
+            self.end_headers()
+            self.wfile.write(compressed)
+        else:
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
 
     def _send_html(self, html_content: str, status_code: int = HTTPStatus.OK):
         body = html_content.encode("utf-8")
@@ -385,6 +413,10 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
             # 3. Contrôle de santé
             elif path in ("/health", "/api/v1/health"):
                 self.handle_health()
+
+            # 3b. Métriques statistiques en direct
+            elif path in ("/stats", "/api/v1/stats"):
+                self.handle_stats()
 
             # 4. Recherche multicritère
             elif path == "/api/v1/search":
@@ -611,6 +643,37 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
             "coverage": {
                 "wilayas_covered": 58,
                 "gps_coordinates_pct": 100.0
+            }
+        }
+        self._send_json(payload)
+
+    def handle_stats(self):
+        """Retourne les métriques en direct : total établissements, couverture 58 wilayas, ventilation par source."""
+        conn = self.engine._get_connection()
+        cur = conn.cursor()
+        cur.execute("SELECT COUNT(*) FROM places;")
+        total_places = cur.fetchone()[0]
+        cur.execute("SELECT COUNT(DISTINCT wilaya) FROM places WHERE wilaya IS NOT NULL AND TRIM(wilaya) != '';")
+        wilayas_covered = cur.fetchone()[0]
+        cur.execute("SELECT COALESCE(source, 'Inconnue') as src, COUNT(*) as cnt FROM places GROUP BY src ORDER BY cnt DESC;")
+        sources_breakdown = {r["src"]: r["cnt"] for r in cur.fetchall()}
+        cur.execute("SELECT COUNT(*) FROM places WHERE telephone IS NOT NULL AND TRIM(telephone) != '';")
+        phone_count = cur.fetchone()[0]
+        cur.execute("SELECT COUNT(*) FROM places WHERE latitude IS NOT NULL AND longitude IS NOT NULL AND latitude != 0 AND longitude != 0;")
+        gps_count = cur.fetchone()[0]
+        cur.close()
+
+        payload = {
+            "status": "success",
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+            "metrics": {
+                "total_facilities": total_places,
+                "wilayas_covered": wilayas_covered,
+                "sources_breakdown": sources_breakdown,
+                "with_phone": phone_count,
+                "with_gps": gps_count,
+                "gps_coverage_pct": round(gps_count / total_places * 100.0, 2) if total_places else 0.0,
+                "database_sha256": MedizyAPIHandler.db_sha256
             }
         }
         self._send_json(payload)

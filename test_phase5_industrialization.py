@@ -70,7 +70,7 @@ class TestPhase5Industrialization(unittest.TestCase):
         report = verify_cache()
         self.assertEqual(report["status"], "success")
         self.assertEqual(report["overall_integrity"], "CONFORME")
-        self.assertEqual(report["validation_checks"]["facilities_count"], 30568)
+        self.assertEqual(report["validation_checks"]["facilities_count"], 35832)
         self.assertEqual(report["validation_checks"]["wilayas_count"], 58)
         self.assertTrue(report["validation_checks"]["count_concordance"])
         self.assertTrue(report["validation_checks"]["sha_concordance"])
@@ -80,7 +80,7 @@ class TestPhase5Industrialization(unittest.TestCase):
         """Vérifie que le consommateur mémoire effectue les requêtes types en < 15 ms."""
         report = run_benchmark()
         self.assertEqual(report["status"], "success")
-        self.assertEqual(report["total_facilities_in_ram"], 30568)
+        self.assertEqual(report["total_facilities_in_ram"], 35832)
         self.assertTrue(report["meets_target_15ms"], f"Temps max {report['max_search_time_ms']} ms dépasse 15 ms")
         self.assertLess(report["max_search_time_ms"], 15.0)
 
@@ -98,12 +98,12 @@ class TestPhase5Industrialization(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertEqual(data["status"], "success")
         metrics = data["metrics"]
-        self.assertEqual(metrics["total_facilities"], 30568)
+        self.assertEqual(metrics["total_facilities"], 35832)
         self.assertEqual(metrics["wilayas_covered"], 58)
         self.assertGreater(metrics["with_phone"], 15000)
-        self.assertEqual(metrics["with_gps"], 30568)
+        self.assertEqual(metrics["with_gps"], 35832)
         self.assertEqual(metrics["gps_coverage_pct"], 100.0)
-        self.assertEqual(metrics["database_sha256"], "6690141cd6223f953c624801edf7472714bec116b8f54f5ec4840c78d6168601")
+        self.assertEqual(metrics["database_sha256"], "b81a08f36a3e6048016a2e0b095128040fccc80022bc566f07f9ab822c0ab791")
 
         # Vérification des sources
         sources = metrics["sources_breakdown"]

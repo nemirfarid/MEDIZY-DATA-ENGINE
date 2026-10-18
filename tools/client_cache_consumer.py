@@ -175,6 +175,10 @@ def run_benchmark(cache_path: str = DEFAULT_CACHE_PATH) -> Dict[str, Any]:
     t1_load = time.perf_counter()
     load_time_ms = round((t1_load - t0_load) * 1000.0, 2)
 
+    # Échauffement préalable de la mémoire et des caches de boucle
+    searcher.search(wilaya="Alger", limit=5)
+    searcher.search(query="hopital", limit=5)
+
     # 1. Requête type 1 : "cardiologue" à Oran
     q1 = searcher.search(wilaya="Oran", category="cardiologue", limit=10)
 

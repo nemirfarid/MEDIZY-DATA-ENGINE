@@ -41,7 +41,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from medizy_search import MedizySearchEngine, OFFICIAL_WILAYAS, WILAYA_BY_CODE, strip_accents
 
 DB_PATH = os.environ.get("MEDIZY_DB_PATH") or os.path.abspath(os.path.join(os.path.dirname(__file__), "medizy_scraper.db"))
-EXPECTED_SHA256 = "6690141cd6223f953c624801edf7472714bec116b8f54f5ec4840c78d6168601"
+EXPECTED_SHA256 = "b81a08f36a3e6048016a2e0b095128040fccc80022bc566f07f9ab822c0ab791"
 DEFAULT_OUT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "exports", "mobile"))
 
 
@@ -176,7 +176,7 @@ def export_wilaya(
     output_path = os.path.join(output_dir, filename)
 
     metadata = {
-        "version": "1.0.9",
+        "version": "1.0.15",
         "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "wilaya_code": wilaya_code,
         "wilaya": resolved_name,
@@ -274,7 +274,7 @@ def export_national_cache(output_dir: str = DEFAULT_OUT_DIR, db_path: Optional[s
 
     output_path = os.path.join(output_dir, "medizy_national_cache.json.gz")
     metadata = {
-        "version": "1.0.9",
+        "version": "1.0.15",
         "package_type": "national_consolidated",
         "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
         "total_facilities": len(records),

@@ -60,7 +60,7 @@ class TestMedizyAPIServer(unittest.TestCase):
         status, data = self._get("/health")
         self.assertEqual(status, 200)
         self.assertEqual(data["status"], "healthy")
-        self.assertEqual(data["database"]["total_entries"], 30568)
+        self.assertEqual(data["database"]["total_entries"], 35832)
         self.assertEqual(data["database"]["sqlite_integrity"], "ok")
         self.assertEqual(data["database"]["mode"], "read_only")
         self.assertEqual(data["coverage"]["wilayas_covered"], 58)
@@ -137,7 +137,7 @@ class TestMedizyAPIServer(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assertEqual(data["openapi"], "3.0.3")
         self.assertIn("info", data)
-        self.assertEqual(data["info"]["version"], "1.0.9")
+        self.assertEqual(data["info"]["version"], "1.0.15")
         self.assertIn("/api/v1/search", data["paths"])
         self.assertIn("/api/v1/nearby", data["paths"])
         self.assertIn("Facility", data["components"]["schemas"])
@@ -157,7 +157,7 @@ class TestMedizyAPIServer(unittest.TestCase):
         status, data = self._get("/api/v1/cache/version")
         self.assertEqual(status, 200)
         self.assertEqual(data["status"], "success")
-        self.assertEqual(data["total_facilities"], 30568)
+        self.assertEqual(data["total_facilities"], 35832)
         self.assertEqual(data["total_wilayas"], 58)
         self.assertEqual(data["database_sha256"], MedizyAPIHandler.db_sha256)
         self.assertIn("national_cache", data)
@@ -179,7 +179,7 @@ class TestMedizyAPIServer(unittest.TestCase):
             decompressed = gzip.decompress(raw_bytes).decode("utf-8")
             parsed = json.loads(decompressed)
             self.assertEqual(parsed["metadata"]["package_type"], "national_consolidated")
-            self.assertEqual(len(parsed["facilities"]), 30568)
+            self.assertEqual(len(parsed["facilities"]), 35832)
 
     def test_12_cache_wilaya_download(self):
         """Valide le téléchargement du cache partitionné par wilaya (ex: 16 Alger)."""

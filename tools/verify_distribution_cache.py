@@ -22,7 +22,7 @@ DEFAULT_CACHE_PATH = os.path.abspath(
 DEFAULT_DB_PATH = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "medizy_scraper.db")
 )
-EXPECTED_FACILITIES_COUNT = 30568
+EXPECTED_FACILITIES_COUNT = 35832
 EXPECTED_WILAYAS_COUNT = 58
 
 
@@ -130,11 +130,16 @@ def verify_cache(
 def main():
     parser = argparse.ArgumentParser(description="Vérificateur d'intégrité du cache de distribution Santé DZ Medizy")
     parser.add_argument("--cache-path", default=None, help="Chemin du fichier medizy_national_cache.json.gz")
+    parser.add_argument("--cache-dir", default=None, help="Dossier contenant medizy_national_cache.json.gz")
     parser.add_argument("--db-path", default=None, help="Chemin de la base medizy_scraper.db")
     args = parser.parse_args()
 
+    cache_path = args.cache_path
+    if not cache_path and args.cache_dir:
+        cache_path = os.path.join(args.cache_dir, "medizy_national_cache.json.gz")
+
     try:
-        report = verify_cache(cache_path=args.cache_path, db_path=args.db_path)
+        report = verify_cache(cache_path=cache_path, db_path=args.db_path)
         print("=" * 70)
         print("SANTÉ DZ MEDIZY — AUDIT DE CONFORMITÉ DU CACHE MOBILE")
         print("=" * 70)

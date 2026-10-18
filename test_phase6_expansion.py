@@ -75,7 +75,7 @@ class TestPhase6Expansion(unittest.TestCase):
 
         cur.execute("SELECT COUNT(*) FROM places")
         total = cur.fetchone()[0]
-        self.assertEqual(total, 30568, f"Total attendu 30 568, obtenu {total}")
+        self.assertEqual(total, 35832, f"Total attendu 35 832, obtenu {total}")
 
         cur.execute("SELECT COUNT(DISTINCT wilaya) FROM places")
         wilayas = cur.fetchone()[0]
@@ -83,7 +83,7 @@ class TestPhase6Expansion(unittest.TestCase):
 
         cur.execute("SELECT COUNT(*) FROM places WHERE latitude IS NOT NULL AND longitude IS NOT NULL")
         with_gps = cur.fetchone()[0]
-        self.assertEqual(with_gps, 30568, "100% des établissements doivent posséder des coordonnées GPS")
+        self.assertEqual(with_gps, 35832, "100% des établissements doivent posséder des coordonnées GPS")
 
         cur.execute("SELECT COUNT(*) FROM places WHERE source = 'osm_overpass_expansion_2026'")
         new_osm = cur.fetchone()[0]
@@ -119,22 +119,22 @@ class TestPhase6Expansion(unittest.TestCase):
 
         con.close()
 
-    def test_04_cache_conformance_30568(self):
-        """Vérifie que verify_distribution_cache certifie l'archive régénérée à 30 568 établissements."""
+    def test_04_cache_conformance_35832(self):
+        """Vérifie que verify_distribution_cache certifie l'archive régénérée à 35 832 établissements."""
         report = verify_cache(cache_path=CACHE_PATH, db_path=PROD_DB)
         self.assertEqual(report["status"], "success")
         self.assertEqual(report["overall_integrity"], "CONFORME")
-        self.assertEqual(report["validation_checks"]["facilities_count"], 30568)
+        self.assertEqual(report["validation_checks"]["facilities_count"], 35832)
         self.assertEqual(report["validation_checks"]["wilayas_count"], 58)
         self.assertTrue(report["validation_checks"]["count_concordance"])
         self.assertTrue(report["validation_checks"]["sha_concordance"])
         self.assertTrue(report["validation_checks"]["schema_sample_valid"])
 
     def test_05_client_cache_consumer_benchmark(self):
-        """Vérifie que le consommateur mémoire effectue les recherches sur 30 568 fiches en < 15 ms."""
+        """Vérifie que le consommateur mémoire effectue les recherches sur 35 832 fiches en < 15 ms."""
         report = run_benchmark(cache_path=CACHE_PATH)
         self.assertEqual(report["status"], "success")
-        self.assertEqual(report["total_facilities_in_ram"], 30568)
+        self.assertEqual(report["total_facilities_in_ram"], 35832)
         self.assertTrue(report["meets_target_15ms"], f"Temps max {report['max_search_time_ms']} ms dépasse 15 ms")
         self.assertLess(report["max_search_time_ms"], 15.0)
 

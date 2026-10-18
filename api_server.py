@@ -49,7 +49,7 @@ from medizy_search import MedizySearchEngine, OFFICIAL_WILAYAS, strip_accents
 from export_mobile_cache import export_wilaya, export_national_cache, DEFAULT_OUT_DIR
 
 DB_PATH = os.environ.get("MEDIZY_DB_PATH") or os.path.abspath(os.path.join(os.path.dirname(__file__), "medizy_scraper.db"))
-EXPECTED_SHA256 = "6690141cd6223f953c624801edf7472714bec116b8f54f5ec4840c78d6168601"
+EXPECTED_SHA256 = "b81a08f36a3e6048016a2e0b095128040fccc80022bc566f07f9ab822c0ab791"
 
 
 def calculate_sha256(filepath: str) -> str:
@@ -66,8 +66,8 @@ def get_openapi_specification() -> Dict[str, Any]:
         "openapi": "3.0.3",
         "info": {
             "title": "Santé DZ Medizy API",
-            "version": "1.0.9",
-            "description": "API REST géospatiale et plein texte pour les 23 669 établissements de santé des 58 wilayas d'Algérie.",
+            "version": "1.0.15",
+            "description": "API REST géospatiale et plein texte pour les 35 832 établissements de santé des 58 wilayas d'Algérie.",
             "contact": {
                 "name": "Équipe Santé DZ Medizy",
                 "url": "https://medizy.dz"
@@ -612,11 +612,11 @@ class MedizyAPIHandler(BaseHTTPRequestHandler):
 
         payload = {
             "status": "success",
-            "version": "1.0.14",
+            "version": "1.0.15",
             "schema_version": "1.0",
             "last_updated": last_modified,
             "database_sha256": MedizyAPIHandler.db_sha256,
-            "total_facilities": 30568,
+            "total_facilities": 35832,
             "total_wilayas": 58,
             "national_cache": {
                 "available": national_size is not None,

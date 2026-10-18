@@ -2,7 +2,7 @@
 # SANTÉ DZ / MEDIZY — RUNBOOK DE PRODUCTION & DÉPLOIEMENT INDUSTRIEL
 # ==============================================================================
 # Programme National Sanitaire — République Algérienne Démocratique et Populaire
-# Version : 1.0.14-deploy | Statut : Certifié Production | Date : Octobre 2026
+# Version : 1.0.15-extended | Statut : Certifié Production Phase 8 | Date : Octobre 2026
 # ==============================================================================
 
 ## 1. FICHE D'IDENTITÉ & CERTIFICATION DE L'ACTIF DE DONNÉES
@@ -10,11 +10,11 @@
 | Paramètre | Spécification Officielle |
 | :--- | :--- |
 | **Actif de données** | `medizy_scraper.db` (SQLite 3 WAL compatible) |
-| **Volume certifié** | **30 568 établissements sanitaires** |
+| **Volume certifié** | **35 832 établissements sanitaires** |
 | **Couverture territoriale** | **58 wilayas d'Algérie** (100% complètes, 553 communes) |
-| **Couverture géolocalisée (GPS)** | **100.00%** (30 568 / 30 568 coordonnées décimales valides) |
-| **Couverture téléphonique** | **17 125 contacts directs** (56.02%) |
-| **Empreinte cryptographique SHA-256** | `6690141cd6223f953c624801edf7472714bec116b8f54f5ec4840c78d6168601` |
+| **Couverture géolocalisée (GPS)** | **100.00%** (35 832 / 35 832 coordonnées décimales valides) |
+| **Couverture téléphonique** | **17 125 contacts directs** |
+| **Empreinte cryptographique SHA-256** | `b81a08f36a3e6048016a2e0b095128040fccc80022bc566f07f9ab822c0ab791` |
 | **Mode d'accès en exécution** | **Lecture seule stricte (`file:...db?mode=ro`, `uri=True`)** |
 | **Dépendances pip requises** | **0 package externe** (100% Python Standard Library) |
 
@@ -206,7 +206,8 @@ En cas de corruption du système de fichiers ou d'incident sur le disque `C:\` :
 | :--- | :--- | :--- | :--- |
 | **Baseline Phase 1** | `D:\SANTE_DZ_EXPORTS\backups\medizy_scraper_phase1_baseline.db` | `948fda84d6375b6b1dbd7ba822cdcfe09f7301f81f8779bc803e717b582c493d` | 23 669 établissements bruts |
 | **Production Phase 4** | `D:\SANTE_DZ_EXPORTS\backups\medizy_scraper_pre_phase6.db` | `69b94b3ca03d80d5ea33f8395482c6763e72d1fba5c491300b0e92dcd6d12e65` | 23 669 assainis 100% |
-| **Production Actuelle (Phase 6/7)** | `D:\SANTE_DZ_EXPORTS\backups\medizy_production_certified_30568.db` | `6690141cd6223f953c624801edf7472714bec116b8f54f5ec4840c78d6168601` | **30 568 établissements (58 wilayas, 100% GPS)** |
+| **Production Phase 6/7** | `D:\SANTE_DZ_EXPORTS\backups\medizy_scraper_pre_phase8.db` | `6690141cd6223f953c624801edf7472714bec116b8f54f5ec4840c78d6168601` | 30 568 établissements certifiés |
+| **Production Actuelle (Phase 8)** | `D:\SANTE_DZ_EXPORTS\backups\medizy_production_certified_35832.db` | `b81a08f36a3e6048016a2e0b095128040fccc80022bc566f07f9ab822c0ab791` | **35 832 établissements (58 wilayas, 100% GPS)** |
 
 ### 7.2. Procédure de restauration bit-à-bit pas-à-pas
 
@@ -215,12 +216,12 @@ En cas de corruption du système de fichiers ou d'incident sur le disque `C:\` :
 powershell.exe -File deployment\start_windows_service.ps1 -Action stop
 
 # 2. Restaurer la copie certifiée depuis D:\
-Copy-Item -Path "D:\SANTE_DZ_EXPORTS\backups\medizy_production_certified_30568.db" `
+Copy-Item -Path "D:\SANTE_DZ_EXPORTS\backups\medizy_production_certified_35832.db" `
           -Destination "C:\SANTE_DZ_SCRAPER\medizy_scraper.db" -Force
 
 # 3. Contrôler rigoureusement l'empreinte SHA-256
 $hash = (Get-FileHash -Path "C:\SANTE_DZ_SCRAPER\medizy_scraper.db" -Algorithm SHA256).Hash.ToLower()
-if ($hash -ne "6690141cd6223f953c624801edf7472714bec116b8f54f5ec4840c78d6168601") {
+if ($hash -ne "b81a08f36a3e6048016a2e0b095128040fccc80022bc566f07f9ab822c0ab791") {
     Write-Error "ÉCHEC CRITIQUE : L'empreinte SHA-256 restaurée ne correspond pas au scellement officiel !"
     exit 1
 }

@@ -272,6 +272,262 @@ def export_national_cache(output_dir: str = DEFAULT_OUT_DIR, db_path: Optional[s
         "max_lon": max(lons) if lons else None,
     }
 
+CATEGORIES_TAXONOMY_102: List[Tuple[str, str, str]] = [
+    ('pharmacie', 'PHARM', 'Pharmacies'),
+    ('cabinet médical', 'CAB-MED', 'Médecins & Spécialités'),
+    ('clinique', 'CLIN', 'Hôpitaux & Soins'),
+    ('cabinet dentaire', 'CAB-DENT', 'Chirurgie Dentaire'),
+    ('centre de santé', 'CTR-SANTE', 'Hôpitaux & Soins'),
+    ('hôpital', 'HOP', 'Hôpitaux & Soins'),
+    ('laboratoire médical', 'LABO', 'Laboratoires & Diagnostic'),
+    ('gynécologue', 'GYNECO', 'Médecins & Spécialités'),
+    ('dentiste', 'DENT', 'Chirurgie Dentaire'),
+    ('médecin spécialiste', 'MED-SPEC', 'Médecins & Spécialités'),
+    ('cardiologue', 'CARDIO', 'Médecins & Spécialités'),
+    ('vétérinaire', 'VETO', 'Paramédical & Autres'),
+    ('pédiatre', 'PEDIA', 'Médecins & Spécialités'),
+    ('centre médical', 'CTR-MED', 'Hôpitaux & Soins'),
+    ('ophtalmologue', 'OPHTA', 'Médecins & Spécialités'),
+    ('médecin', 'MED', 'Médecins & Spécialités'),
+    ('dermatologue', 'DERMA', 'Médecins & Spécialités'),
+    ('psychiatre', 'PSYCHIAT', 'Médecins & Spécialités'),
+    ('ORL', 'ORL', 'Médecins & Spécialités'),
+    ('psychologue', 'PSYCHO', 'Paramédical & Autres'),
+    ('neurologue', 'NEURO', 'Médecins & Spécialités'),
+    ('médecin généraliste', 'MED-GEN', 'Médecins & Spécialités'),
+    ('orthophoniste', 'ORTHOPHON', 'Paramédical & Autres'),
+    ('gastro-entérologue', 'GASTRO', 'Médecins & Spécialités'),
+    ('urologue', 'URO', 'Médecins & Spécialités'),
+    ('kinésithérapie', 'KINE', 'Paramédical & Autres'),
+    ('centre d\'imagerie médicale', 'IMAG', 'Laboratoires & Diagnostic'),
+    ('polyclinique', 'POLYCLIN', 'Hôpitaux & Soins'),
+    ('centre de radiologie', 'RADIO', 'Laboratoires & Diagnostic'),
+    ('nutritionniste', 'NUTRI', 'Paramédical & Autres'),
+    ('ostéopathe', 'OSTEO', 'Paramédical & Autres'),
+    ('kinésithérapeute', 'KINESITH', 'Paramédical & Autres'),
+    ('radiologue', 'RADIOLOG', 'Laboratoires & Diagnostic'),
+    ('sage-femme', 'SAGE-FEMME', 'Paramédical & Autres'),
+    ('doctors', 'DOCTORS', 'Médecins & Spécialités'),
+    ('clinic', 'CLINIC', 'Hôpitaux & Soins'),
+    ('pharmacy', 'PHARMACY', 'Pharmacies'),
+    ('hospital', 'HOSPITAL', 'Hôpitaux & Soins'),
+    ('Institut de formation', 'FORMATION', 'Autres & Structures'),
+    ('Structure', 'STRUCTURE', 'Autres & Structures'),
+    ('dentist', 'DENTIST', 'Chirurgie Dentaire'),
+    ('Direction', 'DIRECTION', 'Autres & Structures'),
+    ('hôpital_specialise', 'HOP-SPEC', 'Hôpitaux & Soins'),
+    ('endocrinologue', 'ENDO', 'Médecins & Spécialités'),
+    ('néphrologue', 'NEPHRO', 'Médecins & Spécialités'),
+    ('pneumologue', 'PNEUMO', 'Médecins & Spécialités'),
+    ('rhumatologue', 'RHUMATO', 'Médecins & Spécialités'),
+    ('hématologue', 'HEMATO', 'Médecins & Spécialités'),
+    ('oncologue', 'ONCO', 'Médecins & Spécialités'),
+    ('allergologue', 'ALLERGO', 'Médecins & Spécialités'),
+    ('chirurgien pédiatrique', 'CHIR-PED', 'Médecins & Spécialités'),
+    ('chirurgien orthopédiste', 'CHIR-ORTHO', 'Médecins & Spécialités'),
+    ('neurochirurgien', 'NEURO-CHIR', 'Médecins & Spécialités'),
+    ('chirurgien général', 'CHIR-GEN', 'Médecins & Spécialités'),
+    ('chirurgien cardiovasculaire', 'CHIR-CARDIO', 'Médecins & Spécialités'),
+    ('chirurgien plastique', 'CHIR-PLAST', 'Médecins & Spécialités'),
+    ('chirurgien viscéral', 'CHIR-VISC', 'Médecins & Spécialités'),
+    ('chirurgien maxillo-facial', 'CHIR-MAXILLO', 'Médecins & Spécialités'),
+    ('anesthésiste-réanimateur', 'ANESTH', 'Médecins & Spécialités'),
+    ('stomatologue', 'STOMATO', 'Chirurgie Dentaire'),
+    ('addictologue', 'ADDICTO', 'Médecins & Spécialités'),
+    ('gériatre', 'GERIATRE', 'Médecins & Spécialités'),
+    ('biologiste', 'BIOLOG', 'Laboratoires & Diagnostic'),
+    ('généticien', 'GENET', 'Laboratoires & Diagnostic'),
+    ('médecin légiste', 'MED-LEG', 'Médecins & Spécialités'),
+    ('médecin du travail', 'MED-TRAV', 'Médecins & Spécialités'),
+    ('rééducation fonctionnelle', 'REEDUC', 'Paramédical & Autres'),
+    ('médecine nucléaire', 'MED-NUCL', 'Laboratoires & Diagnostic'),
+    ('anatomopathologiste', 'ANAPATH', 'Laboratoires & Diagnostic'),
+    ('infectiologue', 'INFECTIO', 'Médecins & Spécialités'),
+    ('réanimateur médical', 'REANIM', 'Hôpitaux & Soins'),
+    ('médecin urgentiste', 'URGENTISTE', 'Services d\'Urgence & Spécialisés'),
+    ('pharmacie de garde', 'PHARM-GARDE', 'Pharmacies'),
+    ('centre anti-poison', 'ANTI-POISON', 'Services d\'Urgence & Spécialisés'),
+    ('centre de transfusion sanguine', 'CTS', 'Services d\'Urgence & Spécialisés'),
+    ('centre de dialyse', 'DIALYSE', 'Hôpitaux & Soins'),
+    ('soins palliatifs', 'PALLIATIF', 'Hôpitaux & Soins'),
+    ('pédopsychiatre', 'PEDO-PSY', 'Médecins & Spécialités'),
+    ('angiologue', 'ANGIO', 'Médecins & Spécialités'),
+    ('phlébologue', 'PHLEBO', 'Médecins & Spécialités'),
+    ('tabacologue', 'TABACO', 'Médecins & Spécialités'),
+    ('médecin thermal', 'THERMAL', 'Paramédical & Autres'),
+    ('audiologiste', 'AUDIO', 'Paramédical & Autres'),
+    ('ergothérapeute', 'ERGO', 'Paramédical & Autres'),
+    ('diététicien', 'DIETETIQUE', 'Paramédical & Autres'),
+    ('podologue', 'PODOLOG', 'Paramédical & Autres'),
+    ('pédicure-podologue', 'PEDICURE-PODO', 'Paramédical & Autres'),
+    ('orthoprothésiste', 'PROTHESE', 'Paramédical & Autres'),
+    ('opticien-lunetier', 'OPTICIEN', 'Paramédical & Autres'),
+    ('psychomotricien', 'PSYCHOMOT', 'Paramédical & Autres'),
+    ('soins infirmiers à domicile', 'INFIRMIER-DOM', 'Paramédical & Autres'),
+    ('ambulance / transport sanitaire', 'AMBULANCE', 'Services d\'Urgence & Spécialisés'),
+    ('banque de sang', 'BANQUE-SANG', 'Services d\'Urgence & Spécialisés'),
+    ('centre de dépistage', 'DEPISTAGE', 'Services d\'Urgence & Spécialisés'),
+    ('dispensaire', 'DISPENSAIRE', 'Hôpitaux & Soins'),
+    ('maternité', 'MATERNITE', 'Hôpitaux & Soins'),
+    ('centre de vaccination', 'VACCIN', 'Services d\'Urgence & Spécialisés'),
+    ('unité mobile de soins', 'UNITE-MOBILE', 'Services d\'Urgence & Spécialisés'),
+    ('PMI protection maternelle et infantile', 'PMI', 'Hôpitaux & Soins'),
+    ('centre médico-social', 'CMS', 'Hôpitaux & Soins'),
+    ('SAMU service d\'aide médicale urgente', 'SAMU', 'Services d\'Urgence & Spécialisés'),
+    ('parapharmacie', 'PARAPHARM', 'Pharmacies')
+]
+
+
+def export_wilayas_index(records: List[Dict[str, Any]], output_dir: str) -> str:
+    """Génère l'index léger de partitionnement des 58 wilayas."""
+    wilaya_data = {}
+    for code, name in OFFICIAL_WILAYAS:
+        wilaya_data[name] = {
+            "code": code,
+            "name": name,
+            "total_facilities": 0,
+            "communes": {},
+            "lats": [],
+            "lons": []
+        }
+
+    for r in records:
+        w = r.get("wil")
+        if w in wilaya_data:
+            wilaya_data[w]["total_facilities"] += 1
+            c = r.get("com") or "Inconnue"
+            wilaya_data[w]["communes"][c] = wilaya_data[w]["communes"].get(c, 0) + 1
+            if r.get("lat") is not None and r.get("lon") is not None:
+                wilaya_data[w]["lats"].append(r["lat"])
+                wilaya_data[w]["lons"].append(r["lon"])
+
+    index_list = []
+    for code, name in OFFICIAL_WILAYAS:
+        w_entry = wilaya_data[name]
+        lats = w_entry.pop("lats")
+        lons = w_entry.pop("lons")
+        w_entry["bounding_box"] = {
+            "min_lat": min(lats) if lats else None,
+            "max_lat": max(lats) if lats else None,
+            "min_lon": min(lons) if lons else None,
+            "max_lon": max(lons) if lons else None,
+        }
+        w_entry["communes_count"] = len(w_entry["communes"])
+        index_list.append(w_entry)
+
+    index_payload = {
+        "version": "1.0.15",
+        "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "total_wilayas": len(index_list),
+        "wilayas": index_list
+    }
+
+    out_file = os.path.join(output_dir, "medizy_wilayas_index.json")
+    os.makedirs(output_dir, exist_ok=True)
+    with open(out_file, "w", encoding="utf-8") as f:
+        json.dump(index_payload, f, ensure_ascii=False, indent=2)
+
+    print(f"Index Wilayas généré   : {out_file} ({len(index_list)} wilayas)")
+    return out_file
+
+
+def export_categories_index(records: List[Dict[str, Any]], output_dir: str) -> str:
+    """Génère la taxonomie officielle des 102 spécialités et catégories."""
+    cat_counts = {}
+    for r in records:
+        cat = (r.get("cat") or "").strip().lower()
+        if cat:
+            cat_counts[cat] = cat_counts.get(cat, 0) + 1
+
+    taxonomy_list = []
+    for name, code, group in CATEGORIES_TAXONOMY_102:
+        norm_name = name.strip().lower()
+        count = cat_counts.get(norm_name, 0)
+        slug = strip_accents(name).replace(" ", "-").replace("'", "")
+        taxonomy_list.append({
+            "code": code,
+            "name": name,
+            "group": group,
+            "total_facilities": count,
+            "slug": slug
+        })
+
+    payload = {
+        "version": "1.0.15",
+        "generated_at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        "total_categories": len(taxonomy_list),
+        "categories": taxonomy_list
+    }
+
+    out_file = os.path.join(output_dir, "medizy_categories_index.json")
+    os.makedirs(output_dir, exist_ok=True)
+    with open(out_file, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
+
+    print(f"Index Catégories généré: {out_file} ({len(taxonomy_list)} spécialités)")
+    return out_file
+
+
+def export_national_cache(
+    output_dir: str = DEFAULT_OUT_DIR,
+    db_path: Optional[str] = None,
+    compact: bool = False
+) -> Dict[str, Any]:
+    """Exporte l'intégralité des 35 832 établissements en un seul package compressé."""
+    target_db = db_path or DB_PATH
+    db_sha = calculate_sha256(target_db)
+    conn = get_readonly_connection(target_db)
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT 
+            id, place_id, nom, categorie_recherche, wilaya, commune,
+            adresse, telephone, site_web, note, nombre_avis,
+            latitude, longitude, source
+        FROM places
+        ORDER BY wilaya ASC, commune ASC, nom ASC
+    """)
+    rows = cur.fetchall()
+    conn.close()
+
+    records = []
+    lats = []
+    lons = []
+    wilaya_counts = {}
+    cat_counts = {}
+
+    for r in rows:
+        rec = {
+            "id": r["id"],
+            "pid": r["place_id"],
+            "nom": r["nom"],
+            "cat": r["categorie_recherche"],
+            "wil": r["wilaya"],
+            "com": r["commune"],
+            "adr": r["adresse"],
+            "tel": r["telephone"],
+            "site": r["site_web"],
+            "note": r["note"],
+            "avis": r["nombre_avis"],
+            "lat": r["latitude"],
+            "lon": r["longitude"],
+            "src": r["source"]
+        }
+        records.append(rec)
+        if r["latitude"] is not None and r["longitude"] is not None:
+            lats.append(r["latitude"])
+            lons.append(r["longitude"])
+        w = r["wilaya"] or "Inconnue"
+        wilaya_counts[w] = wilaya_counts.get(w, 0) + 1
+        c = r["categorie_recherche"] or "autre"
+        cat_counts[c] = cat_counts.get(c, 0) + 1
+
+    bbox = {
+        "min_lat": min(lats) if lats else None,
+        "max_lat": max(lats) if lats else None,
+        "min_lon": min(lons) if lons else None,
+        "max_lon": max(lons) if lons else None,
+    }
+
     output_path = os.path.join(output_dir, "medizy_national_cache.json.gz")
     metadata = {
         "version": "1.0.15",
@@ -286,6 +542,11 @@ def export_national_cache(output_dir: str = DEFAULT_OUT_DIR, db_path: Optional[s
     }
 
     stat = export_records_to_gzip(records, metadata, output_path)
+
+    # Génération systématique des index wilayas & catégories en mode compact ou national
+    export_wilayas_index(records, output_dir)
+    export_categories_index(records, output_dir)
+
     print("\n" + "=" * 70)
     print("PACKAGE NATIONAL EXPORTÉ")
     print("=" * 70)
@@ -303,6 +564,7 @@ def main():
     parser.add_argument("--wilaya", help="Nom ou code de wilaya à exporter (ex: 16 ou Alger)")
     parser.add_argument("--all-wilayas", action="store_true", help="Générer 58 fichiers distincts pour chaque wilaya")
     parser.add_argument("--national", action="store_true", help="Générer l'archive nationale consolidée complète")
+    parser.add_argument("--compact", action="store_true", help="Générer un cache compact et les index partitionnés wilayas/catégories")
     parser.add_argument("--output-dir", "--out-dir", dest="out_dir", default=DEFAULT_OUT_DIR, help="Répertoire de destination")
 
     args = parser.parse_args()
@@ -312,7 +574,7 @@ def main():
         print("Aucun mode spécifié. Exécution par défaut : export Wilaya 16 (Alger) et Package National.")
         stat_w = export_wilaya("16", output_dir=args.out_dir, db_path=args.db)
         print(f"[Wilaya 16] Généré : {stat_w['filepath']} ({stat_w['compressed_bytes']/1024:.1f} KB)")
-        stat_nat = export_national_cache(output_dir=args.out_dir, db_path=args.db)
+        stat_nat = export_national_cache(output_dir=args.out_dir, db_path=args.db, compact=args.compact)
         return
 
     if args.wilaya:
@@ -324,8 +586,9 @@ def main():
         export_all_wilayas_individual(output_dir=args.out_dir, db_path=args.db)
 
     if args.national:
-        export_national_cache(output_dir=args.out_dir, db_path=args.db)
+        export_national_cache(output_dir=args.out_dir, db_path=args.db, compact=args.compact)
 
 
 if __name__ == "__main__":
     main()
+

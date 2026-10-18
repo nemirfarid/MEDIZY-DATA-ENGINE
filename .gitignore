@@ -21,3 +21,13 @@ backups/
 exports/
 *.gz
 .mobile_cache/
+
+# Flutter & Dart
+.dart_tool/
+build/
+*.dll
+pubspec.lock
+
+# Assets embarqués de l'application cliente
+!assets/data/*
+

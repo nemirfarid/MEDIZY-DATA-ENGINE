@@ -1,0 +1,1726 @@
+{
+  "version": "1.0.15",
+  "generated_at": "2026-10-18T12:06:03.833603+00:00",
+  "total_wilayas": 58,
+  "wilayas": [
+    {
+      "code": "01",
+      "name": "Adrar",
+      "total_facilities": 406,
+      "communes": {
+        "Inconnue": 196,
+        "Adrar": 186,
+        "Timekten": 19,
+        "Tit": 5
+      },
+      "bounding_box": {
+        "min_lat": 26.4888155,
+        "max_lat": 36.6353252,
+        "min_lon": -1.3582442,
+        "max_lon": 5.2478782
+      },
+      "communes_count": 4
+    },
+    {
+      "code": "02",
+      "name": "Chlef",
+      "total_facilities": 1229,
+      "communes": {
+        "Inconnue": 7,
+        "Ain Merane": 26,
+        "Benairia": 7,
+        "Beni Haoua": 7,
+        "Beni Rached": 6,
+        "Boukadir": 48,
+        "Bouzeghaia": 17,
+        "Chettia": 50,
+        "Chlef": 897,
+        "El Karimia": 9,
+        "El Marsa": 1,
+        "Herenfa": 2,
+        "Labiod Medjadja": 7,
+        "Moussadek": 3,
+        "Oued Fodda": 19,
+        "Oued Sly": 24,
+        "Ouled Abbes": 5,
+        "Ouled Fares": 13,
+        "Oum Drou": 12,
+        "Sendjas": 3,
+        "Sidi Akkacha": 5,
+        "Sobha": 15,
+        "Tadjena": 5,
+        "Talassa": 6,
+        "Taougrit": 5,
+        "Tenes": 28,
+        "Zeboudja": 2
+      },
+      "bounding_box": {
+        "min_lat": 36.02083169058568,
+        "max_lat": 37.0138244909608,
+        "min_lon": 0.8325847,
+        "max_lon": 7.296337162640164
+      },
+      "communes_count": 27
+    },
+    {
+      "code": "03",
+      "name": "Laghouat",
+      "total_facilities": 931,
+      "communes": {
+        "Inconnue": 267,
+        "Aflou": 48,
+        "Ain Madhi": 4,
+        "Ain Sidi Ali": 1,
+        "El Assafia": 4,
+        "El Beidha": 6,
+        "El Ghicha": 3,
+        "El Haouaita": 2,
+        "Gueltat Sidi Saad": 7,
+        "Hassi Delaa": 16,
+        "Kheneg": 2,
+        "Ksar El Hirane": 17,
+        "Laghouat": 546,
+        "Oued M'zi": 3,
+        "Sidi Bouzid": 4,
+        "Sidi Makhlouf": 1
+      },
+      "bounding_box": {
+        "min_lat": 32.9329823,
+        "max_lat": 34.479954,
+        "min_lon": 1.543742,
+        "max_lon": 3.2773994
+      },
+      "communes_count": 16
+    },
+    {
+      "code": "04",
+      "name": "Oum El Bouaghi",
+      "total_facilities": 550,
+      "communes": {
+        "Inconnue": 170,
+        "Ain Babouche": 6,
+        "Ain Beida": 48,
+        "Ain Diss": 1,
+        "Ain M'lila": 29,
+        "Dhalaa": 1,
+        "Fkirina": 5,
+        "Hanchir Toumghani": 5,
+        "Khenchela ⵅⴻⵏⵛⵍⴰ خنشلة": 1,
+        "Ksar Sbahi": 1,
+        "M'Toussa ⵎⵜⵓⵙⴰ متوسة": 1,
+        "Meskiana": 1,
+        "Oued Nini": 1,
+        "Ouled Hamla": 15,
+        "Ouled Zouai": 1,
+        "Oum El Bouaghi": 262,
+        "Sigus": 2
+      },
+      "bounding_box": {
+        "min_lat": 35.2011819,
+        "max_lat": 37.0109169,
+        "min_lon": 0.2667933,
+        "max_lon": 8.1346648
+      },
+      "communes_count": 17
+    },
+    {
+      "code": "05",
+      "name": "Batna",
+      "total_facilities": 895,
+      "communes": {
+        "Inconnue": 184,
+        "Ain Djasser": 7,
+        "Ain Touta": 12,
+        "Ain Yagout": 6,
+        "Arris": 7,
+        "Azil Abedelkader": 2,
+        "Barika": 19,
+        "Batna": 565,
+        "Boulhilat": 1,
+        "Boumagueur": 4,
+        "Bouzina": 3,
+        "Chir": 1,
+        "El Madher": 6,
+        "Fesdis": 1,
+        "Gosbat": 1,
+        "Guigba": 11,
+        "M Doukal": 2,
+        "Maafa": 7,
+        "Menaa": 4,
+        "Merouana": 12,
+        "Oued Chaaba": 7,
+        "Oued El Ma": 2,
+        "Ouled Ammar": 2,
+        "Ouled Fadel": 2,
+        "Ouled Si Slimane": 5,
+        "Ouyoun El Assafir": 2,
+        "Rahbat": 1,
+        "Ras El Aioun": 6,
+        "Seriana": 3,
+        "Tazoult": 3,
+        "Tighanimine": 1,
+        "Tigharghar": 2,
+        "Timgad": 2,
+        "Zanet El Beida": 2
+      },
+      "bounding_box": {
+        "min_lat": 35.0018502,
+        "max_lat": 35.859687,
+        "min_lon": -0.6004675,
+        "max_lon": 6.6491949
+      },
+      "communes_count": 34
+    },
+    {
+      "code": "06",
+      "name": "Béjaïa",
+      "total_facilities": 786,
+      "communes": {
+        "Inconnue": 48,
+        "Adekar": 1,
+        "Ait R'zine": 2,
+        "Akbou": 38,
+        "Amizour": 12,
+        "Aokas": 9,
+        "Barbacha": 4,
+        "Bejaia": 513,
+        "Beni-Mallikeche": 4,
+        "Benimaouche": 2,
+        "Bouhamza": 3,
+        "Boukhelifa": 4,
+        "Chemini": 8,
+        "Dra El Caid": 7,
+        "El Kseur": 14,
+        "Leflaye": 7,
+        "Melbou": 19,
+        "Oued Ghir": 4,
+        "Ouzellaguen": 7,
+        "Seddouk": 2,
+        "Sidi Ayad": 22,
+        "Sidi-Aich": 1,
+        "Souk El Tenine": 6,
+        "Souk Oufella": 11,
+        "Tala Hamza": 3,
+        "Tamridjet": 1,
+        "Taskriout": 5,
+        "Tazmalt": 14,
+        "Tifra": 6,
+        "Timezrit": 3,
+        "Tizi-N'berber": 6
+      },
+      "bounding_box": {
+        "min_lat": 36.3507142,
+        "max_lat": 36.7797782,
+        "min_lon": 3.7330109,
+        "max_lon": 5.4503424
+      },
+      "communes_count": 31
+    },
+    {
+      "code": "07",
+      "name": "Biskra",
+      "total_facilities": 452,
+      "communes": {
+        "Inconnue": 1,
+        "Ain Naga": 7,
+        "Ain Zaatout": 3,
+        "Biskra": 373,
+        "Bordj Ben Azzouz": 33,
+        "Chetma": 2,
+        "Djemorah": 1,
+        "El Feidh": 5,
+        "El Ghrous": 5,
+        "El Kantara": 2,
+        "El Outaya": 2,
+        "Lichana": 4,
+        "Lioua": 1,
+        "M'chouneche": 5,
+        "Mekhadma": 2,
+        "Sidi Okba": 5,
+        "Zeribet El Oued": 1
+      },
+      "bounding_box": {
+        "min_lat": 34.501,
+        "max_lat": 35.2255025,
+        "min_lon": 5.1084952,
+        "max_lon": 6.511
+      },
+      "communes_count": 17
+    },
+    {
+      "code": "08",
+      "name": "Béchar",
+      "total_facilities": 333,
+      "communes": {
+        "Inconnue": 268,
+        "Abadla": 7,
+        "Bechar": 40,
+        "Kenadsa": 3,
+        "Lahmar": 15
+      },
+      "bounding_box": {
+        "min_lat": 31.0015952,
+        "max_lat": 34.9516992,
+        "min_lon": -2.7465177,
+        "max_lon": -1.3674005
+      },
+      "communes_count": 5
+    },
+    {
+      "code": "09",
+      "name": "Blida",
+      "total_facilities": 1053,
+      "communes": {
+        "Inconnue": 2,
+        "Ain Romana": 1,
+        "Beni Mered": 54,
+        "Beni-Tamou": 16,
+        "Benkhelil": 3,
+        "Blida": 736,
+        "Bouarfa": 1,
+        "Boufarik": 33,
+        "Bougara": 1,
+        "Bouinan": 5,
+        "Chebli": 1,
+        "Chiffa": 24,
+        "Chrea": 1,
+        "El-Affroun": 7,
+        "Guerrouaou": 140,
+        "Meftah": 4,
+        "Mouzaia": 3,
+        "Oued  Djer": 1,
+        "Oued El Alleug": 2,
+        "Ouled Slama": 18
+      },
+      "bounding_box": {
+        "min_lat": 35.540294520509555,
+        "max_lat": 36.6248703,
+        "min_lon": 1.9908045651752702,
+        "max_lon": 3.2234836
+      },
+      "communes_count": 20
+    },
+    {
+      "code": "10",
+      "name": "Bouira",
+      "total_facilities": 549,
+      "communes": {
+        "Inconnue": 21,
+        "Aghbalou": 4,
+        "Ahl El Ksar": 7,
+        "Ain El Hadjar": 1,
+        "Ain Laloui": 13,
+        "Ain Turk": 8,
+        "Ain-Bessem": 2,
+        "Aomar": 3,
+        "Ath Mansour": 6,
+        "Bechloul": 2,
+        "Bouderbala": 1,
+        "Bouira": 432,
+        "Dirah": 1,
+        "El Adjiba": 3,
+        "El Hachimia": 2,
+        "El Khabouzia": 7,
+        "Hadjera Zerga": 2,
+        "Haizer": 3,
+        "Kadiria": 8,
+        "Lakhdaria": 8,
+        "Raouraoua": 4,
+        "Saharidj": 1,
+        "Souk El Khemis": 1,
+        "Sour El Ghozlane": 8,
+        "Taghzout": 1
+      },
+      "bounding_box": {
+        "min_lat": 33.5638007,
+        "max_lat": 36.5988055,
+        "min_lon": -0.7697,
+        "max_lon": 6.7151779
+      },
+      "communes_count": 25
+    },
+    {
+      "code": "11",
+      "name": "Tamanrasset",
+      "total_facilities": 193,
+      "communes": {
+        "Inconnue": 183,
+        "In Salah ⵄⵉⵏ ⵙⴰⵍⴻⵃ عين صالح": 1,
+        "Tamanrasset": 5,
+        "Tazrouk": 4
+      },
+      "bounding_box": {
+        "min_lat": 22.2686949,
+        "max_lat": 36.7586241,
+        "min_lon": -0.5561228,
+        "max_lon": 8.22
+      },
+      "communes_count": 4
+    },
+    {
+      "code": "12",
+      "name": "Tébessa",
+      "total_facilities": 571,
+      "communes": {
+        "Inconnue": 4,
+        "Bekkaria": 3,
+        "Bir Mokkadem": 3,
+        "Bir-El-Ater": 12,
+        "Boukhadra": 5,
+        "Cheria": 1,
+        "El Kouif": 3,
+        "El Meridj": 5,
+        "El-Aouinet": 6,
+        "El-Houidjbet": 26,
+        "Ferkane": 1,
+        "Morsott ⵎⵓⵔⵙⴻⵟ مرسط": 1,
+        "Saf Saf El Ouesra": 8,
+        "Tebessa": 482,
+        "Telidjen": 11
+      },
+      "bounding_box": {
+        "min_lat": 34.3124132,
+        "max_lat": 36.7425826,
+        "min_lon": 3.2864046,
+        "max_lon": 8.8953363
+      },
+      "communes_count": 15
+    },
+    {
+      "code": "13",
+      "name": "Tlemcen",
+      "total_facilities": 1207,
+      "communes": {
+        "Inconnue": 6,
+        "Ain Fezza": 2,
+        "Ain Youcef": 2,
+        "Bab El Assa": 8,
+        "Beni Boussaid": 317,
+        "Beni Smiel": 11,
+        "Bensekrane": 3,
+        "Bouhlou": 1,
+        "Chetouane": 25,
+        "Dar Yaghmoracen": 1,
+        "Ghazaouet": 9,
+        "Honnaine": 6,
+        "M'sirda Fouaga": 109,
+        "Maghnia": 41,
+        "Mansourah": 89,
+        "Nedroma": 18,
+        "Sabra": 4,
+        "Sebbaa Chioukh": 6,
+        "Sebdou": 5,
+        "Sidi Abdelli": 3,
+        "Sidi Medjahed": 1,
+        "Souani": 6,
+        "Terny Beni Hediel": 1,
+        "Tlemcen": 533
+      },
+      "bounding_box": {
+        "min_lat": 34.3051266,
+        "max_lat": 35.2976791,
+        "min_lon": -2.4237862,
+        "max_lon": -1.0273435
+      },
+      "communes_count": 24
+    },
+    {
+      "code": "14",
+      "name": "Tiaret",
+      "total_facilities": 761,
+      "communes": {
+        "Inconnue": 7,
+        "Ain Bouchekif": 3,
+        "Ain Dzarit": 4,
+        "Ain Kermes": 1,
+        "Dahmouni": 1,
+        "Djebilet Rosfa": 1,
+        "Frenda": 11,
+        "Frenda ⴼⵔⴻⵏⴷⴰ فرندة": 1,
+        "Guertoufa": 7,
+        "Hamadia": 1,
+        "Ksar Chellala": 7,
+        "Madna": 2,
+        "Mahdia": 10,
+        "Medrissa": 6,
+        "Medroussa": 1,
+        "Mellakou": 4,
+        "Naima": 6,
+        "Oued Lilli": 2,
+        "Rahouia": 1,
+        "Rechaiga": 1,
+        "Serghine": 1,
+        "Sidi Hosni": 1,
+        "Sougueur": 23,
+        "Takhemaret": 5,
+        "Tiaret": 654
+      },
+      "bounding_box": {
+        "min_lat": 34.7547476,
+        "max_lat": 35.531796209772544,
+        "min_lon": 0.8333382,
+        "max_lon": 2.4868734
+      },
+      "communes_count": 25
+    },
+    {
+      "code": "15",
+      "name": "Tizi Ouzou",
+      "total_facilities": 1212,
+      "communes": {
+        "Inconnue": 22,
+        "Abi-Youcef": 5,
+        "Agouni-Gueghrane": 6,
+        "Ain-El-Hammam": 20,
+        "Ain-Zaouia": 3,
+        "Ait Khellili": 7,
+        "Ait Ouahioune": 1,
+        "Ait-Aissa-Mimoun": 7,
+        "Ait-Mahmoud": 6,
+        "Ait-Toudert": 2,
+        "Ait-Yahia": 1,
+        "Akbil": 4,
+        "Akerrou": 1,
+        "Assi-Youcef": 3,
+        "Azazga": 56,
+        "Azeffoun": 5,
+        "Beni Zmenzer": 4,
+        "Beni-Aissi": 1,
+        "Beni-Douala": 3,
+        "Boghni": 25,
+        "Boudjima": 5,
+        "Bounouh": 1,
+        "Draa-Ben-Khedda": 72,
+        "Draa-El-Mizan": 11,
+        "Freha": 29,
+        "Freha فريحة": 1,
+        "Frikat": 1,
+        "Idjeur": 5,
+        "Iferhounene": 3,
+        "Ifigha": 4,
+        "Iflissen": 1,
+        "Illilten": 1,
+        "Imsouhal": 3,
+        "Irdjen": 3,
+        "Larbaa Nath Irathen": 18,
+        "M'kira": 8,
+        "Maatkas": 1,
+        "Mizrana": 9,
+        "Ouacif": 12,
+        "Ouaguenoun": 6,
+        "Sidi Namane": 2,
+        "Tadmait": 4,
+        "Tigzirt": 24,
+        "Timizart": 3,
+        "Tirmitine": 5,
+        "Tizi Ouzou": 1,
+        "Tizi-Ouzou": 782,
+        "Tizi-Rached": 14,
+        "Yakourene": 1
+      },
+      "bounding_box": {
+        "min_lat": 36.4558225,
+        "max_lat": 36.9156217,
+        "min_lon": 3.3256321,
+        "max_lon": 4.5449559
+      },
+      "communes_count": 49
+    },
+    {
+      "code": "16",
+      "name": "Alger",
+      "total_facilities": 3577,
+      "communes": {
+        "Inconnue": 174,
+        "Ain Benian": 53,
+        "Ain Taya": 24,
+        "Alger Centre": 30,
+        "Bab El Oued": 19,
+        "Bab Ezzouar": 190,
+        "Baba Hassen": 61,
+        "Bachedjerah": 46,
+        "Baraki": 66,
+        "Ben Aknoun": 124,
+        "Beni Messous": 98,
+        "Bir Mourad Rais": 132,
+        "Bir Touta": 12,
+        "Birkhadem": 86,
+        "Bologhine Ibnou Ziri": 122,
+        "Bordj El Bahri": 81,
+        "Bordj El Kiffan": 35,
+        "Bourouba": 52,
+        "Bouzareah": 41,
+        "Casbah": 85,
+        "Cheraga": 32,
+        "Dar El Beida": 32,
+        "Dely Ibrahim": 23,
+        "Djasr Kasentina": 5,
+        "Douira": 11,
+        "Draria": 67,
+        "El Achour": 77,
+        "El Biar": 80,
+        "El Harrach": 24,
+        "El Madania": 195,
+        "El Magharia": 32,
+        "El Mouradia": 298,
+        "Herraoua": 21,
+        "Hussein Dey": 264,
+        "Hydra": 50,
+        "Khraissia": 12,
+        "Kouba": 347,
+        "Kouba ⵍⵇⵓⴱⴱⴰ القبة": 1,
+        "Les Eucalyptus": 48,
+        "Maalma": 10,
+        "Mohamed Belouzdad": 58,
+        "Mohammadia": 26,
+        "Oued Koriche": 10,
+        "Oued Smar": 15,
+        "Ouled Fayet": 46,
+        "Rahmania": 17,
+        "Rais Hamidou": 9,
+        "Reghaia": 18,
+        "Rouiba": 62,
+        "Sehaoula": 55,
+        "Sidi M'hamed": 17,
+        "Sidi Moussa": 17,
+        "Souidania": 6,
+        "Staoueli": 24,
+        "Zeralda": 37
+      },
+      "bounding_box": {
+        "min_lat": 31.6176476,
+        "max_lat": 36.908082,
+        "min_lon": -2.2199117,
+        "max_lon": 8.448093
+      },
+      "communes_count": 55
+    },
+    {
+      "code": "17",
+      "name": "Djelfa",
+      "total_facilities": 785,
+      "communes": {
+        "Inconnue": 212,
+        "Ain El Ibel": 2,
+        "Ain Fekka": 1,
+        "Benhar": 70,
+        "Birine": 6,
+        "Bouirat El Hedab ⴱⵡⵉⵔⴰⵜ ⵍⵃⴻⴷⴷⴰⴱ بويرة الأحداب": 1,
+        "Dar Chioukh": 3,
+        "Deldoul": 1,
+        "Djelfa": 423,
+        "Douis": 3,
+        "El Guedid": 11,
+        "El Idrissia": 4,
+        "Hassi Bahbah": 19,
+        "Hassi El Euch": 6,
+        "Messaad": 12,
+        "Oum Laadham": 3,
+        "Sed Rahal": 5,
+        "Sidi Laadjel": 3
+      },
+      "bounding_box": {
+        "min_lat": 33.4107241,
+        "max_lat": 35.6441241,
+        "min_lon": 2.4456939,
+        "max_lon": 4.5273771
+      },
+      "communes_count": 18
+    },
+    {
+      "code": "18",
+      "name": "Jijel",
+      "total_facilities": 541,
+      "communes": {
+        "Inconnue": 9,
+        "Boussif Ouled Askeur": 5,
+        "Chahna": 3,
+        "Chekfa": 1,
+        "Djemaa Beni Habibi": 2,
+        "El Aouana": 5,
+        "El Kennar Nouchfi": 2,
+        "El Milia": 9,
+        "Emir Abdelkader": 7,
+        "Ghebala": 2,
+        "Jijel": 432,
+        "Kaous": 4,
+        "Ouled Rabah": 2,
+        "Taher": 55,
+        "Texenna": 3
+      },
+      "bounding_box": {
+        "min_lat": 36.5999178,
+        "max_lat": 36.8252618,
+        "min_lon": 5.551499,
+        "max_lon": 6.3591667
+      },
+      "communes_count": 15
+    },
+    {
+      "code": "19",
+      "name": "Sétif",
+      "total_facilities": 1145,
+      "communes": {
+        "Inconnue": 28,
+        "Ain Abessa": 4,
+        "Ain Arnat": 21,
+        "Ain Azel": 2,
+        "Ain El Kebira": 6,
+        "Ain Oulmene": 1,
+        "Ain-Legradj": 1,
+        "Ain-Roua": 2,
+        "Ain-Sebt": 1,
+        "Ait Naoual Mezada": 1,
+        "Amoucha": 1,
+        "Beni Chebana": 7,
+        "Beni Fouda": 14,
+        "Beni Oussine": 9,
+        "Beni-Aziz": 1,
+        "Bir Haddada": 1,
+        "Bir-El-Arch": 2,
+        "Bougaa": 14,
+        "Djemila": 1,
+        "El Eulma": 41,
+        "El Ouricia": 7,
+        "Guellal": 6,
+        "Guelta Zerka": 2,
+        "Guenzet": 1,
+        "Guidjel": 2,
+        "Hamam Soukhna": 13,
+        "Hamma": 6,
+        "Hammam Guergour": 1,
+        "Ouled Addouane": 1,
+        "Ouled Sabor": 3,
+        "Ouled Tebben": 1,
+        "Rosfa": 8,
+        "Salah Bey": 14,
+        "Setif": 918,
+        "Tachouda": 1,
+        "Taya": 1,
+        "Tella": 2
+      },
+      "bounding_box": {
+        "min_lat": 35.680556,
+        "max_lat": 36.5169232,
+        "min_lon": -0.618125,
+        "max_lon": 5.8954353
+      },
+      "communes_count": 37
+    },
+    {
+      "code": "20",
+      "name": "Saïda",
+      "total_facilities": 360,
+      "communes": {
+        "Inconnue": 42,
+        "El Hassasna": 1,
+        "Ouled Brahim": 2,
+        "Ouled Khaled": 1,
+        "Saida": 307,
+        "Sidi Ahmed": 2,
+        "Sidi Amar": 2,
+        "Sidi Boubekeur": 1,
+        "Youb": 2
+      },
+      "bounding_box": {
+        "min_lat": 34.5486092,
+        "max_lat": 36.7612187,
+        "min_lon": -0.6221635,
+        "max_lon": 5.7889983
+      },
+      "communes_count": 9
+    },
+    {
+      "code": "21",
+      "name": "Skikda",
+      "total_facilities": 651,
+      "communes": {
+        "Inconnue": 29,
+        "Ain Bouziane": 5,
+        "Ain Kechra": 7,
+        "Azzaba": 5,
+        "Ben Azzouz": 1,
+        "Beni Bechir": 8,
+        "Beni Zid": 2,
+        "Bin El Ouiden": 33,
+        "Collo": 24,
+        "Djendel Saadi Mohamed": 3,
+        "El Hadaiek": 11,
+        "Es Sebt": 1,
+        "Filfila": 478,
+        "Ouled Attia": 1,
+        "Ouled Habbaba": 11,
+        "Oum Toub": 3,
+        "Salah Bouchaour": 20,
+        "Sidi Mezghiche": 1,
+        "Skikda": 7,
+        "Zitouna": 1
+      },
+      "bounding_box": {
+        "min_lat": 36.606,
+        "max_lat": 37.011266,
+        "min_lon": 6.341389,
+        "max_lon": 7.291754
+      },
+      "communes_count": 20
+    },
+    {
+      "code": "22",
+      "name": "Sidi Bel Abbès",
+      "total_facilities": 621,
+      "communes": {
+        "Inconnue": 2,
+        "Ain El Berd": 4,
+        "Ain Tindamine": 1,
+        "Ben Badis": 4,
+        "Hassi Zahana": 1,
+        "Lamtar": 1,
+        "Marhoum": 1,
+        "Mezaourou": 1,
+        "Mostefa  Ben Brahim": 1,
+        "Redjem Demouche": 13,
+        "Sfisef": 6,
+        "Sidi Ali Benyoub": 6,
+        "Sidi Bel-Abbes": 544,
+        "Sidi Brahim": 1,
+        "Sidi Chaib": 1,
+        "Sidi Khaled": 4,
+        "Tabia": 1,
+        "Teghalimet": 3,
+        "Telagh": 24,
+        "Tenira": 1,
+        "Tessala": 1
+      },
+      "bounding_box": {
+        "min_lat": 34.446751,
+        "max_lat": 35.38760244374705,
+        "min_lon": -0.9576891599999999,
+        "max_lon": -0.195025
+      },
+      "communes_count": 21
+    },
+    {
+      "code": "23",
+      "name": "Annaba",
+      "total_facilities": 963,
+      "communes": {
+        "Inconnue": 9,
+        "Ain El Berda": 8,
+        "Annaba": 827,
+        "Berrahal": 2,
+        "Chetaibi": 5,
+        "Cheurfa": 4,
+        "El Bouni": 95,
+        "El Hadjar": 9,
+        "Seraidi": 2,
+        "Treat": 2
+      },
+      "bounding_box": {
+        "min_lat": 35.4204044,
+        "max_lat": 37.0665604,
+        "min_lon": 6.6291437,
+        "max_lon": 8.1130486
+      },
+      "communes_count": 10
+    },
+    {
+      "code": "24",
+      "name": "Guelma",
+      "total_facilities": 559,
+      "communes": {
+        "Inconnue": 7,
+        "Ain Ben Beida": 2,
+        "Ain Larbi": 2,
+        "Ain Makhlouf": 3,
+        "Belkheir": 19,
+        "Bendjarah": 348,
+        "Beni Mezline": 1,
+        "Bordj Sabath": 1,
+        "Bou Hamdane": 3,
+        "Bouati Mahmoud": 1,
+        "Bouchegouf": 6,
+        "Boumahra Ahmed": 5,
+        "El Fedjoudj": 2,
+        "Guelma": 127,
+        "Guelma ⴳⴰⵍⵎⴰ قالمة": 1,
+        "Hammam Debagh": 3,
+        "Heliopolis": 4,
+        "Medjez Amar": 2,
+        "Nechmaya": 4,
+        "Oued Cheham": 1,
+        "Oued Zenati": 8,
+        "Tamlouka": 9
+      },
+      "bounding_box": {
+        "min_lat": 36.1307737,
+        "max_lat": 36.6482551,
+        "min_lon": 7.0718372,
+        "max_lon": 7.766234
+      },
+      "communes_count": 22
+    },
+    {
+      "code": "25",
+      "name": "Constantine",
+      "total_facilities": 1069,
+      "communes": {
+        "Inconnue": 272,
+        "Ain Abid": 9,
+        "Ain Smara": 53,
+        "Beni Hamidane": 8,
+        "Constantine": 612,
+        "Didouche Mourad": 16,
+        "El Khroub": 86,
+        "Hamma Bouziane": 11,
+        "Ibn Ziad": 1,
+        "Ouled Rahmoun": 1
+      },
+      "bounding_box": {
+        "min_lat": 36.1806712,
+        "max_lat": 36.7177655,
+        "min_lon": 3.048373,
+        "max_lon": 6.945983
+      },
+      "communes_count": 10
+    },
+    {
+      "code": "26",
+      "name": "Médéa",
+      "total_facilities": 484,
+      "communes": {
+        "Inconnue": 11,
+        "Ain Boucif": 1,
+        "Beni Slimane": 11,
+        "Berrouaghia": 16,
+        "Bouaichoune": 1,
+        "Bouchrahil": 1,
+        "Chabounia": 2,
+        "Chelalet El Adhaoura": 2,
+        "Draa Esmar": 3,
+        "El Azizia": 4,
+        "El Haoudane": 3,
+        "El Omaria": 3,
+        "El Ouinet": 6,
+        "Ksar El Boukhari": 16,
+        "Maghraoua": 1,
+        "Medea": 375,
+        "Ouamri": 5,
+        "Oued Harbil": 1,
+        "Ouled Deid": 1,
+        "Ouled Hellal": 4,
+        "Oum El Djellil": 4,
+        "Ouzera": 2,
+        "Seghouane": 2,
+        "Si Mahdjoub": 2,
+        "Souagui": 1,
+        "Tablat": 1,
+        "Tizi Mahdi": 2,
+        "Zoubiria": 3
+      },
+      "bounding_box": {
+        "min_lat": 35.4540878,
+        "max_lat": 36.4692281,
+        "min_lon": 0.1192805,
+        "max_lon": 3.5367004
+      },
+      "communes_count": 28
+    },
+    {
+      "code": "27",
+      "name": "Mostaganem",
+      "total_facilities": 623,
+      "communes": {
+        "Inconnue": 92,
+        "Achaacha": 1,
+        "Bouguirat": 1,
+        "Fornaka": 6,
+        "Hadjadj": 2,
+        "Hassi Mameche": 3,
+        "Kheir-Eddine": 7,
+        "Mesra": 11,
+        "Mostaganem": 79,
+        "Ouled Boughalem": 5,
+        "Sayada": 394,
+        "Sidi Ali": 9,
+        "Sidi-Lakhdar": 3,
+        "Sour": 8,
+        "Touahria": 2
+      },
+      "bounding_box": {
+        "min_lat": 35.680937,
+        "max_lat": 36.3239124,
+        "min_lon": -0.6573246,
+        "max_lon": 0.6879913
+      },
+      "communes_count": 15
+    },
+    {
+      "code": "28",
+      "name": "M'Sila",
+      "total_facilities": 749,
+      "communes": {
+        "Inconnue": 110,
+        "Ain El Hadjel": 1,
+        "Ain El Melh": 5,
+        "Ain Fares": 1,
+        "Ain Khadra": 1,
+        "Ben Srour": 2,
+        "Berhoum": 2,
+        "Bou Saada": 28,
+        "Chellal": 6,
+        "Dehahna": 1,
+        "Djebel Messaad": 2,
+        "M'sila": 547,
+        "M'tarfa": 3,
+        "Maarif": 2,
+        "Magra": 2,
+        "Medjedel": 1,
+        "Mohamed Boudiaf": 1,
+        "Ouled Derradj": 1,
+        "Ouled Mansour": 4,
+        "Ouled Sidi Brahim": 9,
+        "Sidi Aissa": 5,
+        "Sidi Ameur": 1,
+        "Sidi M'hamed": 3,
+        "Slim": 2,
+        "Souamaa": 1,
+        "Tarmount": 6,
+        "Zarzour": 2
+      },
+      "bounding_box": {
+        "min_lat": 34.7018639,
+        "max_lat": 36.7801883,
+        "min_lon": -0.8389252,
+        "max_lon": 5.1074
+      },
+      "communes_count": 27
+    },
+    {
+      "code": "29",
+      "name": "Mascara",
+      "total_facilities": 506,
+      "communes": {
+        "Inconnue": 22,
+        "Alaimia": 1,
+        "Aouf": 1,
+        "Bouhanifia": 4,
+        "El Bordj": 2,
+        "El Keurt": 1,
+        "El Mamounia": 7,
+        "Ferraguig": 1,
+        "Ghriss": 4,
+        "Hacine": 2,
+        "Khalouia": 2,
+        "Makhda": 3,
+        "Maoussa": 3,
+        "Mascara": 400,
+        "Matemore": 1,
+        "Mohammadia": 11,
+        "Oued El Abtal": 11,
+        "Sedjerara": 1,
+        "Sidi Abdelmoumene": 2,
+        "Sidi Kada": 1,
+        "Sig": 5,
+        "Tighennif": 20,
+        "Zahana": 1
+      },
+      "bounding_box": {
+        "min_lat": 35.097166,
+        "max_lat": 36.8073144,
+        "min_lon": -0.6506448,
+        "max_lon": 5.7557872
+      },
+      "communes_count": 23
+    },
+    {
+      "code": "30",
+      "name": "Ouargla",
+      "total_facilities": 516,
+      "communes": {
+        "Inconnue": 412,
+        "Hassi Messaoud": 1,
+        "N'goussa": 3,
+        "Ouargla": 21,
+        "Sidi Khouiled": 79
+      },
+      "bounding_box": {
+        "min_lat": 30.538225195165708,
+        "max_lat": 36.7195521,
+        "min_lon": -0.6432008,
+        "max_lon": 6.063625
+      },
+      "communes_count": 5
+    },
+    {
+      "code": "31",
+      "name": "Oran",
+      "total_facilities": 1385,
+      "communes": {
+        "Inconnue": 4,
+        "Ain Biya": 12,
+        "Arzew": 15,
+        "Bethioua": 5,
+        "Bir El Djir": 181,
+        "Boufatis": 1,
+        "Bousfer": 1,
+        "Boutlelis": 6,
+        "El Ancor": 2,
+        "El Braya": 1,
+        "El Kerma": 35,
+        "Es Senia": 144,
+        "Gdyel": 17,
+        "Hassi Bounif": 6,
+        "Hassi Mefsoukh": 1,
+        "Oran": 927,
+        "Oued Tlelat": 7,
+        "Sidi Chami": 19,
+        "Tafraoui": 1
+      },
+      "bounding_box": {
+        "min_lat": 35.4852948,
+        "max_lat": 35.860132618084485,
+        "min_lon": -0.901484,
+        "max_lon": -0.223181
+      },
+      "communes_count": 19
+    },
+    {
+      "code": "32",
+      "name": "El Bayadh",
+      "total_facilities": 248,
+      "communes": {
+        "Inconnue": 72,
+        "Ain El Orak": 4,
+        "Boualem": 1,
+        "Bougtoub": 4,
+        "Boussemghoun": 4,
+        "El Bayadh": 154,
+        "Krakda": 1,
+        "Labiodh Sidi Cheikh": 6,
+        "Rogassa": 1,
+        "Stitten": 1
+      },
+      "bounding_box": {
+        "min_lat": 32.8644791,
+        "max_lat": 36.905177,
+        "min_lon": -1.0450401,
+        "max_lon": 7.7535052
+      },
+      "communes_count": 10
+    },
+    {
+      "code": "33",
+      "name": "Illizi",
+      "total_facilities": 90,
+      "communes": {
+        "Inconnue": 84,
+        "Bordj Omar Driss": 3,
+        "Illizi": 1,
+        "In Amenas": 2
+      },
+      "bounding_box": {
+        "min_lat": 26.4726176,
+        "max_lat": 36.7007208,
+        "min_lon": -0.89678,
+        "max_lon": 9.576151
+      },
+      "communes_count": 4
+    },
+    {
+      "code": "34",
+      "name": "Bordj Bou Arréridj",
+      "total_facilities": 736,
+      "communes": {
+        "Inconnue": 583,
+        "Ain Taghrout": 5,
+        "Ain Tesra": 3,
+        "Belimour": 5,
+        "Bir Kasdali": 8,
+        "Colla": 2,
+        "El Achir": 16,
+        "El Annasseur": 7,
+        "El M'hir": 3,
+        "El Main": 4,
+        "Elhammadia": 7,
+        "Hasnaoua": 1,
+        "Mansoura": 10,
+        "Medjana": 6,
+        "Ouled Brahem": 2,
+        "Rabta": 1,
+        "Ras El Oued": 16,
+        "Ras El Oued ⵔⴰⵙ ⵍⵡⴰⴷ رأس الوادي": 1,
+        "Teniet En Nasr": 55,
+        "Tixter": 1
+      },
+      "bounding_box": {
+        "min_lat": 35.8740151,
+        "max_lat": 36.4249006,
+        "min_lon": 4.3720689,
+        "max_lon": 5.08145
+      },
+      "communes_count": 20
+    },
+    {
+      "code": "35",
+      "name": "Boumerdès",
+      "total_facilities": 404,
+      "communes": {
+        "Inconnue": 1,
+        "Afir": 3,
+        "Ammal": 1,
+        "Baghlia": 7,
+        "Beni Amrane": 7,
+        "Bordj Menaiel": 6,
+        "Boudouaou": 20,
+        "Boudouaou El Bahri": 2,
+        "Boumerdes": 231,
+        "Chabet El Ameur": 8,
+        "Corso": 47,
+        "Dellys": 7,
+        "Djinet": 4,
+        "El Kharrouba": 3,
+        "Hammedi": 10,
+        "Isser": 4,
+        "Khemis El Khechna": 5,
+        "Larbatache": 2,
+        "Ouled Hedadj": 1,
+        "Ouled Moussa": 22,
+        "Sidi Daoud": 3,
+        "Souk El Had": 1,
+        "Thenia": 5,
+        "Tidjelabine": 4
+      },
+      "bounding_box": {
+        "min_lat": 35.9564737,
+        "max_lat": 36.9179457,
+        "min_lon": 1.2488114,
+        "max_lon": 4.002995857776055
+      },
+      "communes_count": 24
+    },
+    {
+      "code": "36",
+      "name": "El Tarf",
+      "total_facilities": 281,
+      "communes": {
+        "Inconnue": 14,
+        "Ain El Assel": 8,
+        "Berrihane": 4,
+        "Besbes": 5,
+        "Bouhadjar": 4,
+        "Bouteldja": 8,
+        "Chefia": 2,
+        "Drean": 10,
+        "Echatt": 2,
+        "El Aioun": 23,
+        "El Kala": 19,
+        "El Tarf": 165,
+        "Lac Des Oiseaux": 1,
+        "Raml Souk": 3,
+        "Souarekh": 7,
+        "Zerizer": 6
+      },
+      "bounding_box": {
+        "min_lat": 36.4828799,
+        "max_lat": 36.9668222,
+        "min_lon": 2.9551661,
+        "max_lon": 9.2034439
+      },
+      "communes_count": 16
+    },
+    {
+      "code": "37",
+      "name": "Tindouf",
+      "total_facilities": 106,
+      "communes": {
+        "Inconnue": 95,
+        "Tindouf": 11
+      },
+      "bounding_box": {
+        "min_lat": 27.1738312,
+        "max_lat": 36.7334617,
+        "min_lon": -8.1441828,
+        "max_lon": 6.5692566
+      },
+      "communes_count": 2
+    },
+    {
+      "code": "38",
+      "name": "Tissemsilt",
+      "total_facilities": 339,
+      "communes": {
+        "Inconnue": 18,
+        "Bordj Bounaama": 2,
+        "Khemisti": 13,
+        "Lardjem": 1,
+        "Ouled Bessam": 286,
+        "Sidi Slimane": 1,
+        "Theniet El Had": 13,
+        "Tissemsilt": 5
+      },
+      "bounding_box": {
+        "min_lat": 34.1500355,
+        "max_lat": 35.8785646,
+        "min_lon": -0.2032867,
+        "max_lon": 2.3634224
+      },
+      "communes_count": 8
+    },
+    {
+      "code": "39",
+      "name": "El Oued",
+      "total_facilities": 924,
+      "communes": {
+        "Inconnue": 392,
+        "Bayadha": 33,
+        "Debila": 35,
+        "Douar El Maa": 10,
+        "El-Oued": 443,
+        "Kouinine": 11
+      },
+      "bounding_box": {
+        "min_lat": 32.7861882,
+        "max_lat": 36.9130137,
+        "min_lon": -1.3561349,
+        "max_lon": 7.7648335
+      },
+      "communes_count": 6
+    },
+    {
+      "code": "40",
+      "name": "Khenchela",
+      "total_facilities": 460,
+      "communes": {
+        "Inconnue": 4,
+        "Chechar": 2,
+        "Djellal": 3,
+        "El Hamma": 2,
+        "El Mahmal": 4,
+        "Kais": 14,
+        "Khenchela": 403,
+        "Khirane": 10,
+        "Ouled Rechache": 11,
+        "Remila": 1,
+        "Taouzianat": 1,
+        "Yabous": 5
+      },
+      "bounding_box": {
+        "min_lat": 34.8127763,
+        "max_lat": 35.776557,
+        "min_lon": -0.4978066,
+        "max_lon": 7.3556469
+      },
+      "communes_count": 12
+    },
+    {
+      "code": "41",
+      "name": "Souk Ahras",
+      "total_facilities": 417,
+      "communes": {
+        "Inconnue": 3,
+        "Haddada": 5,
+        "M'daourouch": 1,
+        "M'daourouche": 2,
+        "Merahna": 2,
+        "Ouled Moumen": 12,
+        "Oum El Adhaim": 3,
+        "Sedrata": 14,
+        "Sidi Fredj": 1,
+        "Souk Ahras": 371,
+        "Zaarouria": 3
+      },
+      "bounding_box": {
+        "min_lat": 35.7218417,
+        "max_lat": 36.7494384,
+        "min_lon": -0.5852352,
+        "max_lon": 8.7695243
+      },
+      "communes_count": 11
+    },
+    {
+      "code": "42",
+      "name": "Tipaza",
+      "total_facilities": 511,
+      "communes": {
+        "Inconnue": 40,
+        "Aghbal": 1,
+        "Ahmer El Ain": 1,
+        "Ain Tagourait": 3,
+        "Attatba": 46,
+        "Bou Ismail": 62,
+        "Bourkika": 4,
+        "Cherchell": 8,
+        "Damous": 2,
+        "Douaouda": 4,
+        "Fouka": 60,
+        "Gouraya": 9,
+        "Hadjout": 70,
+        "Kolea": 13,
+        "Larhat": 2,
+        "Messelmoun": 3,
+        "Nador": 2,
+        "Sidi Ghiles": 36,
+        "Sidi Rached": 2,
+        "Tipaza": 143
+      },
+      "bounding_box": {
+        "min_lat": 36.4654403,
+        "max_lat": 36.7349394,
+        "min_lon": 1.7065148,
+        "max_lon": 3.1635564
+      },
+      "communes_count": 20
+    },
+    {
+      "code": "43",
+      "name": "Mila",
+      "total_facilities": 470,
+      "communes": {
+        "Inconnue": 26,
+        "Ahmed Rachedi": 3,
+        "Ain Beida Harriche": 3,
+        "Ain Tine": 4,
+        "Chelghoum Laid": 37,
+        "Chigara": 3,
+        "Derrahi Bousselah": 2,
+        "El Mechira": 9,
+        "Grarem Gouga": 1,
+        "Hamala": 2,
+        "Mila": 294,
+        "Minar Zarza": 2,
+        "Oued Athmenia": 12,
+        "Oued Endja": 12,
+        "Ouled Khalouf": 13,
+        "Rouached": 11,
+        "Sidi Merouane": 4,
+        "Tassala Lematai": 2,
+        "Tiberguent": 11,
+        "Yahia Beniguecha": 14,
+        "Zeghaia": 4,
+        "دائرة ميلة ⴰⴷⴷⴰⵢⵔⵜ ⵏ ⵎⵉⵍⴰ": 1
+      },
+      "bounding_box": {
+        "min_lat": 35.5285702,
+        "max_lat": 36.7685146,
+        "min_lon": -0.1952249,
+        "max_lon": 7.9018355
+      },
+      "communes_count": 22
+    },
+    {
+      "code": "44",
+      "name": "Aïn Defla",
+      "total_facilities": 525,
+      "communes": {
+        "Inconnue": 134,
+        "Ain-Benian": 2,
+        "Ain-Bouyahia": 1,
+        "Ain-Defla": 277,
+        "Ain-Lechiakh": 1,
+        "Ain-Torki": 1,
+        "Ben Allal": 4,
+        "Bourached": 2,
+        "Djelida": 4,
+        "Djemaa Ouled Cheikh": 1,
+        "Djendel": 1,
+        "El Amra": 1,
+        "El-Amra": 3,
+        "El-Attaf": 10,
+        "El-Maine": 2,
+        "Hoceinia": 3,
+        "Khemis Milana": 1,
+        "Khemis-Miliana": 60,
+        "Miliana": 14,
+        "Oued Chorfa": 1,
+        "Rouina": 1,
+        "Zeddine": 1
+      },
+      "bounding_box": {
+        "min_lat": 36.0755991,
+        "max_lat": 36.798571,
+        "min_lon": 1.2134376,
+        "max_lon": 3.1393309
+      },
+      "communes_count": 22
+    },
+    {
+      "code": "45",
+      "name": "Naâma",
+      "total_facilities": 354,
+      "communes": {
+        "Inconnue": 272,
+        "Ain Sefra": 19,
+        "Asla": 1,
+        "Aïn Séfra": 1,
+        "Mecheria": 7,
+        "Naama": 48,
+        "Naâma ⵏⴰⴰⵎⴰ النــعـامـة": 1,
+        "Sfissifa": 1,
+        "Tiout": 4
+      },
+      "bounding_box": {
+        "min_lat": 32.5155132,
+        "max_lat": 36.8523736,
+        "min_lon": -1.3352625,
+        "max_lon": 7.7426754
+      },
+      "communes_count": 9
+    },
+    {
+      "code": "46",
+      "name": "Aïn Témouchent",
+      "total_facilities": 456,
+      "communes": {
+        "Inconnue": 41,
+        "Ain El Arbaa": 11,
+        "Ain Temouchent": 372,
+        "Ain Tolba": 1,
+        "Beni Saf": 11,
+        "Bouzedjar": 1,
+        "Chentouf": 2,
+        "El Amria": 2,
+        "El Messaid": 1,
+        "Hassi El Ghella": 5,
+        "Ouled Boudjemaa": 1,
+        "Oulhaca El Gheraba": 1,
+        "Sidi Boumediene": 6,
+        "Tamzoura": 1
+      },
+      "bounding_box": {
+        "min_lat": 35.1836582,
+        "max_lat": 35.8484054,
+        "min_lon": -1.3944395,
+        "max_lon": -0.187964
+      },
+      "communes_count": 14
+    },
+    {
+      "code": "47",
+      "name": "Ghardaïa",
+      "total_facilities": 473,
+      "communes": {
+        "Inconnue": 299,
+        "Berriane": 7,
+        "Bounoura": 18,
+        "Dhayet Bendhahoua": 5,
+        "El Atteuf": 6,
+        "El Guerrara": 16,
+        "Ghardaia": 121,
+        "Zelfana": 1
+      },
+      "bounding_box": {
+        "min_lat": 32.1500535,
+        "max_lat": 32.953,
+        "min_lon": 3.2776547528872078,
+        "max_lon": 4.560539839702449
+      },
+      "communes_count": 8
+    },
+    {
+      "code": "48",
+      "name": "Relizane",
+      "total_facilities": 778,
+      "communes": {
+        "Inconnue": 77,
+        "Ain Rahma": 2,
+        "Ain-Tarek": 2,
+        "Ammi Moussa": 3,
+        "Belaassel Bouzagza": 363,
+        "Bendaoud": 6,
+        "Beni Zentis": 1,
+        "Dar Ben Abdelah": 7,
+        "Djidiouia": 21,
+        "El-Guettar": 13,
+        "El-Matmar": 4,
+        "Kalaa": 1,
+        "Mazouna": 55,
+        "Mediouna": 12,
+        "Mendes": 2,
+        "Merdja Sidi Abed": 80,
+        "Ouarizane": 5,
+        "Oued El Djemaa": 6,
+        "Oued Essalem": 2,
+        "Oued-Rhiou": 2,
+        "Ouled Aiche": 6,
+        "Ramka": 3,
+        "Relizane": 100,
+        "Sidi M'hamed Benaouda": 1,
+        "Yellel": 4
+      },
+      "bounding_box": {
+        "min_lat": 35.3951139,
+        "max_lat": 36.7491524,
+        "min_lon": -1.0239538,
+        "max_lon": 4.185853
+      },
+      "communes_count": 25
+    },
+    {
+      "code": "49",
+      "name": "Timimoun",
+      "total_facilities": 354,
+      "communes": {
+        "Inconnue": 330,
+        "Charouine": 1,
+        "Ouled Said": 15,
+        "Timimoun": 5,
+        "Tinerkouk": 3
+      },
+      "bounding_box": {
+        "min_lat": 20.4408131,
+        "max_lat": 36.9078233,
+        "min_lon": -1.8860837,
+        "max_lon": 8.1175759
+      },
+      "communes_count": 5
+    },
+    {
+      "code": "50",
+      "name": "Bordj Badji Mokhtar",
+      "total_facilities": 70,
+      "communes": {
+        "Inconnue": 67,
+        "Timiaouine": 3
+      },
+      "bounding_box": {
+        "min_lat": 20.4326443,
+        "max_lat": 36.7919817,
+        "min_lon": -0.5991283,
+        "max_lon": 4.7695456
+      },
+      "communes_count": 2
+    },
+    {
+      "code": "51",
+      "name": "Ouled Djellal",
+      "total_facilities": 363,
+      "communes": {
+        "Inconnue": 146,
+        "Chaiba": 2,
+        "Doucen": 12,
+        "Ouled Djellal": 200,
+        "Ras El Miad": 3
+      },
+      "bounding_box": {
+        "min_lat": 34.3613546,
+        "max_lat": 36.8561892,
+        "min_lon": -1.9185558,
+        "max_lon": 7.7463938
+      },
+      "communes_count": 5
+    },
+    {
+      "code": "52",
+      "name": "Béni Abbès",
+      "total_facilities": 181,
+      "communes": {
+        "Inconnue": 170,
+        "Beni-Abbes": 8,
+        "Beni-Ikhlef": 3
+      },
+      "bounding_box": {
+        "min_lat": 27.8990892,
+        "max_lat": 36.7814306,
+        "min_lon": -2.7458681,
+        "max_lon": 7.1080003
+      },
+      "communes_count": 3
+    },
+    {
+      "code": "53",
+      "name": "In Salah",
+      "total_facilities": 506,
+      "communes": {
+        "Inconnue": 506
+      },
+      "bounding_box": {
+        "min_lat": 26.7018955,
+        "max_lat": 37.2724687,
+        "min_lon": -5.5329397,
+        "max_lon": 9.8733502
+      },
+      "communes_count": 1
+    },
+    {
+      "code": "54",
+      "name": "In Guezzam",
+      "total_facilities": 155,
+      "communes": {
+        "Inconnue": 155
+      },
+      "bounding_box": {
+        "min_lat": 19.5732736,
+        "max_lat": 36.908735,
+        "min_lon": -1.3808786,
+        "max_lon": 7.7545405
+      },
+      "communes_count": 1
+    },
+    {
+      "code": "55",
+      "name": "Touggourt",
+      "total_facilities": 369,
+      "communes": {
+        "Inconnue": 121,
+        "El Alia": 3,
+        "Nezla": 9,
+        "Taibet": 3,
+        "Tebesbest": 217,
+        "Temacine": 4,
+        "Touggourt": 7,
+        "Zaouia El Abidia": 5
+      },
+      "bounding_box": {
+        "min_lat": 32.6133744,
+        "max_lat": 36.9128825,
+        "min_lon": -1.8562006,
+        "max_lon": 7.7648603
+      },
+      "communes_count": 8
+    },
+    {
+      "code": "56",
+      "name": "Djanet",
+      "total_facilities": 146,
+      "communes": {
+        "Inconnue": 143,
+        "Djanet": 3
+      },
+      "bounding_box": {
+        "min_lat": 23.78,
+        "max_lat": 36.9167755,
+        "min_lon": -1.8605544,
+        "max_lon": 10.135
+      },
+      "communes_count": 2
+    },
+    {
+      "code": "57",
+      "name": "El Meghaier",
+      "total_facilities": 0,
+      "communes": {},
+      "bounding_box": {
+        "min_lat": null,
+        "max_lat": null,
+        "min_lon": null,
+        "max_lon": null
+      },
+      "communes_count": 0
+    },
+    {
+      "code": "58",
+      "name": "El Meniaa",
+      "total_facilities": 210,
+      "communes": {
+        "Inconnue": 210
+      },
+      "bounding_box": {
+        "min_lat": 30.5420743,
+        "max_lat": 36.7908466,
+        "min_lon": -1.7429664,
+        "max_lon": 8.1000932
+      },
+      "communes_count": 1
+    }
+  ]
+}

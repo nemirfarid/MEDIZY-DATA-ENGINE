@@ -98,13 +98,16 @@ def deploy_bundled_assets():
         );
     """)
 
-    # Création table FTS5
+    # Création table FTS5 avec colonnes directes pour accès instantané sans JOIN (< 1 ms)
     cur_target.execute("""
         CREATE VIRTUAL TABLE facilities_fts USING fts5(
             nom,
             commune,
             wilaya,
             categorie,
+            telephone UNINDEXED,
+            latitude UNINDEXED,
+            longitude UNINDEXED,
             content='facilities',
             content_rowid='id'
         );
@@ -125,6 +128,9 @@ def deploy_bundled_assets():
     cur_src = conn_src.cursor()
 
     wilaya_to_code = {name.lower(): code for code, name in OFFICIAL_WILAYAS}
+    wilaya_to_code["el m'ghair"] = "57"
+    wilaya_to_code["el meghaier"] = "57"
+    wilaya_to_code["el mghair"] = "57"
 
     cur_src.execute("""
         SELECT 
@@ -168,7 +174,7 @@ def deploy_bundled_assets():
             r["source"] or "medizy_official_db"
         ))
 
-        fts_rows.append((r["id"], nom, com, w_name, cat))
+        fts_rows.append((r["id"], nom, com, w_name, cat, r["telephone"] or "", lat, lon))
         rtree_rows.append((r["id"], lat, lat, lon, lon))
 
     # Insertion en bloc
@@ -180,8 +186,8 @@ def deploy_bundled_assets():
     """, insert_rows)
 
     cur_target.executemany("""
-        INSERT INTO facilities_fts (rowid, nom, commune, wilaya, categorie)
-        VALUES (?, ?, ?, ?, ?);
+        INSERT INTO facilities_fts (rowid, nom, commune, wilaya, categorie, telephone, latitude, longitude)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?);
     """, fts_rows)
 
     cur_target.executemany("""

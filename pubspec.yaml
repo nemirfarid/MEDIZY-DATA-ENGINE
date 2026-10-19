@@ -1,7 +1,7 @@
 name: sante_dz_medizy
 description: "Application mobile Santé DZ / Medizy - Programme National Sanitaire Algérie (Offline-First)"
 publish_to: 'none'
-version: 1.0.16+16
+version: 1.0.17+17
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -11,8 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
   sqlite3: ^2.4.0
+  sqlite3_flutter_libs: ^0.5.24
   sqflite: ^2.3.0
   sqflite_common_ffi: ^2.3.0
+  crypto: ^3.0.3
   path: ^1.9.0
   path_provider: ^2.1.2
   flutter_map: ^6.1.0

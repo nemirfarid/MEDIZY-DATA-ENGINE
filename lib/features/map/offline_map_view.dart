@@ -129,7 +129,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('SANTÉ DZ / MEDIZY', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+            Text('Medizy', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
             Text('Carte Sanitaire Hors-Ligne (58 Wilayas)', style: TextStyle(fontSize: 12)),
           ],
         ),

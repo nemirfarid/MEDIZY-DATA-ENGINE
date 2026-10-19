@@ -3,12 +3,30 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:sante_dz_medizy/main.dart';
 
 void main() {
-  testWidgets('Santé DZ / Medizy app startup widget smoke test', (WidgetTester tester) async {
-    // Initialise l'application Santé DZ Medizy
-    await tester.pumpWidget(const SanteDzMedizyApp());
+  testWidgets('Medizy splash screen visual and branding test', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: MedizySplashScreen(statusMessage: 'Initialisation du registre sanitaire national...'),
+      ),
+    );
 
-    // Vérifie que le titre ou l'icône de l'hôpital est affiché
-    expect(find.byIcon(Icons.local_hospital), findsOneWidget);
-    expect(find.text('SANTÉ DZ / MEDIZY'), findsOneWidget);
+    // Vérifie le logo circulaire avec coeur bien-être et le nom Medizy
+    expect(find.byIcon(Icons.favorite_rounded), findsOneWidget);
+    // Vérifie l'absence absolue de croix médicale (+)
+    expect(find.byIcon(Icons.local_hospital), findsNothing);
+    expect(find.byIcon(Icons.add), findsNothing);
+    // Vérifie la typographie et les textes officiels Medizy
+    expect(find.text('Medizy'), findsOneWidget);
+    expect(find.text('Votre santé au quotidien'), findsOneWidget);
+    expect(find.text('Initialisation du registre sanitaire national...'), findsOneWidget);
+  });
+
+  testWidgets('Medizy app startup smoke test', (WidgetTester tester) async {
+    await tester.pumpWidget(const SanteDzMedizyApp());
+    await tester.pump();
+
+    // L'application s'initialise et affiche l'interface Medizy
+    expect(find.text('Medizy'), findsOneWidget);
+    expect(find.text('Carte Sanitaire Hors-Ligne (58 Wilayas)'), findsOneWidget);
   });
 }

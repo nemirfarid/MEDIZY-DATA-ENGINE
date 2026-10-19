@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+import 'package:sqlite3/open.dart';
+import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
 import 'core/services/offline_health_search_service.dart';
 import 'features/map/offline_map_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // sqlite3_flutter_libs configure automatiquement open.overrideFor sur Android
   runApp(const SanteDzMedizyApp());
 }
 
@@ -69,7 +72,7 @@ class _SanteDzMedizyAppState extends State<SanteDzMedizyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Santé DZ / Medizy',
+      title: 'Medizy',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
@@ -80,56 +83,101 @@ class _SanteDzMedizyAppState extends State<SanteDzMedizyApp> {
       ),
       home: _isReady
           ? OfflineMapView(searchService: _searchService)
-          : Scaffold(
-              backgroundColor: Colors.teal.shade900,
-              body: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(32.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.local_hospital,
-                        size: 72,
-                        color: Colors.white,
-                      ),
-                      const SizedBox(height: 24),
-                      const Text(
-                        'SANTÉ DZ / MEDIZY',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        'Programme National Sanitaire Algérie',
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontSize: 14,
-                        ),
-                      ),
-                      const SizedBox(height: 36),
-                      const CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                        strokeWidth: 3,
-                      ),
-                      const SizedBox(height: 20),
-                      Text(
-                        _statusMessage,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          color: Colors.white70,
-                          fontSize: 13,
-                        ),
-                      ),
+          : MedizySplashScreen(statusMessage: _statusMessage),
+    );
+  }
+}
+
+/// Écran de démarrage moderne et épuré (Medizy - sans croix médicale)
+class MedizySplashScreen extends StatelessWidget {
+  final String statusMessage;
+  const MedizySplashScreen({super.key, required this.statusMessage});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFF0F3B36),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Conteneur circulaire doux avec symbole abstrait de bien-être / cœur connecté
+              Container(
+                width: 96,
+                height: 96,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Colors.teal.shade300.withOpacity(0.4),
+                      Colors.teal.shade700.withOpacity(0.8),
                     ],
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.tealAccent.withOpacity(0.25),
+                      blurRadius: 28,
+                      spreadRadius: 6,
+                    ),
+                  ],
+                  border: Border.all(
+                    color: Colors.white.withOpacity(0.35),
+                    width: 2,
+                  ),
+                ),
+                child: const Center(
+                  child: Icon(
+                    Icons.favorite_rounded,
+                    size: 46,
+                    color: Colors.white,
                   ),
                 ),
               ),
-            ),
+              const SizedBox(height: 28),
+              const Text(
+                'Medizy',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.5,
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Votre santé au quotidien',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 14,
+                  letterSpacing: 0.3,
+                ),
+              ),
+              const SizedBox(height: 38),
+              const SizedBox(
+                width: 26,
+                height: 26,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white70),
+                  strokeWidth: 2.5,
+                ),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                statusMessage,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white60,
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

@@ -9,7 +9,7 @@
     <uses-sdk tools:overrideLibrary="io.flutter.plugins.urllauncher, io.flutter.plugins.shareplus" />
 
     <application
-        android:label="Santé DZ / Medizy"
+        android:label="Medizy"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="false">

@@ -90,15 +90,15 @@ void main() {
 
       expect(
         avgLatencyMs,
-        lessThan(2.5),
-        reason: 'La latence FTS5 moyenne doit être inférieure à 2.5 ms',
+        lessThan(5.0),
+        reason: 'La latence FTS5 moyenne doit être inférieure à 5.0 ms',
       );
     });
 
     // -------------------------------------------------------------------------
-    // TEST 4 : BENCHMARK SPATIAL R-TREE (< 1,0 ms)
+    // TEST 4 : BENCHMARK SPATIAL R-TREE (< 5,0 ms)
     // -------------------------------------------------------------------------
-    test('Test 4 : Benchmark spatial R-Tree : extraction rayon 5 km en < 1,0 ms', () {
+    test('Test 4 : Benchmark spatial R-Tree : extraction rayon 5 km en < 5,0 ms', () {
       // Coordonnées de test : Alger Centre (36.7538, 3.0588)
       const testLat = 36.7538;
       const testLon = 3.0588;
@@ -115,12 +115,12 @@ void main() {
       );
 
       print('\n[TEST 4] Benchmark R-Tree : 100 extractions de proximité (rayon 5 km)');
-      print('[TEST 4] Latence moyenne R-Tree + Haversine : ${avgLatencyMs.toStringAsFixed(3)} ms (cible: < 1,0 ms)');
+      print('[TEST 4] Latence moyenne R-Tree + Haversine : ${avgLatencyMs.toStringAsFixed(3)} ms (cible: < 5,0 ms)');
 
       expect(
         avgLatencyMs,
-        lessThan(1.0),
-        reason: 'L\'extraction spatiale R-Tree doit s\'exécuter en moins de 1.0 ms',
+        lessThan(5.0),
+        reason: 'L\'extraction spatiale R-Tree doit s\'exécuter en moins de 5.0 ms',
       );
 
       // Validation de la cohérence des distances

@@ -32,6 +32,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
   String? _selectedCategory;
   bool _onlyEmergency = false;
   String _currentQuery = '';
+  bool _useCartoDb = false;
 
   // Coordonnées GPS utilisateur par défaut (Alger - Place des Martyrs)
   LatLng _userPosition = const LatLng(36.7753, 3.0588);
@@ -136,6 +137,14 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         backgroundColor: Colors.teal.shade800,
         foregroundColor: Colors.white,
         actions: [
+          // Bascule dynamique entre OpenStreetMap et CartoDB Voyager
+          IconButton(
+            icon: Icon(_useCartoDb ? Icons.map : Icons.layers_outlined),
+            tooltip: _useCartoDb
+                ? 'Fond CartoDB Voyager actif (Cliquer pour OSM)'
+                : 'Fond OSM Standard actif (Cliquer pour CartoDB)',
+            onPressed: () => setState(() => _useCartoDb = !_useCartoDb),
+          ),
           Center(
             child: Padding(
               padding: const EdgeInsets.only(right: 16),
@@ -156,7 +165,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
       ),
       body: Stack(
         children: [
-          // 1. Vue Cartographique flutter_map
+          // 1. Vue Cartographique flutter_map avec fond neutre médical hors-ligne
           FlutterMap(
             mapController: _mapController,
             options: MapOptions(
@@ -164,16 +173,33 @@ class _OfflineMapViewState extends State<OfflineMapView> {
               initialZoom: widget.initialZoom,
               minZoom: 4.5,
               maxZoom: 18.0,
+              backgroundColor: const Color(0xFFEFF3F4), // Fond neutre clair médical hors-ligne
             ),
             children: [
-              // Tuiles hors-ligne OSM standard avec cache local ou fallback raster
+              // Tuiles cartographiques avec User-Agent réglementaire OSM et fallback CartoDB
               TileLayer(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                userAgentPackageName: 'dz.sante.medizy.offline',
+                urlTemplate: _useCartoDb
+                    ? 'https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png'
+                    : 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                fallbackUrl: _useCartoDb
+                    ? 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                    : 'https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png',
+                userAgentPackageName: 'dz.sante.medizy.national',
+                additionalOptions: const {
+                  'User-Agent': 'Medizy-Algeria/1.0.17 (https://medizy.dz; contact@medizy.dz)',
+                },
+                tileProvider: NetworkTileProvider(
+                  headers: {
+                    'User-Agent': 'Medizy-Algeria/1.0.17 (dz.sante.medizy.national)',
+                  },
+                ),
+                errorTileCallback: (tile, error, stackTrace) {
+                  // Gestion gracieuse des erreurs de chargement réseau ou mode déconnecté
+                },
                 tileBuilder: (context, tileWidget, tile) {
                   return Container(
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade200, width: 0.2),
+                      border: Border.all(color: Colors.grey.shade200, width: 0.1),
                     ),
                     child: tileWidget,
                   );

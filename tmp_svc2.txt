@@ -1,0 +1,116 @@
+﻿278 |   List<HealthFacility> searchHybrid({
+279 |     String? query,
+280 |     String? wilayaCode,
+281 |     String? category,
+282 |     bool onlyEmergency = false,
+283 |     double? userLat,
+284 |     double? userLon,
+285 |     double radiusKm = 10.0,
+286 |     int limit = 50,
+287 |   }) {
+288 |     // Si une position utilisateur est fournie sans texte, basculer sur R-Tree
+289 |     if ((query == null || query.trim().isEmpty) && userLat != null && userLon != null) {
+290 |       var res = searchAroundMe(
+291 |         latitude: userLat,
+292 |         longitude: userLon,
+293 |         radiusKm: radiusKm,
+294 |         category: category,
+295 |         limit: limit * 2,
+296 |       );
+297 |       if (onlyEmergency) {
+298 |         res = res.where((f) => f.isEmergencyOrOnDuty).toList();
+299 |       }
+300 |       if (wilayaCode != null && wilayaCode.isNotEmpty) {
+301 |         res = res.where((f) => f.wilayaCode == wilayaCode).toList();
+302 |       }
+303 |       return res.take(limit).toList();
+304 |     }
+305 | 
+306 |     // Si du texte est fourni, utiliser FTS5
+307 |     if (query != null && query.trim().isNotEmpty) {
+308 |       final ftsMatch = formatFtsMatch(query);
+309 |       final sb = StringBuffer();
+310 |       sb.writeln('''
+311 |         SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+312 |                f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
+313 |         FROM facilities f
+314 |         JOIN facilities_fts fts ON f.id = fts.rowid
+315 |         WHERE facilities_fts MATCH ?
+316 |       ''');
+317 | 
+318 |       final params = <dynamic>[ftsMatch];
+319 | 
+320 |       if (wilayaCode != null && wilayaCode.isNotEmpty) {
+321 |         sb.writeln('  AND f.wilaya_code = ?');
+322 |         params.add(wilayaCode);
+323 |       }
+324 | 
+325 |       if (category != null && category.isNotEmpty) {
+326 |         sb.writeln('  AND f.categorie = ?');
+327 |         params.add(category);
+328 |       }
+329 | 
+330 |       sb.writeln('ORDER BY fts.rank LIMIT ?;');
+331 |       params.add(limit * 2);
+332 | 
+333 |       final ResultSet results = db.select(sb.toString(), params);
+334 |       var facilities = results.map((r) => HealthFacility.fromMap(r)).toList();
+335 | 
+336 |       if (userLat != null && userLon != null) {
+337 |         for (final fac in facilities) {
+338 |           fac.distanceKm = double.parse(
+339 |             calculateHaversineKm(userLat, userLon, fac.latitude, fac.longitude).toStringAsFixed(2),
+340 |           );
+341 |         }
+342 |         facilities.sort((a, b) => (a.distanceKm ?? 0).compareTo(b.distanceKm ?? 0));
+343 |       }
+344 | 
+345 |       if (onlyEmergency) {
+346 |         facilities = facilities.where((f) => f.isEmergencyOrOnDuty).toList();
+347 |       }
+348 | 
+349 |       return facilities.take(limit).toList();
+350 |     }
+351 | 
+352 |     // Requête par défaut sur wilaya et catégorie
+353 |     final sb = StringBuffer();
+354 |     sb.writeln('''
+355 |       SELECT id, place_id, nom, categorie, wilaya, wilaya_code, commune,
+356 |              adresse, telephone, site_web, note, nombre_avis, latitude, longitude, source
+357 |       FROM facilities
+358 |       WHERE 1=1
+359 |     ''');
+360 |     final params = <dynamic>[];
+361 | 
+362 |     if (wilayaCode != null && wilayaCode.isNotEmpty) {
+363 |       sb.writeln('  AND wilaya_code = ?');
+364 |       params.add(wilayaCode);
+365 |     }
+366 | 
+367 |     if (category != null && category.isNotEmpty) {
+368 |       sb.writeln('  AND categorie = ?');
+369 |       params.add(category);
+370 |     }
+371 | 
+372 |     sb.writeln('ORDER BY nom ASC LIMIT ?;');
+373 |     params.add(limit);
+374 | 
+375 |     final ResultSet results = db.select(sb.toString(), params);
+376 |     var facilities = results.map((r) => HealthFacility.fromMap(r)).toList();
+377 | 
+378 |     if (onlyEmergency) {
+379 |       facilities = facilities.where((f) => f.isEmergencyOrOnDuty).toList();
+380 |     }
+381 | 
+382 |     return facilities;
+383 |   }
+384 | 
+385 |   // ===========================================================================
+386 |   // 4. CONTRÔLE D'INTÉGRITÉ, COUVERTURE & BENCHMARKS
+387 |   // ===========================================================================
+388 | 
+389 |   /// Comptage exact des fiches (doit renvoyer 35 832)
+390 |   int getTotalFacilitiesCount() {
+391 |     final row = db.select('SELECT COUNT(*) AS c FROM facilities;').first;
+392 |     return (row['c'] as num).toInt();
+DONE

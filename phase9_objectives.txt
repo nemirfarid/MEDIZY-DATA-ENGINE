@@ -1,0 +1,46 @@
+PHASE 9 - OBJECTIVES & PLAN
+============================
+
+Context:
+- Production: C:\SANTE_DZ_SCRAPER\medizy_scraper.db
+- Current state: 23,669 entries (was 23,529 + 140 OSM entries from Illizi/El Meniaa/Tindouf)
+- Integrity: ok
+- SHA256 (post-merge): 948fda84d6375b6b1dbd7ba822cdcfe09f7301f81f8779bc803e717b582c493d
+- Backup: backups/medizy_scraper_backup_pre_merge_20261015_150527.db
+
+Goals:
+1. Data consolidation & quality
+   - Validate OSM entries completeness (tel, address, commune) 
+   - Enrich missing wilaya/commune via geocoding if coordinates present
+   - Consolidate duplicates (further dedup beyond place_id)
+   - Identify records with missing critical fields
+
+2. Geospatial & queries
+   - Spatial lookups by wilaya/commune
+   - Proximity queries (nearest facilities)
+   - Validate coordinate bounds (all within Algeria 18-38°N, -9-12°E)
+
+3. Testing & API readiness
+   - Verify API endpoints if present (check scraper/live_scraper.py, Flask/FastAPI?)
+   - Data export validation (CSV/XLSX) - D:\SANTE_DZ_EXPORTS
+   - Run test suite if any (test_*.py)
+   - Smoke tests on critical queries
+
+4. Documentation & packaging
+   - Update schema documentation
+   - Document data lineage (Google Maps + MIPH + OSM)
+   - Generate final consolidated export
+   - Create data dictionary
+
+Constraints:
+- No destructive operations
+- Maintain integrity (PRAGMA integrity_check before/after)
+- Preserve SHA256 history
+- Read-only by default; writes only with explicit approval
+
+Priority actions:
+1. Run comprehensive integrity tests (verify_dbs.py, verify_final.py)
+2. Audit OSM entries quality
+3. Prepare export of consolidated DB
+4. Document phase 8 completion
+5. Create phase 9 execution plan

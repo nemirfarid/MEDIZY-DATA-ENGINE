@@ -1,0 +1,176 @@
+﻿109 |   // ===========================================================================
+110 |   // 1. MOTEUR PLEIN TEXTE FTS5 (Recherche sémantique, translittération, accents)
+111 |   // ===========================================================================
+112 | 
+113 |   /// Normalisation des accents français et translittération arabe/latine
+114 |   static String normalizeQuery(String input) {
+115 |     var text = input.trim().toLowerCase();
+116 | 
+117 |     // Remplacement des voyelles accentuées et cédilles
+118 |     const accentMap = {
+119 |       'à': 'a', 'á': 'a', 'â': 'a', 'ã': 'a', 'ä': 'a', 'å': 'a',
+120 |       'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e',
+121 |       'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i',
+122 |       'ò': 'o', 'ó': 'o', 'ô': 'o', 'õ': 'o', 'ö': 'o',
+123 |       'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u',
+124 |       'ý': 'y', 'ÿ': 'y',
+125 |       'ç': 'c', 'ñ': 'n',
+126 |     };
+127 | 
+128 |     accentMap.forEach((acc, rep) {
+129 |       text = text.replaceAll(acc, rep);
+130 |     });
+131 | 
+132 |     // Équivalences médicales et translittérations algériennes courantes
+133 |     final replacements = {
+134 |       'docteur': 'dr',
+135 |       'hopital': 'hopital',
+136 |       'pharmacie': 'pharmacie',
+137 |       'laboratoire': 'laboratoire',
+138 |       'cabinet': 'cabinet',
+139 |       'clinique': 'clinique',
+140 |       'chahida': 'chehida',
+141 |       'chahid': 'chehid',
+142 |       'ben': 'ben',
+143 |       'sidi': 'sidi',
+144 |       'oued': 'oued',
+145 |     };
+146 | 
+147 |     replacements.forEach((key, val) {
+148 |       text = text.replaceAll(RegExp('\\b$key\\b'), val);
+149 |     });
+150 | 
+151 |     // Supprimer les caractères de ponctuation SQLite FTS5 dangereux
+152 |     text = text.replaceAll(RegExp(r'["\*\^\{\}\[\]\(\)\:\+\-\?]'), ' ');
+153 |     return text.trim();
+154 |   }
+155 | 
+156 |   /// Prépare la clause MATCH FTS5 avec préfixes jokers (*)
+157 |   static String formatFtsMatch(String query) {
+158 |     final clean = normalizeQuery(query);
+159 |     final tokens = clean.split(RegExp(r'\s+')).where((t) => t.isNotEmpty).toList();
+160 |     if (tokens.isEmpty) return '*';
+161 |     return tokens.map((t) => '$t*').join(' AND ');
+162 |   }
+163 | 
+164 |   /// Recherche plein texte FTS5 avec tri par pertinence (rank)
+165 |   List<HealthFacility> searchFts(String query, {int limit = 50}) {
+166 |     if (query.trim().isEmpty) return [];
+167 | 
+168 |     final ftsMatch = formatFtsMatch(query);
+169 | 
+170 |     final ResultSet results = (_ftsStmt != null)
+171 |         ? _ftsStmt!.select([ftsMatch, limit])
+172 |         : db.select('''
+173 |             SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+174 |             FROM facilities_fts
+175 |             WHERE facilities_fts MATCH ?
+176 |             LIMIT ?;
+177 |           ''', [ftsMatch, limit]);
+178 | 
+179 |     return results.map((row) => HealthFacility.fromMap(row)).toList();
+180 |   }
+181 | 
+182 |   // ===========================================================================
+183 |   // 2. FILTRAGE SPATIAL R-TREE ("Autour de moi" & Bounding Box)
+184 |   // ===========================================================================
+185 | 
+186 |   /// Calcul de distance orthodromique (Haversine) en kilomètres
+187 |   static double calculateHaversineKm(
+188 |     double lat1,
+189 |     double lon1,
+190 |     double lat2,
+191 |     double lon2,
+192 |   ) {
+193 |     const double earthRadiusKm = 6371.0;
+194 |     final dLat = _deg2rad(lat2 - lat1);
+195 |     final dLon = _deg2rad(lon2 - lon1);
+196 | 
+197 |     final a = math.sin(dLat / 2) * math.sin(dLat / 2) +
+198 |         math.cos(_deg2rad(lat1)) *
+199 |             math.cos(_deg2rad(lat2)) *
+200 |             math.sin(dLon / 2) *
+201 |             math.sin(dLon / 2);
+202 | 
+203 |     final c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
+204 |     return earthRadiusKm * c;
+205 |   }
+206 | 
+207 |   static double _deg2rad(double deg) => deg * (math.pi / 180.0);
+208 | 
+209 |   /// Recherche spatiale par R-Tree pour un rayon géographique donné ("Autour de moi")
+210 |   List<HealthFacility> searchAroundMe({
+211 |     required double latitude,
+212 |     required double longitude,
+213 |     double radiusKm = 5.0,
+214 |     String? category,
+215 |     int limit = 50,
+216 |   }) {
+217 |     // Calcul de la Bounding Box
+218 |     final deltaLat = radiusKm / 111.0;
+219 |     final latRad = _deg2rad(latitude);
+220 |     final cosLat = math.cos(latRad).abs();
+221 |     final deltaLon = radiusKm / (111.0 * (cosLat > 0.05 ? cosLat : 1.0));
+222 | 
+223 |     final minLat = latitude - deltaLat;
+224 |     final maxLat = latitude + deltaLat;
+225 |     final minLon = longitude - deltaLon;
+226 |     final maxLon = longitude + deltaLon;
+227 | 
+228 |     final ResultSet results;
+229 |     if (category == null || category.isEmpty) {
+230 |       results = (_rtreeStmt != null)
+231 |           ? _rtreeStmt!.select([minLat, maxLat, minLon, maxLon])
+232 |           : db.select('''
+233 |               SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+234 |                      f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
+235 |               FROM facilities_rtree r
+236 |               JOIN facilities f ON f.id = r.id
+237 |               WHERE r.min_lat >= ? AND r.max_lat <= ?
+238 |                 AND r.min_lon >= ? AND r.max_lon <= ?
+239 |               LIMIT 250;
+240 |             ''', [minLat, maxLat, minLon, maxLon]);
+241 |     } else {
+242 |       results = db.select('''
+243 |         SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+244 |                f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
+245 |         FROM facilities_rtree r
+246 |         JOIN facilities f ON f.id = r.id
+247 |         WHERE r.min_lat >= ? AND r.max_lat <= ?
+248 |           AND r.min_lon >= ? AND r.max_lon <= ?
+249 |           AND f.categorie = ?
+250 |         LIMIT 250;
+251 |       ''', [minLat, maxLat, minLon, maxLon, category]);
+252 |     }
+253 | 
+254 |     // Calcul précis en mémoire de la distance Haversine et tri par proximité
+255 |     final facilities = <HealthFacility>[];
+256 |     for (final row in results) {
+257 |       final fac = HealthFacility.fromMap(row);
+258 |       final dist = calculateHaversineKm(latitude, longitude, fac.latitude, fac.longitude);
+259 |       if (dist <= radiusKm * 1.05) {
+260 |         fac.distanceKm = double.parse(dist.toStringAsFixed(2));
+261 |         facilities.add(fac);
+262 |       }
+263 |     }
+264 | 
+265 |     facilities.sort((a, b) => (a.distanceKm ?? 0).compareTo(b.distanceKm ?? 0));
+266 | 
+267 |     if (facilities.length > limit) {
+268 |       return facilities.sublist(0, limit);
+269 |     }
+270 |     return facilities;
+271 |   }
+272 | 
+273 |   // ===========================================================================
+274 |   // 3. RECHERCHE HYBRIDE COMBINÉE (TEXTE + FACETTES + DISTANCE)
+275 |   // ===========================================================================
+276 | 
+277 |   /// Recherche multi-critères : FTS5, code wilaya, catégorie, urgence et rayon
+278 |   List<HealthFacility> searchHybrid({
+279 |     String? query,
+280 |     String? wilayaCode,
+281 |     String? category,
+282 |     bool onlyEmergency = false,
+283 |     double? userLat,
+DONE

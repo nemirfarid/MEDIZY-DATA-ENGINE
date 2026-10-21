@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 /// Barre de filtrage par facettes (Wilaya, Spécialité, Statut d'urgence)
 class FacetFilterBar extends StatelessWidget {
   final String? selectedWilayaCode;
+  final String? selectedWilayaName;
   final String? selectedCategory;
   final bool onlyEmergency;
   final ValueChanged<String?> onWilayaChanged;
+  final VoidCallback? onWilayaPickerRequested;
   final ValueChanged<String?> onCategoryChanged;
   final ValueChanged<bool> onEmergencyToggled;
   final ValueChanged<String> onSearchSubmitted;
@@ -13,9 +15,11 @@ class FacetFilterBar extends StatelessWidget {
   const FacetFilterBar({
     Key? key,
     this.selectedWilayaCode,
+    this.selectedWilayaName,
     this.selectedCategory,
     required this.onlyEmergency,
     required this.onWilayaChanged,
+    this.onWilayaPickerRequested,
     required this.onCategoryChanged,
     required this.onEmergencyToggled,
     required this.onSearchSubmitted,
@@ -40,7 +44,7 @@ class FacetFilterBar extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: theme.cardColor.withOpacity(0.95),
+        color: theme.cardColor.withOpacity(0.96),
         boxShadow: const [
           BoxShadow(
             color: Colors.black12,
@@ -75,11 +79,34 @@ class FacetFilterBar extends StatelessWidget {
           ),
           const SizedBox(height: 8),
 
-          // Ligne 2 : Filtres rapides Wilaya, Catégorie, Urgence
+          // Ligne 2 : Filtres rapides Wilaya (58), Catégorie, Urgence
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
               children: [
+                // Sélecteur explicite Wilaya (58 Wilayas)
+                FilterChip(
+                  avatar: Icon(
+                    Icons.location_city,
+                    size: 15,
+                    color: selectedWilayaCode != null ? Colors.white : Colors.teal.shade800,
+                  ),
+                  label: Text(
+                    selectedWilayaCode != null
+                        ? '$selectedWilayaCode ${selectedWilayaName ?? ""}'
+                        : 'Wilaya (58)',
+                  ),
+                  selected: selectedWilayaCode != null,
+                  selectedColor: Colors.teal.shade800,
+                  labelStyle: TextStyle(
+                    color: selectedWilayaCode != null ? Colors.white : Colors.teal.shade900,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                  ),
+                  onSelected: (_) => onWilayaPickerRequested?.call(),
+                ),
+                const SizedBox(width: 8),
+
                 // Bouton filtre Urgence / 24h
                 FilterChip(
                   avatar: Icon(

@@ -1,0 +1,75 @@
+Running build hooks...Running build hooks...=== TABLES ===
+facilities
+facilities_fts
+facilities_fts_config
+facilities_fts_data
+facilities_fts_docsize
+facilities_fts_idx
+facilities_rtree
+facilities_rtree_node
+facilities_rtree_parent
+facilities_rtree_rowid
+=== CATEGORIES (count) ===
+pharmacie => 6204
+cabinet médical => 3767
+clinique => 3117
+cabinet dentaire => 2502
+centre de santé => 2090
+hôpital => 1917
+laboratoire médical => 1617
+gynécologue => 1558
+dentiste => 1085
+médecin spécialiste => 1059
+cardiologue => 923
+vétérinaire => 907
+pédiatre => 766
+centre médical => 737
+ophtalmologue => 727
+médecin => 674
+dermatologue => 569
+psychiatre => 549
+ORL => 490
+psychologue => 454
+neurologue => 445
+médecin généraliste => 440
+orthophoniste => 377
+gastro-entérologue => 369
+urologue => 368
+kinésithérapie => 363
+centre d'imagerie médicale => 268
+polyclinique => 254
+centre de radiologie => 224
+nutritionniste => 218
+ostéopathe => 190
+kinésithérapeute => 170
+radiologue => 145
+sage-femme => 128
+doctors => 52
+clinic => 35
+pharmacy => 25
+hospital => 23
+hÃ´pital => 9
+Institut de formation => 6
+Structure => 5
+dentist => 5
+Direction => 1
+=== SAMPLE ROW ===
+{id: 55876, place_id: ChIJR2onXgCf9Q0R2_UHRy0ORDk, nom: Cabinet Dr Senoussi A Née Alliane, categorie: cabinet dentaire, wilaya: Adrar, wilaya_code: 01, commune: , adresse: Itinéraires, telephone: 0657 55 83 27, site_web: , note: 4.5, nombre_avis: , latitude: 27.8816808, longitude: -0.2812643, source: Google Maps public UI}
+{id: 55877, place_id: ChIJbQ5aIQCf9Q0RiQShThp4hhY, nom: Cabinet chirurgical, categorie: cabinet médical, wilaya: Adrar, wilaya_code: 01, commune: , adresse: Itinéraires, telephone: 0670 12 82 79, site_web: , note: , nombre_avis: , latitude: 27.8808838, longitude: -0.28943, source: Google Maps public UI}
+=== COLUMNS ===
+{cid: 0, name: id, type: INTEGER, notnull: 0, dflt_value: null, pk: 1}
+{cid: 1, name: place_id, type: TEXT, notnull: 0, dflt_value: null, pk: 0}
+{cid: 2, name: nom, type: TEXT, notnull: 1, dflt_value: null, pk: 0}
+{cid: 3, name: categorie, type: TEXT, notnull: 1, dflt_value: null, pk: 0}
+{cid: 4, name: wilaya, type: TEXT, notnull: 1, dflt_value: null, pk: 0}
+{cid: 5, name: wilaya_code, type: TEXT, notnull: 1, dflt_value: null, pk: 0}
+{cid: 6, name: commune, type: TEXT, notnull: 1, dflt_value: null, pk: 0}
+{cid: 7, name: adresse, type: TEXT, notnull: 0, dflt_value: null, pk: 0}
+{cid: 8, name: telephone, type: TEXT, notnull: 0, dflt_value: null, pk: 0}
+{cid: 9, name: site_web, type: TEXT, notnull: 0, dflt_value: null, pk: 0}
+{cid: 10, name: note, type: REAL, notnull: 0, dflt_value: null, pk: 0}
+{cid: 11, name: nombre_avis, type: INTEGER, notnull: 0, dflt_value: null, pk: 0}
+{cid: 12, name: latitude, type: REAL, notnull: 1, dflt_value: null, pk: 0}
+{cid: 13, name: longitude, type: REAL, notnull: 1, dflt_value: null, pk: 0}
+{cid: 14, name: source, type: TEXT, notnull: 0, dflt_value: null, pk: 0}
+DONE 

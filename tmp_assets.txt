@@ -1,0 +1,4 @@
+medizy_categories_index.json
+medizy_wilayas_index.json
+sante_dz_bundled.db
+sante_dz_db.json.gz

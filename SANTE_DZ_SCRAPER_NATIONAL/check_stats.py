@@ -1,0 +1,10 @@
+import pandas as pd
+xls = pd.ExcelFile(r'D:\SANTE_DZ_EXPORTS\SANTE_DZ_GOOGLE_MAPS_NATIONAL_FINAL.xlsx')
+stats = pd.read_excel(xls, sheet_name='Statistiques wilayas')
+print(f'Total wilayas: {len(stats)}')
+print(f'Total records: {stats.total.sum()}')
+print(f'Total with GPS: {stats.gps.sum()}')
+print(f'Total with phones: {stats.telephones.sum()}')
+print(f'Total with sites: {stats.sites.sum()}')
+print()
+print(stats.to_string())

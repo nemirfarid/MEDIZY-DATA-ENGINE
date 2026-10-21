@@ -1,0 +1,721 @@
+{
+  "version": "1.0.15",
+  "generated_at": "2026-10-18T12:06:04.098097+00:00",
+  "total_categories": 102,
+  "categories": [
+    {
+      "code": "PHARM",
+      "name": "pharmacie",
+      "group": "Pharmacies",
+      "total_facilities": 6204,
+      "slug": "pharmacie"
+    },
+    {
+      "code": "CAB-MED",
+      "name": "cabinet médical",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 3767,
+      "slug": "cabinet-medical"
+    },
+    {
+      "code": "CLIN",
+      "name": "clinique",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 3117,
+      "slug": "clinique"
+    },
+    {
+      "code": "CAB-DENT",
+      "name": "cabinet dentaire",
+      "group": "Chirurgie Dentaire",
+      "total_facilities": 2502,
+      "slug": "cabinet-dentaire"
+    },
+    {
+      "code": "CTR-SANTE",
+      "name": "centre de santé",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 2090,
+      "slug": "centre-de-sante"
+    },
+    {
+      "code": "HOP",
+      "name": "hôpital",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 1917,
+      "slug": "hopital"
+    },
+    {
+      "code": "LABO",
+      "name": "laboratoire médical",
+      "group": "Laboratoires & Diagnostic",
+      "total_facilities": 1617,
+      "slug": "laboratoire-medical"
+    },
+    {
+      "code": "GYNECO",
+      "name": "gynécologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 1558,
+      "slug": "gynecologue"
+    },
+    {
+      "code": "DENT",
+      "name": "dentiste",
+      "group": "Chirurgie Dentaire",
+      "total_facilities": 1085,
+      "slug": "dentiste"
+    },
+    {
+      "code": "MED-SPEC",
+      "name": "médecin spécialiste",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 1059,
+      "slug": "medecin-specialiste"
+    },
+    {
+      "code": "CARDIO",
+      "name": "cardiologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 923,
+      "slug": "cardiologue"
+    },
+    {
+      "code": "VETO",
+      "name": "vétérinaire",
+      "group": "Paramédical & Autres",
+      "total_facilities": 907,
+      "slug": "veterinaire"
+    },
+    {
+      "code": "PEDIA",
+      "name": "pédiatre",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 766,
+      "slug": "pediatre"
+    },
+    {
+      "code": "CTR-MED",
+      "name": "centre médical",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 737,
+      "slug": "centre-medical"
+    },
+    {
+      "code": "OPHTA",
+      "name": "ophtalmologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 727,
+      "slug": "ophtalmologue"
+    },
+    {
+      "code": "MED",
+      "name": "médecin",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 674,
+      "slug": "medecin"
+    },
+    {
+      "code": "DERMA",
+      "name": "dermatologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 569,
+      "slug": "dermatologue"
+    },
+    {
+      "code": "PSYCHIAT",
+      "name": "psychiatre",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 549,
+      "slug": "psychiatre"
+    },
+    {
+      "code": "ORL",
+      "name": "ORL",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 490,
+      "slug": "orl"
+    },
+    {
+      "code": "PSYCHO",
+      "name": "psychologue",
+      "group": "Paramédical & Autres",
+      "total_facilities": 454,
+      "slug": "psychologue"
+    },
+    {
+      "code": "NEURO",
+      "name": "neurologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 445,
+      "slug": "neurologue"
+    },
+    {
+      "code": "MED-GEN",
+      "name": "médecin généraliste",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 440,
+      "slug": "medecin-generaliste"
+    },
+    {
+      "code": "ORTHOPHON",
+      "name": "orthophoniste",
+      "group": "Paramédical & Autres",
+      "total_facilities": 377,
+      "slug": "orthophoniste"
+    },
+    {
+      "code": "GASTRO",
+      "name": "gastro-entérologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 369,
+      "slug": "gastro-enterologue"
+    },
+    {
+      "code": "URO",
+      "name": "urologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 368,
+      "slug": "urologue"
+    },
+    {
+      "code": "KINE",
+      "name": "kinésithérapie",
+      "group": "Paramédical & Autres",
+      "total_facilities": 363,
+      "slug": "kinesitherapie"
+    },
+    {
+      "code": "IMAG",
+      "name": "centre d'imagerie médicale",
+      "group": "Laboratoires & Diagnostic",
+      "total_facilities": 268,
+      "slug": "centre-dimagerie-medicale"
+    },
+    {
+      "code": "POLYCLIN",
+      "name": "polyclinique",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 254,
+      "slug": "polyclinique"
+    },
+    {
+      "code": "RADIO",
+      "name": "centre de radiologie",
+      "group": "Laboratoires & Diagnostic",
+      "total_facilities": 224,
+      "slug": "centre-de-radiologie"
+    },
+    {
+      "code": "NUTRI",
+      "name": "nutritionniste",
+      "group": "Paramédical & Autres",
+      "total_facilities": 218,
+      "slug": "nutritionniste"
+    },
+    {
+      "code": "OSTEO",
+      "name": "ostéopathe",
+      "group": "Paramédical & Autres",
+      "total_facilities": 190,
+      "slug": "osteopathe"
+    },
+    {
+      "code": "KINESITH",
+      "name": "kinésithérapeute",
+      "group": "Paramédical & Autres",
+      "total_facilities": 170,
+      "slug": "kinesitherapeute"
+    },
+    {
+      "code": "RADIOLOG",
+      "name": "radiologue",
+      "group": "Laboratoires & Diagnostic",
+      "total_facilities": 145,
+      "slug": "radiologue"
+    },
+    {
+      "code": "SAGE-FEMME",
+      "name": "sage-femme",
+      "group": "Paramédical & Autres",
+      "total_facilities": 128,
+      "slug": "sage-femme"
+    },
+    {
+      "code": "DOCTORS",
+      "name": "doctors",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 52,
+      "slug": "doctors"
+    },
+    {
+      "code": "CLINIC",
+      "name": "clinic",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 35,
+      "slug": "clinic"
+    },
+    {
+      "code": "PHARMACY",
+      "name": "pharmacy",
+      "group": "Pharmacies",
+      "total_facilities": 25,
+      "slug": "pharmacy"
+    },
+    {
+      "code": "HOSPITAL",
+      "name": "hospital",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 23,
+      "slug": "hospital"
+    },
+    {
+      "code": "FORMATION",
+      "name": "Institut de formation",
+      "group": "Autres & Structures",
+      "total_facilities": 6,
+      "slug": "institut-de-formation"
+    },
+    {
+      "code": "STRUCTURE",
+      "name": "Structure",
+      "group": "Autres & Structures",
+      "total_facilities": 5,
+      "slug": "structure"
+    },
+    {
+      "code": "DENTIST",
+      "name": "dentist",
+      "group": "Chirurgie Dentaire",
+      "total_facilities": 5,
+      "slug": "dentist"
+    },
+    {
+      "code": "DIRECTION",
+      "name": "Direction",
+      "group": "Autres & Structures",
+      "total_facilities": 1,
+      "slug": "direction"
+    },
+    {
+      "code": "HOP-SPEC",
+      "name": "hôpital_specialise",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 0,
+      "slug": "hopital_specialise"
+    },
+    {
+      "code": "ENDO",
+      "name": "endocrinologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "endocrinologue"
+    },
+    {
+      "code": "NEPHRO",
+      "name": "néphrologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "nephrologue"
+    },
+    {
+      "code": "PNEUMO",
+      "name": "pneumologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "pneumologue"
+    },
+    {
+      "code": "RHUMATO",
+      "name": "rhumatologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "rhumatologue"
+    },
+    {
+      "code": "HEMATO",
+      "name": "hématologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "hematologue"
+    },
+    {
+      "code": "ONCO",
+      "name": "oncologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "oncologue"
+    },
+    {
+      "code": "ALLERGO",
+      "name": "allergologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "allergologue"
+    },
+    {
+      "code": "CHIR-PED",
+      "name": "chirurgien pédiatrique",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "chirurgien-pediatrique"
+    },
+    {
+      "code": "CHIR-ORTHO",
+      "name": "chirurgien orthopédiste",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "chirurgien-orthopediste"
+    },
+    {
+      "code": "NEURO-CHIR",
+      "name": "neurochirurgien",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "neurochirurgien"
+    },
+    {
+      "code": "CHIR-GEN",
+      "name": "chirurgien général",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "chirurgien-general"
+    },
+    {
+      "code": "CHIR-CARDIO",
+      "name": "chirurgien cardiovasculaire",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "chirurgien-cardiovasculaire"
+    },
+    {
+      "code": "CHIR-PLAST",
+      "name": "chirurgien plastique",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "chirurgien-plastique"
+    },
+    {
+      "code": "CHIR-VISC",
+      "name": "chirurgien viscéral",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "chirurgien-visceral"
+    },
+    {
+      "code": "CHIR-MAXILLO",
+      "name": "chirurgien maxillo-facial",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "chirurgien-maxillo-facial"
+    },
+    {
+      "code": "ANESTH",
+      "name": "anesthésiste-réanimateur",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "anesthesiste-reanimateur"
+    },
+    {
+      "code": "STOMATO",
+      "name": "stomatologue",
+      "group": "Chirurgie Dentaire",
+      "total_facilities": 0,
+      "slug": "stomatologue"
+    },
+    {
+      "code": "ADDICTO",
+      "name": "addictologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "addictologue"
+    },
+    {
+      "code": "GERIATRE",
+      "name": "gériatre",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "geriatre"
+    },
+    {
+      "code": "BIOLOG",
+      "name": "biologiste",
+      "group": "Laboratoires & Diagnostic",
+      "total_facilities": 0,
+      "slug": "biologiste"
+    },
+    {
+      "code": "GENET",
+      "name": "généticien",
+      "group": "Laboratoires & Diagnostic",
+      "total_facilities": 0,
+      "slug": "geneticien"
+    },
+    {
+      "code": "MED-LEG",
+      "name": "médecin légiste",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "medecin-legiste"
+    },
+    {
+      "code": "MED-TRAV",
+      "name": "médecin du travail",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "medecin-du-travail"
+    },
+    {
+      "code": "REEDUC",
+      "name": "rééducation fonctionnelle",
+      "group": "Paramédical & Autres",
+      "total_facilities": 0,
+      "slug": "reeducation-fonctionnelle"
+    },
+    {
+      "code": "MED-NUCL",
+      "name": "médecine nucléaire",
+      "group": "Laboratoires & Diagnostic",
+      "total_facilities": 0,
+      "slug": "medecine-nucleaire"
+    },
+    {
+      "code": "ANAPATH",
+      "name": "anatomopathologiste",
+      "group": "Laboratoires & Diagnostic",
+      "total_facilities": 0,
+      "slug": "anatomopathologiste"
+    },
+    {
+      "code": "INFECTIO",
+      "name": "infectiologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "infectiologue"
+    },
+    {
+      "code": "REANIM",
+      "name": "réanimateur médical",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 0,
+      "slug": "reanimateur-medical"
+    },
+    {
+      "code": "URGENTISTE",
+      "name": "médecin urgentiste",
+      "group": "Services d'Urgence & Spécialisés",
+      "total_facilities": 0,
+      "slug": "medecin-urgentiste"
+    },
+    {
+      "code": "PHARM-GARDE",
+      "name": "pharmacie de garde",
+      "group": "Pharmacies",
+      "total_facilities": 0,
+      "slug": "pharmacie-de-garde"
+    },
+    {
+      "code": "ANTI-POISON",
+      "name": "centre anti-poison",
+      "group": "Services d'Urgence & Spécialisés",
+      "total_facilities": 0,
+      "slug": "centre-anti-poison"
+    },
+    {
+      "code": "CTS",
+      "name": "centre de transfusion sanguine",
+      "group": "Services d'Urgence & Spécialisés",
+      "total_facilities": 0,
+      "slug": "centre-de-transfusion-sanguine"
+    },
+    {
+      "code": "DIALYSE",
+      "name": "centre de dialyse",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 0,
+      "slug": "centre-de-dialyse"
+    },
+    {
+      "code": "PALLIATIF",
+      "name": "soins palliatifs",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 0,
+      "slug": "soins-palliatifs"
+    },
+    {
+      "code": "PEDO-PSY",
+      "name": "pédopsychiatre",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "pedopsychiatre"
+    },
+    {
+      "code": "ANGIO",
+      "name": "angiologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "angiologue"
+    },
+    {
+      "code": "PHLEBO",
+      "name": "phlébologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "phlebologue"
+    },
+    {
+      "code": "TABACO",
+      "name": "tabacologue",
+      "group": "Médecins & Spécialités",
+      "total_facilities": 0,
+      "slug": "tabacologue"
+    },
+    {
+      "code": "THERMAL",
+      "name": "médecin thermal",
+      "group": "Paramédical & Autres",
+      "total_facilities": 0,
+      "slug": "medecin-thermal"
+    },
+    {
+      "code": "AUDIO",
+      "name": "audiologiste",
+      "group": "Paramédical & Autres",
+      "total_facilities": 0,
+      "slug": "audiologiste"
+    },
+    {
+      "code": "ERGO",
+      "name": "ergothérapeute",
+      "group": "Paramédical & Autres",
+      "total_facilities": 0,
+      "slug": "ergotherapeute"
+    },
+    {
+      "code": "DIETETIQUE",
+      "name": "diététicien",
+      "group": "Paramédical & Autres",
+      "total_facilities": 0,
+      "slug": "dieteticien"
+    },
+    {
+      "code": "PODOLOG",
+      "name": "podologue",
+      "group": "Paramédical & Autres",
+      "total_facilities": 0,
+      "slug": "podologue"
+    },
+    {
+      "code": "PEDICURE-PODO",
+      "name": "pédicure-podologue",
+      "group": "Paramédical & Autres",
+      "total_facilities": 0,
+      "slug": "pedicure-podologue"
+    },
+    {
+      "code": "PROTHESE",
+      "name": "orthoprothésiste",
+      "group": "Paramédical & Autres",
+      "total_facilities": 0,
+      "slug": "orthoprothesiste"
+    },
+    {
+      "code": "OPTICIEN",
+      "name": "opticien-lunetier",
+      "group": "Paramédical & Autres",
+      "total_facilities": 0,
+      "slug": "opticien-lunetier"
+    },
+    {
+      "code": "PSYCHOMOT",
+      "name": "psychomotricien",
+      "group": "Paramédical & Autres",
+      "total_facilities": 0,
+      "slug": "psychomotricien"
+    },
+    {
+      "code": "INFIRMIER-DOM",
+      "name": "soins infirmiers à domicile",
+      "group": "Paramédical & Autres",
+      "total_facilities": 0,
+      "slug": "soins-infirmiers-a-domicile"
+    },
+    {
+      "code": "AMBULANCE",
+      "name": "ambulance / transport sanitaire",
+      "group": "Services d'Urgence & Spécialisés",
+      "total_facilities": 0,
+      "slug": "ambulance-/-transport-sanitaire"
+    },
+    {
+      "code": "BANQUE-SANG",
+      "name": "banque de sang",
+      "group": "Services d'Urgence & Spécialisés",
+      "total_facilities": 0,
+      "slug": "banque-de-sang"
+    },
+    {
+      "code": "DEPISTAGE",
+      "name": "centre de dépistage",
+      "group": "Services d'Urgence & Spécialisés",
+      "total_facilities": 0,
+      "slug": "centre-de-depistage"
+    },
+    {
+      "code": "DISPENSAIRE",
+      "name": "dispensaire",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 0,
+      "slug": "dispensaire"
+    },
+    {
+      "code": "MATERNITE",
+      "name": "maternité",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 0,
+      "slug": "maternite"
+    },
+    {
+      "code": "VACCIN",
+      "name": "centre de vaccination",
+      "group": "Services d'Urgence & Spécialisés",
+      "total_facilities": 0,
+      "slug": "centre-de-vaccination"
+    },
+    {
+      "code": "UNITE-MOBILE",
+      "name": "unité mobile de soins",
+      "group": "Services d'Urgence & Spécialisés",
+      "total_facilities": 0,
+      "slug": "unite-mobile-de-soins"
+    },
+    {
+      "code": "PMI",
+      "name": "PMI protection maternelle et infantile",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 0,
+      "slug": "pmi-protection-maternelle-et-infantile"
+    },
+    {
+      "code": "CMS",
+      "name": "centre médico-social",
+      "group": "Hôpitaux & Soins",
+      "total_facilities": 0,
+      "slug": "centre-medico-social"
+    },
+    {
+      "code": "SAMU",
+      "name": "SAMU service d'aide médicale urgente",
+      "group": "Services d'Urgence & Spécialisés",
+      "total_facilities": 0,
+      "slug": "samu-service-daide-medicale-urgente"
+    },
+    {
+      "code": "PARAPHARM",
+      "name": "parapharmacie",
+      "group": "Pharmacies",
+      "total_facilities": 0,
+      "slug": "parapharmacie"
+    }
+  ]
+}DONE 

@@ -1,0 +1,3 @@
+FINDSTRÿ: Impossible d'ouvrir offline\ /c:\tableau
+FINDSTRÿ: Impossible d'ouvrir de
+FINDSTRÿ: Impossible d'ouvrir bord\ /c:\dashboard\ /c:\accueil\ c:\SANTE_DZ_SCRAPER\docs\SPECIFICATIONS_ECOSYSTEME_RENTABLE_v1.0.17.md 

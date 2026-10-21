@@ -1,0 +1,60 @@
+PHASE 8.4 - FUSION EFFECTIVE - RAPPORT FINAL
+============================================
+Date: 2026-10-15
+
+1. SAUVEGARDE PRE-MERGE
+- Fichier backup: C:\SANTE_DZ_SCRAPER\backups\medizy_scraper_backup_pre_merge_20261015_150527.db
+- Taille: 31371264 bytes
+- SHA256 (backup): a621ce56c192c487d273f0d8a6f6b3dfb28cea538ab3e02a406491c6d10c4605
+- SHA256 (prod, avant merge): a621ce56c192c487d273f0d8a6f6b3dfb28cea538ab3e02a406491c6d10c4605
+
+2. FUSION EXECUTEE (dry-run -> --apply)
+Script: C:\SANTE_DZ_SCRAPER\merge_staging_to_prod.py --apply
+Staging source: C:\SANTE_DZ_SCRAPER\staging_osm_pilot.db
+Staging entries: 161 (140 valides avec nom, 21 rejetes nom NULL)
+
+Resultats:
+- Candidates processed: 140
+- Would insert: 140 (all inserted)
+- Skip duplicates (already in prod): 0
+- Skip missing coordinates: 0
+- Insert errors: 0 (after fixing column count)
+
+3. VERIFICATION POST-MERGE
+- PROD SHA256 (after merge): 948fda84d6375b6b1dbd7ba822cdcfe09f7301f81f8779bc803e717b582c493d
+- PROD integrity: ok
+- PROD total entries (after): 23669
+- PROD total entries (before): 23529
+- New entries added: 140
+- Distinct place_id (after): 22416
+- OSM source entries (source LIKE 'osm_overpass%'): 140
+- Google Maps source (existing): 23529 (unchanged)
+- MIPH_2025 source: 24 (unchanged)
+- Staging integrity (after): ok
+- Staging SHA256: (unchanged from before - staging not modified by merge process)
+
+4. VALIDATION DES DOUBLONS
+- Deduplication key: place_id = "osm_overpass:{osm_type}:{osm_id}:{wilaya}"
+- INSERT with place_id uniqueness enforced at application level (existing check)
+- No duplicates injected (0 skip_dup during merge)
+- Distinct osm_type:osm_id in staging: 161 (all unique)
+
+5. VERIFICATION DES DONNEES
+Exemples d'entrees OSM inserees:
+- place_id=osm_overpass:node:3195279192:Illizi, nom=Centre toxicologique, wilaya=Illizi
+- place_id=osm_overpass:node:3195597281:Illizi, nom=عيادة بلبشير, wilaya=Illizi
+- place_id=osm_overpass:way:313558106:Illizi, nom=ibn sina, wilaya=Illizi
+- place_id=osm_overpass:way:313561496:Illizi, nom=Hopital Wantimidhi, wilaya=Illizi
+
+6. INTEGRITE DES EXPORTS
+- D:\SANTE_DZ_EXPORTS non modifie (aucune ecriture effectuee)
+- Verification par script: pas de modification des fichiers
+
+7. CONCLUSION
+STATUT: FUSION REUSSIE
+- 140 entrees OSM valables injectees dans la production
+- La production est restee intacte sauf pour les ajouts prevus (140 nouvelles entrees)
+- Sauvegarde pre-merge creee et verifiee (SHA256 identique)
+- Aucun doublon injecte
+- Aucune donnee de production modifiee ou supprimee
+- Integrity SQLite: ok

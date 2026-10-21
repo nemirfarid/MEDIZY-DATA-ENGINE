@@ -1,0 +1,37 @@
+PHASE 8.3 - CORRECTED AUDIT OF PRODUCTION (medizy_scraper.db)
+Date: 2026-10-15T03:28:33.540374
+
+1) PRODUCTION INFO
+Total entries: 23529
+Integrity: ok
+Number of columns: 32
+Columns: id, place_id, nom, nom_normalized, adresse, adresse_normalized, telephone, telephone_normalized, telephone_raw, site_web, note, nombre_avis, horaires, latitude, longitude, google_maps_url, type_google, wilaya, wilaya_normalized, commune, categorie_recherche, source, scrape_date, status, created_at, updated_at, name_status, name_source, recovery_date, commune_source, commune_confidence, commune_updated_at
+
+2) WILAYA_ID / WILAYA ANALYSIS
+Entries with missing wilaya: 0
+  Wilaya 'Alger': 1543
+  Wilaya 'Oran': 994
+  Wilaya 'Constantine': 857
+  Wilaya 'Sétif': 823
+  Wilaya 'El Oued': 795
+
+3) PLACE_ID DUPLICATE ANALYSIS
+Total entries: 23529
+Distinct place_id: 22276
+Entries with missing/null place_id: 1253
+Potential duplicates (total - distinct): 1253
+
+4) DATA QUALITY (key fields)
+Entries with telephone: 16683
+Telephone coverage rate: 70.9%
+Entries with GPS coordinates: 23529
+GPS coverage rate: 100.0%
+Entries with website: 2444
+Website coverage rate: 10.4%
+
+5) SOURCE ANALYSIS
+  Source 'Google Maps public UI': 23505
+  Source 'MIPH_2025': 24
+
+6) STATUS VALUES
+  Status 'active': 23529

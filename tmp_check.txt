@@ -1,0 +1,42 @@
+Running build hooks...Running build hooks...=== UI CODE -> MATCH COUNT (case-sensitive, as searchHybrid does) ===
+  "Pharmacie" => 0
+  "Médecin Généraliste" => 0
+  "Hôpital" => 0
+  "Laboratoire d'analyses" => 0
+  "Dentiste" => 0
+  "Cardiologue" => 0
+  "Pédiatre" => 0
+  "Gynécologue" => 0
+  "Ophtalmologue" => 0
+=== COLLATE NOCASE variant ===
+  "Pharmacie" => 6204
+  "Médecin Généraliste" => 440
+  "Hôpital" => 1917
+  "Laboratoire d'analyses" => 0
+  "Dentiste" => 1085
+  "Cardiologue" => 923
+  "Pédiatre" => 766
+  "Gynécologue" => 1558
+  "Ophtalmologue" => 727
+=== ACTUAL DISTINCT categories (lowercase, top 12) ===
+  pharmacie => 6204
+  cabinet médical => 3767
+  clinique => 3117
+  cabinet dentaire => 2502
+  centre de santé => 2090
+  hôpital => 1917
+  laboratoire médical => 1617
+  gynécologue => 1558
+  dentiste => 1085
+  médecin spécialiste => 1059
+  cardiologue => 923
+  vétérinaire => 907
+=== Counts: total / distinct categories / wilayas ===
+  total=35832
+  distinct_cat=43
+  distinct_wilaya=58
+=== Emergency detection sample: how many rows match "garde"/"urgence" ===
+  emergency-ish=125
+=== distinct wilaya_code sample ===
+  [01, 02, 03, 04, 05, 06, 07, 08, 09, 10]
+DONE 

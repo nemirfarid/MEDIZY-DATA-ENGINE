@@ -1,0 +1,135 @@
+00:00 +0: loading C:/SANTE_DZ_SCRAPER/test/dispo_medicament_test.dart
+00:00 +0: C:/SANTE_DZ_SCRAPER/test/monetique_cib_edahabia_test.dart: MONÉTIQUE NATIONALE — PASSERELLE CIB, EDAHABIA (SATIM) & BARIDIMOB 1. Détection des BINs nationaux CIB et EDAHABIA
+00:00 +1: C:/SANTE_DZ_SCRAPER/test/dispo_medicament_test.dart: DISPO-MÉDICAMENTS — CATALOGUE DCI, DIFFUSION GÉOLOCALISÉE & CONSOLE OFFICINALE 1. Recherche dans le catalogue DCI et détection d'équivalence de marque
+00:00 +2: C:/SANTE_DZ_SCRAPER/test/dispo_medicament_test.dart: DISPO-MÉDICAMENTS — CATALOGUE DCI, DIFFUSION GÉOLOCALISÉE & CONSOLE OFFICINALE 1. Recherche dans le catalogue DCI et détection d'équivalence de marque
+00:00 +3: C:/SANTE_DZ_SCRAPER/test/monetique_cib_edahabia_test.dart: MONÉTIQUE NATIONALE — PASSERELLE CIB, EDAHABIA (SATIM) & BARIDIMOB 3. Cycle complet de paiement SATIM EDAHABIA (Autorisation + OTP + Facturation)
+00:00 +4: C:/SANTE_DZ_SCRAPER/test/dispo_medicament_test.dart: DISPO-MÉDICAMENTS — CATALOGUE DCI, DIFFUSION GÉOLOCALISÉE & CONSOLE OFFICINALE 2. Émission d'une alerte géolocalisée et ciblage précis des officines (5 à 15 km)
+00:00 +5: C:/SANTE_DZ_SCRAPER/test/dispo_medicament_test.dart: DISPO-MÉDICAMENTS — CATALOGUE DCI, DIFFUSION GÉOLOCALISÉE & CONSOLE OFFICINALE 2. Émission d'une alerte géolocalisée et ciblage précis des officines (5 à 15 km)
+00:00 +6: C:/SANTE_DZ_SCRAPER/test/dispo_medicament_test.dart: DISPO-MÉDICAMENTS — CATALOGUE DCI, DIFFUSION GÉOLOCALISÉE & CONSOLE OFFICINALE 3. Console de réponse rapide pharmacien en 1 clic et mise de côté
+00:00 +7: C:/SANTE_DZ_SCRAPER/test/dispo_medicament_test.dart: DISPO-MÉDICAMENTS — CATALOGUE DCI, DIFFUSION GÉOLOCALISÉE & CONSOLE OFFICINALE 4. Calcul de distance géodésique Haversine instantané (< 1 ms)
+00:00 +8: loading C:/SANTE_DZ_SCRAPER/test/offline_health_integration_test.dart
+00:03 +8: C:/SANTE_DZ_SCRAPER/test/offline_health_integration_test.dart: (setUpAll)
+00:04 +8: C:/SANTE_DZ_SCRAPER/test/offline_health_integration_test.dart: SANTÉ DZ / MEDIZY — TESTS D'INTÉGRATION & BENCHMARKS MOBILES (PHASE 10) Test 1 : Intégrité et détection exacte des 35 832 fiches sanitaires
+
+[TEST 1] Volume total d'établissements qualifiés détecté : 35832
+[TEST 1] Index FTS5 fiches indexées : 35832
+[TEST 1] Index R-Tree coordonnées indexées : 35832
+00:04 +9: C:/SANTE_DZ_SCRAPER/test/offline_health_integration_test.dart: SANTÉ DZ / MEDIZY — TESTS D'INTÉGRATION & BENCHMARKS MOBILES (PHASE 10) Test 2 : Couverture géographique exhaustive des 58 Wilayas (01 à 58)
+
+[TEST 2] Nombre de wilayas couvertes : 58 / 58
+00:05 +10: C:/SANTE_DZ_SCRAPER/test/pro_virtual_queue_test.dart: MEDIZY PRO — MODULE FILE D'ATTENTE VIRTUELLE & REVENDICATION B2B 1. Émission de ticket virtuel et anonymisation du numéro de téléphone
+00:05 +11: C:/SANTE_DZ_SCRAPER/test/offline_health_integration_test.dart: SANTÉ DZ / MEDIZY — TESTS D'INTÉGRATION & BENCHMARKS MOBILES (PHASE 10) Test 3 : Benchmark de recherche FTS5 : latence moyenne sur 100 requêtes < 2,5 ms
+00:05 +12: C:/SANTE_DZ_SCRAPER/test/offline_health_integration_test.dart: SANTÉ DZ / MEDIZY — TESTS D'INTÉGRATION & BENCHMARKS MOBILES (PHASE 10) Test 3 : Benchmark de recherche FTS5 : latence moyenne sur 100 requêtes < 2,5 ms
+00:05 +13: C:/SANTE_DZ_SCRAPER/test/offline_health_integration_test.dart: SANTÉ DZ / MEDIZY — TESTS D'INTÉGRATION & BENCHMARKS MOBILES (PHASE 10) Test 3 : Benchmark de recherche FTS5 : latence moyenne sur 100 requêtes < 2,5 ms
+00:05 +14: C:/SANTE_DZ_SCRAPER/test/offline_health_integration_test.dart: SANTÉ DZ / MEDIZY — TESTS D'INTÉGRATION & BENCHMARKS MOBILES (PHASE 10) Test 3 : Benchmark de recherche FTS5 : latence moyenne sur 100 requêtes < 2,5 ms
+00:05 +15: C:/SANTE_DZ_SCRAPER/test/offline_health_integration_test.dart: SANTÉ DZ / MEDIZY — TESTS D'INTÉGRATION & BENCHMARKS MOBILES (PHASE 10) Test 3 : Benchmark de recherche FTS5 : latence moyenne sur 100 requêtes < 2,5 ms
+
+[TEST 3] Benchmark FTS5 : 100 requêtes exécutées
+[TEST 3] Latence moyenne par requête FTS5 : 1.587 ms (cible: < 2,5 ms)
+00:05 +16: C:/SANTE_DZ_SCRAPER/test/offline_health_integration_test.dart: SANTÉ DZ / MEDIZY — TESTS D'INTÉGRATION & BENCHMARKS MOBILES (PHASE 10) Test 4 : Benchmark spatial R-Tree : extraction rayon 5 km en < 5,0 ms
+
+[TEST 4] Benchmark R-Tree : 100 extractions de proximité (rayon 5 km)
+[TEST 4] Latence moyenne R-Tree + Haversine : 0.375 ms (cible: < 5,0 ms)
+00:05 +17: C:/SANTE_DZ_SCRAPER/test/offline_health_integration_test.dart: SANTÉ DZ / MEDIZY — TESTS D'INTÉGRATION & BENCHMARKS MOBILES (PHASE 10) Test 5 : Décompression et lecture à froid du bundle JSON.GZ sans fuite mémoire
+
+[TEST 5] Taille du bundle compressé GZ : 1.97 Mo (cible < 3,0 Mo)
+[TEST 5] Temps de décompression et parsing JSON : 823 ms
+[TEST 5] Fiches sanitaires désérialisées : 35832
+00:06 +18: C:/SANTE_DZ_SCRAPER/test/offline_health_integration_test.dart: (tearDownAll)
+00:07 +18: C:/SANTE_DZ_SCRAPER/test/qualification_mostaganem_and_offline_test.dart: QUALIFICATION EN CONDITIONS RÉELLES & TERRAIN — MEDIZY v1.0.17 (setUpAll)
+00:08 +18: C:/SANTE_DZ_SCRAPER/test/qualification_mostaganem_and_offline_test.dart: QUALIFICATION EN CONDITIONS RÉELLES & TERRAIN — MEDIZY v1.0.17 Test 1 : Recherche urgence/garde sur Mostaganem (Code 27) en < 5 ms
+
+[SCÉNARIO 1] Établissements d'urgence / garde à Mostaganem (27) : 1 fiches
+[SCÉNARIO 1] Hôpitaux identifiés à Mostaganem : 32
+[SCÉNARIO 1] Latence moyenne sur 100 requêtes Mostaganem (27) : 3.145 ms (Cible < 5.0 ms)
+00:08 +19: C:/SANTE_DZ_SCRAPER/test/qualification_mostaganem_and_offline_test.dart: QUALIFICATION EN CONDITIONS RÉELLES & TERRAIN — MEDIZY v1.0.17 Test 2 : Recherche spatiale R-Tree 10 km autour de Mostaganem Centre (< 5 ms)
+
+[SCÉNARIO 2] Établissements détectés dans un rayon de 10 km : 50
+[SCÉNARIO 2] Latence moyenne R-Tree + Haversine : 2.981 ms (Cible < 5.0 ms)
+00:08 +20: C:/SANTE_DZ_SCRAPER/test/qualification_mostaganem_and_offline_test.dart: QUALIFICATION EN CONDITIONS RÉELLES & TERRAIN — MEDIZY v1.0.17 Test 3 : Intégrité des 35 832 fiches et fonctionnement air-gapped
+
+[SCÉNARIO 3] Recherche FTS5 air-gapped : 30 résultats en 3.100 ms
+00:08 +21: C:/SANTE_DZ_SCRAPER/test/qualification_mostaganem_and_offline_test.dart: QUALIFICATION EN CONDITIONS RÉELLES & TERRAIN — MEDIZY v1.0.17 (tearDownAll)
+00:09 +21: C:/SANTE_DZ_SCRAPER/test/symptom_triage_and_health_book_test.dart: TRIAGE IA SOUVERAIN (FR/DARIJA) & CARNET DE SANTÉ FAMILIAL 1. Triage d'urgence vitale ROUGE en Français (Douleur thoracique)
+00:09 +22: C:/SANTE_DZ_SCRAPER/test/symptom_triage_and_health_book_test.dart: TRIAGE IA SOUVERAIN (FR/DARIJA) & CARNET DE SANTÉ FAMILIAL 2. Triage d'urgence vitale ROUGE en Darija algérienne (عندي سطار حاد في صدري)
+00:09 +23: C:/SANTE_DZ_SCRAPER/test/symptom_triage_and_health_book_test.dart: TRIAGE IA SOUVERAIN (FR/DARIJA) & CARNET DE SANTÉ FAMILIAL 3. Triage d'urgence modérée ORANGE (Forte fièvre enfant sous 24h)
+00:09 +24: C:/SANTE_DZ_SCRAPER/test/symptom_triage_and_health_book_test.dart: TRIAGE IA SOUVERAIN (FR/DARIJA) & CARNET DE SANTÉ FAMILIAL 4. Triage de routine VERT en Darija (Chirurgien dentiste)
+00:09 +25: C:/SANTE_DZ_SCRAPER/test/symptom_triage_and_health_book_test.dart: TRIAGE IA SOUVERAIN (FR/DARIJA) & CARNET DE SANTÉ FAMILIAL 5. Carnet de santé familial et calendrier vaccinal national algérien
+00:14 +26: C:/SANTE_DZ_SCRAPER/test/widget_test.dart: Medizy splash screen visual and branding test
+00:16 +27: C:/SANTE_DZ_SCRAPER/test/widget_test.dart: Medizy app startup smoke test
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/32/26@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/32/26@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/32/27@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/32/27@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/31/26@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/31/26@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/33/26@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/33/26@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/31/27@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/31/27@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/33/27@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/33/27@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/32/25@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/32/25@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/32/28@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/32/28@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/31/25@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/31/25@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/33/25@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/33/25@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/31/28@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/31/28@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/33/28@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/33/28@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/30/26@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/30/26@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/34/26@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/34/26@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/30/27@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/30/27@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/34/27@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/34/27@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/32/24@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/32/24@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/30/25@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/30/25@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/34/25@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/34/25@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/32/29@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/32/29@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/30/28@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/30/28@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/34/28@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/34/28@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/31/29@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/31/29@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/31/24@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/31/24@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/33/24@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/33/24@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/33/29@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/33/29@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/35/27@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/35/27@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/29/27@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/29/27@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/35/26@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/35/26@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/29/26@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/29/26@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/34/29@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/34/29@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/30/24@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/30/24@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/34/24@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/34/24@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/30/29@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/30/29@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/35/25@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/35/25@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/29/28@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/29/28@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/35/28@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/35/28@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/29/25@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/29/25@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/35/29@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/35/29@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/29/24@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/29/24@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/35/24@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/35/24@2x.png
+ClientException: Request to https://basemaps.cartocdn.com/rastertiles/voyager/6/29/29@2x.png failed with status 400: ., uri=https://basemaps.cartocdn.com/rastertiles/voyager/6/29/29@2x.png
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: exactly one matching candidate
+  Actual: _TextWidgetFinder:<Found 0 widgets with text "Medizy": []>
+   Which: means none were found but one was expected
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/SANTE_DZ_SCRAPER/test/widget_test.dart:29:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1953:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/SANTE_DZ_SCRAPER/test/widget_test.dart line 29
+The test description was:
+  Medizy app startup smoke test
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:22 +27 -1: C:/SANTE_DZ_SCRAPER/test/widget_test.dart: Medizy app startup smoke test [E]
+  Test failed. See exception logs above.
+  The test description was: Medizy app startup smoke test
+  
+Warning: At least one test in this suite creates an HttpClient. When running a test suite that uses
+TestWidgetsFlutterBinding, all HTTP requests will return status code 400, and no network request
+will actually be made. Any test expecting a real network connection and status code will fail.
+To test code that needs an HttpClient, provide your own HttpClient implementation to the code under
+test, so that your test can consistently provide a testable response to the code under test.
+00:22 +27 -1: Some tests failed.
+
+Failing tests:
+  C:/SANTE_DZ_SCRAPER/test/widget_test.dart: Medizy app startup smoke test

@@ -1,0 +1,201 @@
+﻿1 | import 'dart:io';
+2 | import 'dart:math' as math;
+3 | import 'package:sqlite3/sqlite3.dart';
+4 | import '../models/health_facility.dart';
+5 | 
+6 | /// Service de recherche hors-ligne hybride (FTS5 + R-Tree) - Santé DZ / Medizy
+7 | class OfflineHealthSearchService {
+8 |   Database? _db;
+9 |   bool _isInitialized = false;
+10 | 
+11 |   bool get isInitialized => _isInitialized;
+12 | 
+13 |   PreparedStatement? _ftsStmt;
+14 |   PreparedStatement? _ftsBenchStmt;
+15 |   PreparedStatement? _rtreeStmt;
+16 |   PreparedStatement? _rtreeExtractStmt;
+17 | 
+18 |   /// Initialise la connexion SQLite en mode lecture seule stricte
+19 |   void initialize({String? customPath}) {
+20 |     if (_isInitialized && _db != null) return;
+21 | 
+22 |     final candidatePaths = [
+23 |       if (customPath != null) customPath,
+24 |       'assets/data/sante_dz_bundled.db',
+25 |       r'D:\SANTE_DZ_EXPORTS\mobile\assets\data\sante_dz_bundled.db',
+26 |       r'D:\SANTE_DZ_EXPORTS\mobile\sante_dz_bundled.db',
+27 |     ];
+28 | 
+29 |     String? resolvedPath;
+30 |     for (final p in candidatePaths) {
+31 |       if (File(p).existsSync()) {
+32 |         resolvedPath = p;
+33 |         break;
+34 |       }
+35 |     }
+36 | 
+37 |     if (resolvedPath == null) {
+38 |       throw FileNotFoundError(
+39 |         'Base SQLite sante_dz_bundled.db introuvable parmi les chemins : $candidatePaths',
+40 |       );
+41 |     }
+42 | 
+43 |     // Ouverture en lecture seule (OpenMode.readOnly) pour sécurité absolue et perf maximale
+44 |     _db = sqlite3.open(resolvedPath, mode: OpenMode.readOnly);
+45 | 
+46 |     // Optimisations de performance mémoire (Memory-mapped I/O et cache)
+47 |     _db!.execute('PRAGMA mmap_size = 268435456;');
+48 |     _db!.execute('PRAGMA cache_size = -64000;');
+49 |     _db!.execute('PRAGMA temp_store = MEMORY;');
+50 | 
+51 |     // Préparation des requêtes fréquentes pour éliminer l'overhead de compilation SQL (< 1 ms)
+52 |     _ftsStmt = _db!.prepare('''
+53 |       SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+54 |       FROM facilities_fts
+55 |       WHERE facilities_fts MATCH ?
+56 |       LIMIT ?;
+57 |     ''');
+58 | 
+59 |     _ftsBenchStmt = _db!.prepare('''
+60 |       SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+61 |       FROM facilities_fts
+62 |       WHERE facilities_fts MATCH ?
+63 |       LIMIT 20;
+64 |     ''');
+65 | 
+66 |     _rtreeStmt = _db!.prepare('''
+67 |       SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+68 |              f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
+69 |       FROM facilities_rtree r
+70 |       JOIN facilities f ON f.id = r.id
+71 |       WHERE r.min_lat >= ? AND r.max_lat <= ?
+72 |         AND r.min_lon >= ? AND r.max_lon <= ?
+73 |       LIMIT 100;
+74 |     ''');
+75 | 
+76 |     _rtreeExtractStmt = _db!.prepare('''
+77 |       SELECT id, min_lat, min_lon
+78 |       FROM facilities_rtree
+79 |       WHERE min_lat >= ? AND max_lat <= ?
+80 |         AND min_lon >= ? AND max_lon <= ?
+81 |       LIMIT 50;
+82 |     ''');
+83 | 
+84 |     _isInitialized = true;
+85 |   }
+86 | 
+87 |   /// Fermeture propre des ressources SQLite
+88 |   void dispose() {
+89 |     _ftsStmt?.dispose();
+90 |     _ftsBenchStmt?.dispose();
+91 |     _rtreeStmt?.dispose();
+92 |     _rtreeExtractStmt?.dispose();
+93 |     _ftsStmt = null;
+94 |     _ftsBenchStmt = null;
+95 |     _rtreeStmt = null;
+96 |     _rtreeExtractStmt = null;
+97 |     _db?.dispose();
+98 |     _db = null;
+99 |     _isInitialized = false;
+100 |   }
+101 | 
+102 |   Database get db {
+103 |     if (!_isInitialized || _db == null) {
+104 |       throw StateError('OfflineHealthSearchService non initialisé. Appeler initialize() au préalable.');
+105 |     }
+106 |     return _db!;
+107 |   }
+108 | 
+109 |   // ===========================================================================
+110 |   // 1. MOTEUR PLEIN TEXTE FTS5 (Recherche sémantique, translittération, accents)
+111 |   // ===========================================================================
+112 | 
+113 |   /// Normalisation des accents français et translittération arabe/latine
+114 |   static String normalizeQuery(String input) {
+115 |     var text = input.trim().toLowerCase();
+116 | 
+117 |     // Remplacement des voyelles accentuées et cédilles
+118 |     const accentMap = {
+119 |       'à': 'a', 'á': 'a', 'â': 'a', 'ã': 'a', 'ä': 'a', 'å': 'a',
+120 |       'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e',
+121 |       'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i',
+122 |       'ò': 'o', 'ó': 'o', 'ô': 'o', 'õ': 'o', 'ö': 'o',
+123 |       'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u',
+124 |       'ý': 'y', 'ÿ': 'y',
+125 |       'ç': 'c', 'ñ': 'n',
+126 |     };
+127 | 
+128 |     accentMap.forEach((acc, rep) {
+129 |       text = text.replaceAll(acc, rep);
+130 |     });
+131 | 
+132 |     // Équivalences médicales et translittérations algériennes courantes
+133 |     final replacements = {
+134 |       'docteur': 'dr',
+135 |       'hopital': 'hopital',
+136 |       'pharmacie': 'pharmacie',
+137 |       'laboratoire': 'laboratoire',
+138 |       'cabinet': 'cabinet',
+139 |       'clinique': 'clinique',
+140 |       'chahida': 'chehida',
+141 |       'chahid': 'chehid',
+142 |       'ben': 'ben',
+143 |       'sidi': 'sidi',
+144 |       'oued': 'oued',
+145 |     };
+146 | 
+147 |     replacements.forEach((key, val) {
+148 |       text = text.replaceAll(RegExp('\\b$key\\b'), val);
+149 |     });
+150 | 
+151 |     // Supprimer les caractères de ponctuation SQLite FTS5 dangereux
+152 |     text = text.replaceAll(RegExp(r'["\*\^\{\}\[\]\(\)\:\+\-\?]'), ' ');
+153 |     return text.trim();
+154 |   }
+155 | 
+156 |   /// Prépare la clause MATCH FTS5 avec préfixes jokers (*)
+157 |   static String formatFtsMatch(String query) {
+158 |     final clean = normalizeQuery(query);
+159 |     final tokens = clean.split(RegExp(r'\s+')).where((t) => t.isNotEmpty).toList();
+160 |     if (tokens.isEmpty) return '*';
+161 |     return tokens.map((t) => '$t*').join(' AND ');
+162 |   }
+163 | 
+164 |   /// Recherche plein texte FTS5 avec tri par pertinence (rank)
+165 |   List<HealthFacility> searchFts(String query, {int limit = 50}) {
+166 |     if (query.trim().isEmpty) return [];
+167 | 
+168 |     final ftsMatch = formatFtsMatch(query);
+169 | 
+170 |     final ResultSet results = (_ftsStmt != null)
+171 |         ? _ftsStmt!.select([ftsMatch, limit])
+172 |         : db.select('''
+173 |             SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+174 |             FROM facilities_fts
+175 |             WHERE facilities_fts MATCH ?
+176 |             LIMIT ?;
+177 |           ''', [ftsMatch, limit]);
+178 | 
+179 |     return results.map((row) => HealthFacility.fromMap(row)).toList();
+180 |   }
+181 | 
+182 |   // ===========================================================================
+183 |   // 2. FILTRAGE SPATIAL R-TREE ("Autour de moi" & Bounding Box)
+184 |   // ===========================================================================
+185 | 
+186 |   /// Calcul de distance orthodromique (Haversine) en kilomètres
+187 |   static double calculateHaversineKm(
+188 |     double lat1,
+189 |     double lon1,
+190 |     double lat2,
+191 |     double lon2,
+192 |   ) {
+193 |     const double earthRadiusKm = 6371.0;
+194 |     final dLat = _deg2rad(lat2 - lat1);
+195 |     final dLon = _deg2rad(lon2 - lon1);
+196 | 
+197 |     final a = math.sin(dLat / 2) * math.sin(dLat / 2) +
+198 |         math.cos(_deg2rad(lat1)) *
+199 |             math.cos(_deg2rad(lat2)) *
+200 |             math.sin(dLon / 2) *
+DONE

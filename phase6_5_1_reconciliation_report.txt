@@ -1,0 +1,182 @@
+================================================================================
+PHASE 6.5.1 - RAPPORT DE RÉCONCILIATION COMPLÈTE
+================================================================================
+
+FICHIERS ET BASES LUS:
+  Base test: C:\SANTE_DZ_SCRAPER\medizy_scraper_national_test.db
+  CSV source GeoAlgeria: C:\SANTE_DZ_SCRAPER\geoalgeria_sante.csv
+  Rapport classification: C:\SANTE_DZ_SCRAPER\phase6_5_classification_report.csv
+
+TOTAUX:
+  Entrées geoalgeria en base de test: 118
+  Entrées dans CSV source GeoAlgeria: 668
+  Entrées dans rapport classification: 114
+  Correspondances DB->CSV trouvées: 118
+  Non correspondus (DB sans match CSV): 0
+  place_id uniques: 118 / 118
+
+EXPLICATION DES CHIFFRES:
+  118 = entrées geoalgeria:msp dans la base de test nationale
+  114 = entrées classifiées (correspondus + classification)
+  4 = entrées sans nom français dans CSV source (non classifiées automatiquement)
+  102 VALIDÉE + 10 À VÉRIFIER + 2 DOUBLON PROBABLE = 114 classifiées
+  4 non classifiées = total 118
+
+LES 4 ENTRÉES SANS NOM FRANÇAIS (dans CSV source):
+  place_id=298468c8d4dab055 | geo_id=21-eph-08
+    nom_arabe: المؤسسة العمومية الإستشفائية الحروش
+    wilaya=Skikda | commune=El Arrouch | cat=hôpital public
+    GPS=(36.651405, 6.836091) | prec=approximate | meth=commune_centroid
+
+  place_id=373a162cb3954ebd | geo_id=19-epsp-10
+    nom_arabe: المؤسسة العمومية للصحة الجوارية حمام السخنة
+    wilaya=Sétif | commune=Hamam Soukhna | cat=centre de santé
+    GPS=(35.976944, 5.808889) | prec=approximate | meth=commune_centroid
+
+
+GROUPE DES 6 COORDONNÉES PARTAGÉES:
+
+  GROUPE 1 - GPS: (26.96667, 1.08333)
+    place_id=078cdb167d0f6636 | geo_id=01-epsp-02
+      FR: Etablissement Public de Santé de Proximité Aoulef
+      AR: المؤسسة العمومية للصحة الجوارية أولف
+      Wilaya: Adrar | Commune: Aoulef | Cat: centre de santé
+      Précision: approximate | Méthode: commune_centroid
+    place_id=fab0c01adf428290 | geo_id=01-eph-02
+      FR: Etablissement Public Hospitalier Aoulef
+      AR: المؤسسة العمومية الإستشفائية أولف
+      Wilaya: Adrar | Commune: Aoulef | Cat: hôpital public
+      Précision: approximate | Méthode: commune_centroid
+      Analyse: Catégories={'centre de santé', 'hôpital public'} | Wilayas={'Adrar'} | Communes={'Aoulef'}
+      >>> CO-LOCALISATION (catégories ou communes différentes)
+
+  GROUPE 2 - GPS: (31.019, -2.72387)
+    place_id=053be2b97429a342 | geo_id=08-eph-02
+      FR: Etablissement Public Hospitalier Abadla
+      AR: المؤسسة العمومية الإستشفائية العبادلة
+      Wilaya: Béchar | Commune: Abadla | Cat: hôpital public
+      Précision: approximate | Méthode: commune_centroid
+    place_id=679da9f6d5cbfa3f | geo_id=08-epsp-01
+      FR: Etablissement Public de Santé de Proximité Abadla
+      AR: المؤسسة العمومية للصحة الجوارية العبادلة
+      Wilaya: Béchar | Commune: Abadla | Cat: centre de santé
+      Précision: approximate | Méthode: commune_centroid
+    place_id=90832d666a6d2057 | geo_id=08-eph-02
+      FR: Etablissement Public Hospitalier Abadla
+      AR: المؤسسة العمومية الإستشفائية العبادلة
+      Wilaya: Béchar | Commune: Abadla | Cat: hôpital public
+      Précision: approximate | Méthode: commune_centroid
+      Analyse: Catégories={'centre de santé', 'hôpital public'} | Wilayas={'Béchar'} | Communes={'Abadla'}
+      >>> CO-LOCALISATION (catégories ou communes différentes)
+
+  GROUPE 3 - GPS: (32.613046, 5.51259)
+    place_id=b2d05d68fb48fb76 | geo_id=55-eph-01
+      FR: Etablissement Public Hospitalier El Hadjira
+      AR: المؤسسة العمومية الاستشفائية الحجيرة
+      Wilaya: Touggourt | Commune: El-Hadjira | Cat: hôpital public
+      Précision: approximate | Méthode: commune_centroid
+    place_id=e2183691b05eecc2 | geo_id=55-epsp-01
+      FR: Etablissement Public de Santé de Proximité El Hadjira
+      AR: المؤسسة العمومية للصحة الجوارية الحجيرة
+      Wilaya: Touggourt | Commune: El-Hadjira | Cat: centre de santé
+      Précision: approximate | Méthode: commune_centroid
+      Analyse: Catégories={'centre de santé', 'hôpital public'} | Wilayas={'Touggourt'} | Communes={'El-Hadjira'}
+      >>> CO-LOCALISATION (catégories ou communes différentes)
+
+  GROUPE 4 - GPS: (35.25881, 6.34706)
+    place_id=06044aa518c75ffe | geo_id=05-eph-04
+      FR: Etablissement Public Hospitalier Arris 2
+      AR: المؤسسة العمومية الإستشفائية أريس 2
+      Wilaya: Batna | Commune: Arris | Cat: hôpital public
+      Précision: approximate | Méthode: commune_centroid
+    place_id=3e729654e392c74e | geo_id=05-eph-03
+      FR: Etablissement Public Hospitalier Arris 1
+      AR: المؤسسة العمومية الإستشفائية أريس 1
+      Wilaya: Batna | Commune: Arris | Cat: hôpital public
+      Précision: approximate | Méthode: commune_centroid
+      Analyse: Catégories={'hôpital public'} | Wilayas={'Batna'} | Communes={'Arris'}
+      >>> DOUBLON PROBABLE À CONFIRMER (même cat, wilaya, commune)
+
+  GROUPE 5 - GPS: (35.617778, 5.1074)
+    place_id=404b5ab7fd0b4a1f | geo_id=28-eph-05
+      FR: Etablissement Public Hospitalier Magra
+      AR: المؤسسة العمومية الاستشفائي مقرة
+      Wilaya: M'Sila | Commune: Magra | Cat: hôpital public
+      Précision: approximate | Méthode: commune_centroid
+    place_id=684625d2a3c104a8 | geo_id=28-epsp-05
+      FR: Etablissement Public de Santé de Proximité Magra
+      AR: المؤسسة العمومية للصحة الجوارية مقرة
+      Wilaya: M'Sila | Commune: Magra | Cat: centre de santé
+      Précision: approximate | Méthode: commune_centroid
+      Analyse: Catégories={'centre de santé', 'hôpital public'} | Wilayas={"M'Sila"} | Communes={'Magra'}
+      >>> CO-LOCALISATION (catégories ou communes différentes)
+
+  GROUPE 6 - GPS: (36.249555, 6.287062)
+    place_id=598d4f91b45e1132 | geo_id=43-eph-05
+      FR: Etablissement Public Hospitalier Oued Athmania
+      AR: 
+      Wilaya: Mila | Commune: Oued Athmenia | Cat: hôpital public
+      Précision: approximate | Méthode: commune_centroid
+    place_id=f2e2479a154d1ae1 | geo_id=43-ehs-01
+      FR: Etablissement Hospitalier Spécialisé Psychiatrique Oued Athmania
+      AR: 
+      Wilaya: Mila | Commune: Oued Athmenia | Cat: hôpital spécialisé
+      Précision: approximate | Méthode: commune_centroid
+      Analyse: Catégories={'hôpital spécialisé', 'hôpital public'} | Wilayas={'Mila'} | Communes={'Oued Athmenia'}
+      >>> CO-LOCALISATION (catégories ou communes différentes)
+
+
+ANOMALIES DÉTECTÉES PAR ENTRÉE:
+
+  place_id=298468c8d4dab055 | geo_id=21-eph-08
+  FR_DB: المؤسسة العمومية الإستشفائية الحروش
+  FR_CSV: 
+  AR_CSV: المؤسسة العمومية الإستشفائية الحروش
+  Anomalies: NOM FRANÇAIS VIDE DANS CSV SOURCE
+
+  place_id=373a162cb3954ebd | geo_id=19-epsp-10
+  FR_DB: المؤسسة العمومية للصحة الجوارية حمام السخنة
+  FR_CSV: 
+  AR_CSV: المؤسسة العمومية للصحة الجوارية حمام السخنة
+  Anomalies: NOM FRANÇAIS VIDE DANS CSV SOURCE
+
+
+CORRECTIONS DE CLASSIFICATION PROPOSÉES:
+(Non appliquées - pour validation manuelle)
+
+  place_id=298468c8d4dab055 | geo_id=21-eph-08
+  Proposé: À VÉRIFIER (nom FR manquant, nom AR à translittérer)
+  Raison: NOM FRANÇAIS VIDE DANS CSV SOURCE
+
+  place_id=373a162cb3954ebd | geo_id=19-epsp-10
+  Proposé: À VÉRIFIER (nom FR manquant, nom AR à translittérer)
+  Raison: NOM FRANÇAIS VIDE DANS CSV SOURCE
+
+  place_id=90832d666a6d2057 | geo_id=08-eph-02
+  Proposé: À VÉRIFIER (nom FR manquant, nom AR à translittérer)
+  Raison: AUCUNE
+
+  place_id=9fd18ce470ce8945 | geo_id=48-eph-01
+  Proposé: À VÉRIFIER (nom FR manquant, nom AR à translittérer)
+  Raison: AUCUNE
+
+  place_id=06044aa518c75ffe | geo_id=05-eph-04
+  Statut actuel: DOUBLON PROBABLE
+  Proposé: DOUBLON PROBABLE — À CONFIRMER (même GPS, même cat, noms Arris 1/Arris 2)
+
+  place_id=3e729654e392c74e | geo_id=05-eph-03
+  Statut actuel: DOUBLON PROBABLE
+  Proposé: DOUBLON PROBABLE — À CONFIRMER (même GPS, même cat, noms Arris 1/Arris 2)
+
+
+LIMITES:
+1. Aucune validation externe (terrain, source officielle) n'a été effectuée.
+2. 4 entrées sans nom FR - translittération arabe requise manuellement.
+3. Noms arabes avec '????' = problème encodage CSV source, données originales préservées.
+4. 72% coordonnées = centroïdes de commune (précision ~1-5 km).
+5. Doublons probables Arris 1/2 nécessitent décision humaine.
+6. Existence réelle des établissements non confirmée sur le terrain.
+
+================================================================================
+STATUT: RÉCONCILIATION VALIDÉE AVEC RÉSERVES
+================================================================================

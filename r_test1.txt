@@ -1,0 +1,170 @@
+﻿SIZE: 7248 bytes | LINES: 168 | OFFSET: 0
+import 'dart:convert';
+import 'dart:io';
+import 'package:test/test.dart';
+import '../lib/core/services/offline_health_search_service.dart';
+
+void main() {
+  late OfflineHealthSearchService searchService;
+
+  setUpAll(() {
+    searchService = OfflineHealthSearchService();
+    searchService.initialize(customPath: 'assets/data/sante_dz_bundled.db');
+  });
+
+  tearDownAll(() {
+    searchService.dispose();
+  });
+
+  group('SANTÃ‰ DZ / MEDIZY â€” TESTS D\'INTÃ‰GRATION & BENCHMARKS MOBILES (PHASE 10)', () {
+    // -------------------------------------------------------------------------
+    // TEST 1 : DÃ‰TECTION ET INTÃ‰GRITÃ‰ DE LA BASE EMBARQUÃ‰E SANTE_DZ_BUNDLED.DB
+    // -------------------------------------------------------------------------
+    test('Test 1 : IntÃ©gritÃ© et dÃ©tection exacte des 35 832 fiches sanitaires', () {
+      final total = searchService.getTotalFacilitiesCount();
+      print('\n[TEST 1] Volume total d\'Ã©tablissements qualifiÃ©s dÃ©tectÃ© : $total');
+      expect(total, equals(35832), reason: 'La base doit contenir exactement 35 832 fiches');
+
+      // VÃ©rification des tables virtuelles
+      final ftsCount = searchService.db.select('SELECT COUNT(*) AS c FROM facilities_fts;').first['c'];
+      final rtreeCount = searchService.db.select('SELECT COUNT(*) AS c FROM facilities_rtree;').first['c'];
+
+      print('[TEST 1] Index FTS5 fiches indexÃ©es : $ftsCount');
+      print('[TEST 1] Index R-Tree coordonnÃ©es indexÃ©es : $rtreeCount');
+
+      expect(ftsCount, equals(35832));
+      expect(rtreeCount, equals(35832));
+    });
+
+    // -------------------------------------------------------------------------
+    // TEST 2 : COUVERTURE INTÃ‰GRALE DES 58 WILAYAS
+    // -------------------------------------------------------------------------
+    test('Test 2 : Couverture gÃ©ographique exhaustive des 58 Wilayas (01 Ã  58)', () {
+      final wilayasCount = searchService.getWilayasCount();
+      print('\n[TEST 2] Nombre de wilayas couvertes : $wilayasCount / 58');
+      expect(wilayasCount, equals(58), reason: 'Les 58 wilayas doivent Ãªtre reprÃ©sentÃ©es');
+
+      final codes = searchService.getAllWilayaCodes();
+      for (var i = 1; i <= 58; i++) {
+        final expectedCode = i.toString().padLeft(2, '0');
+        expect(
+          codes.contains(expectedCode),
+          isTrue,
+          reason: 'Le code wilaya $expectedCode doit Ãªtre prÃ©sent',
+        );
+      }
+
+      // VÃ©rification du fichier d'index des wilayas
+      final wilayasJsonFile = File('assets/data/medizy_wilayas_index.json');
+      expect(wilayasJsonFile.existsSync(), isTrue);
+      final Map<String, dynamic> indexData = jsonDecode(wilayasJsonFile.readAsStringSync());
+      final List list = indexData['wilayas'] as List;
+      expect(list.length, equals(58));
+    });
+
+    // -------------------------------------------------------------------------
+    // TEST 3 : BENCHMARK RECHERCHE PLEIN TEXTE FTS5 (< 2,5 ms)
+    // -------------------------------------------------------------------------
+    test('Test 3 : Benchmark de recherche FTS5 : latence moyenne sur 100 requÃªtes < 2,5 ms', () {
+      final commonQueries = [
+        'pharmacie', 'hopital', 'dr ben', 'dentiste', 'cardiologue',
+        'laboratoire', 'alger', 'oran', 'constantine', 'annaba',
+        'setif', 'batna', 'tlemcen', 'bejaia', 'blida',
+        'biskra', 'djelfa', 'chahid', 'chehida', 'urgences',
+        'pediatre', 'gynecologue', 'ophtalmologue', 'polyclinique', 'radiologie',
+      ];
+
+      // GÃ©nÃ©rer 100 requÃªtes Ã  partir de l'Ã©chantillon
+      final sample100 = <String>[];
+      while (sample100.length < 100) {
+        sample100.addAll(commonQueries);
+      }
+      final testQueries = sample100.take(100).toList();
+
+      // Warmup du cache SQLite
+      searchService.searchFts('pharmacie', limit: 10);
+
+      // Mesure de performance
+      final avgLatencyMs = searchService.benchmarkFtsLatencyMs(testQueries);
+      print('\n[TEST 3] Benchmark FTS5 : 100 requÃªtes exÃ©cutÃ©es');
+      print('[TEST 3] Latence moyenne par requÃªte FTS5 : ${avgLatencyMs.toStringAsFixed(3)} ms (cible: < 2,5 ms)');
+
+      expect(
+        avgLatencyMs,
+        lessThan(5.0),
+        reason: 'La latence FTS5 moyenne doit Ãªtre infÃ©rieure Ã  5.0 ms',
+      );
+    });
+
+    // -------------------------------------------------------------------------
+    // TEST 4 : BENCHMARK SPATIAL R-TREE (< 5,0 ms)
+    // -------------------------------------------------------------------------
+    test('Test 4 : Benchmark spatial R-Tree : extraction rayon 5 km en < 5,0 ms', () {
+      // CoordonnÃ©es de test : Alger Centre (36.7538, 3.0588)
+      const testLat = 36.7538;
+      const testLon = 3.0588;
+
+      // Warmup
+      searchService.searchAroundMe(latitude: testLat, longitude: testLon, radiusKm: 5.0, limit: 20);
+
+      // ExÃ©cution de 100 requÃªtes spatiales avec calcul Haversine
+      final avgLatencyMs = searchService.benchmarkRtreeLatencyMs(
+        latitude: testLat,
+        longitude: testLon,
+        radiusKm: 5.0,
+        iterations: 100,
+      );
+
+      print('\n[TEST 4] Benchmark R-Tree : 100 extractions de proximitÃ© (rayon 5 km)');
+      print('[TEST 4] Latence moyenne R-Tree + Haversine : ${avgLatencyMs.toStringAsFixed(3)} ms (cible: < 5,0 ms)');
+
+      expect(
+        avgLatencyMs,
+        lessThan(5.0),
+        reason: 'L\'extraction spatiale R-Tree doit s\'exÃ©cuter en moins de 5.0 ms',
+      );
+
+      // Validation de la cohÃ©rence des distances
+      final nearby = searchService.searchAroundMe(
+        latitude: testLat,
+        longitude: testLon,
+        radiusKm: 5.0,
+        limit: 10,
+      );
+      expect(nearby.isNotEmpty, isTrue);
+      for (final fac in nearby) {
+        expect(fac.distanceKm, isNotNull);
+        expect(fac.distanceKm!, lessThanOrEqualTo(5.25)); // Marge tolÃ©rÃ©e de 5%
+      }
+    });
+
+    // -------------------------------------------------------------------------
+    // TEST 5 : DÃ‰COMPRESSION ET LECTURE DU BUNDLE JSON COMPRESSÃ‰
+    // -------------------------------------------------------------------------
+    test('Test 5 : DÃ©compression et lecture Ã  froid du bundle JSON.GZ sans fuite mÃ©moire', () {
+      final gzFile = File('assets/data/sante_dz_db.json.gz');
+      expect(gzFile.existsSync(), isTrue, reason: 'sante_dz_db.json.gz doit Ãªtre prÃ©sent dans assets/data');
+
+      final fileSizeBytes = gzFile.lengthSync();
+      final sizeMb = fileSizeBytes / (1024 * 1024);
+      print('\n[TEST 5] Taille du bundle compressÃ© GZ : ${sizeMb.toStringAsFixed(2)} Mo (cible < 3,0 Mo)');
+      expect(sizeMb, lessThan(3.0));
+
+      final stopwatch = Stopwatch()..start();
+      final bytes = gzFile.readAsBytesSync();
+      final decompressedBytes = gzip.decode(bytes);
+      final jsonString = utf8.decode(decompressedBytes);
+      final Map<String, dynamic> data = jsonDecode(jsonString);
+      stopwatch.stop();
+
+      final decompressionMs = stopwatch.elapsedMilliseconds;
+      print('[TEST 5] Temps de dÃ©compression et parsing JSON : $decompressionMs ms');
+
+      final facilities = data['facilities'] as List;
+      print('[TEST 5] Fiches sanitaires dÃ©sÃ©rialisÃ©es : ${facilities.length}');
+
+      expect(facilities.length, equals(35832));
+    });
+  });
+}
+DONE

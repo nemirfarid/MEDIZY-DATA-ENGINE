@@ -1,0 +1,86 @@
+=== A. MATCH EXACT (comme searchHybrid today) ===
+  "Pharmacie" => 0
+  "Médecin Généraliste" => 0
+  "Hôpital" => 0
+  "Laboratoire d'analyses" => 0
+  "Dentiste" => 0
+  "Cardiologue" => 0
+  "Pédiatre" => 0
+  "Gynécologue" => 0
+  "Ophtalmologue" => 0
+
+=== B. MATCH COLLATE NOCASE ===
+  "Pharmacie" => 6204
+  "Médecin Généraliste" => 440
+  "Hôpital" => 1917
+  "Laboratoire d'analyses" => 0
+  "Dentiste" => 1085
+  "Cardiologue" => 923
+  "Pédiatre" => 766
+  "Gynécologue" => 1558
+  "Ophtalmologue" => 727
+
+=== C. TOUTES LES CATEGORIES DISTINCTES (nom => count) ===
+  pharmacie => 6204
+  cabinet médical => 3767
+  clinique => 3117
+  cabinet dentaire => 2502
+  centre de santé => 2090
+  hôpital => 1917
+  laboratoire médical => 1617
+  gynécologue => 1558
+  dentiste => 1085
+  médecin spécialiste => 1059
+  cardiologue => 923
+  vétérinaire => 907
+  pédiatre => 766
+  centre médical => 737
+  ophtalmologue => 727
+  médecin => 674
+  dermatologue => 569
+  psychiatre => 549
+  ORL => 490
+  psychologue => 454
+  neurologue => 445
+  médecin généraliste => 440
+  orthophoniste => 377
+  gastro-entérologue => 369
+  urologue => 368
+  kinésithérapie => 363
+  centre d'imagerie médicale => 268
+  polyclinique => 254
+  centre de radiologie => 224
+  nutritionniste => 218
+  ostéopathe => 190
+  kinésithérapeute => 170
+  radiologue => 145
+  sage-femme => 128
+  doctors => 52
+  clinic => 35
+  pharmacy => 25
+  hospital => 23
+  hÃ´pital => 9
+  Institut de formation => 6
+  Structure => 5
+  dentist => 5
+  Direction => 1
+  TOTAL DISTINCT = 43
+
+=== D. MATCH PAR PREFIXE (LIKE) pour chaque code UI ===
+  "Pharmacie" => 6204  [pharmacie]
+  "Médecin Généraliste" => 440  [médecin généraliste]
+  "Hôpital" => 1917  [hôpital]
+  "Laboratoire d'analyses" => 0  []
+  "Dentiste" => 1085  [dentiste]
+  "Cardiologue" => 923  [cardiologue]
+  "Pédiatre" => 766  [pédiatre]
+  "Gynécologue" => 1558  [gynécologue]
+  "Ophtalmologue" => 727  [ophtalmologue]
+
+=== E. VOLUMES ===
+  total=35832
+  distinct_cat=43
+  distinct_wilaya=58
+
+=== F. WILAYA CODES ===
+  01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58

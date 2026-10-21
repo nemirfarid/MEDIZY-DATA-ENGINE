@@ -1,0 +1,52 @@
+﻿main.dart : 17 : class SanteDzMedizyApp extends StatefulWidget {
+main.dart : 24 : class _SanteDzMedizyAppState extends State<SanteDzMedizyApp> {
+main.dart : 92 : class MedizySplashScreen extends StatelessWidget {
+core\ai\symptom_triage_engine.dart : 7 : class TriageOrientationResult {
+core\ai\symptom_triage_engine.dart : 40 : class SymptomTriageEngine {
+core\constants\algeria_wilayas.dart : 2 : class WilayaInfo {
+core\finance\monetique_gateway.dart : 5 : class PaymentCheckoutResult {
+core\finance\monetique_gateway.dart : 25 : class MonetiqueGateway {
+core\finance\satim_simulator.dart : 9 : class SatimAuthorizationResult {
+core\finance\satim_simulator.dart : 29 : class SatimSimulator {
+core\finance\models\invoice.dart : 16 : class Invoice {
+core\finance\models\subscription_plan.dart : 2 : class SubscriptionPlan {
+core\models\health_facility.dart : 4 : class HealthFacility {
+core\services\location_service.dart : 5 : class LocationService {
+core\services\offline_health_search_service.dart : 7 : class OfflineHealthSearchService {
+core\services\offline_health_search_service.dart : 483 : class FileNotFoundError implements Exception {
+features\health_book\models\family_health_record.dart : 8 : class VaccineRecord {
+features\health_book\models\family_health_record.dart : 56 : class GlycemiaEntry {
+features\health_book\models\family_health_record.dart : 86 : class BloodPressureEntry {
+features\health_book\models\family_health_record.dart : 117 : class FamilyHealthRecord {
+features\map\offline_map_view.dart : 13 : class OfflineMapView extends StatefulWidget {
+features\map\offline_map_view.dart : 29 : class _OfflineMapViewState extends State<OfflineMapView> {
+features\map\widgets\facet_filter_bar.dart : 4 : class FacetFilterBar extends StatelessWidget {
+features\map\widgets\facility_detail_sheet.dart : 7 : class FacilityDetailSheet extends StatelessWidget {
+features\map\widgets\wilaya_picker_sheet.dart : 5 : class WilayaPickerSheet extends StatefulWidget {
+features\map\widgets\wilaya_picker_sheet.dart : 23 : class _WilayaPickerSheetState extends State<WilayaPickerSheet> {
+features\pharma\models\medication_request.dart : 14 : class MedicationRequest {
+features\pharma\models\pharmacy_response.dart : 8 : class PharmacyResponse {
+features\pharma\services\dci_catalog_service.dart : 2 : class DciEntry {
+features\pharma\services\dci_catalog_service.dart : 4 : final String therapeuticClass;
+features\pharma\services\dci_catalog_service.dart : 11 : required this.therapeuticClass,
+features\pharma\services\dci_catalog_service.dart : 19 : class DciCatalogService {
+features\pharma\services\dci_catalog_service.dart : 23 : therapeuticClass: 'Antalgique / Antipyrétique',
+features\pharma\services\dci_catalog_service.dart : 30 : therapeuticClass: 'Antibiotique (Pénicilline)',
+features\pharma\services\dci_catalog_service.dart : 37 : therapeuticClass: 'Antibiotique à large spectre',
+features\pharma\services\dci_catalog_service.dart : 44 : therapeuticClass: 'Antidiabétique oral',
+features\pharma\services\dci_catalog_service.dart : 51 : therapeuticClass: 'Hypolipémiant (Statine)',
+features\pharma\services\dci_catalog_service.dart : 58 : therapeuticClass: 'Antiagrégant plaquettaire',
+features\pharma\services\dci_catalog_service.dart : 65 : therapeuticClass: 'Inhibiteur de la pompe à protons (IPP)',
+features\pharma\services\dci_catalog_service.dart : 72 : therapeuticClass: 'Bronchodilatateur (Asthme)',
+features\pharma\services\dci_catalog_service.dart : 79 : therapeuticClass: 'Antibiotique (Céphalosporine 3G)',
+features\pharma\services\dci_catalog_service.dart : 86 : therapeuticClass: 'Antibiotique (Macrolide)',
+features\pharma\services\dci_catalog_service.dart : 102 : if (entry.therapeuticClass.toLowerCase().contains(q)) return true;
+features\pharma\services\dispo_medicament_service.dart : 6 : class RegisteredPharmacy {
+features\pharma\services\dispo_medicament_service.dart : 30 : class DispoMedicamentService {
+features\pro\controllers\virtual_queue_controller.dart : 5 : class QueueStatusSummary {
+features\pro\controllers\virtual_queue_controller.dart : 37 : class VirtualQueueController {
+features\pro\models\medical_ticket.dart : 19 : class MedicalTicket {
+features\pro\models\practice_profile.dart : 9 : class PracticeProfile {
+features\pro\services\practice_claim_service.dart : 6 : class PracticeClaimService {
+TOTAL MATCHES: 50
+DONE

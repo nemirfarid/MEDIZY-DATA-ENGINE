@@ -1,0 +1,50 @@
+=== MEDIZY PHASE 6.5.2 REPORT ===
+
+FICHIERS CRÉÉS:
+1. phase6_5_2_abadla_arris_analysis.csv
+2. phase6_5_2_manual_validation.csv
+3. phase6_5_2_gps_priority.csv
+4. phase6_5_2_report.txt
+
+=== MISSION 1 - ANALYSE DOUBLON ABADLA ===
+Groupe Abadla (GPS 31.019, -2.72387), wilaya Béchar, commune Abadla:
+- 053be2b97429a342 (geo_id 08-eph-02): EPH Abadla
+- 90832d666a6d2057 (geo_id 08-eph-02): EPH Abadla - nom corrompu (caractères arabes)
+- 679da9f6d5cbfa3f (geo_id 08-epsp-01): EPSP Abadla
+DIAGNOSTIC: 053be2b97429a342 et 90832d666a6d2057 partagent MÊME geo_id (08-eph-02) et mêmes coords.
+90832d666a6d2057 a nom corrompu (????) - doublon source probable lors import.
+CONCLUSION: DOUBLON SOURCE À CONFIRMER. NE PAS FUSIONNER/SUPPRIMER.
+
+=== MISSION 2 - CAS ARRIS ===
+Groupe Arris (GPS 35.25881, 6.34706), Batna, Arris:
+- 06044aa518c75ffe (geo_id 05-eph-04): EPH Arris 2
+- 3e729654e392c74e (geo_id 05-eph-03): EPH Arris 1
+Noms distincts, même catégorie, même GPS (centroïde commune).
+CONCLUSION: DOUBLON PROBABLE - À CONFIRMER. Pas de fusion automatique.
+
+=== MISSION 3 - 4 ENTRÉES NON CLASSIFIÉES ===
+1. 298468c8d4dab055 (21-eph-08) - Skikda/El Arrouch: nom AR corrompu, nom FR vide
+2. 373a162cb3954ebd (19-epsp-10) - Sétif/Hamam Soukhna: nom AR corrompu, nom FR vide
+3. 90832d666a6d2057 (08-eph-02) - Béchar/Abadla: doublon source (cf M1)
+4. 9fd18ce470ce8945 (48-eph-01) - Relizane/Ammi Moussa: nom AR vide
+Action: Vérification manuelle avec translittération préservant données brutes.
+
+=== MISSION 4 - QUALITÉ GPS ===
+Total geoalgeria:msp: 118
+  centroid: 109 (92.4%)
+  osm_point: 9 (7.6%)
+  owner_verified: 0 (0%)
+  exact: 9 | approximate: 109 | inconnu: 0
+Priorité: 109 à vérifier (centroïde), 9 précises
+
+=== TOTAUX ===
+Vérification unicité place_id: 118 uniques / 118 total
+Correspondances CSV: 118/118
+
+=== CONCLUSION ===
+RÉCONCILIATION VALIDÉE AVEC RÉSERVES
+Limites: 4 entrées nécessitent arbitrage manuel, 1 doublon source (Abadla),
+2 entrées potentiellement dupliquées (Arris) - non résolues.
+Aucune modification de production ou écriture destructive effectuée.
+Données brutes préservées (incl. valeurs ????).
+

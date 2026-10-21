@@ -1,0 +1,122 @@
+﻿SIZE: 12123 bytes | LINES: 120 | OFFSET: 0
+# -*- coding: utf-8 -*-
+"""
+MEDIZY / SANTÃ‰ DZ â€” Taxonomie des spÃ©cialitÃ©s mÃ©dicales
+=========================================================
+Deux objectifs :
+1. Normaliser les intitulÃ©s de spÃ©cialitÃ©s vers un vocabulaire contrÃ´lÃ©.
+2. Servir de rÃ©fÃ©rence pour les variantes de recherche Google Maps.
+
+Organisation :
+- catÃ©gorie_generale (ex: MÃ©decine)
+- specialite (ex: Cardiologie)
+- variantes_recherche (mots-clÃ©s pour le scraping)
+- code_specialite (identifiant stable)
+"""
+
+from typing import Dict, List
+
+# Vocabulaire contrÃ´lÃ© des spÃ©cialitÃ©s / catÃ©gories santÃ©
+SPECIALITES: List[Dict[str, Any]] = [
+    {
+        "code": "MED-GEN",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "MÃ©decine gÃ©nÃ©rale",
+        "variantes_recherche": ["mÃ©decin gÃ©nÃ©raliste", "mÃ©decin gÃ©nÃ©raliste AlgÃ©rie", "cabinet mÃ©decin gÃ©nÃ©raliste"],
+        "synonymes": ["gÃ©nÃ©raliste", "mÃ©decin traitant", "mÃ©decin de famille"],
+    },
+    {
+        "code": "CARDIO",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "Cardiologie",
+        "variantes_recherche": ["cardiologue", "cardiologie", "cabinet cardiologie", "mÃ©decin cardiologue"],
+        "synonymes": ["cardio", "spÃ©cialiste cÅ“ur"],
+    },
+    {
+        "code": "DERMA",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "Dermatologie",
+        "variantes_recherche": ["dermatologue", "dermatologie", "cabinet dermatologie", "mÃ©decin dermatologue"],
+        "synonymes": ["dermato", "spÃ©cialiste peau"],
+    },
+    {
+        "code": "PEDIA",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "PÃ©diatrie",
+        "variantes_recherche": ["pÃ©diatre", "pÃ©diatrie", "cabinet pÃ©diatrie", "mÃ©decin pÃ©diatre"],
+        "synonymes": ["pÃ©diatre enfant", "spÃ©cialiste enfant"],
+    },
+    {
+        "code": "GYNEC",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "GynÃ©cologie",
+        "variantes_recherche": ["gynÃ©cologue", "gynÃ©cologie", "cabinet gynÃ©cologie", "mÃ©decin gynÃ©cologue"],
+        "synonymes": ["gynÃ©co", "spÃ©cialiste femme"],
+    },
+    {
+        "code": "OBST",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "ObstÃ©trique",
+        "variantes_recherche": ["obstÃ©tricien", "obstÃ©trique", "gynÃ©cologue obstÃ©tricien"],
+        "synonymes": ["sage-femme", "accouchement"],
+    },
+    {
+        "code": "OPHTA",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "Ophtalmologie",
+        "variantes_recherche": ["ophtalmologue", "ophtalmologie", "cabinet ophtalmologie", "mÃ©decin ophtalmologue"],
+        "synonymes": ["ophtalmo", "spÃ©cialiste yeux", "ophtalmo"],
+    },
+    {
+        "code": "ORL",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "Oto-rhino-laryngologie",
+        "variantes_recherche": ["ORL", "oto-rhino-laryngologiste", "cabinet ORL"],
+        "synonymes": ["ORL", "spÃ©cialiste oreille nez gorge"],
+    },
+    {
+        "code": "URO",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "Urologie",
+        "variantes_recherche": ["urologue", "urologie", "cabinet urologie", "mÃ©decin urologue"],
+        "synonymes": ["urologue", "spÃ©cialiste urinaire"],
+    },
+    {
+        "code": "NEURO",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "Neurologie",
+        "variantes_recherche": ["neurologue", "neurologie", "cabinet neurologie", "mÃ©decin neurologue"],
+        "synonymes": ["neuro", "spÃ©cialiste cerveau"],
+    },
+    {
+        "code": "PSYCHIAT",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "Psychiatrie",
+        "variantes_recherche": ["psychiatre", "psychiatrie", "cabinet psychiatrie", "mÃ©decin psychiatre"],
+        "synonymes": ["psy", "spÃ©cialiste santÃ© mentale"],
+    },
+    {
+        "code": "PSYCHO",
+        "categorie_generale": "ParamÃ©dical",
+        "specialite": "Psychologie",
+        "variantes_recherche": ["psychologue", "psychologie", "cabinet psychologie", "psychologue clinicien"],
+        "synonymes": ["psycho", "thÃ©rapeute"],
+    },
+    {
+        "code": "ENDO",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "Endocrinologie",
+        "variantes_recherche": ["endocrinologue", "endocrinologie", "cabinet endocrinologie", "mÃ©decin endocrinologue"],
+        "synonymes": ["endo", "spÃ©cialiste hormones"],
+    },
+    {
+        "code": "GASTRO",
+        "categorie_generale": "MÃ©decine",
+        "specialite": "Gastro-entÃ©rologie",
+        "variantes_recherche": ["gastro-entÃ©rologue", "gastro-entÃ©rologie", "cabinet gastro", "mÃ©decin gastro-entÃ©rologue"],
+        "synonymes": ["gastro", "spÃ©cialiste digestion"],
+    },
+    {
+        "code": "PNEUMO",
+        "categorie_generale": "MÃ©decine",
+DONE

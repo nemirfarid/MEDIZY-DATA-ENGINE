@@ -1,0 +1,9 @@
+﻿PATH=C:\Python314\Scripts\;C:\Python314\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\chocolatey\bin;C:\nvm;C:\nodejs;C:\Program Files\Git\cmd;C:\Program Files\GitHub CLI\;C:\Program Files\Go\bin;C:\Users\pc lenovo\AppData\Local\Programs\Python\Python313\Scripts\;C:\Users\pc lenovo\AppData\Local\Programs\Python\Python313\;C:\Users\pc lenovo\AppData\Local\agy\bin;C:\Users\pc lenovo\AppData\Local\Microsoft\WindowsApps;C:\Users\pc lenovo\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\pc lenovo\AppData\Roaming\npm;C:\nvm;C:\nodejs;C:\Users\pc lenovo\AppData\Local\Programs\Antigravity IDE\bin;C:\Users\pc lenovo\AppData\Local\Python\bin;C:\src\flutter\bin;;C:\Tools\NuGet;C:\Users\pc lenovo\AppData\Local\Programs\Ollama;C:\Users\pc lenovo\go\bin
+FOUND: C:\Program Files\Git\cmd\git.exe
+FOUND: C:\Program Files\Git\bin\git.exe
+GET-COMMAND: C:\Program Files\Git\cmd\git.exe
+--- search under C:\Program Files (depth 3) ---
+  C:\Program Files\Git\bin\git.exe
+  C:\Program Files\Git\cmd\git.exe
+  C:\Program Files\Git\mingw64\bin\git.exe
+DONE

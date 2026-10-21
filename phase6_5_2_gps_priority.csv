@@ -1,0 +1,119 @@
+place_id,nom,wilaya,commune,categorie,lat,lng,geo_precision,geo_method,priorite_enrichissement
+fab0c01adf428290,Etablissement Public Hospitalier Aoulef,Adrar,Aoulef,hôpital public,26.96667,1.08333,approximate,commune_centroid,A_VERIFIER_CENTROID
+bd28b9d1569dd938,Etablissement Public Hospitalier Reggane,Adrar,Reggane,hôpital public,26.71576,0.1714,approximate,commune_centroid,A_VERIFIER_CENTROID
+078cdb167d0f6636,Etablissement Public de Sant? de Proximit? Aoulef,Adrar,Aoulef,centre de santé,26.96667,1.08333,approximate,commune_centroid,A_VERIFIER_CENTROID
+936517cf2cb987bf,Etablissement Public Hospitalier Sobha,Chlef,Sobha,hôpital public,36.110035,1.110123,approximate,commune_centroid,A_VERIFIER_CENTROID
+dfc8b878d9080735,Etablissement Public de Sant? de Proximit? Beni Haoua,Chlef,Beni Haoua,centre de santé,36.5311,1.56891,approximate,commune_centroid,A_VERIFIER_CENTROID
+9062b126b8863982,Etablissement Public Hospitalier Ain Fekroun,Oum El Bouaghi,Ain Fekroun,hôpital public,35.9711,6.8737,approximate,commune_centroid,A_VERIFIER_CENTROID
+c61f95b2acc8d2ea,Etablissement Public Hospitalier Ain M?lila,Oum El Bouaghi,Ain M'lila,hôpital public,36.03823,6.57318,approximate,commune_centroid,A_VERIFIER_CENTROID
+8597e3722120a326,Etablissement Public Hospitalier Meskiana,Oum El Bouaghi,Meskiana,hôpital public,35.631503,7.663055,exact,osm_point,PRECISE
+10cbe6bc1f71df78,Etablissement Public Hospitalier (ali Nemer) Merouana,Batna,Merouana,hôpital public,35.627469,5.90966,exact,osm_point,PRECISE
+68de50d656d7f6fd,Etablissement Public Hospitalier Ain Touta,Batna,Aïn Touta,hôpital public,35.375209,5.894213,approximate,commune_centroid,A_VERIFIER_CENTROID
+3e729654e392c74e,Etablissement Public Hospitalier Arris 1,Batna,Arris,hôpital public,35.25881,6.34706,approximate,commune_centroid,A_VERIFIER_CENTROID
+06044aa518c75ffe,Etablissement Public Hospitalier Arris 2,Batna,Arris,hôpital public,35.25881,6.34706,approximate,commune_centroid,A_VERIFIER_CENTROID
+6a5e5847727cb65b,Etablissement Public Hospitalier Merouana (ziza Massika),Batna,Merouana,hôpital public,35.632928,5.915984,exact,osm_point,PRECISE
+2150520e84957dc3,Etablissement Public Hospitalier N?gaous,Batna,N'Gaous,hôpital public,35.561836,5.610924,approximate,commune_centroid,A_VERIFIER_CENTROID
+f13c7247b18e3ec1,Etablissement Public Hospitalier Ras Layoune,Batna,Ras El Aïoun,hôpital public,35.675,5.65,approximate,commune_centroid,A_VERIFIER_CENTROID
+85794b539ee4abb3,Etablissement Public Hospitalier Teniet El Abed,Batna,Teniet El Abed,hôpital public,35.24695,6.19062,approximate,commune_centroid,A_VERIFIER_CENTROID
+4d94bfb8a4f37e14,Etablissement Public Hospitalier Tkout,Batna,T'Kout,hôpital public,35.140382,6.30855,approximate,commune_centroid,A_VERIFIER_CENTROID
+ec847aaae08bbb6c,Etablissement Public Hospitalier Akbou,Béjaïa,Akbou,hôpital public,36.4575,4.53494,approximate,commune_centroid,A_VERIFIER_CENTROID
+dd6031a457ba6a4c,Etablissement Public Hospitalier Amizour,Béjaïa,Amizour,hôpital public,36.641174,4.894479,exact,osm_point,PRECISE
+6645f5bbe35688c3,Etablissement Public Hospitalier D?aokas,Béjaïa,Aokas,hôpital public,36.6333,5.25,approximate,commune_centroid,A_VERIFIER_CENTROID
+a90b905deab49715,Etablissement Public Hospitalier Kherrata,Béjaïa,Kherrata,hôpital public,36.492724,5.278,approximate,commune_centroid,A_VERIFIER_CENTROID
+c62eb1dd07d26bce,Etablissement Public Hospitalier Souk El Thenine,Béjaïa,Souk El Tenine,hôpital public,36.625652,5.336022,approximate,commune_centroid,A_VERIFIER_CENTROID
+884ff4ad679a43b2,Etablissement Public Hospitalier Tolga,Biskra,Tolga,hôpital public,34.7214,5.380213,approximate,commune_centroid,A_VERIFIER_CENTROID
+d81b845673717b92,Etablissement Public Hospitalier Zribet El Oued,Biskra,Zeribet El Oued,hôpital public,34.683,6.511,approximate,commune_centroid,A_VERIFIER_CENTROID
+053be2b97429a342,Etablissement Public Hospitalier Abadla,Béchar,Abadla,hôpital public,31.019,-2.72387,approximate,commune_centroid,A_VERIFIER_CENTROID
+2ccb51793186fcfa,Etablissement Public Hospitalier Beni Ounif,Béchar,Beni-Ounif,hôpital public,32.049243,-1.2514,approximate,commune_centroid,A_VERIFIER_CENTROID
+90832d666a6d2057,??????? ???????? ??????????? ????????,Béchar,Abadla,hôpital public,31.019,-2.72387,approximate,commune_centroid,A_VERIFIER_CENTROID
+679da9f6d5cbfa3f,Etablissement Public de Sant? de Proximit? Abadla,Béchar,Abadla,centre de santé,31.019,-2.72387,approximate,commune_centroid,A_VERIFIER_CENTROID
+dbff324a779630a0,Etablissement Public Hospitalier El Affroun,Blida,El-Affroun,hôpital public,36.4701,2.625,approximate,commune_centroid,A_VERIFIER_CENTROID
+d53d3490ec3d11f4,Etablissement Public Hospitalier Meftah,Blida,Meftah,hôpital public,36.6204,3.22248,approximate,commune_centroid,A_VERIFIER_CENTROID
+572ca379936cc313,Etablissement Public Hospitalier Ain Bessam,Bouira,Ain-Bessem,hôpital public,36.296634,3.675956,exact,osm_point,PRECISE
+a912f248a92250bd,Etablissement Public Hospitalier Lakhdaria,Bouira,Lakhdaria,hôpital public,36.56448,3.59675,approximate,commune_centroid,A_VERIFIER_CENTROID
+a324b15392794ebb,Etablissement Public Hospitalier M?chedallah,Bouira,M Chedallah,hôpital public,36.371392,4.264103,approximate,commune_centroid,A_VERIFIER_CENTROID
+0d086f125ddaf5e9,Etablissement Public Hospitalier Sour El Ghozlane,Bouira,Sour El Ghozlane,hôpital public,36.14766,3.69123,approximate,commune_centroid,A_VERIFIER_CENTROID
+4bbcba5310a4fb06,Etablissement Public Hospitalier Tamenrasset,Tamanrasset,Tamanrasset,hôpital public,22.788821,5.52278,approximate,commune_centroid,A_VERIFIER_CENTROID
+2cab1dc94bb99012,Etablissement Public Hospitalier Morsot,Tébessa,Morsott,hôpital public,35.66944,8.01667,approximate,commune_centroid,A_VERIFIER_CENTROID
+901a4589db2332d1,Etablissement Public Hospitalier Ghazaouet,Tlemcen,Ghazaouet,hôpital public,35.093858,-1.86038,approximate,commune_centroid,A_VERIFIER_CENTROID
+4bf529decb8d387a,Etablissement Public Hospitalier Maghnia,Tlemcen,Maghnia,hôpital public,34.85345,-1.730556,approximate,commune_centroid,A_VERIFIER_CENTROID
+63920c0cc0f188ec,Etablissement Public Hospitalier Nedroma,Tlemcen,Nédroma,hôpital public,35.01361,-1.748,approximate,commune_centroid,A_VERIFIER_CENTROID
+39674356b9826a90,Etablissement Public Hospitalier Ramchi,Tlemcen,Remchi,hôpital public,35.06196,-1.43362,approximate,commune_centroid,A_VERIFIER_CENTROID
+141afcbd6ce4b57f,Etablissement Public Hospitalier Sebdou,Tlemcen,Sebdou,hôpital public,34.639444,-1.32694,approximate,commune_centroid,A_VERIFIER_CENTROID
+9a35049a53b86504,Etablissement Public Hospitalier Frenda,Tiaret,Frenda,hôpital public,35.05,1.053825,approximate,commune_centroid,A_VERIFIER_CENTROID
+25b2deb7eaa15404,Etablissement Public Hospitalier Mahdia,Tiaret,Mahdia,hôpital public,35.427088,1.755,approximate,commune_centroid,A_VERIFIER_CENTROID
+a1e20d5800690bde,Etablissement Public Hospitalier Ain El Hammam,Tizi Ouzou,Ain-El-Hammam,hôpital public,36.57056,4.31111,approximate,commune_centroid,A_VERIFIER_CENTROID
+c756bf692f78c48a,Etablissement Public Hospitalier Azeffoune,Tizi Ouzou,Azeffoun,hôpital public,36.889531,4.424015,approximate,commune_centroid,A_VERIFIER_CENTROID
+849da7d267f0bdd7,Etablissement Public Hospitalier Azzazga,Tizi Ouzou,Azazga,hôpital public,36.74472,4.37222,approximate,commune_centroid,A_VERIFIER_CENTROID
+698ac24e04cc13b8,Etablissement Public Hospitalier Boghni,Tizi Ouzou,Boghni,hôpital public,36.54222,3.95306,approximate,commune_centroid,A_VERIFIER_CENTROID
+69dc21ad22562857,Etablissement Public Hospitalier Larbaa Nath Iraten,Tizi Ouzou,Larbaa Nath Irathen,hôpital public,36.63667,4.206709,approximate,commune_centroid,A_VERIFIER_CENTROID
+24cc672f5fddd00c,Etablissement Public Hospitalier Tigzirt,Tizi Ouzou,Tigzirt,hôpital public,36.89623,4.12142,approximate,commune_centroid,A_VERIFIER_CENTROID
+f349dd111de45cac,Etablissement Public Hospitalier de Hassi Bahbah,Djelfa,Hassi Bahbah,hôpital public,35.078229,3.0297,approximate,commune_centroid,A_VERIFIER_CENTROID
+d3769ba5d285f545,Etablissement Public Hospitalier El Idrissia,Djelfa,El Idrissia,hôpital public,34.454851,2.524745,approximate,commune_centroid,A_VERIFIER_CENTROID
+9723c91cf67804f5,Etablissement Public Hospitalier El Milia,Jijel,El Milia,hôpital public,36.750728,6.2725,approximate,commune_centroid,A_VERIFIER_CENTROID
+433862bd2655290a,Etablissement Public Hospitalier Ain Oulmene,Sétif,Ain Oulmene,hôpital public,35.916667,5.29604,approximate,commune_centroid,A_VERIFIER_CENTROID
+dcf37782cf5fa27e,Etablissement Public Hospitalier Beni Ouartilene,Sétif,Beni Ourtilane,hôpital public,36.442259,4.855743,approximate,commune_centroid,A_VERIFIER_CENTROID
+33727377045f9fbf,Etablissement Public Hospitalier Bougaa,Sétif,Bougaa,hôpital public,36.33293,5.08843,approximate,commune_centroid,A_VERIFIER_CENTROID
+486aaaf4b6bb587a,Etablissement Public Hospitalier El Eulma,Sétif,El Eulma,hôpital public,36.156449,5.69016,approximate,commune_centroid,A_VERIFIER_CENTROID
+373a162cb3954ebd,??????? ???????? ????? ???????? ???? ??????,Sétif,Hamam Soukhna,centre de santé,35.976944,5.808889,approximate,commune_centroid,A_VERIFIER_CENTROID
+c4352dfc81421399,Etablissement Public Hospitalier Collo,Skikda,Collo,hôpital public,37.0072,6.5609,approximate,commune_centroid,A_VERIFIER_CENTROID
+b0fbff840f554db8,Etablissement Public Hospitalier Tamalous,Skikda,Tamalous,hôpital public,36.835754,6.6417,approximate,commune_centroid,A_VERIFIER_CENTROID
+298468c8d4dab055,??????? ???????? ??????????? ??????,Skikda,El Arrouch,hôpital public,36.651405,6.836091,approximate,commune_centroid,A_VERIFIER_CENTROID
+b2908c4c3e2f8c75,Etablissement Public Hospitalier Benbadis,Sidi Bel Abbès,Ben Badis,hôpital public,34.95234,-0.91609,approximate,commune_centroid,A_VERIFIER_CENTROID
+b7157ee5b842278f,Etablissement Public Hospitalier Ras El Ma,Sidi Bel Abbès,Ras El Ma,hôpital public,34.497361,-0.805598,approximate,commune_centroid,A_VERIFIER_CENTROID
+f807c7ddea4bdf50,Etablissement Public Hospitalier Sfisef,Sidi Bel Abbès,Sfisef,hôpital public,35.23464,-0.24435,approximate,commune_centroid,A_VERIFIER_CENTROID
+90d1e163ff47517d,Etablissement Public Hospitalier Tabia,Sidi Bel Abbès,Tabia,hôpital public,35.018562,-0.73566,approximate,commune_centroid,A_VERIFIER_CENTROID
+8d592e4655a21ec9,Etablissement Public Hospitalier Telagh,Sidi Bel Abbès,Telagh,hôpital public,34.794959,-0.5722,approximate,commune_centroid,A_VERIFIER_CENTROID
+719da7bab949c2ee,Etablissement Public Hospitalier Ain Berda,Annaba,Ain El Berda,hôpital public,36.651064,7.590038,exact,osm_point,PRECISE
+9d8f8a0a7f264550,Etablissement Public Hospitalier Chettaibi,Annaba,Chetaibi,hôpital public,37.065039,7.379979,approximate,commune_centroid,A_VERIFIER_CENTROID
+203c55fc22fcdf81,Etablissement Public Hospitalier Tablat,Médéa,Tablat,hôpital public,36.412113,3.3101,approximate,commune_centroid,A_VERIFIER_CENTROID
+52e33627034e3441,Etablissement Public Hospitalier Achaacha,Mostaganem,Achaacha,hôpital public,36.2463,0.63558,approximate,commune_centroid,A_VERIFIER_CENTROID
+32113ecc14a14e9c,Etablissement Public Hospitalier Ain Tedeles,Mostaganem,Ain-Tedles,hôpital public,35.9947,0.2949,approximate,commune_centroid,A_VERIFIER_CENTROID
+c7ad85d8ba6f7475,Etablissement Public Hospitalier Boukirat,Mostaganem,Bouguirat,hôpital public,35.748654,0.266752,exact,osm_point,PRECISE
+c70011ac7dc3a1fe,Etablissement Public Hospitalier Mesera,Mostaganem,Mesra,hôpital public,35.837222,0.169722,approximate,commune_centroid,A_VERIFIER_CENTROID
+0f7fde05ecda70ff,Etablissement Public Hospitalier Sidi Ali,Mostaganem,Sidi Ali,hôpital public,36.096779,0.414874,approximate,commune_centroid,A_VERIFIER_CENTROID
+404b5ab7fd0b4a1f,Etablissement Public Hospitalier Magra,M'Sila,Magra,hôpital public,35.617778,5.1074,approximate,commune_centroid,A_VERIFIER_CENTROID
+684625d2a3c104a8,Etablissement Public de Sant? de Proximit? Magra,M'Sila,Magra,centre de santé,35.617778,5.1074,approximate,commune_centroid,A_VERIFIER_CENTROID
+c681a3b2e8b69ac0,Etablissement Public Hospitalier Ghriss,Mascara,Ghriss,hôpital public,35.248175,0.160451,approximate,commune_centroid,A_VERIFIER_CENTROID
+44a53c002df3283a,Etablissement Public Hospitalier Oued Abtal,Mascara,Oued El Abtal,hôpital public,35.455952,0.688,approximate,commune_centroid,A_VERIFIER_CENTROID
+33b7a579ead81ba8,Etablissement Public Hospitalier Tighennif,Mascara,Tighennif,hôpital public,35.414314,0.329233,approximate,commune_centroid,A_VERIFIER_CENTROID
+f80a1b264523e054,Etablissement Public Hospitalier Bougtob,El Bayadh,Bougtob,hôpital public,34.04052,0.087067,approximate,commune_centroid,A_VERIFIER_CENTROID
+da59585397299ec1,Etablissement Public Hospitalier Mansoura,Bordj Bou Arréridj,Mansoura,hôpital public,36.08725,4.46,approximate,commune_centroid,A_VERIFIER_CENTROID
+873ed678829a6ad4,Etablissement Public Hospitalier Medjana,Bordj Bou Arréridj,Medjana,hôpital public,36.1319,4.669,approximate,commune_centroid,A_VERIFIER_CENTROID
+d16fdd7bd93aa375,Etablissement Public Hospitalier Ras El Oue,Bordj Bou Arréridj,Ras El Oued,hôpital public,35.949722,5.033333,approximate,commune_centroid,A_VERIFIER_CENTROID
+2abe29e6c2d42564,Etablissement Public Hospitalier Bordj Menaiel,Boumerdès,Bordj Menaiel,hôpital public,36.741667,3.717567,approximate,commune_centroid,A_VERIFIER_CENTROID
+b6172f18847a4a81,Etablissement Public Hospitalier Dellys,Boumerdès,Dellys,hôpital public,36.913272,3.914094,approximate,commune_centroid,A_VERIFIER_CENTROID
+2d4a7b05f3268ba1,Etablissement Public Hospitalier Thenia,Boumerdès,Thenia,hôpital public,36.7254,3.553889,approximate,commune_centroid,A_VERIFIER_CENTROID
+f0286cb7f3b2f626,Etablissement Public Hospitalier Besbas,El Tarf,Besbes,hôpital public,36.702222,7.847222,approximate,commune_centroid,A_VERIFIER_CENTROID
+1aed9ea09b85aa7e,Etablissement Public Hospitalier Bouhadjar,El Tarf,Bouhadjar,hôpital public,36.503417,8.110556,approximate,commune_centroid,A_VERIFIER_CENTROID
+2db18b33594f9097,Etablissement Public Hospitalier El Kala,El Tarf,El Kala,hôpital public,36.8956,8.4433,approximate,commune_centroid,A_VERIFIER_CENTROID
+dd55d2f978472a1d,Etablissement Public de Sant? de Proximit? Oum Lassel,Tindouf,Oum El Assel,centre de santé,28.6125,-6.978889,approximate,commune_centroid,A_VERIFIER_CENTROID
+ae4d751bed273206,Etablissement Public Hospitalier Bordj Bounaama,Tissemsilt,Bordj Bounaama,hôpital public,35.850502,1.617085,approximate,commune_centroid,A_VERIFIER_CENTROID
+5e63e90240ea8b76,Eph Etablissement Public Hospitalier Chadeli Bendjedid Chechar,Khenchela,Chechar,hôpital public,35.038331,7.004261,approximate,commune_centroid,A_VERIFIER_CENTROID
+7ffad45a63948439,Etablissement Public Hospitalier Bouhmama,Khenchela,Bouhmama,hôpital public,35.320278,6.746635,approximate,commune_centroid,A_VERIFIER_CENTROID
+388fa1e1270a3bc8,Etablissement Public Hospitalier Kais,Khenchela,Kais,hôpital public,35.494639,6.924305,approximate,commune_centroid,A_VERIFIER_CENTROID
+cfe3320f11691265,Etablissement Public Hospitalier Ouled Rechache,Khenchela,Ouled Rechache,hôpital public,35.3,7.353056,approximate,commune_centroid,A_VERIFIER_CENTROID
+aa4a97b99f206cb6,Etablissement Public Hospitalier Sedrata,Souk Ahras,Sedrata,hôpital public,36.129,7.534,approximate,commune_centroid,A_VERIFIER_CENTROID
+60b97aa36917bd0a,Etablissement Public Hospitalier Taoura,Souk Ahras,Taoura,hôpital public,36.17,8.04028,approximate,commune_centroid,A_VERIFIER_CENTROID
+1e57c9b027b95bd8,Etablissement Public Hospitalier Gouraya,Tipaza,Gouraya,hôpital public,36.5675,1.905,approximate,commune_centroid,A_VERIFIER_CENTROID
+8395b06973e72e4d,Etablissement Public Hospitalier Sidi Ghiles,Tipaza,Sidi Ghiles,hôpital public,36.558301,2.115569,approximate,commune_centroid,A_VERIFIER_CENTROID
+f2e2479a154d1ae1,Etablissement Hospitalier Sp?cialis? Psychiatrique Oued Athmania,Mila,Oued Athmenia,hôpital spécialisé,36.249555,6.287062,approximate,commune_centroid,A_VERIFIER_CENTROID
+6d7cdf06ca0cbc4f,Etablissement Public Hospitalier Chelghoum Laid,Mila,Chelghoum Laid,hôpital public,36.160563,6.167329,approximate,commune_centroid,A_VERIFIER_CENTROID
+a4d2adc5fa565d1c,Etablissement Public Hospitalier Ferdjioua,Mila,Ferdjioua,hôpital public,36.407381,5.94196,approximate,commune_centroid,A_VERIFIER_CENTROID
+598d4f91b45e1132,Etablissement Public Hospitalier Oued Athmania,Mila,Oued Athmenia,hôpital public,36.249555,6.287062,approximate,commune_centroid,A_VERIFIER_CENTROID
+3b8264e359d95881,Etablissement Public Hospitalier Khemis Miliana,Aïn Defla,Khemis-Miliana,hôpital public,36.261,2.220167,approximate,commune_centroid,A_VERIFIER_CENTROID
+860ba658907ba81c,Etablissement Public Hospitalier Meliana,Aïn Defla,Miliana,hôpital public,36.3055,2.232591,approximate,commune_centroid,A_VERIFIER_CENTROID
+1941b191bc6fd338,Etablissement Public Hospitalier Beni Saf,Aïn Témouchent,Beni Saf,hôpital public,35.300474,-1.382036,approximate,commune_centroid,A_VERIFIER_CENTROID
+cef90a36ef260e5b,Etablissement Public Hospitalier El Amria,Aïn Témouchent,El Amria,hôpital public,35.524726,-1.016,approximate,commune_centroid,A_VERIFIER_CENTROID
+aa443e29c8793575,Etablissement Public Hospitalier Hammam Bouhadjar,Aïn Témouchent,Hammam Bou Hadjar,hôpital public,35.37889,-0.970488,approximate,commune_centroid,A_VERIFIER_CENTROID
+a2047a057e708a6a,Etablissement Public Hospitalier Guerrara,Ghardaïa,El Guerrara,hôpital public,32.790278,4.488287,approximate,commune_centroid,A_VERIFIER_CENTROID
+a2fb9ffc971a7a8e,Etablissement Public Hospitalier Metlili,Ghardaïa,Metlili,hôpital public,32.26667,3.63333,approximate,commune_centroid,A_VERIFIER_CENTROID
+01948b5e07deab75,Etablissement Public Hospitalier Oued Rhiou,Relizane,Oued-Rhiou,hôpital public,35.961111,0.9167,approximate,commune_centroid,A_VERIFIER_CENTROID
+9fd18ce470ce8945,???????? ??????? ??? ????,Relizane,Ammi Moussa,hôpital,35.868,1.108127,approximate,commune_centroid,A_VERIFIER_CENTROID
+a6cea74252f0ad3b,Etablissement Public Hospitalier Kerzaz,Béni Abbès,Kerzaz,hôpital public,29.45,-1.416667,approximate,commune_centroid,A_VERIFIER_CENTROID
+69764b16faa4e36e,Etablissement Public Hospitalier Insalah,In Salah,Ain Salah,hôpital public,27.1935,2.483333,approximate,commune_centroid,A_VERIFIER_CENTROID
+5b84bd578416f1b2,Etablissement Public de Sant? de Proximit? Tin Zaouatine,In Guezzam,Tin Zouatine,centre de santé,19.954947,2.964007,exact,osm_point,PRECISE
+b2d05d68fb48fb76,Etablissement Public Hospitalier El Hadjira,Touggourt,El-Hadjira,hôpital public,32.613046,5.51259,approximate,commune_centroid,A_VERIFIER_CENTROID
+9da87505abf5267e,Etablissement Public Hospitalier Taibet,Touggourt,Taibet,hôpital public,33.083919,6.398875,exact,osm_point,PRECISE
+e2183691b05eecc2,Etablissement Public de Sant? de Proximit? El Hadjira,Touggourt,El-Hadjira,centre de santé,32.613046,5.51259,approximate,commune_centroid,A_VERIFIER_CENTROID
+5aaacd7fdb0c61f5,Etablissement Public de Sant? de Proximit? El Menea,El Meniaa,El Meniaa,centre de santé,30.57556,2.885833,approximate,commune_centroid,A_VERIFIER_CENTROID

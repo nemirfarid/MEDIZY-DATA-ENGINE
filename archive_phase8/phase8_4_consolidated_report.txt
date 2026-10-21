@@ -1,0 +1,44 @@
+SUMMARY: PHASE 8.2.3 CORRECTED + 8.3 CORRECTED
+================================================
+Date: 2026-10-14
+
+PROTECTION CONFIRMATIONS:
+- PROD SHA256 before/after identical: a621ce56c192c487d273f0d8a6f6b3dfb28cea538ab3e02a406491c6d10c4605
+- PROD integrity: ok (unchanged)
+- No production writes, no fusion, no export modifications.
+
+STAGING (staging_osm_pilot.db):
+- Before: 7 (Illizi only, from prior partial run)
+- After: 161 entries (all distinct osm_type:id:wilaya)
+  - Illizi: 7 entries (re-run, already present -> 0 new inserts via INSERT OR IGNORE)
+  - El Meniaa: 128 entries (bbox query 34.5,3.1 to 34.8,3.4)
+  - Tindouf: 26 entries (bbox query 27.4,-8.5 to 28.0,-7.5)
+- Staging integrity: ok
+- Staging schema: osm_pilot_entries(osm_id, osm_type, wilaya, name, category, amenity, healthcare, lat, lon, tags, phone, address, website, source_provenance='osm_overpass', collected_at)
+
+PRODUCTION AUDIT (medizy_scraper.db) - REEL:
+- Total entries: 23529
+- Distinct place_id: 22276 (1253 null/duplicate)
+- Wilaya missing: 0 (all entries have wilaya)
+- Telephone coverage: 70.9% (16683/23529)
+- GPS coverage: 100% (23529/23529)
+- Website coverage: 10.4% (2444/23529)
+- Sources: Google Maps public UI (23505), MIPH_2025 (24)
+
+MERGE DRY-RUN (merge_staging_to_prod.py):
+- Staging candidates (name not null): 140
+- Would insert: 140
+- Skip duplicates (already in prod): 0
+- Skip missing coordinates: 0
+- Rejected (null name): 21
+- No writes to production (dry-run mode).
+
+FILES CREATED:
+- C:\SANTE_DZ_SCRAPER\phase8_2_3_run.py (runner)
+- C:\SANTE_DZ_SCRAPER\audit_medizy_real.py (audit)
+- C:\SANTE_DZ_SCRAPER\merge_staging_to_prod.py (merge dry-run/apply)
+- C:\SANTE_DZ_SCRAPER\phase8_2_3_osm_pilot_report.txt (collection report)
+- C:\SANTE_DZ_SCRAPER\phase8_3_corrected_report.txt (audit report)
+- C:\SANTE_DZ_SCRAPER\phase8_4_consolidated_report.txt (this summary)
+
+NEXT STEP: awaiting explicit approval to run `python -u merge_staging_to_prod.py --apply` to insert the 140 validated OSM entries into production.

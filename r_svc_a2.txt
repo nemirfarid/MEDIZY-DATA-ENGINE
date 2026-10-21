@@ -1,0 +1,147 @@
+﻿SIZE: 16565 bytes | LINES: 145 | OFFSET: 108
+  // ===========================================================================
+  // 1. MOTEUR PLEIN TEXTE FTS5 (Recherche sÃ©mantique, translittÃ©ration, accents)
+  // ===========================================================================
+
+  /// Normalisation des accents franÃ§ais et translittÃ©ration arabe/latine
+  static String normalizeQuery(String input) {
+    var text = input.trim().toLowerCase();
+
+    // Remplacement des voyelles accentuÃ©es et cÃ©dilles
+    const accentMap = {
+      'Ã ': 'a', 'Ã¡': 'a', 'Ã¢': 'a', 'Ã£': 'a', 'Ã¤': 'a', 'Ã¥': 'a',
+      'Ã¨': 'e', 'Ã©': 'e', 'Ãª': 'e', 'Ã«': 'e',
+      'Ã¬': 'i', 'Ã­': 'i', 'Ã®': 'i', 'Ã¯': 'i',
+      'Ã²': 'o', 'Ã³': 'o', 'Ã´': 'o', 'Ãµ': 'o', 'Ã¶': 'o',
+      'Ã¹': 'u', 'Ãº': 'u', 'Ã»': 'u', 'Ã¼': 'u',
+      'Ã½': 'y', 'Ã¿': 'y',
+      'Ã§': 'c', 'Ã±': 'n',
+    };
+
+    accentMap.forEach((acc, rep) {
+      text = text.replaceAll(acc, rep);
+    });
+
+    // Ã‰quivalences mÃ©dicales et translittÃ©rations algÃ©riennes courantes
+    final replacements = {
+      'docteur': 'dr',
+      'hopital': 'hopital',
+      'pharmacie': 'pharmacie',
+      'laboratoire': 'laboratoire',
+      'cabinet': 'cabinet',
+      'clinique': 'clinique',
+      'chahida': 'chehida',
+      'chahid': 'chehid',
+      'ben': 'ben',
+      'sidi': 'sidi',
+      'oued': 'oued',
+    };
+
+    replacements.forEach((key, val) {
+      text = text.replaceAll(RegExp('\\b$key\\b'), val);
+    });
+
+    // Supprimer les caractÃ¨res de ponctuation SQLite FTS5 dangereux
+    text = text.replaceAll(RegExp(r'["\*\^\{\}\[\]\(\)\:\+\-\?]'), ' ');
+    return text.trim();
+  }
+
+  /// PrÃ©pare la clause MATCH FTS5 avec prÃ©fixes jokers (*)
+  static String formatFtsMatch(String query) {
+    final clean = normalizeQuery(query);
+    final tokens = clean.split(RegExp(r'\s+')).where((t) => t.isNotEmpty).toList();
+    if (tokens.isEmpty) return '*';
+    return tokens.map((t) => '$t*').join(' AND ');
+  }
+
+  /// Recherche plein texte FTS5 avec tri par pertinence (rank)
+  List<HealthFacility> searchFts(String query, {int limit = 50}) {
+    if (query.trim().isEmpty) return [];
+
+    final ftsMatch = formatFtsMatch(query);
+
+    final ResultSet results = (_ftsStmt != null)
+        ? _ftsStmt!.select([ftsMatch, limit])
+        : db.select('''
+            SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+            FROM facilities_fts
+            WHERE facilities_fts MATCH ?
+            LIMIT ?;
+          ''', [ftsMatch, limit]);
+
+    return results.map((row) => HealthFacility.fromMap(row)).toList();
+  }
+
+  // ===========================================================================
+  // 2. FILTRAGE SPATIAL R-TREE ("Autour de moi" & Bounding Box)
+  // ===========================================================================
+
+  /// Calcul de distance orthodromique (Haversine) en kilomÃ¨tres
+  static double calculateHaversineKm(
+    double lat1,
+    double lon1,
+    double lat2,
+    double lon2,
+  ) {
+    const double earthRadiusKm = 6371.0;
+    final dLat = _deg2rad(lat2 - lat1);
+    final dLon = _deg2rad(lon2 - lon1);
+
+    final a = math.sin(dLat / 2) * math.sin(dLat / 2) +
+        math.cos(_deg2rad(lat1)) *
+            math.cos(_deg2rad(lat2)) *
+            math.sin(dLon / 2) *
+            math.sin(dLon / 2);
+
+    final c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
+    return earthRadiusKm * c;
+  }
+
+  static double _deg2rad(double deg) => deg * (math.pi / 180.0);
+
+  /// Recherche spatiale par R-Tree pour un rayon gÃ©ographique donnÃ© ("Autour de moi")
+  List<HealthFacility> searchAroundMe({
+    required double latitude,
+    required double longitude,
+    double radiusKm = 5.0,
+    String? category,
+    int limit = 50,
+  }) {
+    // Calcul de la Bounding Box
+    final deltaLat = radiusKm / 111.0;
+    final latRad = _deg2rad(latitude);
+    final cosLat = math.cos(latRad).abs();
+    final deltaLon = radiusKm / (111.0 * (cosLat > 0.05 ? cosLat : 1.0));
+
+    final minLat = latitude - deltaLat;
+    final maxLat = latitude + deltaLat;
+    final minLon = longitude - deltaLon;
+    final maxLon = longitude + deltaLon;
+
+    final ResultSet results;
+    if (category == null || category.isEmpty) {
+      results = (_rtreeStmt != null)
+          ? _rtreeStmt!.select([minLat, maxLat, minLon, maxLon])
+          : db.select('''
+              SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+                     f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
+              FROM facilities_rtree r
+              JOIN facilities f ON f.id = r.id
+              WHERE r.min_lat >= ? AND r.max_lat <= ?
+                AND r.min_lon >= ? AND r.max_lon <= ?
+              LIMIT 250;
+            ''', [minLat, maxLat, minLon, maxLon]);
+    } else {
+      results = db.select('''
+        SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+               f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
+        FROM facilities_rtree r
+        JOIN facilities f ON f.id = r.id
+        WHERE r.min_lat >= ? AND r.max_lat <= ?
+          AND r.min_lon >= ? AND r.max_lon <= ?
+          AND f.categorie = ?
+        LIMIT 250;
+      ''', [minLat, maxLat, minLon, maxLon, category]);
+    }
+
+DONE

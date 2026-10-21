@@ -1,0 +1,6 @@
+mission,place_id,geo_id,nom,wilaya,commune,categorie,lat,lng
+ABADLA,053be2b97429a342,08-eph-02,Etablissement Public Hospitalier Abadla,B?char,Abadla,h?pital public,31.019,-2.72387
+ABADLA,90832d666a6d2057,08-eph-02,,B?char,Abadla,h?pital public,31.019,-2.72387
+ABADLA,679da9f6d5cbfa3f,08-epsp-01,Etablissement Public de Sant? de Proximit? Abadla,B?char,Abadla,centre de sant?,31.019,-2.72387
+ARRIS,06044aa518c75ffe,05-eph-04,Etablissement Public Hospitalier Arris 2,Batna,Arris,h?pital public,35.25881,6.34706
+ARRIS,3e729654e392c74e,05-eph-03,Etablissement Public Hospitalier Arris 1,Batna,Arris,h?pital public,35.25881,6.34706

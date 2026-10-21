@@ -1,0 +1,801 @@
+--- Page 1 ---
+id type_etab etab etab_ar wilaya code_postal
+2 DSP Direction de la santé et de la population de la wilaya d'Adrar مديرية الصحة والسكان لولاية أدرار 1 1001
+3 DSP Direction de la santé et de la population de la wilaya de Chlef مديرية الصحة والسكان لولاية الشلف 2 2001
+4 DSP Direction de la santé et de la population de la wilaya de Laghouat مديرية الصحة والسكان لولاية الأغواط 3 3001
+5 DSP Direction de la santé et de la population de la wilaya de Oum El Bouaghi مديرية الصحة والسكان لولاية أم البواق ي 4 4001
+6 DSP Direction de la santé et de la population de la wilaya de Batna مديرية الصحة والسكان لولاية باتنة 5 5001
+7 DSP Direction de la santé et de la population de la wilaya de Bejaia مديرية الصحة والسكان لولاية بجاية 6 6001
+8 DSP Direction de la santé et de la population de la wilaya de Biskra مديرية الصحة و السكان لولاية بسكرة 7 7001
+9 DSP Direction de la santé et de la population de la wilaya de Bechar مديرية الصحة و السكان لولاية بشار 8 8001
+10 DSP Direction de la santé et de la population de la wilaya de Blida مديرية الصحة والسكان لولاية البليدة 9 9001
+11 DSP Direction de la santé et de la population de la wilaya de Bouira مديرية الصحة والسكان لولاية البويرة 10 10001
+12 DSP Direction de la santé et de la population de la wilaya de Tamanrasset مديرية الصحة والسكان لولاية تمنراست 11 11001
+13 DSP Direction de la santé et de la population de la wilaya de Tebessa مديرية الصحة والسكان لولاية تبسة 12 12001
+14 DSP Direction de la santé et de la population de la wilaya de Tlemcen مديرية الصحة و السكان لولاية تلمسان 13 13001
+15 DSP Direction de la santé et de la population de la wilaya de Tiaret مديرية الصحة والسكان لولاية تيارت 14 14001
+16 DSP Direction de la santé et de la population de la wilaya de Tizi Ouzou مديرية الصحة والسكان لولاية تن ري وزو 15 15001
+17 DSP Direction de la santé et de la population de la wilaya d' Alger مديرية الصحة والسكان لولاية الجزائر 16 16001
+18 DSP Direction de la santé et de la population de la wilaya de Djelfa مديرية الصحة والسكان لولاية الجلفة 17 17001
+19 DSP Direction de la santé et de la population de la wilaya de Jijel مديرية الصحة والسكان لولاية جيجل 18 18001
+20 DSP Direction de la santé et de la population de la wilaya de Setif مديرية الصحة والسكان لولاية سطيف 19 19001
+21 DSP Direction de la santé et de la population de la wilaya de Saida مديرية الصحة والسكان لولاية سعيدة 20 20001
+22 DSP Direction de la santé et de la population de la wilaya de Skikda مديرية الصحة والسكان لولاية سكيكدة 21 21001
+23 DSP Direction de la santé et de la population de la wilaya de Sidi Bel Abbes مديرية الصحة و السكان لولاية سيدي بلعباس 22 22001
+24 DSP Direction de la santé et de la population de la wilaya de Annaba مديرية الصحة والسكان لولاية عنابة 23 23001
+25 DSP Direction de la santé et de la population de la wilaya de Guelma مديرية الصحة والسكان  لولاية قالمة 24 24001
+26 DSP Direction de la santé et de la population de la wilaya de Constantine مديرية الصحة والسكان  لولاية قسنطينة 25 25001
+27 DSP Direction de la santé et de la population de la wilaya de Medea مديرية الصحة والسكان لولاية المدية 26 26001
+28 DSP Direction de la santé et de la population de la wilaya de Mostaganem مديرية الصحة و السكان لولاية مستغانم 27 27001
+29 DSP Direction de la santé et de la population de la wilaya de Msila مديرية الصحة والسكان لولاية المسيلة 28 28001
+30 DSP Direction de la santé et de la population de la wilaya de Mascara مديرية الصحة و السكان لولاية معسكر 29 29001
+32 DSP Direction de la Santé et de la Population de la wilaya d'Oran مديرية الصحة و السكان لولاية وهران 31 31001
+33 DSP Direction de la santé et de la population de la wilaya de El Bayadh مديرية الصحة والسكان لولاية البيض 32 32001
+34 DSP Direction de la santé et de la population de la wilaya de Illizi مديرية الصحة والسكان لولاية إلن ري 33 33001
+35 DSP Direction de la santé et de la population de la wilaya de Bordj Bou Arreridj مديرية الصحة والسكان لولاية برج بوعريري    ج 34 34001
+36 DSP Direction de la santé et de la population de la wilaya de Boumerdes مديرية الصحة والسكان لولاية بومرداس 35 35001
+37 DSP Direction de la santé et de la population de la wilaya d El Tarf مديرية الصحة و السكان لولاية الطارف 36 36001
+liste des établissements de santé 
+
+--- Page 2 ---
+38 DSP Direction de la santé et de la population de la wilaya de Tindouf مديرية الصحة والسكان لولاية تندوف 37 37001
+39 DSP Direction de la santé et de la population de la wilaya de Tissemsilt مديرية الصحةو السكان لولاية تيسمسيلت 38 38001
+40 DSP Direction de la santé et de la population de la wilaya de El Oued مديرية الصحة والسكان لولاية الوادي 39 39001
+41 DSP Direction de la santé et de la population de la wilaya de Khenchela مديرية الصحة والسكان لولاية خنشلة 40 40001
+42 DSP Direction de la santé et de la population de la wilaya de Souk Ahras مديرية الصحة والسكان لولاية سوق أهراس 41 41001
+43 DSP Direction de la santé et de la population de la wilaya de Tipaza مديرية الصحة والسكان لولاية تيبازة 42 42001
+44 DSP Direction de la santé et de la population de la wilaya de Mila مديرية الصحة والسكان لولاية ميلة 43 43001
+45 DSP Direction de la santé et de la population de la wilaya de Ain Defla لىمديرية الصحة والسكان لولاية عي ر الدف 44 44001
+46 DSP Direction de la santé et de la population de la wilaya de Naama مديرية الصحة و السكان لولاية النعامة 45 45001
+47 DSP Direction de la santé et de la population de la wilaya de Ain Temouchent مديرية الصحة والسكان لولاية عي ر تموشنت 46 46001
+48 DSP Direction de la santé et de la population de la wilaya de Ghardaia مديرية الصحة و السكان لولاية غرداية 47 47001
+49 DSP Direction de la santé et de la population de la wilaya de Relizane مديرية الصحة  والسكان لولاية غلن ران 48 48001
+50 CHU Centre Hospitalo Universitaire Mustapha المركز الإستشفائ ي الجامعي مصطفر 16 16002
+151 CHU Centre Hospitalo Universitaire Nafissa Hamoud المركز الإستشفائ ي الجامعي نفيسة حمود 16 16017
+152 CHU Centre Hospitalo Universitaire Bab El Oued المركز الإستشفائ ي الجامعي باب الواد 16 16005
+153 CHU Centre Hospitalo Universitaire Beni Messous المركز الإستشفائ ي الجامعي ل ب ن ي م س وس 16 16032
+154 CHU Centre Hospitalo Universitaire Bilda المركز الإستشفائ ي الجامعي بالبليدة 9 9001
+155 CHU Centre Hospitalo Universitaire Tizi Ouzou المركز الإستشفائ ي الجامعي تن ري وزو 15 15001
+156 EPH Etablissement Public Hospitalier Kouba (Bachir Mentouri)  المؤسسة العمومية الاستشفائية القبة- بشن  منتوري 16 16018
+157 EHS Etablissement Hospitalier Spécialisé en Psychiatrie Cheraga المؤسسة الاستشفائية المتخصصة قري الأمراض العقلية الشراقة 16 16050
+158 EST Institut National de Santé Publique المعهد الوطنري للصحة العمومية 16 16058
+159 EPSP Etablissement Public de Santé de Proximité SIDI M'HAMED (BOUCHENAFA) الؤسسة العمومية للصحة الجوارية لسيدي امحمد بوشنافة 16 16002
+160 Structure D?centralisInstitut National Pédagogique de Formation Paramédicale المعهد الوطنري البيداغوج ي للتكوين شبه طن ي 16 16058
+161 EPH Etablissement Public Hospitalier Bologhine Ibn Ziri المؤسسة العمومية الاستشفائية بولوغي ر بن زيري 16 16024
+162 EPH Etablissement Public Hospitalier El Mouradia (Djillali Rahmouni)  المؤسسة العمومية الاستشفائية المرادية- جيلالي رحموئري 16 16027
+163 EPH Etablissement Public Hospitalier Ramchi المؤسسة العمومية الاستشفائية الرمشري 13 13004
+164 CHU Centre Hospitalo Universitaire douera المركز الجامعي الإستشفائ ي الدويرة 16 16054
+165 EPSP Etablissement Public de Santé de Proximité de DRARIA المؤسسة العمومية للصحة الجوارية درارية 16 16053
+654 EPH Etablissement Public Hospitalier Sebdou المؤسسة العمومية الإستشفائية سبدو 13 13035
+656 INFSPM Institut National de Formation Supérieure Paramédicale Ouargla المعهد الوطنري للتكوين العالي شبه الطن ي بورقلة 30 30001
+657 EPH Etablissement Public Hospitalier Med Boudiaf El Khroub constantine المؤسسة العمومية الإستشفائية محمد بوضياف الخروب 25 25001
+658 CHU Centre Hospitalo Universitaire Bejaia المركز الإستشفائ ي الجامعي بجاية 6 6001
+659 CHU Centre Hospitalo Universitaire Setif المركز الاستشفائ ي الجامعي سعادنة محمد عبد النور 19 19001
+661 EPH Etablissement Public Hospitalier Blida المؤسسة العمومية الاستشفائية البليدة 9 9001
+663 EPH Etablissement Public Hospitalier DJELFA المؤسسة العمومية الاستشفائية الجلفة 17 17001
+664 EPH Etablissement Public Hospitalier Medea المؤسسة العمومية الإستشفائية المدية 26 26001
+665 EPH Etablissement Public Hospitalier Thenia المؤسسة العمومية الاستشفائية الثنية 35 35015
+666 EPH Etablissement Public Hospitalier Jijel المؤسسة العمومية الاستشفائية جيجل 18 18001
+667 EPH Etablissement Public Hospitalier Bordj Bou Arreridj المؤسسة العمومية الاستشفائية برج بوعريري    ج 34 34001
+
+--- Page 3 ---
+668 EPH Etablissement Public Hospitalier Koléa المؤسسة العمومية الاستشفائية القليعة 42 42035
+840 CHU Centre Hospitalo Universitaire Annaba المركز الإستشفائ ي الجامعي عنابة 23 23001
+841 CHU Centre Hospitalo Universitaire Constantine المركز الإستشفائ ي الجامعي قسنطينة 25 25001
+842 CHU Centre Hospitalo Universitaire Batna المركز الإستشفائ ي الجامعي باتنة 5 5001
+843 EPH Etablissement Public Hospitalier OUM EL BOUAGHI (IBN SINA) المؤسسة العمومية الاستشفائية ابن سينا ام البواق ي 4 4001
+846 EPH Etablissement Public Hospitalier Skikda المؤسسة العمومية الإستشفائية سكيكدة 21 21001
+847 EPH Etablissement Public Hospitalier El Hadjar Annaba المؤسسة العمومية الاستشفائية الحجار عنابة 23 23003
+848 EPH Etablissement Public Hospitalier Dr Okbi Guelma المؤسسة العمومية الأستشفائية الحكيم عقن ي قالمة 24 24001
+849 EPH Etablissement Public Hospitalier El Bir Constantine المؤسسة العمومية الإستشفائية البن  قسنطينة 25 25001
+850 EPH Etablissement Public Hospitalier de Msila المؤسسة العمومية الاستشفائية المسيلة 28 28001
+851 EPH Etablissement Public Hospitalier Ahmed Ben Bella Khenchela المؤسسة العمومية الاستشفائية احمد بن بلة خنشلة 40 40001
+852 EPH Etablissement Public Hospitalier El Taref المؤسسة العمومية الاستشفائية الطارف 36 36001
+853 EPH Etablissement Public Hospitalier Souk Ahras (ancien hopital) المؤسسة العمومية الإستشفائية سوق اهراس 41 41001
+862 DSP Direction de la santé et de la population de la wilaya de Ouargla مديرية الصحة والسكان  لولاية ورقلة 30 30001
+868 CHU Centre Hospitalo Universitaire Tlemcen المستشفر الإستشفائ ي الجامعي تلمسان 13 13001
+869 CHU Centre Hospitalo Universitaire Sidi Bel Abbes المركز الإستشفائ ي الجامعي سيدي بلعباس 22 22001
+870 CHU Centre Hospitalo Universitaire Oran المركز الإستشفائ ي الجامعي لوهران 31 31001
+912 EPH Etablissement Public Hospitalier Med Boudiaf Oum El Bouaghi المؤسسة العمومية الإستشفائية محمد بوضياف بام البواق ي 4 4001
+913 EPH Etablissement Public Hospitalier Batna المؤسسة العمومية الإستشفائية باتنة 5 5001
+914 EPH Etablissement Public Hospitalier Alia Salah Tebessa المؤسسة العمومية الإستشفائية عاليا صالح تبسة 12 12001
+917 EPH Etablissement Public Hospitalier Adrar المؤسسة العمومية الإستشفائية بادرار 1 1001
+918 EPH Etablissement Public Hospitalier Nouvel Hôpital Béchar المؤسسة العمومية الإستشفائية المستشفر الجديد بشار 8 8001
+919 EPH Etablissement Public Hospitalier El Bayadh المؤسسة العمومية الإستشفائية محمد بوضياف البيض 32 32001
+920 EPH Etablissement Public Hospitalier Si Haouess Tindouf المؤسسة العمومية الإستشفائية سي الحواس تندوف 37 37001
+921 EPH Etablissement Public Hospitalier Naama المؤسسة العمومية الإستشفائية النعامة 45 45001
+922 EPH Etablissement Public Hospitalier Laghouat المؤسسة العمومية الإستشفائية بالاغواط 3 3001
+923 EPH Etablissement Public Hospitalier Bachir Benacer Biskra المؤسسة العمومية الإستشفائية بشن  بن ناصر بسكرة 7 7001
+924 EPH Etablissement Public Hospitalier Tamenrasset المؤسسة العمومية الاستشفائية تمنراست 11 11001
+925 EPH Etablissement Public Hospitalier Ouargla المؤسسة العمومية الإستشفائية ورقلة 30 30001
+926 EPH Etablissement Public Hospitalier Illizi المؤسسة العمومية الإستشفائية الن ري 33 33001
+927 EPH Etablissement Public Hospitalier El Oued المؤسسة العمومية الإستشفائية الوادي 39 39001
+928 EPH Etablissement Public Hospitalier Ghardaia المؤسسة العمومية الإستشفائية غرداية 47 47001
+934 EPH Etablissement Public Hospitalier Tiaret المؤسسة العمومية الإستشفائية تيارت 14 14001
+935 EPH Etablissement Public Hospitalier Ahmed MEDEGHRI SAIDA المؤسسة العمومية الاستشفائية أحمد مدغري سعيدة 20 20001
+936 CHU Centre Hospitalo Universitaire Mostaganem المركز الإستشفائ ي الجامعي مستغانم 27 27001
+939 EPH Etablissement Public Hospitalier Tissemsilt المؤسسة العمومية الاستشفائية تيسمسيلت 38 38001
+940 EPH Etablissement Public Hospitalier Ain Defla لىالمؤسسة العمومية الإستشفائية عي ر الدف 44 44001
+941 EPH Etablissement Public Hospitalier AIN TEMOUCHENT المؤسسة العمومية الاستشفائية عي ر تموشنت 46 46001
+942 EPH Etablissement Public Hospitalier Relizane المؤسسة العمومية الاستشفائية غلن ران 48 48001
+
+--- Page 4 ---
+948 EPH Etablissement Public Hospitalier Telagh المؤسسة العمومية الاستشفائية تلاغ 22 22005
+949 EPH Etablissement Public Hospitalier El Menia المؤسسة العمومية الاستشفائية المنيعة 58 47002
+999 EPH Etablissement Public Hospitalier El Emir Abdel Kader Oued Zenati المؤسسة العمومية الاستشفائية الأمن  عبد القادر وادي الزنائ ي 24 24004
+1047 EPSP Etablissement Public de Santé de Proximité Debila El oued المؤسسة العمومية للصحة الجوارية بالدبيلة 39 39011
+1048 EHS Etablissement Hospitalier Spécialisé Sidi Mabrouk المؤسسة الإستشفائية المتخصصة سيدي من وك 25 25001
+1049 EHS Etablissement Hospitalier Spécialisé en Cardiologie et Chirurgie Cardiaque El Riadhالمؤسسة الإستشفائية المتخصصة قري أمراض و جراحة القلب الرياض 25 25001
+1050 EHS Etablissement Hospitalier Spécialisé en Psychiatrique Djebl El Ouahch المؤسسة الإستشفائية المتخصصة قري الأمراض العقلية جبل الوحش 25 25001
+1051 EHS Etablissement Hospitalier Spécialisé Uro Nephrologie DAKSI المؤسسة اللإستشفائية المتخصصة قري أمراض المسالك البولية و الكلى الدقشي 25 25001
+1052 EPH Etablissement Public Hospitalier Freres Tobal Mila المؤسسة العمومية الإستشفائية الإخوة طوبال ميلة 43 43001
+1053 INFSPM Institut National de Formation Supérieure Paramédicale Constantine المعهد الوطنري للتكوين العالي الشبه الطن ي قسنطينة 25 25001
+1054 EPH Etablissement Public Hospitalier Ibn Z'hor Guelma المؤسسة العومية الإستشفائية ابن زهر قالمة 24 24001
+1062 EPSP Etablissement Public de Santé de Proximité Bachir Mentouri Constantine المؤسسة العمومية للصحة الجوارية بشن  منتوري 25 25001
+1063 EPH Etablissement Public Hospitalier Sidi Aissa المؤسسة العمومية الاستشفائية سيدي عيش 28 28016
+1064 EPSP Etablissement Public de Santé de Proximité Larbi Ben M'hidi Constantine المؤسسة العمومية للصحة الجوارية العرئ ي بن مهيدي قسنطينة 25 25001
+1065 EPSP Etablissement Public de Santé de Proximité Hamma Bouziane Constantine المؤسسة العمومية للصحة الجوارية حامة بوزيان قسنطينة 25 25002
+1066 EPSP Etablissement Public de Santé de Proximité Zigroud Youcef Constantine المؤسسة العمومية للصحة الجوارية زيغود يوسف قسنطينة 25 25004
+1067 EPSP Etablissement Public de Santé de Proximité El Khroub Constantine المؤسسة العمومية للصحة الجوارية الخروب قسنطينة 25 25006
+1068 EPSP Etablissement Public de Santé de Proximité Ain Abid Constantine المؤسسة العمومية للصحة الجوارية عي ر عبيد 25 25007
+1069 EPSP Etablissement Public de Santé de Proximité Boumerdes المؤسسة العمومية للصحة الجوارية بومرداس 35 35001
+1070 EPH Etablissement Public Hospitalier Zighoud Youcef Constantine المؤسسة العمومية الاستشفائية زيغود يوسف 25 25004
+1071 EPH Etablissement Public Hospitalier Ali Mendjeli El Khroub المؤسسة العمومية الاستشفائية علىي منجلىي 25 25006
+1072 EPH Etablissement Public Hospitalier Chechar المؤسسة العمومية الاستشفائية ششار 40 40011
+1193 EPH Etablissement Public Hospitalier Ouled Djellal المؤسسة العمومية الاستشفائية اولادجلال 51 7005
+1195 EPH Etablissement Public Hospitalier Dr Saadane Biskra المؤسسة العمومية الاستشفائية الدكتور سعدان بسكرة 7 7001
+1428 INFSPM Institut National de Formation Supérieure Paramédicale Mostaganem المعهد الوطنري للتكوين العالي شبه الطن ي مستغانم 27 27001
+1429 EPH Etablissement Public Hospitalier Ouled Mohamed Chlef  المؤسسة العمومية الإستشفائية الشلف اولاد محمد 2 2001
+1431 EPH Etablissement Public Hospitalier Maghnia المؤسسة العمومية الاستشفائية مغنية 13 13027
+1432 EPH Etablissement Public Hospitalier Ghazaouet المؤسسة العمومية الاستشفائية الغزوات 13 13007
+1433 EPH Etablissement Public Hospitalier Sidi Bel Abbes المؤسسة العمومية الاستشفائية سيدي بلعباس 22 22001
+1435 EPH Etablissement Public Hospitalier Meslem Tayeb Mascara المؤسسة العمومية الإستشفائية مسلم طيب معسكر 29 29001
+1436 EPH Etablissement Public Hospitalier issad khaled mascara المؤسسة العمومية الاستشفائية اسعد خالد معسكر 29 29001
+1438 EPH Etablissement Public Hospitalier El Mouhgone Arzew (Oran) المؤسسة العمومية الإستشفائية المحقن أرزيو 31 31006
+1607 EHS Etablissement Hospitalier Spécialisé Canastel (Oran) المؤسسة الاستشفائية المتخصصة كناستل 31 31001
+1706 EH Etablissement hospitalier Didouche Mourad Constantine المؤسسة الاستشفائية ديدوش مراد 25 25005
+1819 EPH Etablissement Public Hospitalier Souk Ahras (IBN Rochd)  المؤسسة العمومية الإستشفائية سوق أهراس- ابن رشد 41 41001
+1820 EPSP Etablissement Public de Santé de Proximité M'Daourouch Souk Ahras المؤسسة العمومية للصحة الجوارية مداوروش 41 41015
+1821 EPH Etablissement Public Hospitalier Sedrata المؤسسة العمومية الإستشفائية سدراتة 41 41002
+1822 EPSP Etablissement Public de Santé de Proximité Sedrata المؤسسة العمومية للصحة الجوارية سدراتة 41 41002
+1823 EPSP Etablissement Public de Santé de Proximité Souk Ahras المؤسسة العمومية للصحة الجوارية سوق أهراس 41 41001
+
+--- Page 5 ---
+1824 EPSP Etablissement Public de Santé de Proximité Taoura Souk ahras المؤسسة العمومية للصحة الجوارية تاورة سوق اهراس 41 41008
+3433 EHS Etablissement Hospitalier Spécialisé Gynécologie Obstétrique Point du jour (Oran) المؤسسة الاستشفائية المتخصصة قري طب النساء و التوليد مطلع الفجر 31 31001
+3434 EHS Etablissement Hospitalier Spécialisé en Gynécologie Obstétrique les Amandiers (Oran)المؤسسة الاستشفائية المتخصصة قري طب النساء و التوليد جي اللوز وهران 31 31001
+3435 EHS Etablissement Hospitalier Spécialisé en Oncologie EMIR Abdelkader (Oran)المؤسسة الاستشفائية المتخصصة قري علاج الاورام الأمن  عبد القادر وهران 31 31001
+3436 EHS Etablissement Hospitalier Spécialisé en Psychiatrie Sidi Chami (Oran) المؤسسة الاستشفائية المتخصصة قري الامراض العقلية سيدي الشحمي وهران 31 31013
+3437 EHS Etablissement Hospitalier Spécialisé en Ophtalmologie (Oran) المؤسسة الاستشفائية المتخصصة قري طب العيون وهران 31 31001
+3439 EHS Etablissement Hospitalier Spécialisé en Gynécologie Obstétrique Nouara Fadela (Oran)المؤسسة الاستشفائية المتخصصة قري طب النساء و التوليد نوار فضيلة وهران 31 31001
+3440 EHS Etablissement Hospitalier Spécialisé en Gynécologie Obstétrique les Pins (Oran)المؤسسة الاستشفائية المتخصصة قري طب النساء و التوليد الصنوبر وهران 31 31001
+3441 EHS Etablissement Hospitalier Spécialisé Mére et enfant Hadj Abed Atika (Oran)المؤسسة الاستشفائية المتخصصة الام و الطفل حاج عابد عتيقة وهران 31 31001
+3442 EPSP Etablissement Public de Santé de Proximité Ain El Turk (W.ORAN) المؤسسة العمومية للصحة الجوارية عي ر الن ك 31 31009
+3443 EPSP Etablissement Public de Santé de Proximité Arzew (W.ORAN) المؤسسة العمومية للصحة الجوارية أرزيو 31 31001
+3444 EPSP Etablissement Public de Santé de Proximité Hai El Ghoualem (W.Oran) المؤسسة العمومية للصحة الجوارية جي الغوالم 31 31001
+3445 EPSP Etablissement Public de Santé de Proximité Front de Mer (W.Oran) المؤسسة العمومية للصحة الجوارية واجهة البحر وهران 31 31001
+3446 EPSP Etablissement Public de Santé de Proximité Oued Tlélat (Oran) المؤسسة العمومية للصحة الجوارية وادي تليلات 31 31011
+3447 EPSP Etablissement Public de Santé de Proximité Hai Bouamama (W.ORAN) المؤسسة العمومية للصحة الجوارية جي بوعمامة 31 31001
+3448 EPSP Etablissement Public de Santé de Proximité Boutlilis (W.Oran)   المؤسسة العمومية للصحة الجوارية بوتليليس- وهران 31 31024
+3449 EPSP Etablissement Public de Santé de Proximité Seddikia (Oran) المؤسسة العمومية للصحة الجوارية الصديقية وهران 31 31001
+3450 EPSP Etablissement Public de Santé de Proximité Es Senia (Oran)   المؤسسة العمومية للصحة الجوارية السانيا- وهران 31 31005
+3497 EPH Etablissement Public Hospitalier Bousaada المؤسسة العمومية الاستشفائية بوسعادة 28 28020
+3499 EPH Etablissement Public Hospitalier Ain El Melh المؤسسة العمومية الاستشفائية عي ر الملح 28 28041
+3500 EHS Etablissement Hospitalier Spécialisé en Gynecologie Obstetrique Msila المؤسسة الاستشفائية المتخصصة قري طب النساء و التوليد المسيلة 28 28001
+3501 EPSP Etablissement Public de Santé de Proximité M'sila المؤسسة العمومية للصحة الجوارية المسيلة 28 28001
+3502 EPSP Etablissement Public de Santé de Proximité Bousaada المؤسسة العمومية للصحة الجوارية بوسعادة 28 28020
+3503 EPSP Etablissement Public de Santé de Proximité Sidi Aissa المؤسسة العمومية للصحة الجوارية سيدي عيش 28 28016
+3504 EPSP Etablissement Public de Santé de Proximité Ain El Melh المؤسسة العمومية للصحة الجوارية عي ر الملح 28 28041
+3505 EPSP Etablissement Public de Santé de Proximité Magra المؤسسة العمومية للصحة الجوارية مقرة 28 28011
+3506 EPSP Etablissement Public de Santé de Proximité Ben Srour المؤسسة العمومية للصحة الجوارية ابن سرور 28 28024
+3507 EPH Etablissement Public Hospitalier Theniet El Had المؤسسة العمومية الاستشفائية ثنية الأحد 38 38003
+3508 EPH Etablissement Public Hospitalier Bordj Bounaama المؤسسة العمومية الاستشفائية برج بونعامة 38 38002
+3509 EPSP Etablissement Public de Santé de Proximité Tissemsilt المؤسسة العمومية للصحة الجوارية تيسمسيلت 38 38001
+3510 EPSP Etablissement Public de Santé de Proximité Bordj Bounaama المؤسسة العمومية للصحة الجوارية برج بونعامة 38 38002
+3511 EPSP Etablissement Public de Santé de Proximité Theniet El Had المؤسسة العمومية للصحة الجوارية ثنية الأحد 38 38003
+3519 EH Etablissement hospitalier Ain Turk Hôpital Docteur Medjbar Tami (Oran) المؤسسة الإستشفائية عي ر الن ك 31 31009
+3520 EHU Etablissement Hospitalier Universitaire Oran المؤسسة الاستشفائية الجامعية وهران 31 31001
+3527 EPH Etablissement Public Hospitalier Ain Turk (Akid Otmane) (Oran) المؤسسة العمومية الاستشفائية عي ر الن ك العقيد عثمان 31 31009
+3717 INFSPM Institut National de Formation Supérieure Paramédicale Hai Salem Oran المعهد الوطنري للتكوين العالي شبه الطن ي جي السلام وهران 31 31001
+3718 INFSPM Institut National de Formation Supérieure Paramédicale Hai El Emir Oran المعهد الوطنري للتكوين العالي شبه الطن ي قعائ ي جدية وهران 31 31001
+4310 EPH Etablissement Public Hospitalier Reggane المؤسسة العمومية الإستشفائية رقان 1 1004
+4311 EPH Etablissement Public Hospitalier Timimoun المؤسسة العمومية الإستشفائية تيميمون 49 1009
+
+--- Page 6 ---
+4312 EPSP Etablissement Public de Santé de Proximité Adrar المؤسسة العمومية للصحة الجوارية أدرار 1 1001
+4313 EPSP Etablissement Public de Santé de Proximité AOULEF المؤسسة العمومية للصحة الجوارية أولف 1 1012
+4314 EPSP Etablissement Public de Santé de Proximité BORDJ BADJI MOKHTAR المؤسسة العمومية للصحة الجوارية برج باج ي مختار 50 1025
+4315 EPSP Etablissement Public de Santé de Proximité REGGANE المؤسسة العمومية للصحة الجوارية رقان 1 1004
+4316 EPSP Etablissement Public de Santé de Proximité TIMIMOUN المؤسسة العمومية للصحة الجوارية تيميمون 49 1009
+4317 EPSP Etablissement Public de Santé de Proximité TINERKOUK المؤسسة العمومية للصحة الجوارية تينركوك 49 1016
+4318 EPH Etablissement Public Hospitalier CHETTIA المؤسسة العمومية الإستشفائية الشطية 2 2024
+4319 EPH Etablissement Public Hospitalier SOBHA المؤسسة العمومية الإستشفائية الصبحة 2 2008
+4320 EPH Etablissement Public Hospitalier TÈNÈS (Ahmed Bouras) المؤسسة العمومية الإستشفائية أحمد بوراس تن  س 2 2002
+4321 EPH Etablissement Public Hospitalier TÈNÈS (Zighoud Youcef)  المؤسسة العمومية الإستشفائية تنس- زيغود يوسف 2 2002
+4322 EPSP Etablissement Public de Santé de Proximité BENI HAOUA المؤسسة العمومية للصحة الجوارية بنري حواء 2 2007
+4323 EPSP Etablissement Public de Santé de Proximité BOUKADIR المؤسسة العمومية للصحة الجوارية بوقادير 2 2012
+4324 EPSP Etablissement Public de Santé de Proximité OUED FODDA المؤسسة العمومية للصحة الجوارية وادي الفضة 2 2029
+4325 EPSP Etablissement Public de Santé de Proximité OULED FARES المؤسسة العمومية للصحة الجوارية أولاد فارس 2 2010
+4326 EPSP Etablissement Public de Santé de Proximité TAOUGRITE المؤسسة العمومية للصحة الجوارية تاوقريت 2 2032
+4327 EPSP Etablissement Public de Santé de Proximité TENES المؤسسة العمومية للصحة الجوارية تنس 2 2002
+4328 EHS Etablissement Hospitalier Spécialisé en Gynécologie obstétrique Laghouat المؤسسة الإستشفائية المتخصصة قري طب النساء و التوليد الأغواط 3 3001
+4329 EPH Etablissement Public Hospitalier AFLOU المؤسسة العمومية الإستشفائية أفلو 3 3019
+4330 EPSP Etablissement Public de Santé de Proximité AFLOU المؤسسة العمومية للصحة الجوارية أفلو 3 3019
+4331 EPSP Etablissement Public de Santé de Proximité AIN MADHI المؤسسة العمومية للصحة الجوارية عي ر ماضري 3 3007
+4332 EPSP Etablissement Public de Santé de Proximité BRIDA المؤسسة العمومية للصحة الجوارية الن يدة 3 3013
+4333 EPSP Etablissement Public de Santé de Proximité GUELTET SIDI SAAD المؤسسة العمومية للصحة الجوارية قلتة سيدي ساعد 3 3010
+4334 EPSP Etablissement Public de Santé de Proximité HASSI DELAA المؤسسة العمومية للصحة الجوارية حاسي الدلاعة 3 3005
+4335 EPSP Etablissement Public de Santé de Proximité KSAR EL HIRANE المؤسسة العمومية للصحة الجوارية قصر الحن ان 3 3002
+4336 EPSP Etablissement Public de Santé de Proximité LAGHOUAT المؤسسة العمومية للصحة الجوارية الأغواط 3 3001
+4337 EHS Etablissement Hospitalier Spécialisé Mère en Enfant Oum el Bouagui المؤسسة الإستشفائية المتخصصة قري طب النساء و التوليد أم البواق ي 4 4002
+4338 EPH Etablissement Public Hospitalier Ain Beida (ZERDANI SALAH)  المؤسسة العمومية الإستشفائية عي ر البيضاء - زردائري صالح 4 4002
+4339 EPH Etablissement Public Hospitalier AIN FEKROUN المؤسسة العمومية الإستشفائية عي ر الفكرون 4 4025
+4340 EPH Etablissement Public Hospitalier AIN M'LILA المؤسسة العمومية الإستشفائية عي ر مليلة 4 4003
+4341 EPH Etablissement Public Hospitalier MESKIANA المؤسسة العمومية الإستشفائية مسكيانة 4 4024
+4342 EPSP Etablissement Public de Santé de Proximité AIN BEIDA المؤسسة العمومية للصحة الجوارية عي ر البيضاء 4 4002
+4343 EPSP Etablissement Public de Santé de Proximité AIN M'LILA المؤسسة العمومية للصحة الجوارية عي ر أمليلة 4 4003
+4344 EPSP Etablissement Public de Santé de Proximité OUM EL BOUAGHI المؤسسة العمومية للصحة الجوارية أم البواق ي 4 4001
+4345 EHS Etablissement Hospitalier Spécialisé en Psychiatrie EL MADHER المؤسسة الإستشفائية المتخصصة قري الامراض العقلية المعذر 5 5007
+4346 EHS Etablissement Hospitalier Spécialisé Mère et Enfant Meriem Bouatoura المؤسسة الإستشفائية المتخصصة الأم والطفل مريم بوعتورة 5 5001
+4347 EPH Etablissement Public Hospitalier AIN TOUTA المؤسسة العمومية الإستشفائية عي ر التوتة 5 5045
+4348 EPH Etablissement Public Hospitalier ARRIS 1  المؤسسة العمومية الإستشفائية أريس1 5 5016
+4349 EPH Etablissement Public Hospitalier ARRIS 2  المؤسسة العمومية الإستشفائية أريس2 5 5016
+4350 EPH Etablissement Public Hospitalier BARIKA (MOHAMED BOUDIAF)   المؤسسة العمومية الإستشفائية بريكة- محمد بوضياف 5 5042
+
+--- Page 7 ---
+4351 EPH Etablissement Public Hospitalier BARIKA (SLIMANE AMIRAT)  المؤسسة العمومية الإستشفائية بريكة-  سليمان أعمن ات 5 5042
+4352 EPH Etablissement Public Hospitalier  (ALI NEMER)  MEROUANA  المؤسسة العمومية الإستشفائية  علىي نمر - مروانة 5 5004
+4353 EPH Etablissement Public Hospitalier MEROUANA (ZIZA MASSIKA)   المؤسسة العمومية الإستشفائية مروانة-  زيزة مسيكة 5 5004
+4354 EPH Etablissement Public Hospitalier N'Gaous المؤسسة العمومية الإستشفائية نقاوس 5 5009
+4355 EPSP Etablissement Public de Santé de Proximité AIN DJASSER سرالمؤسسة العمومية للصحة الجوارية عي ر جا 5 5019
+4356 EPSP Etablissement Public de Santé de Proximité Ain Touta المؤسسة العمومية للصحة الجوارية عي ر التوتة 5 5045
+4357 EPSP Etablissement Public de Santé de Proximité ARRIS المؤسسة العمومية للصحة الجوارية أريس 5 5016
+4358 EPSP Etablissement Public de Santé de Proximité BARIKA المؤسسة العمومية للصحة الجوارية بريكة 5 5042
+4359 EPSP Etablissement Public de Santé de Proximité BATNA المؤسسة العمومية للصحة الجوارية باتنة 5 5001
+4360 EPSP Etablissement Public de Santé de Proximité EL MADHER المؤسسة العمومية للصحة الجوارية المعذر 5 5007
+4361 EPSP Etablissement Public de Santé de Proximité MEROUANA المؤسسة العمومية للصحة الجوارية مروانة 5 5004
+4362 EPSP Etablissement Public de Santé de Proximité N`GAOUS المؤسسة العمومية للصحة الجوارية نقاوس 5 5009
+4363 EPSP Etablissement Public de Santé de Proximité RAS EL AIOUN المؤسسة العمومية للصحة الجوارية رأس العيون 5 5051
+4364 EPSP Etablissement Public de Santé de Proximité THENIET EL ABED المؤسسة العمومية للصحة الجوارية ثنية العابد 5 5047
+4365 EHS Etablissement Hospitalier Spécialisé Ilmaten المؤسسة الإستشفائية المتخصصة الماتن 6 6018
+4366 EPH Etablissement Public Hospitalier AKBOU المؤسسة العمومية الإستشفائية أقبو 6 6025
+4367 EPH Etablissement Public Hospitalier AMIZOUR المؤسسة العمومية الإستشفائية أمن رور 6 6002
+4368 EPH Etablissement Public Hospitalier d'Aokas المؤسسة العمومية الإستشفائية بأوقاس 6 6022
+4369 EPH Etablissement Public Hospitalier KHERRATA المؤسسة العمومية الإستشفائية خراطة 6 6044
+4370 EPH Etablissement Public Hospitalier SIDI AICH المؤسسة العمومية الإستشفائية سيدي عيش 6 6039
+4371 EPSP Etablissement Public de Santé de Proximité ADEKAR المؤسسة العمومية للصحة الجوارية أدكار 6 6024
+4372 EPSP Etablissement Public de Santé de Proximité AOKAS المؤسسة العمومية للصحة الجوارية أوقاس 6 6022
+4373 EPSP Etablissement Public de Santé de Proximité BEJAIA المؤسسة العمومية للصحة الجوارية بجاية 6 6001
+4374 EPSP Etablissement Public de Santé de Proximité El kseur BEJAIA صرالمؤسسة العمومية للصحة الجوارية الق 6 6040
+4375 EPSP Etablissement Public de Santé de Proximité KHERRATA المؤسسة العمومية للصحة الجوارية خراطة 6 6044
+4376 EPSP Etablissement Public de Santé de Proximité SEDDOUK المؤسسة العمومية للصحة الجوارية صدوق 6 6026
+4377 EPSP Etablissement Public de Santé de Proximité SIDI AICH المؤسسة العمومية للصحة الجوارية سيدي عيش 6 6039
+4378 EPSP Etablissement Public de Santé de Proximité TAZMALT المؤسسة العمومية للصحة الجوارية تزمالت 6 6027
+4379 EHS Etablissement Hospitalier Spécialisé Mère en Enfant Biskra المؤسسة الاستشفائية المتخصصة قري طب النساء بسكرة 7 7001
+4380 EHS Etablissement Hospitalier Spécialisé en Ophtalmologie biskra المؤسسة الإستشفائية المتخصصة قري طب العيون بسكرة 7 7001
+4381 EPH Etablissement Public Hospitalier TOLGA المؤسسة العمومية الإستشفائية طولقة 7 7021
+4382 EPSP Etablissement Public de Santé de Proximité Biskra المؤسسة العمومية للصحة الجوارية بسكرة 7 7001
+4383 EPSP Etablissement Public de Santé de Proximité DJEMORAH المؤسسة العمومية للصحة الجوارية جمورة 7 7020
+4384 EPSP Etablissement Public de Santé de Proximité DOUCEN المؤسسة العمومية للصحة الجوارية الدوسن 51 7009
+4385 EPSP Etablissement Public de Santé de Proximité El Kantara المؤسسة العمومية للصحة الجوارية القنطرة 7 7017
+4386 EPSP Etablissement Public de Santé de Proximité OULED DJELLAL المؤسسة العمومية للصحة الجوارية أولاد جلال 51 7005
+4387 EPSP Etablissement Public de Santé de Proximité RAS EL MIAAD المؤسسة العمومية للصحة الجوارية رأس الميعاد 51 7006
+4388 EPSP Etablissement Public de Santé de Proximité SIDI OKBA المؤسسة العمومية للصحة الجوارية سيدي عقبة 7 7011
+4389 EPSP Etablissement Public de Santé de Proximité Tolga المؤسسة العمومية للصحة الجوارية طولقة 7 7021
+
+--- Page 8 ---
+4390 EPSP Etablissement Public de Santé de Proximité ZRIBET EL OUED المؤسسة العمومية للصحة الجوارية زريبة الوادي 7 7015
+4391 EHS Etablissement Hospitalier Spécialisé Mère et Enfant mohamed boudiaf Bécharالمؤسسة الإستشفائية المتخصصة الام و الطفل محمد بوضياف بشار 8 8001
+4392 EPH Etablissement Public Hospitalier ABADLA المؤسسة العمومية الإستشفائية العبادلة 8 8017
+4393 EPH Etablissement Public Hospitalier BENI ABBES المؤسسة العمومية الإستشفائية بنري عباس 52 8007
+4394 EPSP Etablissement Public de Santé de Proximité ABADLA المؤسسة العمومية للصحة الجوارية العبادلة 8 8017
+4395 EPSP Etablissement Public de Santé de Proximité Béchar المؤسسة العمومية للصحة الجوارية بشار 8 8001
+4396 EPSP Etablissement Public de Santé de Proximité BENI ABBES المؤسسة العمومية للصحة الجوارية بنري عباس 52 8007
+4397 EPSP Etablissement Public de Santé de Proximité BENI OUNIF المؤسسة العمومية للصحة الجوارية بنري ونيف 8 8021
+4398 EPSP Etablissement Public de Santé de Proximité Kerzaz المؤسسة العمومية للصحة الجوارية كرزاز 52 8018
+4399 EPSP Etablissement Public de Santé de Proximité Taghit المؤسسة العمومية للصحة الجوارية تاغيت 8 8013
+4400 EPSP Etablissement Public de Santé de Proximité Tebelbala المؤسسة العمومية للصحة الجوارية تبلبالة 52 8012
+4401 EHS Etablissement Hospitalier Spécialisé Centre Anti Cancer Blida المؤسسة الإستشفائية المتخصصة قري مكافحة أمراض الشطان البليدة 9 9001
+4402 EHS Etablissement Hospitalier Spécialisé en Psychiatrie (FRANTZ FANON ) المؤسسة الإستشفائية المتخصصة قري الأمراض العقلية فرانس فانون 9 9001
+4403 EPH Etablissement Public Hospitalier BOUFARIK المؤسسة العمومية الإستشفائية بوفاريك 9 9020
+4404 EPH Etablissement Public Hospitalier El Affroun المؤسسة العمومية الإستشفائية العفرون 9 9010
+4405 EPH Etablissement Public Hospitalier Meftah المؤسسة العمومية الإستشفائية مفتاح 9 9018
+4406 EPSP Etablissement Public de Santé de Proximité Bouinane المؤسسة العمومية للصحة الجوارية البوينان 9 9003
+4407 EPSP Etablissement Public de Santé de Proximité Larbaa المؤسسة العمومية للصحة الجوارية الأربعاء 9 9021
+4408 EPSP Etablissement Public de Santé de Proximité Mouzaia المؤسسة العمومية للصحة الجوارية موزاية 9 9016
+4409 EPSP Etablissement Public de Santé de Proximité Ouled Aiche المؤسسة العمومية للصحة الجوارية أولاد يعيش 9 9001
+4410 EPH Etablissement Public Hospitalier Ain Bessam المؤسسة العمومية الإستشفائية عي ر بسام 10 10035
+4411 EPH Etablissement Public Hospitalier LAKHDARIA المؤسسة العمومية الإستشفائية الأخصررية 10 10013
+4412 EPH Etablissement Public Hospitalier M'chedallah اللهالمؤسسة العمومية الإستشفائية مشد 10 10037
+4413 EPH Etablissement Public Hospitalier SOUR EL GHOZLANE المؤسسة العمومية الإستشفائية سور الغزلان 10 10038
+4414 EPSP Etablissement Public de Santé de Proximité AHNIF المؤسسة العمومية للصحة الجوارية أحنيف 10 10006
+4415 EPSP Etablissement Public de Santé de Proximité AIN BESSAM المؤسسة العمومية للصحة الجوارية عي ر بسام 10 10035
+4416 EPSP Etablissement Public de Santé de Proximité BOUIRA المؤسسة العمومية للصحة الجوارية البويرة 10 10001
+4417 EPSP Etablissement Public de Santé de Proximité LAKHDARIA المؤسسة العمومية للصحة الجوارية الأخصررية 10 10013
+4418 EPSP Etablissement Public de Santé de Proximité SOUR EL GHOZLANE المؤسسة العمومية للصحة الجوارية سور الغزلان 10 10038
+4419 EPH Etablissement Public Hospitalier insalah المؤسسة العمومية الإستشفائية ان صالح 53 11008
+4421 EPSP Etablissement Public de Santé de Proximité IN GUEZZAM المؤسسة العمومية للصحة الجوارية إن قزام 54 11004
+4422 EPSP Etablissement Public de Santé de Proximité IN M'GUEL المؤسسة العمومية للصحة الجوارية إن أمقل 11 11009
+4423 EPSP Etablissement Public de Santé de Proximité IN SALAH المؤسسة العمومية للصحة الجوارية إن صالح 53 11008
+4424 EPSP Etablissement Public de Santé de Proximité TAMENGHASSET المؤسسة العمومية للصحة الجوارية تامنغست 11 11001
+4426 EPSP Etablissement Public de Santé de Proximité TIN ZAOUATINE المؤسسة العمومية للصحة الجوارية تي ر زواتي ر 54 11007
+4427 EHS Etablissement Hospitalier Spécialisé GYNECOLOGIE OBSTETRIQUE KHALDI ABDELAZIZالمؤسسة الإستشفائية المتخصصة قري طب النساء و التوليد مستشفر خالدي عبد العزيز 12 12001
+4428 EPH Etablissement Public Hospitalier BIR EL ATER المؤسسة العمومية الإستشفائية بن  العاتر 12 12002
+4429 EPH Etablissement Public Hospitalier CHERIA المؤسسة العمومية الإستشفائية الشريعة 12 12003
+4430 EPH Etablissement Public Hospitalier EL AOUINET المؤسسة العمومية الإستشفائية العوينات 12 12005
+
+--- Page 9 ---
+4431 EPH Etablissement Public Hospitalier MORSOT المؤسسة العمومية الإستشفائية مرسط 12 12012
+4432 EPH Etablissement Public Hospitalier OUENZA المؤسسة العمومية الإستشفائية الونزة 12 12019
+4433 EPSP Etablissement Public de Santé de Proximité BIR EL ATER المؤسسة العمومية للصحة الجوارية بن  العاتر 12 12002
+4434 EPSP Etablissement Public de Santé de Proximité CHERIA المؤسسة العمومية للصحة الجوارية الشريعة 12 12003
+4435 EPSP Etablissement Public de Santé de Proximité EL AOUINET مدير المؤسسة العمومية للصحة الجوارية لعوينات 12 12005
+4436 EPSP Etablissement Public de Santé de Proximité NEGRINE المؤسسة العمومية للصحة الجوارية نقرين 12 12009
+4437 EPSP Etablissement Public de Santé de Proximité OUENZA المؤسسة العمومية للصحة الجوارية الونزة 12 12019
+4438 EPSP Etablissement Public de Santé de Proximité TEBESSA المؤسسة العمومية للصحة الجوارية تبسة 12 12001
+4439 EHS Etablissement Hospitalier Spécialisé MERE ET ENFANT TLEMCEN المؤسسة الإستشفائية المتخصصة مستشفر الأم والطفل تلمسان 13 13001
+4440 EPH Etablissement Public Hospitalier NEDROMA المؤسسة العمومية الإستشفائية ندرومة 13 13040
+4441 EPSP Etablissement Public de Santé de Proximité BAB EL ASSA المؤسسة العمومية للصحة الجوارية باب العسة 13 13001
+4442 EPSP Etablissement Public de Santé de Proximité GHAZAOUET المؤسسة العمومية للصحة الجوارية الغزوات 13 13007
+4443 EPSP Etablissement Public de Santé de Proximité MAGHNIA المؤسسة العمومية للصحة الجوارية مغنية 13 13027
+4444 EPSP Etablissement Public de Santé de Proximité OULED MIMOUNE المؤسسة العمومية للصحة الجوارية أولاد ميمون 13 13013
+4445 EPSP Etablissement Public de Santé de Proximité REMCHI المؤسسة العمومية للصحة الجوارية الرمشري 13 13004
+4446 EPSP Etablissement Public de Santé de Proximité SEBDOU المؤسسة العمومية للصحة الجوارية سبدو 13 13035
+4447 EPSP Etablissement Public de Santé de Proximité TLEMCEN المؤسسة العمومية للصحة الجوارية تلمسان 13 13001
+4448 EHS Etablissement Hospitalier Spécialisé EN GYNECO OBSTETRIQUE ZAHRA AOURAI DE TIARETالمؤسسة الإستشفائية المتخصصة قري طب النساء و التوليد زهرة عوراي تيارت 14 14001
+4449 EHS Etablissement Hospitalier Spécialisé PSYCHIATRIQUE TIARET المؤسسة الإستشفائية المتخصصة قري الأمراض العقلية تيارت 14 14001
+4450 EHS Etablissement Hospitalier Spécialisé en ORL  Stomatologie et Ophtalmologie de Tiaretالمؤسسة الإستشفائية المتخصصة قري أمراض العيون الأذن ، الأنف ، الحنجرة و جراحة الأسنان تيارت 14 14001
+4451 EPH Etablissement Public Hospitalier FRENDA المؤسسة العمومية الإستشفائية فرندة 14 14027
+4452 EPH Etablissement Public Hospitalier KSAR CHELLALA المؤسسة العمومية الإستشفائية قصر الشلالة 14 14001
+4453 EPH Etablissement Public Hospitalier MAHDIA المؤسسة العمومية الإستشفائية مهدية 14 14015
+4454 EPH Etablissement Public Hospitalier SOUGUEUR TIARET المؤسسة العمومية الإستشفائية سوقر تيارت 14 14016
+4455 EPSP Etablissement Public de Santé de Proximité AIN DEHEB المؤسسة العمومية للصحة الجوارية عي ر الذهب 14 14006
+4456 EPSP Etablissement Public de Santé de Proximité AIN EL HADID المؤسسة العمومية للصحة الجوارية عي ر الحديد 14 14001
+4457 EPSP Etablissement Public de Santé de Proximité AIN KERMES المؤسسة العمومية للصحة الجوارية عي ر كرمس 14 14028
+4458 EPSP Etablissement Public de Santé de Proximité KASR CHELLALA المؤسسة العمومية للصحة الجوارية قصر الشلالة 14 14001
+4459 EPSP Etablissement Public de Santé de Proximité MAHDIA المؤسسة العمومية للصحة الجوارية مهدية 14 14015
+4460 EPSP Etablissement Public de Santé de Proximité RAHOUIA TIARET المؤسسة العمومية للصحة الجوارية الرحوية 14 14014
+4461 EPSP Etablissement Public de Santé de Proximité TIARET المؤسسة العمومية للصحة الجوارية تيارت 14 14001
+4462 EHS Etablissement Hospitalier Spécialisé CLINIQUE DE CHIRURGIE CARDIAQUE PEDIATRIQUE DRAA BEN KHEDDAالمؤسسة الإستشفائية المتخصصة عيادة جراحة القلب للأطفال ذراع بن خدة 15 15001
+4463 EHS Etablissement Hospitalier Spécialisé Gynécologie Obstétrique Sbihi Tassaditالمؤسسة الإستشفائية المتخصصة قري طب النساء و التوليد صبحى تسعديت 15 15001
+4464 EHS Etablissement Hospitalier Spécialisé Psychiatrie Fernane Hanafi المؤسسة الإستشفائية المتخصصة قري الامراض العقلية فرنان حنفري 15 15001
+4465 EPH Etablissement Public Hospitalier AIN EL HAMMAM المؤسسة العمومية الإستشفائية عي ر الحمام 15 15001
+4466 EPH Etablissement Public Hospitalier AZEFFOUNE المؤسسة العمومية الإستشفائية أزفون 15 15037
+4467 EPH Etablissement Public Hospitalier AZZAZGA المؤسسة العمومية الإستشفائية عزازقة 15 15018
+4468 EPH Etablissement Public Hospitalier BOGHNI المؤسسة العمومية الإستشفائية بوغنري 15 15040
+4469 EPH Etablissement Public Hospitalier DRAA EL MIZANE المؤسسة العمومية الإستشفائية ذراع المن ران 15 15001
+
+--- Page 10 ---
+4470 EPH Etablissement Public Hospitalier LARBAA NATH IRATEN المؤسسة العمومية الإستشفائية الأربعاء ناث ايراثن 15 15021
+4471 EPH Etablissement Public Hospitalier TIGZIRT المؤسسة العمومية الإستشفائية تيقزيرت 15 15038
+4472 EPSP Etablissement Public de Santé de Proximité  AZEFFOUNE المؤسسة العمومية للصحة الجوارية أزفون 15 15037
+4473 EPSP Etablissement Public de Santé de Proximité AZZAZGA المؤسسة العمومية للصحة الجوارية عزازقة 15 15001
+4474 EPSP Etablissement Public de Santé de Proximité BOGHNI المؤسسة العمومية للصحة الجوارية بوغنر 15 15040
+4475 EPSP Etablissement Public de Santé de Proximité DRAA BEN KHEDDA المؤسسة العمومية للصحة الجوارية ذراع بن خدة 15 15001
+4476 EPSP Etablissement Public de Santé de Proximité IFFERHOUNENE المؤسسة العمومية للصحة الجوارية إيفرحونن 15 15017
+4477 EPSP Etablissement Public de Santé de Proximité LARBAA NATH IRATENE المؤسسة العمومية للصحة الجوارية الأربعاء نات إيراثن 15 15001
+4478 EPSP Etablissement Public de Santé de Proximité Ouacif المؤسسة العمومية للصحة الجوارية واسيف 15 15048
+4479 EPSP Etablissement Public de Santé de Proximité OUAGUENOUN المؤسسة العمومية للصحة الجوارية واقنون 15 15024
+4480 EHS Etablissement Hospitalier Spécialisé Anti Cancéreux Pierre Et Marie Curieالمؤسسة الإستشفائية المتخصصة قري مكافحة الشطان مركز بيار و ماري كوري 16 16002
+4481 EHS Etablissement Hospitalier Spécialisé Ben Aknoun المؤسسة الإستشفائية المتخصصة قري التجهن ر الحركي بن عكنون 16 16022
+4483 EHS Etablissement Hospitalier Spécialisé Chirurgie Cardiaque Clinique Mohamed ABDERRAHMANIالمؤسسة الإستشفائية المتخصصة قري جراحة القلب عيادة عبد الرحمائري محمد 16 16009
+4484 EHS Etablissement Hospitalier Spécialisé Hôpital mère et enfant المؤسسة الإستشفائية االمتخصصة مستشفر الأم والطفل للجزائر 16 16001
+4485 EHS Etablissement Hospitalier Spécialisé EN MALADIES INFECTIEUSES Dr EL HADI FLICIالمؤسسة الإستشفائية المتخصصة قر الامراض المعدية مستشفر الدكتور الهادي فليشي 16 16008
+4486 EHS Etablissement Hospitalier Spécialisé DES URGENCES MEDICO CHIRURGICALES SALIM ZEMIRLIالمؤسسة الإستشفائية المتخصصة مستشفر الاستعجلات الطبية و الجراحية سليم زمن لي 16 16001
+4487 EHS Etablissement Hospitalier Spécialisé CNMS DR MAOUCHE MOHAND AMOKRANEالمؤسسة الإستشفائية المتخصصة مستشفر أمراض القلب والاوعية والطب الرياضري الدكتور معوش محمد أمقران 16 16001
+4488 EHS Etablissement Hospitalier Spécialisé NEURO CHIRURGICAL ALI AIT IDIR المؤسسة الإستشفائية المتخصصة قري جراحة الاعصاب علىي أيت إدير 16 16007
+4489 EHS Etablissement Hospitalier Spécialisé PSYCHIATRIQUE DRID HOCINE المؤسسة الإستشفائية المتخصصة مستشفر الامراض العقلية دريد حسي ر 16 16018
+4490 EST Institut Pasteur d'Algerie معهد باستور الجزائر 16 16023
+4491 EHS Etablissement Hospitalier Spécialisé REEDUCATION READAPTATION AZUR PLAGE (STAOUELI)المؤسسة الاستشفائية المتخصصة قري اعادة تربية الاعضاء و التكييف الوظيفري 16 16045
+4492 EHS Etablissement Hospitalier Spécialisé Rééducation Réadaptation Fonctionnelle Kasdi Merbah Tixeraineالمؤسسة الإستشفائية المتخصصة قاصدي مرباح تقصراين 16 16053
+4493 EPH Etablissement Public Hospitalier AIN TAYA المؤسسة العمومية الإستشفائية عي ر طاية 16 16038
+4494 EPH Etablissement Public Hospitalier EL BIAR (DJILLALI BELKHENCHIR)  المؤسسة العمومية الإستشفائية الابيار- جيلال بلخنشن 16 16010
+4495 EPH Etablissement Public Hospitalier EL HARRACH ( HASSAN BADI)  المؤسسة العمومية الإستشفائية الحراش- حسان بادي 16 16013
+4496 EPH Etablissement Public Hospitalier ROUIBA المؤسسة العمومية الإستشفائية رويبة 16 16042
+4497 EPH Etablissement Public Hospitalier ZERALDA   المؤسسة العمومية الإستشفائية زرالدة- بوقاسم طيب 16 16046
+4498 EPSP Etablissement Public de Santé de Proximité BAB EL OUED المؤسسة العمومية للصحة الجوارية باب الوادي 16 16005
+4499 EPSP Etablissement Public de Santé de Proximité BARAKI المؤسسة العمومية للصحة الجوارية براق ي 16 16014
+4500 EPSP Etablissement Public de Santé de Proximité BORDJ EL KIFFAN (DERGANA) المؤسسة العمومية للصحة الجوارية برج الكيفان درقانة 16 16030
+4501 EPSP Etablissement Public de Santé de Proximité BOUZAREAH المؤسسة العمومية للصحة الجوارية بوزريعة 16 16011
+4502 EPSP Etablissement Public de Santé de Proximité CHERAGA ( BOUCHAOUI)  المؤسسة العمومية للصحة الجوارية الشراقة - بوشاوي 16 16050
+4503 EPSP Etablissement Public de Santé de Proximité KOUBA (LES ANNASSER)  المؤسسة العمومية للصحة الجوارية القبة- العناصر 16 16018
+4504 EPSP Etablissement Public de Santé de Proximité REGHAIA المؤسسة العمومية للصحة الجوارية الرغاية 16 16043
+4505 EPSP Etablissement Public de Santé de Proximité ZERALDA المؤسسة العمومية للصحة الجوارية زرالدة 16 16046
+4506 EHS Etablissement Hospitalier Spécialisé MERE ET ENFANT DR KAKI MOHAMED DJELFAالمؤسسة الإستشفائية االمتخصصة الأم والطفل الدكتور كاكي محمد الجلفة 17 17001
+4507 EPH Etablissement Public Hospitalier AIN OUSSARA المؤسسة العمومية الإستشفائية عي ر وسارة 17 17031
+4508 EPH Etablissement Public Hospitalier de HASSI BAHBAH المؤسسة العمومية الإستشفائية حاسي بحبح 17 17004
+4509 EPH Etablissement Public Hospitalier MESSAAD المؤسسة العمومية الإستشفائية مسعد 17 17017
+
+--- Page 11 ---
+4510 EPSP Etablissement Public de Santé de Proximité Ain Ouassara المؤسسة العمومية للصحة الجوارية عي ر وسارة 17 17031
+4511 EPSP Etablissement Public de Santé de Proximité DJELFA المؤسسة العمومية للصحة الجوارية الجلفة 17 17001
+4512 EPSP Etablissement Public de Santé de Proximité GUETTARA المؤسسة العمومية للصحة الجوارية القطارة 17 17018
+4513 EPSP Etablissement Public de Santé de Proximité HASSI BAHBAH المؤسسة العمومية للصحة الجوارية حاسي بحبح 17 17004
+4514 EPSP Etablissement Public de Santé de Proximité MESSAAD المؤسسة العمومية للصحة الجوارية مسعد 17 17017
+4515 EHS Etablissement Hospitalier Spécialisé REEDUCATION FONCTIONNELLE TEXANNAالمؤسسة الإستشفائية االمتخصصة مستشفر اعادة الن بية و التكييف الوظيفري تكسانة 18 18024
+4516 EPH Etablissement Public Hospitalier EL MILIA المؤسسة العمومية الإستشفائية الميلية 18 18009
+4517 EPH Etablissement Public Hospitalier TAHER  المؤسسة العمومية الإستشفائية الطاهن 18 18005
+4518 EPSP Etablissement Public de Santé de Proximité BOUCIF OULED ASKEUR المؤسسة العمومية للصحة الجوارية بوسيف أولاد عسكر 18 18019
+4519 EPSP Etablissement Public de Santé de Proximité DJIMLA المؤسسة العمومية للصحة الجوارية جيملة 18 18017
+4520 EPSP Etablissement Public de Santé de Proximité JIJEL المؤسسة العمومية للصحة الجوارية جيجل 18 18001
+4521 EPSP Etablissement Public de Santé de Proximité SIDI MAAROUF المؤسسة العمومية للصحة الجوارية سيدي معروف 18 18010
+4522 EPSP Etablissement Public de Santé de Proximité TAHER  المؤسسة العمومية للصحة الجوارية الطاهن 18 18005
+4523 EPSP Etablissement Public de Santé de Proximité ZIAMA MANSOURIAH المؤسسة العمومية للصحة الجوارية زيامة منصورية 18 18004
+4524 EHS Etablissement Hospitalier Spécialisé CENTRE ANTI CONCEREUX SETIF المؤسسة الإستشفائية المتخصصة قري مكافحة أمراض الشطان سطيف 19 19001
+4525 EHS Etablissement Hospitalier Spécialisé MERE ET ENFANT EL EULMA المؤسسة الإستشفائية المتخصصة الأم والطفل العلمة 19 19020
+4526 EHS Etablissement Hospitalier Spécialisé REEDUCATION FONCTIONNELLE RAS EL MAالمؤسسة الإستشفائية المتخصصة قري اعادة الن بية و التكييف الوظيفري رأس الماء 19 19017
+4527 EHS Etablissement Hospitalier Spécialisé Psychiatrie AIN ABESSA المؤسسة الإستشفائية المتخصصة قري الامراض العقلية عي ر عباسة 19 19014
+4528 EPH Etablissement Public Hospitalier  Ain el kebira المؤسسة العمومية الإستشفائية عي ر الكبن ة 19 19002
+4529 EPH Etablissement Public Hospitalier AIN OULMENE المؤسسة العمومية الاستشفائية عي ر ولمان 19 19028
+4530 EPH Etablissement Public Hospitalier BENI OUARTILENE المؤسسة العمومية الإستشفائية بنري ورتيلان 19 19022
+4531 EPH Etablissement Public Hospitalier BOUGAA المؤسسة العمومية الإستشفائية بوقاعة 19 19043
+4532 EPH Etablissement Public Hospitalier EL EULMA المؤسسة العمومية الإستشفائية العلمة 19 19020
+4533 EPSP Etablissement Public de Santé de Proximité AIN ABESSA المؤسسة العمومية للصحة الجوارية عي ر عباسة 19 19014
+4534 EPSP Etablissement Public de Santé de Proximité AIN AZEL المؤسسة العمومية للصحة الجوارية عي ر ازال 19 19040
+4535 EPSP Etablissement Public de Santé de Proximité AIN EL KEBIRA المؤسسة العمومية للصحة الجوارية عي ر الكبن ة 19 19002
+4536 EPSP Etablissement Public de Santé de Proximité AIN OULMENE المؤسسة العمومية للصحة الجوارية عي ر ولمان 19 19028
+4537 EPSP Etablissement Public de Santé de Proximité BENI OURTILANE المؤسسة العمومية للصحة الجوارية بنري ورتيلان 19 19022
+4538 EPSP Etablissement Public de Santé de Proximité BOUGAA المؤسسة العمومية للصحة الجوارية بوقاعة 19 19043
+4539 EPSP Etablissement Public de Santé de Proximité EL EULMA المؤسسة العمومية للصحة الجوارية العلمة 19 19020
+4540 EPSP Etablissement Public de Santé de Proximité HAMMAM SOKHNA المؤسسة العمومية للصحة الجوارية حمام السخنة 19 19032
+4541 EPSP Etablissement Public de Santé de Proximité SETIF المؤسسة العمومية للصحة الجوارية سطيف 19 19001
+4542 EHS Etablissement Hospitalier Spécialisé GYNECO OBSTETRIQUE HAMDANE BAKHTA SAIDAالمؤسسة الإستشفائية المتخصصة قري طب النساء و التوليد مستشفر حمدان بختة 20 20001
+4543 EPSP Etablissement Public de Santé de Proximité EL HASSASNA المؤسسة العمومية للصحة الجوارية الحساسنة 20 20010
+4544 EPSP Etablissement Public de Santé de Proximité MOULAY LARBI المؤسسة العمومية للصحة الجوارية مولاي العرئ ي 20 20005
+4545 EPSP Etablissement Public de Santé de Proximité SAIDA المؤسسة العمومية للصحة الجوارية سعيدة 20 20001
+4546 EPSP Etablissement Public de Santé de Proximité SIDI BOUBEKEUR المؤسسة العمومية للصحة الجوارية سيدي بوبكر 20 20009
+4547 EHS Etablissement Hospitalier Spécialisé PSYCHIATRIQUE EL HARROUCHEالمؤسسة الإستشفائية المتخصصة قري الأمراض العقلية بوغاغة البغدادي الحروش 21 21016
+4548 EPH Etablissement Public Hospitalier Mohamed denden Azzaba المؤسسة العمومية الإستشفائية محمد دندان عزابة 21 21004
+
+--- Page 12 ---
+4549 EPH Etablissement Public Hospitalier COLLO المؤسسة العمومية الإستشفائية القل 21 21010
+4550 EPH Etablissement Public Hospitalier EL HARROUCHE المؤسسة العمومية الإستشفائية الحروش 21 21016
+4551 EPH Etablissement Public Hospitalier TAMALOUS المؤسسة العمومية الإستشفائية تمالوس 21 21026
+4552 EPSP Etablissement Public de Santé de Proximité AIN KECHRA المؤسسة العمومية للصحة الجوارية عي ر قشرة 21 21027
+4553 EPSP Etablissement Public de Santé de Proximité BEN AZZOUZ المؤسسة العمومية للصحة الجوارية بن عزوز 21 21008
+4554 EPSP Etablissement Public de Santé de Proximité OULED ATTIA المؤسسة العمومية للصحة الجوارية أولاد عطية 21 21013
+4555 EPSP Etablissement Public de Santé de Proximité SIDI MEZGHICHE المؤسسة العمومية للصحة الجوارية سيدي مزغيش 21 21019
+4556 EPSP Etablissement Public de Santé de Proximité SKIKDA المؤسسة العمومية للصحة الجوارية سكيكدة 21 21001
+4558 EHS Etablissement Hospitalier Spécialisé Gynécologie Obstétrique Sidi Bel Abbesالمؤسسة الإستشفائية المتخصصة قر طب النساء و التوليد سيدي بلعباس 22 22001
+4559 EHS Etablissement Hospitalier Spécialisé En Psychiatrie El Moudjahid Benzaidi Abdelkader De Sidi Bel Abbesالمؤسسة الاستشفائية المتخصصة للامراض العقلية بن زايدي عبد القادر بسيدي بلعباس 22 22001
+4560 EPH Etablissement Public Hospitalier BENBADIS المؤسسة العمومية الإستشفائية ابن باديس 22 22045
+4561 EPH Etablissement Public Hospitalier SFISEF المؤسسة العمومية الإستشفائية السفن رف 22 22029
+4562 EPSP Etablissement Public de Santé de Proximité AIN EL BERD المؤسسة العمومية للصحة الجوارية عي ر الن د 22 22028
+4563 EPSP Etablissement Public de Santé de Proximité LAMTAR المؤسسة العمومية للصحة الجوارية لمطار 22 22034
+4564 EPSP Etablissement Public de Santé de Proximité MARHOUM المؤسسة العمومية للصحة الجوارية مرحوم 22 22010
+4565 EPSP Etablissement Public de Santé de Proximité SFISEF المؤسسة العمومية للصحة الجوارية السفن رف 22 22029
+4566 EPSP Etablissement Public de Santé de Proximité SIDI BEL ABBES المؤسسة العمومية للصحة الجوارية سيدي بلعباس 22 22001
+4567 EPSP Etablissement Public de Santé de Proximité TELAGH المؤسسة العمومية للصحة الجوارية تلاغ 22 22005
+4568 EPSP Etablissement Public de Santé de Proximité TENIRA المؤسسة العمومية للصحة الجوارية تنن ة 22 22017
+4569 EHS Etablissement hospitalier spécialisé génécologie obstétrique et pédiatrie ELBOUNIالمؤسسة الإستشفائية المختصصة قري طب النساء و التوليد و الاطفال مستشفر البوئري 23 23005
+4570 EHS Etablissement Hospitalier Spécialisé Psychiatrique Errazi Annaba المؤسسة الإستشفائية المتخصصة أبوبكر الرازي عنابة 23 23001
+4571 EHS Etablissement Hospitalier Spécialisé Rééducation Réadaptation Fonctionnelle Seraidiالمؤسسة الإستشفائية المتخصصة مستشفر اعادة الن بية و التكييف الوظيفري سرايدي 23 23008
+4572 EPH Etablissement Public Hospitalier AIN BERDA المؤسسة العمومية الإستشفائية عي ر الباردة 23 23009
+4573 EPH Etablissement Public Hospitalier CHETTAIBI المؤسسة العمومية الإستشفائية شطاين ي 23 23010
+4574 EPSP Etablissement Public de Santé de Proximité ANNABA المؤسسة العمومية للصحة الجوارية عنابة 23 23001
+4575 EPSP Etablissement Public de Santé de Proximité BERRAHAL المؤسسة العمومية للصحة الجوارية برحال 23 23002
+4576 EPSP Etablissement Public de Santé de Proximité EL HADJAR المؤسسة العمومية للصحة الجوارية الحجار 23 23003
+4577 EPH Etablissement Public Hospitalier AIN LARBI GUELMA المؤسسة العمومية الإستشفائية عي ر العرئ ي قالمة 24 24023
+4578 EPH Etablissement Public Hospitalier BOUCHEGOUF GUELMA المؤسسة العمومية الإستشفائية بوشقوف قالمة 24 24025
+4579 EPSP Etablissement Public de Santé de Proximité BOUCHEGOUF المؤسسة العمومية للصحة الجوارية بوشقوف 24 24025
+4580 EPSP Etablissement Public de Santé de Proximité GUELMA المؤسسة العمومية للصحة الجوارية قالمة 24 24001
+4581 EPSP Etablissement Public de Santé de Proximité OUED ZNATI المؤسسة العمومية للصحة الجوارية وادي الزنائ ي 24 24004
+4582 EPSP Etablissement Public de Santé de Proximité TAMLOUKA المؤسسة العمومية للصحة الجوارية تاملوكة 24 24005
+4583 EPH Etablissement Public Hospitalier AIN BOUCIF المؤسسة العمومية الإستشفائية عي ر بوسيف 26 26004
+4584 EPH Etablissement Public Hospitalier BENI SLIMANE المؤسسة العمومية الإستشفائية بنري سليمان 26 26046
+4585 EPH Etablissement Public Hospitalier BERROUAGHIA المؤسسة العمومية الإستشفائية الن واقية 26 26047
+4586 EPH Etablissement Public Hospitalier KSAR EL BOUKHARI المؤسسة العمومية الإستشفائية قصر البخاري 26 26035
+4587 EPH Etablissement Public Hospitalier TABLAT المؤسسة العمومية الإستشفائية تابلاط 26 26052
+4588 EPSP Etablissement Public de Santé de Proximité BENI SLIMANE المؤسسة العمومية للصحة الجوارية بنري سليمان 26 26046
+
+--- Page 13 ---
+4589 EPSP Etablissement Public de Santé de Proximité BERROUAGHIA المؤسسة العمومية للصحة الجوارية الن واقية 26 26047
+4590 EPSP Etablissement Public de Santé de Proximité CHAHBOUNIA المؤسسة العمومية للصحة الجوارية الشهبونية 26 26038
+4591 EPSP Etablissement Public de Santé de Proximité CHELLALET EL ADHAOURA المؤسسة العمومية للصحة الجوارية شلالة العذاورة 26 26018
+4592 EPSP Etablissement Public de Santé de Proximité KSAR EL BOUKHARI المؤسسة العمومية للصحة الجوارية قصر البخاري 26 26035
+4593 EPSP Etablissement Public de Santé de Proximité TABLAT المؤسسة العمومية للصحة الجوارية تابلاط 26 26052
+4594 EPSP Etablissement Public de Santé de Proximité ZOUBIRIA MEDEA المؤسسة العمومية للصحة الجوارية الزوبن ية المدية 26 26001
+4595 EHS Etablissement Hospitalier Spécialisé Gynéco Obstétrique Leila Kheira المؤسسة الإستشفائية المتخصصة قري طب النساء و التوليد لالة خن ة 27 27001
+4596 EHS Etablissement Hospitalier Spécialisé HOPTIAL PSYCHIATRIQUE DE MOSTAGANEMالمؤسسة الإستشفائية المتخصصة قر الأمراض العقلية لمستغانم 27 27001
+4597 EPH Etablissement Public Hospitalier AIN TEDELES المؤسسة العمومية الإستشفائية عي ر تادلس 27 27007
+4598 EPH Etablissement Public Hospitalier SIDI ALI المؤسسة العمومية الإستشفائية سيدي علىي 27 27012
+4599 EPSP Etablissement Public de Santé de Proximité ACHAACHA المؤسسة العمومية للصحة الجوارية عشعاشة 27 27017
+4600 EPSP Etablissement Public de Santé de Proximité AIN TEDLES المؤسسة العمومية للصحة الجوارية عي ر تادلس 27 27007
+4601 EPSP Etablissement Public de Santé de Proximité MESRA المؤسسة العمومية للصحة الجوارية ماسرة 27 27022
+4602 EPSP Etablissement Public de Santé de Proximité MOSTAGANEM المؤسسة العمومية للصحة الجوارية مستغانم 27 27001
+4603 EPSP Etablissement Public de Santé de Proximité SIDI ALI المؤسسة العمومية للصحة الجوارية سيدي علىي 27 27012
+4604 EPSP Etablissement Public de Santé de Proximité SIDI LAKHDAR المؤسسة العمومية للصحة الجوارية سيدي لخصرر 27 27001
+4605 EHS Etablissement Hospitalier Spécialisé Rééducation Réadaptation Fonctionnelle Bouhanifiaالمؤسسة الإستشفائية المتخصصة مستشفر اعادة الن بية و التكييف الوظيفري بوحنيفية 29 29002
+4606 EPH Etablissement Public Hospitalier Ghriss المؤسسة العمومية الإستشفائية غريس 29 29012
+4607 EPH Etablissement Public Hospitalier MOHAMMADIA المؤسسة العمومية الإستشفائية المحمدية 29 29031
+4608 EPH Etablissement Public Hospitalier SIG المؤسسة العمومية الإستشفائية سيق 29 29026
+4609 EPH Etablissement Public Hospitalier TIGHENNIF المؤسسة العمومية الإستشفائية تيغنيف 29 29006
+4610 EPSP Etablissement Public de Santé de Proximité AOUF المؤسسة العمومية للصحة الجوارية عوف 29 29023
+4611 EPSP Etablissement Public de Santé de Proximité MASCARA المؤسسة العمومية للصحة الجوارية معسكر 29 29001
+4612 EPSP Etablissement Public de Santé de Proximité MOHAMMADIA المؤسسة العمومية للصحة الجوارية محمدية 29 29031
+4613 EPSP Etablissement Public de Santé de Proximité OUED EL ABTAL المؤسسة العمومية للصحة الجوارية وادي الابطال 29 29010
+4614 EPSP Etablissement Public de Santé de Proximité ZAHANA المؤسسة العمومية للصحة الجوارية زهانة 29 29030
+4615 EHS Etablissement Hospitalier Spécialisé HOPITAL MERE ET ENFANT TOUGGOURT المؤسسة الإستشفائية المتخصصة مستشفر الام و الطفل تقرت 55 30013
+4616 EPH Etablissement Public Hospitalier HASSI MESSAOUD المؤسسة العمومية الإستشفائية حاسي مسعود 30 30004
+4617 EPH Etablissement Public Hospitalier TAIBET المؤسسة العمومية الإستشفائية الطيبات 55 30015
+4618 EPH Etablissement Public Hospitalier TOUGGOURT المؤسسة العمومية الإستشفائية تقرت 55 30013
+4619 EPSP Etablissement Public de Santé de Proximité EL BORMA المؤسسة العمومية للصحة الجوارية الن مة 30 30021
+4620 EPSP Etablissement Public de Santé de Proximité EL HADJIRA المؤسسة العمومية للصحة الجوارية الحجن ة 55 30014
+4621 EPSP Etablissement Public de Santé de Proximité HASSI MESSAOUD المؤسسة العمومية للصحة الجوارية حاسي مسعود 30 30004
+4622 EPSP Etablissement Public de Santé de Proximité OUARGLA المؤسسة العمومية للصحة الجوارية ورقلة 30 30001
+4623 EPSP Etablissement Public de Santé de Proximité TOUGGOURT المؤسسة العمومية للصحة الجوارية توقرت 55 30013
+4624 EPH Etablissement Public Hospitalier BOUGTOB المؤسسة العمومية الإستشفائية بوقطب 32 32010
+4625 EPH Etablissement Public Hospitalier EL ABIODH SIDI CHEIKH المؤسسة العمومية الإستشفائية الابيض سيدي الشيخ 32 32007
+4626 EPSP Etablissement Public de Santé de Proximité BREZINA المؤسسة العمومية للصحة الجوارية بريزينة 32 32004
+4627 EPSP Etablissement Public de Santé de Proximité CHELLALA المؤسسة العموميّة للصحة الجوارية الشلالة 32 32014
+
+--- Page 14 ---
+4628 EPSP Etablissement Public de Santé de Proximité EL BAYADH المؤسسة العمومية للصحة الجوارية البيض 32 32001
+4629 EPSP Etablissement Public de Santé de Proximité KHEITER  المؤسسة العمومية للصحة الجوارية الخين 32 32011
+4630 EPH Etablissement Public Hospitalier DJANET المؤسسة العمومية الإستشفائية جانت 56 33002
+4631 EPSP Etablissement Public de Santé de Proximité DEBDAB المؤسسة العمومية للصحة الجوارية دبداب 33 33003
+4632 EPSP Etablissement Public de Santé de Proximité DJANET المؤسسة العمومية للصحة الجوارية جانت 56 33002
+4633 EPSP Etablissement Public de Santé de Proximité ILLIZI المؤسسة العمومية للصحة الجوارية إيلن ري 33 33001
+4634 EPSP Etablissement Public de Santé de Proximité IN AMENAS المؤسسة العمومية للصحة الجوارية ان امناس 33 33006
+4635 EHS Etablissement Hospitalier Spécialisé Gynécologie Obstétrique Rachid Belhocineالمؤسسة الإستشفائية المتخصصة قري طب النساء والتوليد مستشفر بلحسي ر رشيد 34 34001
+4636 EPH Etablissement Public Hospitalier MEDJANA المؤسسة العمومية الإستشفائية مجانة 34 34013
+4637 EPH Etablissement Public Hospitalier RAS EL OUED المؤسسة العمومية الإستشفائية رأس الوادي 34 34002
+4638 EPSP Etablissement Public de Santé de Proximité BIR KASDALI المؤسسة العمومية للصحة الجوارية بن  قصد علىي 34 34031
+4639 EPSP Etablissement Public de Santé de Proximité BORDJ BOU ARRERIDJ المؤسسة العمومية للصحة الجوارية برج بوعريري    ج 34 34001
+4640 EPSP Etablissement Public de Santé de Proximité  EL COLLA المؤسسة العمومية للصحة الجوارية القلة 34 34025
+4641 EPSP Etablissement Public de Santé de Proximité MANSOURAH المؤسسة العمومية للصحة الجوارية المنصورة 34 34004
+4642 EPSP Etablissement Public de Santé de Proximité MEDJANA المؤسسة العمومية للصحة الجوارية مجانة 34 34013
+4643 EPSP Etablissement Public de Santé de Proximité RAS EL OUED المؤسسة العمومية للصحة الجوارية رأس الوادي 34 34002
+4644 EPH Etablissement Public Hospitalier BORDJ MENAIEL المؤسسة العمومية الإستشفائية برج منايل 35 35005
+4645 EPH Etablissement Public Hospitalier DELLYS المؤسسة العمومية الإستشفائية دلس 35 35028
+4646 EPSP Etablissement Public de Santé de Proximité BORDJ MENAIEL المؤسسة العمومية للصحة الجوارية برج منايل 35 35005
+4647 EPSP Etablissement Public de Santé de Proximité DELLYS المؤسسة العمومية للصحة الجوارية دلس 35 35028
+4648 EPSP Etablissement Public de Santé de Proximité KHEMIS EL KHECHNA المؤسسة العمومية للصحة الجوارية خميس الخشنة 35 35037
+4649 EPH Etablissement Public Hospitalier BOUHADJAR المؤسسة العمومية الإستشفائية بوحجار 36 36002
+4650 EPH Etablissement Public Hospitalier EL KALA المؤسسة العمومية الإستشفائية القالة 36 36005
+4652 EPSP Etablissement Public de Santé de Proximité BOUHADJAR المؤسسة العمومية للصحة الجوارية بوحجار 36 36002
+4653 EPSP Etablissement Public de Santé de Proximité DREAN المؤسسة العمومية للصحة الجوارية الذرعان 36 36013
+4654 EPSP Etablissement Public de Santé de Proximité EL KALA المؤسسة العمومية للصحة الجوارية القالة 36 36005
+4655 EPSP Etablissement Public de Santé de Proximité ET TARF المؤسسة العمومية للصحة الجوارية الطارف 36 36001
+4656 EPSP Etablissement Public de Santé de Proximité OUM LASSEL المؤسسة العمومية للصحة الجوارية ام العسل 37 37002
+4657 EPSP Etablissement Public de Santé de Proximité TINDOUF المؤسسة العمومية للصحة الجوارية تندوف 37 37001
+4658 EHS Etablissement Hospitalier Spécialisé En Gynécologie Obstétrique Ben Nacer Bachirالمؤسسة الإستشفائية المتخصصة للأم والطفل بن ناصر بشن  بالوادي 39 39001
+4659 EPH Etablissement Public Hospitalier DJAMAA المؤسسة العمومية الإستشفائية جامعة 57 39028
+4660 EPH Etablissement Public Hospitalier EL MEGHAIER  المؤسسة العمومية الإستشفائية المغن 57 39027
+4661 EPSP Etablissement Public de Santé de Proximité TALEB EL ARBI المؤسسة العمومية للصحة الجوارية طالب العرئ ي 39 39014
+4662 EPSP Etablissement Public de Santé de Proximité DJAMMAA المؤسسة العمومية للصحة الجوارية جامعة 57 39028
+4663 EPSP Etablissement Public de Santé de Proximité dEl Meghaier  المؤسسة العمومية للصحة الجوارية المغن 57 39027
+4664 EPSP Etablissement Public de Santé de Proximité EL OUED المؤسسة العمومية للصحة الجوارية الوادي 39 39001
+4665 EPSP Etablissement Public de Santé de Proximité GUEMAR المؤسسة العمومية للصحة الجوارية قمار 39 39006
+4666 EHS Etablissement Hospitalier Spécialisé Gynécologie Obstétrique SALHI BELKACEMالمؤسسة الإستشفائية المتخصصة قري طب النساء والتوليد مستشفر صالحىي بلقاسم 40 40001
+4667 EPH Etablissement Public Hospitalier KAIS المؤسسة العمومية الإستشفائية قايس 40 40003
+
+--- Page 15 ---
+4668 EPH Etablissement Public Hospitalier ALI BOUSHABA KHENCHELA المؤسسة العمومية الاستشفائية علىي بوسحابة خنشلة 40 40001
+4669 EPSP Etablissement Public de Santé de Proximité CHECHAR المؤسسة العمومية للصحة الجوارية ششار 40 40011
+4670 EPSP Etablissement Public de Santé de Proximité DJELLAL المؤسسة العمومية للصحة الجوارية جلال 40 40012
+4671 EPSP Etablissement Public de Santé de Proximité EL MAHMEL المؤسسة العمومية للصحة الجوارية المحمل 40 40017
+4672 EPSP Etablissement Public de Santé de Proximité KAIS المؤسسة العمومية للصحة الجوارية قايس 40 40003
+4673 EPSP Etablissement Public de Santé de Proximité KHENCHELA المؤسسة العمومية للصحة الجوارية خنشلة 40 40001
+4674 EPSP Etablissement Public de Santé de Proximité YABOUS المؤسسة العمومية للصحة الجوارية يابوس 40 40019
+4675 EHS Etablissement Hospitalier Spécialisé Mère Et Enfant Tidjini Haddem المؤسسة الإستشفائية المتخصصة مستشفر الأم والطفل تيجينري هدام 42 42001
+4676 EPH Etablissement Public Hospitalier GOURAYA المؤسسة العمومية الإستشفائية قوراية 42 42014
+4677 EPH Etablissement Public Hospitalier HADJOUT المؤسسة العمومية الإستشفائية حجوط 42 42012
+4678 EPH Etablissement Public Hospitalier SIDI GHILES المؤسسة العمومية الإستشفائية سيدي غيلاس 42 42032
+4679 EPSP Etablissement Public de Santé de Proximité BOU ISMAIL المؤسسة العمومية للصحة الجوارية بواسماعيل 42 42026
+4680 EPSP Etablissement Public de Santé de Proximité CHERCHELL المؤسسة العمومية للصحة الجوارية سررشال 42 42022
+4681 EPSP Etablissement Public de Santé de Proximité DAMOUS المؤسسة العمومية للصحة الجوارية الداموس 42 42023
+4682 EPSP Etablissement Public de Santé de Proximité TIPAZA المؤسسة العمومية للصحة الجوارية تيبازة 42 42001
+4683 EHS Etablissement Hospitalier Spécialisé Psychiatrique OUED ATHMANIA المؤسسة الاستشفائية المختصة الشهيد شعبان موسي وادي العثمانية 43 43004
+4684 EPH Etablissement Public Hospitalier CHELGHOUM LAID المؤسسة العمومية الإستشفائية شلغوم العيد 43 43003
+4685 EPH Etablissement Public Hospitalier FERDJIOUA المؤسسة العمومية الإستشفائية فرجيوة 43 43002
+4686 EPH Etablissement Public Hospitalier MILA ( FRERES MAGHLAOUI)  المؤسسة العمومية الإستشفائية ميلة- الإخوة مغلاوي 43 43001
+4687 EPH Etablissement Public Hospitalier OUED ATHMANIA المؤسسة العمومية الإستشفائية وادي العثمانية 43 43004
+4688 EPSP Etablissement Public de Santé de Proximité AIN BEIDA HERICHE المؤسسة العمومية للصحة الجوارية عي ر البيضاء احريش 43 43030
+4689 EPSP Etablissement Public de Santé de Proximité CHELGHOUM LAID المؤسسة العمومية للصحة الجوارية شلغوم العيد 43 43003
+4690 EPSP Etablissement Public de Santé de Proximité FERDJIOUA المؤسسة العمومية للصحة الجوارية فرجيوة 43 43002
+4691 EPSP Etablissement Public de Santé de Proximité MILA المؤسسة العمومية للصحة الجوارية ميلة 43 43001
+4692 EPSP Etablissement Public de Santé de Proximité TADJENANET المؤسسة العمومية للصحة الجوارية تاجنانت 43 43008
+4693 EPSP Etablissement Public de Santé de Proximité EL ABADIA المؤسسة العمومية للصحة الجوارية العبادية 44 44011
+4694 EPH Etablissement Public Hospitalier d'AIN SEFRA المؤسسة العمومية الإستشفائية العي ر الصفراء 45 45003
+4695 EHS Etablissement Hospitalier Spécialisé Mère et enfant MECHERIA FRERE RAHMANIالمؤسسة الإستشفائية المتخصصة الأم والطفل المشرية الاخوة رحمائري 45 45002
+4696 EPSP Etablissement Public de Santé de Proximité AIN SEFRA المؤسسة العمومية للصحة الجوارية عي ر الصفراء 45 45003
+4697 EPSP Etablissement Public de Santé de Proximité MECHERIA المؤسسة العمومية للصحة الجوارية مشرية 45 45002
+4698 EPSP Etablissement Public de Santé de Proximité MEKMEN BENAMER المؤسسة العمومية للصحة الجوارية مكمن بن عمار 45 45010
+4699 EPSP Etablissement Public de Santé de Proximité NAAMA المؤسسة العمومية للصحة الجوارية النعامة 45 45001
+4700 EPH Etablissement Public Hospitalier EL ATTAF المؤسسة العمومية الإستشفائية العطاف 44 44010
+4701 EPH Etablissement Public Hospitalier KHEMIS MILIANA المؤسسة العمومية الإستشفائية خميس مليانة 44 44004
+4702 EPH Etablissement Public Hospitalier MELIANA المؤسسة العمومية الإستشفائية مليانة 44 44002
+4703 EPSP Etablissement Public de Santé de Proximité AIN LECHIEKH المؤسسة العمومية للصحة الجوارية عي ر الأشياخ 44 44014
+4704 EPSP Etablissement Public de Santé de Proximité BOUMEDFAA المؤسسة العمومية للصحة الجوارية بومدفع 44 44003
+4705 EPSP Etablissement Public de Santé de Proximité DJELIDA المؤسسة العمومية للصحة الجوارية جليدة 44 44007
+4706 EHS Etablissement Hospitalier Spécialisé Mère Et Enfant AIN TEMOUCHENT المؤسسة الإستشفائية المتخصصة مستشفر الأم والطفل عي ر تيموشنت 46 46001
+
+--- Page 16 ---
+4707 EPH Etablissement Public Hospitalier BENI SAF المؤسسة العمومية الإستشفائية بنري صاف 46 46023
+4708 EPH Etablissement Public Hospitalier HAMMAM BOUHADJAR المؤسسة العمومية الإستشفائية حمام بو حجر 46 46004
+4709 EPSP Etablissement Public de Santé de Proximité AIN TEMOUCHENT المؤسسة العمومية للصحة الجوارية عي ر تيموشنت 46 46001
+4710 EPSP Etablissement Public de Santé de Proximité BENI SAF المؤسسة العمومية للصحة الجوارية بنري صاف 46 46023
+4711 EPSP Etablissement Public de Santé de Proximité EL AMRIA المؤسسة العمومية للصحة الجوارية العامرية 46 46019
+4712 EPSP Etablissement Public de Santé de Proximité HAMMAM BOUHADJAR المؤسسة العمومية للصحة الجوارية حمام بو حجر 46 46004
+4713 EHS Etablissement Hospitalier Spécialisé Gynécologie Obstétrique Gueddi Bakir المؤسسة الإستشفائية المتخصصة قري طب النساء و التوليد مستشفر قضري بكن 47 47001
+4714 EPH Etablissement Public Hospitalier GUERRARA المؤسسة العمومية الإستشفائية القرارة 47 47006
+4715 EPH Etablissement Public Hospitalier METLILI المؤسسة العمومية الإستشفائية متليلىي 47 47005
+4716 EPSP Etablissement Public de Santé de Proximité BERRIANE المؤسسة العمومية للصحة الجوارية بريان 47 47004
+4717 EPSP Etablissement Public de Santé de Proximité EL MENEA المؤسسة العمومية للصحة الجوارية المنيعة 58 47002
+4718 EPSP Etablissement Public de Santé de Proximité GHARDAIA ( TENIET EL MAKHZEN)  المؤسسة العمومية للصحة الجوارية غرداية- ثنية المخزن 47 47001
+4719 EPSP Etablissement Public de Santé de Proximité GUERRARA المؤسسة العمومية للصحة الجوارية القرارة 47 47006
+4720 EPSP Etablissement Public de Santé de Proximité METLILI المؤسسة العمومية للصحة الجوارية متليلىي 47 47005
+4721 EHS Etablissement Hospitalier Spécialisé en Psychiatrie -Yellel -  المؤسسة الإستشفائية المتخصصة قري طب الأمراض العقلية - يلل 48 48025
+4722 EPH Etablissement Public Hospitalier Mazouna المؤسسة العمومية الإستشفائية مازونة 48 48022
+4723 EPH Etablissement Public Hospitalier OUED RHIOU المؤسسة العمومية الإستشفائية واد رهيو 48 48002
+4724 EPSP Etablissement Public de Santé de Proximité DJDIOUIA المؤسسة العمومية للصحة الجوارية جديوية 48 48014
+4725 EPSP Etablissement Public de Santé de Proximité RELIZANE المؤسسة العمومية للصحة الجوارية غلن ران 48 48001
+4726 EPSP Etablissement Public de Santé de Proximité SIDI M'HAMED BENALI المؤسسة العمومية للصحة الجوارية سيدي امحمد بن علىي 48 48001
+4727 EPSP Etablissement Public de Santé de Proximité YELLEL المؤسسة العمومية للصحة الجوارية يلل 48 48025
+4728 EPSP Etablissement Public de Santé de Proximité ZEMMOURA المؤسسة العمومية للصحة الجوارية زمورة 48 48012
+5035 INFPM Institut De Formation Paramédicale Guelma معهد التكوين شبه الطن ي قالمة 24 24001
+5780 EH Etablissement hospitalier Dr Benzerdjeb المؤسسة الإستشفائية بن زرجب 46 46001
+6282 EH Etablissement hospitalier Ain Azel المؤسسة الإستشفائية يوسف يعلاوي بعي ر أزال 19 19040
+6367 INFSPM Institut National de Formation Supérieure Paramédicale Jijel المعهد الوطنري للتكوين العالي شبه الطن ي جيجل 18 18001
+6486 EPH Etablissement Public Hospitalier ANCIEN HOPITAL BECHAR المؤسسة العمومية الإستشفائية المستشفر القديم 8 8001
+7107 EPSP Etablissement Public de Santé de Proximité  Abalessa (Silet) المؤسسة العمومية للصحة الجوارية أبلسة 11 11002
+7108 EPSP Etablissement Public de Santé de Proximité Tazrouk المؤسسة العمومية للصحة الجوارية تاظروك 11 11006
+7944 INFSPM Institut National de Formation Supérieure Paramédicale Adrar المعهد الوطنري للتكوين العالي شبه الطن ي أدرار 1 1001
+7945 INFSPM Institut National de Formation Supérieure Paramédicale Batna المعهد الوطنري للتكوين العالي شبه الطن ي باتنة 5 5001
+7946 INFSPM Institut National de Formation Supérieure Paramédicale Bejaia المعهد الوطنري للتكوين العالي شبه الطن ي بجاية 6 6022
+7947 INFSPM Institut National de Formation Supérieure Paramédicale Biskra المعهد الوطنري للتكوين العالي شبه الطن ي بسكرة 7 7001
+7948 INFSPM Institut National de Formation Supérieure Paramédicale Bechar المعهد الوطنري للتكوين العالي الشبه الطن ي بشار 8 8001
+7949 INFSPM Institut National de Formation Supérieure Paramédicale Blida المعهد الوطنري للتكوين العالي شبه الطن ي بالبليدة 9 9001
+7950 INFSPM Institut National de Formation Supérieure Paramédicale Bouira المعهد الوطنري للتكوين العالي شبه الطن ي بالبويرة الكائن بسورالغزلان 10 10038
+7963 INFSPM Institut National de Formation Supérieure Paramédicale de TEBESSA المعهد الوطنري للتكوين العالي شبه الطن ي تبسة 12 12001
+7964 INFSPM Institut National de Formation Supérieure Paramédicale Alger المعهد الوطنري للتكوين العالي شبه الطن ي الجزائر 16 16017
+7965 INFSPM INFSPM Tiaret المعهد الوطنري للتكوين العالي الشبه الطن ي تيارت 14 14001
+
+--- Page 17 ---
+7975 INFSPM INFSPM Setif المعهد الوطنري للتكوين العالي الشبه الطن ي سطيف 19 19001
+7979 INFSPM INFSPM Saida المعهد الوطنري للتكوين العالي الشبه الطن ي سعيدة 20 20001
+7982 INFSPM INFSPM Skikda المعهد الوطنري للتكوين العالي الشبه الطن ي سكيكدة 21 21001
+7983 INFSPM Institut National de Formation Supérieure Paramédicale Sidi Bel Abbes المعهد الوطنري للتكوين العالي شبه الطن ي سيدي بلعباس 22 22001
+7988 INFSPM Institut National de Formation Supérieure Paramédicale Medea المعهد الوطنري للتكوين العالي لشبه الطن ي المدية 26 26001
+7990 INFSPM Institut National de Formation Supérieure Paramédicale M'Sila المعهد الوطنري للتكوين العالي الشبه الطن ي مسيلة 28 28001
+8038 INFSPM INFSPM Ain Defla لىالمعهد الوطنري للتكوين العالي الشبه الطن ي عي ر الدف 44 44004
+8039 INFSSF Instituts Nationaux de Formation Supérieure de Sages femmes Tlemcen المعهد الوطنري للتكوين العالي للقابلات تلمسان 13 13001
+8042 INFSSF Institut National de Formation Supérieure des Sages Femmes de Tizi Ouzou المعهد الوطنري للتكوين العالي للقابلات تن ري وزو 15 15001
+8046 INFSSF Institut National de Formation Supérieur des Sages Femmes Annaba المعهد الوطنري للتكوين العالي للقابلات عنابة 23 23001
+8047 INFPM Institut De Formation Paramédicale De Chettia Chlef معهد التكوين شبه الطن ي الشطية الشلف 2 2024
+8048 INFPM Institut De Formation Paramédicale Ain Beida معهد التكوين شبه الطن ي عي ر البيضاء 4 4002
+8050 INFPM IFPM Tamenghasset معهد التكوين شبه الطن ي تمنراست 11 11001
+8051 INFPM IFPM Tizi Ouzou معهد التكوين شبه الطن ي تن ري وزو 15 15001
+8053 INFPM Institut de Formation Paramédicale Djelfa معهد التكوين الشبه الطن ي الجلفة 17 17001
+8054 INFPM IFPM EL ATTAF معهد التكوين شبه الطن ي العطاف 44 44010
+8339 EHS Etablissement Hospitalier Spécialisé mère et enfant Ouargla المؤسسة الإستشفائية االمتخصصة الأم والطفل ورقلة 30 30001
+8342 Structure D?centralisAgence Nationale du Sang الوكالة الوطنية للدم 16 16058
+9016 EPH Etablissement Public Hospitalier Mohamed Boudiaf Bouira المؤسسة الإستشفائية محمد بوضياف البويرة 10 10001
+10718 EH Etablissement hospitalier Skikda المؤسسة الإستشفائية سكيكدة 21 21001
+10719 EPH Etablissement Public Hospitalier Chorfa المؤسسة العمومية الاستشفائية الشرفة 2 2001
+10720 EPH Etablissement Public Hospitalier Sœurs Bedj Chlef المؤسسة العمومية الاستشفائية الاختان باج الشلف 2 2001
+10721 EHS Etablissement Hospitalier Spécialisé Psychiatrique de Tenes المؤسسة الاستشفائية المتخصصة قري الأمراض العقلية بتنس 2 2002
+12104 EFPM Institut de Formation Paramédicale Laghouat معهد التكوين شبه الطن ي الأغواط 3 3001
+12105 EH Etablissement hospitalier Ophtalm Djelfa المؤسسة الإستشفائية لطب العيون الجلفة 17 17001
+12106 EPH Etablissement Public Hospitalier Bouguerra Boulaares Bekkeria Tebessa المؤسسة العمومية الإستشفائية بوقرة بولعراس بكارية 12 12017
+12214 EPH Etablissement Public Hospitalier El Idrissia المؤسسة العمومية الإستشفائية الإدريسية 17 17014
+12950 Structure D?centralisCentre National de Toxicologie المركز الوطنري لعلم السموم 16 16058
+15167 EHS Etablissement Hospitalier Spécialisé Psychiatrique Nador المؤسسة الاستشفائية المتخصصة قري طب الامراض العقلية، الناظور، تيبازة 42 42015
+15286 INFSPM Institut national de formation superieure paramédicale Mascara المعهد الوطنري للتكوين العالي الشبه طن ي لمعسكر 29 29001
+15596 EPH Etablissement Public Hospitalier Magra المؤسسة العمومية الاستشفائ ي مقرة 28 28011
+15597 EPH Etablissement Public Hospitalier Ben Srour المؤسسة العمومية الاستشفائية بن سرور 28 28024
+15598 EHS Etablissement Hospitalier Spécialisé Ouled Mansour المؤسسة الإستشفائية المتخصصة قري طب الأمراض العقلية اولاد منصور 28 28028
+15761 EHS Etablissement Hospitalier Spécialisé Psychiatrique Sour El Ghozlane المؤسسة العمومية الاستشفائية المتخصصة قري الأمراض العقلية 10 10038
+15762 DRH Direction des Ressources Humaines وزارة الصحة 16 16058
+15873 EH Etablissement hospitalier d'ophtalmologie Bechar المؤسسة الإستشفائية لطب العيون بشار 8 8001
+15874 EH Etablissement hospitalier Ouargla المؤسسة الإستشفائية ورقلة 30 30001
+15875 EH Etablissement hospitalier Ophtalmologie El oued المؤسسة الإستشفائية لطب العيون الوادى 39 39001
+15877 EST LNCPP المخن  الوطنري لمراقبة المواد الصيدلانية 16 16001
+
+--- Page 18 ---
+15878 Structure D?centralisEcole Nationale de Management et de l'Administration de la Santé المدرسة الوطنية للمناجمنت و إدارة الصحة 16 16058
+15879 Structure D?centralisANG الوكالة الوطنية لزرع الأعضاء 16 16058
+15880 EPH Etablissement Public Hospitalier Mansoura المؤسسة الإستشفائية المنصورة 34 34004
+15881 EPH Etablissement Public Hospitalier Bordj Ghdir المؤسسة الإستشفائية برج الغدير 34 34009
+15882 EHS Etablissement Hospitalier Spécialisé Centre Anti Cancireux Batna المؤسسة الإستشفائية المتخصصة مركز مكافحة الشطان باتنة 5 5001
+15883 EPSP Etablissement Public de Santé de Proximité Bordj Omar Idris المؤسسة العمومية للصحة الجوارية برج عمر إدريس 33 33004
+15917 EPH Etablissement Public Hospitalier Nouveau Hopital d'Adrar  المؤسسة العمومية الإستشفائية(المستشفر الجديد ) أدرار 1 1001
+15918 EPH Etablissement Public Hospitalier Aoulef المؤسسة العمومية الإستشفائية أولف 1 1012
+21504 EPH Etablissement Public Hospitalier Tipaza المؤسسة العمومية الإستشفائية تيبازة 42 42001
+21505 EHS Etablissement Hospitalier Spécialisé Centre Anti Cancireux Sidi Bel Abbesالمؤسسة الإستشفائية المتخصصة مركز مكافحة الشطان سيدي بلعباس 22 22001
+21506 EHS Etablissement Hospitalier Spécialisé de Transplantation des Organes et des Tissus de Blidaالمؤسسة الإستشفائية المتخصصة قري زرع الأعضاء والأنسجة بالبليدة 9 9001
+21507 EPH Etablissement Public Hospitalier Ksar Hirane المؤسسة العمومية الإستشفائية قصر الحن ان 3 3002
+21508 Structure D?centralisCNPM المركز الوطنري لليقظة بخصوص الأدوية و العتاد الطن ي 16 16058
+21509 EPH HOPITAL MIXTE DE DJELFA MOUDJAHID HATHAT BOUBAKEUR المستشفر المختلط بالجلفة المجاهد هتهات بوبكر 17 17001
+21511 EHS Etablissement Hospitalier Spécialisé Mère et Enfant Tamenghasset المؤسسة الاستشفائية المتخصصة الأم والطفل تمنراست 11 11001
+21512 EHS Etablissement Hospitalier Spécialisé Centre Anti Cancireux El Oued المؤسسة الإستشفائية المتخصصة مركز مكافحة الشطان الوادى 39 39001
+21746 EHS Etablissement Hospitalier Spécialisé M/E GUELMA المؤسسة الاستشفائية المتخصصة الأم والطفل قالمة 24 24001
+28757 EHS Etablissement Hospitalier Spécialisé CAC ADRAR المؤسسة الاستشفائية المتخصصة قري مكافحة أمراض الشطان أدرار 1 1001
+28758 EHS Etablissement Hospitalier Spécialisé PSYCHIATRIE ADRAR المؤسسة الاستشفائية المتخصصة قري الأمراض العقلية أدرار 1 1001
+28759 EHS Etablissement Hospitalier Spécialisé CAC BECHAR المؤسسة الاستشفائية المتخصصة قري مكافحة أمراض الشطان بشار 8 8001
+28760 EPH Etablissement Public Hospitalier Oued Abtal المؤسسة العمومية الاستشفائية واد الأبطال 29 29010
+28761 EHS Etablissement Hospitalier Spécialisé MERE ET ENFANT BELBOURI RAHMA المؤسسة الاستشفائية المتخصصة الأم والطفل بلبوري رحمة معسكر 29 0
+28762 EHS Etablissement Hospitalier Spécialisé Neuro-chirurgie المؤسسة الاستشفائية المتخصصة قري جراحة الأعصاب سررشال 42 42022
+28763 EPH Etablissement Public Hospitalier BESBAS المؤسسة العمومية الاستشفائية البسباس 36 36016
+28764 EPH Etablissement Public Hospitalier AMI MOUSSA المستشفر المختلط عمي موس 48 48011
+28765 EPH Etablissement Public Hospitalier TENIET EL ABED المؤسسة العمومية الاستشفائية ثنية العابد 5 5047
+28766 EPH Etablissement Public Hospitalier RAS LAYOUNE المؤسسة العمومية الاستشفائية راس العيون 5 5051
+28767 EPH Etablissement Public Hospitalier TKOUT المؤسسة العمومية الاستشفائية تكوت 5 5044
+28768 EHS Etablissement Hospitalier Spécialisé en Cancérologie المؤسسة الاستشفائية المتخصصة قري مكافحة أمراض الشطان ذراع بن خدة 15 0
+28769 EPH Etablissement Public Hospitalier HASSASNA المؤسسة العمومية الاستشفائية الحساسنة 20 20010
+28770 EPH Etablissement Public Hospitalier YOUB المؤسسة العمومية الاستشفائية يوب 20 20006
+28771 EPH Etablissement Public Hospitalier SIDI BOUBEKEUR المؤسسة العمومية الاستشفائية سيدي بوبكر 20 20009
+28772 EHS Etablissement Hospitalier Spécialisé MERE ET ENFANT TISSEMSILT المؤسسة الاستشفائية المتخصصة الأم والطفل تيسمسيلت 38 38001
+28773 EPH Etablissement Public Hospitalier BIRINE المؤسسة العمومية الاستشفائية بن ين 17 17008
+28774 EPH Etablissement Public Hospitalier ACHAACHA المؤسسة العمومية الاستشفائية عشعاشة 27 0
+28775 EPH Etablissement Public Hospitalier IBN SINA MESERA المؤسسة العمومية الاستشفائية  ابن سينا ماسرة 27 27022
+28776 EPH Etablissement Public Hospitalier BOUKIRAT المؤسسة العمومية الاستشفائية بوقن اط 27 0
+28777 EPH Etablissement Public Hospitalier BOUHMAMA المؤسسة العمومية الاستشفائية بوحمامة 40 40008
+28778 EPH Etablissement Public Hospitalier OULED RECHACHE المؤسسة العمومية الاستشفائية أولاد رشاش 40 40016
+
+--- Page 19 ---
+28779 EPSP Etablissement Public de Santé de Proximité BORDJ EL HOUAS المؤسسة العمومية للصحة الجوارية برج الحواس 56 33005
+28780 EPH Etablissement Public Hospitalier EL HADJIRA المؤسسة العمومية الاستشفائية الحجن ة 55 30014
+28781 EHS Etablissement Hospitalier Spécialisé PSYCHIATRIE OUARGLA المؤسسة الاستشفائية المتخصصة قري الأمراض العقلية ورقلة 30 30001
+28782 EPH Etablissement Public Hospitalier TABIA المؤسسة العمومية الاستشفائية طابية 22 22021
+28783 EPH Etablissement Public Hospitalier RAS EL MA المؤسسة العمومية الاستشفائية راس الماء 22 22023
+28784 EPH Etablissement Public Hospitalier deux frères CHNAFA المؤسسة العمومية الاستشفائية الأخوين شنافة 45 45001
+28785 EHS Etablissement Hospitalier Spécialisé Mère et enfant AFLOU المؤسسة الاستشفائية المتخصصة الأم والطفل أفلو 3 3019
+28786 EHS Etablissement Hospitalier Spécialisé MCHOUNECHE المؤسسة الاستشفائية المتخصصة قري الأمراض العقلية مشونش 7 7012
+28787 EPH HOPITAL MIXTE BORDJ BADJI MOKHTAR المستشفر المختلط برج باج ي مختار 50 1025
+28788 EPH Etablissement Public Hospitalier KERZAZ المؤسسة العمومية الاستشفائية كرزاز 52 8018
+28789 EPH Etablissement Public Hospitalier BENI OUNIF المؤسسة العمومية الاستشفائية بنري ونيف 8 8021
+28790 EPH Etablissement Public Hospitalier EL AMRIA المؤسسة العمومية الاستشفائية العامرية 46 46019
+28791 EHS Etablissement Hospitalier Spécialisé en Psychiatrie de Oued-Ghir  المؤسسة الإستشفائية المتخصصة قري طب الأمراض العقلية واد غن 6 6051
+28792 EPH Etablissement Public Hospitalier SOUK EL THENINE المؤسسة العمومية الاستشفائية سوق الاثني ر 6 6008
+28793 EHS Etablissement Hospitalier Spécialisé MERE ET ENFANT SOUK AHRAS المؤسسة الاستشفائية المتخصصة الأم والطفل سوق أهراس 41 0
+28794 EPH Etablissement Public Hospitalier TAOURA المؤسسة العمومية الاستشفائية تاورة 41 0
+28795 EPH Etablissement Public Hospitalier ain safra (nouvelle hôpital)   المؤسسة العمومية الإستشفائية عي ر الصفراء ( المستشفر الجديد ) 45 45003
+28797 EPH Etablissement Public Hospitalier ZRIBET EL OUED المؤسسة العمومية الاستشفائية زريبة الواد 7 0
+28798 EPH Hopital mixte laghouat المستشفر المختلط الأغواط 3 0
+28799 EPH EPH Etablissement Public Hospitalier Chadeli Bendjedid Chechar	 المؤسسة العمومية الاستشفائية الشادلي بن جديد ششار 40 40011
+28800 EHS Etablissement Hospitalier Spécialisé des urgences médico chirurgicales ahmed ben abid المؤسسة الإستشفائية المتخصصة قري الاستعجالات الطبية الجراحية أحمد بن عبيد 34 34001
+28801 DSP Direction de la santé et de la population de la wilaya de TOUGGOURT مديرية الصحة و السكان لولاية توقرت 55 30013
+28802 DSP Direction de la santé et de la population de la wilaya de Timimoun مديرية الصحة و السكان لولاية تيميمون 49 0
+28803 DSP Direction de la santé et de la population de la wilaya de el mghaier  مديرية الصحة والسكان لولاية المغن 57 0
+28804 DSP Direction de la santé et de la population de la wilaya de Bordj badji mokhtar مديرية الصحة والسكان لولاية برج باج ي مختار 50 0
+28805 DSP Direction de la santé et de la population de la wilaya de Ouled Djellal مديرية الصحة والسكان لولاية أولاد جلال 51 0
+28806 DSP Direction de la santé et de la population de la wilaya de Beni Abbès مديرية الصحة والسكان لولاية بنري عباس 52 0
+28807 DSP Direction de la santé et de la population de la wilaya de In Salah مديرية الصحة والسكان لولاية ان صالح 53 0
+28808 DSP Direction de la santé et de la population de la wilaya de In Guezzam مديرية الصحة والسكان لولاية ان قزام 54 0
+28809 DSP Direction de la santé et de la population de la wilaya de Djanet مديرية الصحة والسكان لولاية جانت 56 0
+28810 DSP Direction de la santé et de la population de la wilaya de El Meniaa مديرية الصحة والسكان لولاية المنيعة 58 0
+28811 EPH Établissement public hospitalier Ouadhia المؤسسة العمومية الاستشفائية واضية 15 15001
+28812 EPH Etablissement Public Hospitalier nouvel hopital 240 Ain defla  المؤسسة العمومية الاستشفائية240لى سرير المستشفر الجديد عي ر الدف 44 44001
+28813 EPH Etablissement Public Hospitalier Ain Meran المؤسسة العمومية الاستشفائية عي ر مران 2 2032
+28814 EPH Etablissement Public Hospitalier Beni Aziz المؤسسة العمومية الإستشفائية بنري عزيز 19 0
+28815 EPH Etablissement Public Hospitalier El Karma المؤسسة العمومية الإستشفائية الكرمة 31 0
+28816 EPH Etablissement Public Hospitalier Sidi Chami المؤسسة العمومية الإستشفائية سيدي الشحمي 31 0
+28817 EPH Etablissement Public Hospitalier Gdyel المؤسسة العمومية الإستشفائية قديل 31 0
+28818 EPH Etablissement Public Hospitalier In Amenas المؤسسة العمومية الإستشفائية ان أمناس 33 0
+
+--- Page 20 ---
+28819 EPH Etablissement Public Hospitalier Berriane المؤسسة العمومية الإستشفائية بريان 47 0
+28820 EPH Etablissement Public Hospitalier Temacine المؤسسة العمومية الإستشفائية تماسي ر 55 30016
+28821 EPH Etablissement Public Hospitalier Mendes المؤسسة العمومية الإستشفائية منداس 48 48028
+28822 EHS Etablissement Hospitalier Spécialisé Des Brules Et Chirurgie Réparatrice Oranالمؤسسة الإستشفائية االمتخصصة قري الحروق والجراحية الن قيعية وهران 31 0
+28823 EHS Etablissement Hospitalier Spécialisé Psychiatrie Tamanrasset المؤسسة الإستشفائية االمتخصصة قري طب الأمراض العقلية تمنراست 11 0
+28824 EHS Etablissement Hospitalier Spécialisé CAC Laghouat المؤسسة الإستشفائية االمتخصصة قري طب أمراض الشطان الأغواط 3 0
+28825 EHS Etablissement hospitalier spécialisé génécologie obstétrique et chirurgie pédiatrique Barikaلمؤسسة الإستشفائية المتخصصة قري طب النساء والتوليد، طب الأطفال وجراحة الأطفال بريكة 5 0
+28826 EHS Etablissement Hospitalier Spécialisé des urgences médico chirurgicales El Bouniالمؤسسة الإستشفائية االمتخصصة قري الاستعجالات الطبية الجراحية البوئري 23 0
+28827 EHS Etablissement Hospitalier Spécialisé des urgences médico chirurgicales Bouhnifiaالمؤسسة الإستشفائية االمتخصصة قري الاستعجالات الطبية الجراحية بوحنيفية 29 0
+28828 EHS Etablissement Hospitalier Spécialisé des urgences médico chirurgicales Bouzouraneالمؤسسة الإستشفائية االمتخصصة قري الاستعجالات الطبية الجراحية بوزوران 5 0
+28829 EHS Etablissement Hospitalier Spécialisé des urgences médico chirurgicales Oued tlélatالمؤسسة الإستشفائية االمتخصصة قري الاستعجالات الطبية الجراحية واد تليلات 31 0
+28830 EHS Etablissement Hospitalier Spécialisé Cac Chétouane المؤسسة الإستشفائية االمتخصصة قري طب أمراض الشطان شتوان 13 0
+28831 EHS Etablissement Hospitalier Spécialisé Des Grands Brules Zéralda المؤسسة الإستشفائية االمتخصصة قري الحروق الكن ى زرالدة 16 0
+28832 INFPM Institut De Formation Paramédicale  Chlef 2  معهد التكوين الشبه الطن ي للشلف 2 2 2001
+28833 INFPM Institut De Formation Param&eacute;dicale Bordj Bou Arreridj 34 0
+28834 INFPM Institut De Formation Param&eacute;dicale Mila 43 0
+28835 INFPM Institut de Formation Paramédicale Djelfa 2  معهد التكوين الشبه الطن ي الجلفة 2 17 0
+28836 EPH Etablissement Public Hospitalier Adrar nouvel hopital 2  المؤسسة العمومية الاستشفائية أدرار المستشفر الجديد 2 1 0
+28837 INFPM Institut de Formation Paramédicale El Bayadh معهد التكوين شبه الطن ي البيض 32 0
+28838 EHS Etablissement Hospitalier Spécialisé CAC DJELFA المؤسسة الاستشفائية المتخصصة قري أمراض الشطان الجلفة 17 0
+28839 INFPM Institut de Formation Paramédicale Relizane معهد التكوين شبه طن ي غلن ران 48 48001
+28840 EPH Etablissement Public Hospitalier Tamanghasset (nouvelle hôpital) المؤسسة العمومية الاستشفائية تمنراست (المستشفر الجديد ) 11 0
+

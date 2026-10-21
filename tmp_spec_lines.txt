@@ -1,0 +1,5 @@
+Le terminateur " est manquant dans la chaåne.
+    + CategoryInfo          : ParserError: (:) [], ParentContain 
+   sErrorRecordException
+    + FullyQualifiedErrorId : TerminatorExpectedAtEndOfString
+ 

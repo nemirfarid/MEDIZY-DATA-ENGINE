@@ -1,0 +1,88 @@
+﻿SIZE: 2236 bytes | LINES: 86 | OFFSET: 0
+=== A. MATCH EXACT (comme searchHybrid today) ===
+  "Pharmacie" => 0
+  "MÃ©decin GÃ©nÃ©raliste" => 0
+  "HÃ´pital" => 0
+  "Laboratoire d'analyses" => 0
+  "Dentiste" => 0
+  "Cardiologue" => 0
+  "PÃ©diatre" => 0
+  "GynÃ©cologue" => 0
+  "Ophtalmologue" => 0
+
+=== B. MATCH COLLATE NOCASE ===
+  "Pharmacie" => 6204
+  "MÃ©decin GÃ©nÃ©raliste" => 440
+  "HÃ´pital" => 1917
+  "Laboratoire d'analyses" => 0
+  "Dentiste" => 1085
+  "Cardiologue" => 923
+  "PÃ©diatre" => 766
+  "GynÃ©cologue" => 1558
+  "Ophtalmologue" => 727
+
+=== C. TOUTES LES CATEGORIES DISTINCTES (nom => count) ===
+  pharmacie => 6204
+  cabinet mÃ©dical => 3767
+  clinique => 3117
+  cabinet dentaire => 2502
+  centre de santÃ© => 2090
+  hÃ´pital => 1917
+  laboratoire mÃ©dical => 1617
+  gynÃ©cologue => 1558
+  dentiste => 1085
+  mÃ©decin spÃ©cialiste => 1059
+  cardiologue => 923
+  vÃ©tÃ©rinaire => 907
+  pÃ©diatre => 766
+  centre mÃ©dical => 737
+  ophtalmologue => 727
+  mÃ©decin => 674
+  dermatologue => 569
+  psychiatre => 549
+  ORL => 490
+  psychologue => 454
+  neurologue => 445
+  mÃ©decin gÃ©nÃ©raliste => 440
+  orthophoniste => 377
+  gastro-entÃ©rologue => 369
+  urologue => 368
+  kinÃ©sithÃ©rapie => 363
+  centre d'imagerie mÃ©dicale => 268
+  polyclinique => 254
+  centre de radiologie => 224
+  nutritionniste => 218
+  ostÃ©opathe => 190
+  kinÃ©sithÃ©rapeute => 170
+  radiologue => 145
+  sage-femme => 128
+  doctors => 52
+  clinic => 35
+  pharmacy => 25
+  hospital => 23
+  hÃƒÂ´pital => 9
+  Institut de formation => 6
+  Structure => 5
+  dentist => 5
+  Direction => 1
+  TOTAL DISTINCT = 43
+
+=== D. MATCH PAR PREFIXE (LIKE) pour chaque code UI ===
+  "Pharmacie" => 6204  [pharmacie]
+  "MÃ©decin GÃ©nÃ©raliste" => 440  [mÃ©decin gÃ©nÃ©raliste]
+  "HÃ´pital" => 1917  [hÃ´pital]
+  "Laboratoire d'analyses" => 0  []
+  "Dentiste" => 1085  [dentiste]
+  "Cardiologue" => 923  [cardiologue]
+  "PÃ©diatre" => 766  [pÃ©diatre]
+  "GynÃ©cologue" => 1558  [gynÃ©cologue]
+  "Ophtalmologue" => 727  [ophtalmologue]
+
+=== E. VOLUMES ===
+  total=35832
+  distinct_cat=43
+  distinct_wilaya=58
+
+=== F. WILAYA CODES ===
+  01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58
+DONE

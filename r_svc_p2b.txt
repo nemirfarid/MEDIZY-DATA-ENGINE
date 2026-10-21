@@ -1,0 +1,31 @@
+﻿201 |             math.sin(dLon / 2);
+202 | 
+203 |     final c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
+204 |     return earthRadiusKm * c;
+205 |   }
+206 | 
+207 |   static double _deg2rad(double deg) => deg * (math.pi / 180.0);
+208 | 
+209 |   /// Recherche spatiale par R-Tree pour un rayon géographique donné ("Autour de moi")
+210 |   List<HealthFacility> searchAroundMe({
+211 |     required double latitude,
+212 |     required double longitude,
+213 |     double radiusKm = 5.0,
+214 |     String? category,
+215 |     int limit = 50,
+216 |   }) {
+217 |     // Calcul de la Bounding Box
+218 |     final deltaLat = radiusKm / 111.0;
+219 |     final latRad = _deg2rad(latitude);
+220 |     final cosLat = math.cos(latRad).abs();
+221 |     final deltaLon = radiusKm / (111.0 * (cosLat > 0.05 ? cosLat : 1.0));
+222 | 
+223 |     final minLat = latitude - deltaLat;
+224 |     final maxLat = latitude + deltaLat;
+225 |     final minLon = longitude - deltaLon;
+226 |     final maxLon = longitude + deltaLon;
+227 | 
+228 |     final ResultSet results;
+229 |     if (category == null || category.isEmpty) {
+230 |       results = (_rtreeStmt != null)
+DONE

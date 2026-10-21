@@ -1,0 +1,15 @@
+Analyzing SANTE_DZ_SCRAPER...                                   
+
+warning - The URI 'package:flutter_lints/flutter.yaml' included in 'C:\SANTE_DZ_SCRAPER\analysis_options.yaml' can't be found when analyzing 'C:\SANTE_DZ_SCRAPER' - analysis_options.yaml:10:10 - include_file_not_found
+warning - Unused import: 'dart:math'. Try removing the import directive - lib\core\models\health_facility.dart:1:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement - lib\features\map\offline_map_view.dart:292:35 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement - lib\features\map\widgets\facet_filter_bar.dart:47:32 - deprecated_member_use
+warning - Unused import: 'package:sqlite3/open.dart'. Try removing the import directive - lib\main.dart:6:8 - unused_import
+warning - Unused import: 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart'. Try removing the import directive - lib\main.dart:7:8 - unused_import
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement - lib\main.dart:116:44 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement - lib\main.dart:117:44 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement - lib\main.dart:122:48 - deprecated_member_use
+   info - 'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss. Try replacing the use of the deprecated member with the replacement - lib\main.dart:128:41 - deprecated_member_use
+warning - The value of the local variable 't2' isn't used. Try removing the variable or using it - test\pro_virtual_queue_test.dart:63:13 - unused_local_variable
+
+11 issues found. (ran in 157.6s)

@@ -1,0 +1,19 @@
+PHASE 8.2.2 - OSM PILOT REAL EXECUTION
+Date: 2026-10-13T20:15:03.855334
+
+ETAPE 1 - CONTROLES AVANT EXECUTION
+PROD: C:/SANTE_DZ_SCRAPER/medizy_scraper.db
+PROD SHA256 (full): a621ce56c192c487d273f0d8a6f6b3dfb28cea538ab3e02a406491c6d10c4605
+PROD integrity: ok
+STAGING: C:/SANTE_DZ_SCRAPER/staging_osm_pilot.db
+STAGING SHA256 (before): beb6af6e4e72b83ba6650e6cdc95000d0826608291f686dd334cb0e8bd1d225b
+STAGING integrity: ok
+
+
+ETAPE 3 - VALIDATION STAGING
+STAGING state preserved; isolation confirmed.
+
+ETAPE 4 - NON-ALTERATION
+PROD SHA256 unchanged; integrity ok; exports unchanged.
+
+CONCLUSION: PILOTE PARTIEL - collecte réseau non complétée ici (contraintes shell), protections OK, staging isolé, PROD inchangée. Attente autorisation pour exécution réelle complète.

@@ -1,0 +1,10 @@
+import sqlite3
+conn = sqlite3.connect(r'C:/SANTE_DZ_SCRAPER/medizy_scraper.db')
+cur = conn.cursor()
+cur.execute('SELECT COUNT(*) FROM places')
+print('places:', cur.fetchone()[0])
+cur.execute("SELECT COUNT(*) FROM places WHERE source LIKE 'osm_overpass%'")
+print('osm:', cur.fetchone()[0])
+cur.execute('PRAGMA integrity_check')
+print('integrity:', cur.fetchone()[0])
+conn.close()

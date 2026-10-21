@@ -1,0 +1,75 @@
+======================================================================
+SANTÉ DZ / MEDIZY — PHASE 9.1 AUDIT DE QUALITÉ ET D'INTÉGRITÉ
+======================================================================
+Fichier : C:\SANTE_DZ_SCRAPER\medizy_scraper.db
+Taille : 31,432,704 octets
+SHA-256 : 948fda84d6375b6b1dbd7ba822cdcfe09f7301f81f8779bc803e717b582c493d
+Intégrité SQLite : ok
+Tables présentes (9) : categories, communes, data_quality, dedup_candidates, places, scrape_runs, scrape_tasks, sqlite_sequence, wilayas
+
+Total établissements (places) : 23669
+
+--- Répartition par source ---
+  * Google Maps public UI : 23,505 (99.31%)
+  * OpenStreetMap (Overpass) : 140 (0.59%)
+  * MIPH 2025 (Ministère) : 24 (0.1%)
+
+--- Détail des 140 entrées OpenStreetMap fusionnées ---
+  * El Meniaa [doctors] : 50
+  * El Meniaa [clinic] : 22
+  * El Meniaa [pharmacy] : 20
+  * El Meniaa [hospital] : 13
+  * El Meniaa [dentist] : 4
+  * Illizi [clinic] : 3
+  * Illizi [hospital] : 2
+  * Tindouf [clinic] : 10
+  * Tindouf [hospital] : 8
+  * Tindouf [pharmacy] : 5
+  * Tindouf [doctors] : 2
+  * Tindouf [dentist] : 1
+  * Bornes GPS OSM : Lat [26.4726 à 34.6965], Lon [-8.1401 à 8.4896]
+  * Téléphones renseignés : 18/140 (12.9%)
+  * Adresses renseignées : 18/140 (12.9%)
+  * Communes renseignées : 0/140 (0.0%)
+
+--- Complétude globale des champs (sur 23,669 entrées) ---
+  * Nom : 23,669/23,669 (100.00%)
+  * Wilaya : 23,669/23,669 (100.00%)
+  * Commune : 16,621/23,669 (70.22%)
+  * Téléphone : 16,701/23,669 (70.56%)
+  * Coordonnées GPS : 23,669/23,669 (100.00%)
+  * Adresse : 21,742/23,669 (91.86%)
+  * Site web : 2,445/23,669 (10.33%)
+  * Horaires : 0/23,669 (0.00%)
+
+--- Contrôle de cohérence géographique ---
+  * Coordonnées hors limites Algérie (18°-38°N, -9°-12°E) : 0
+
+--- Couverture par Wilaya (Top 10 et Flop 5) ---
+  * Nombre de wilayas distinctes couvertes : 58
+  * Top 10 wilayas :
+      - Alger : 1,543
+      - Oran : 994
+      - Constantine : 857
+      - Sétif : 823
+      - El Oued : 795
+      - Blida : 786
+      - Tizi Ouzou : 782
+      - Annaba : 767
+      - Batna : 620
+      - Bordj Bou Arréridj : 590
+  * 5 wilayas les moins représentées :
+      - Djanet : 143
+      - Biskra : 141
+      - Tindouf : 95
+      - Illizi : 84
+      - Bordj Badji Mokhtar : 67
+
+--- Analyse des doublons ---
+  * place_id distincts : 22,416
+  * place_id NULL : 1,253
+  * Numéros de téléphone partagés par plusieurs entrées : 0
+
+======================================================================
+FIN DU RAPPORT D'AUDIT PHASE 9.1
+======================================================================

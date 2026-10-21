@@ -1,0 +1,1 @@
+FINDSTRÿ: Impossible d'ouvrir flutter_lints\ .dart_tool\package_config.json 

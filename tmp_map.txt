@@ -1,0 +1,181 @@
+﻿100 |         category: _selectedCategory,
+101 |         onlyEmergency: _onlyEmergency,
+102 |         userLat: _userPosition.latitude,
+103 |         userLon: _userPosition.longitude,
+104 |         limit: 200,
+105 |       );
+106 | 
+107 |       setState(() {
+108 |         _displayedFacilities = results;
+109 |         _isLoading = false;
+110 |       });
+111 | 
+112 |       // Si des résultats existent et qu'une recherche textuelle vient d'être tapée, centrer sur le premier résultat
+113 |       if (_currentQuery.isNotEmpty && results.isNotEmpty) {
+114 |         final first = results.first;
+115 |         _mapController.move(LatLng(first.latitude, first.longitude), 13.0);
+116 |       }
+117 |     } catch (_) {
+118 |       setState(() => _isLoading = false);
+119 |     }
+120 |   }
+121 | 
+122 |   /// Sollicite activement le capteur GPS du smartphone et recentre la caméra
+123 |   Future<void> _handleGpsLocationRequest() async {
+124 |     setState(() => _isLoading = true);
+125 | 
+126 |     // 1. Vérification si le service GPS est activé sur l'appareil
+127 |     final isEnabled = await LocationService.isServiceEnabled();
+128 |     if (!isEnabled && mounted) {
+129 |       setState(() => _isLoading = false);
+130 |       showDialog(
+131 |         context: context,
+132 |         builder: (ctx) => AlertDialog(
+133 |           title: const Row(
+134 |             children: [
+135 |               Icon(Icons.location_off, color: Colors.orange),
+136 |               SizedBox(width: 8),
+137 |               Text('GPS Désactivé'),
+138 |             ],
+139 |           ),
+140 |           content: const Text(
+141 |             'Veuillez activer le service de localisation (GPS) dans les paramètres de votre téléphone pour afficher les établissements les plus proches de vous.',
+142 |           ),
+143 |           actions: [
+144 |             TextButton(
+145 |               onPressed: () => Navigator.pop(ctx),
+146 |               child: const Text('OK'),
+147 |             ),
+148 |           ],
+149 |         ),
+150 |       );
+151 |       return;
+152 |     }
+153 | 
+154 |     // 2. Récupération de la position GPS précise
+155 |     final realPos = await LocationService.getCurrentLocation(promptPermission: true);
+156 |     if (!mounted) return;
+157 | 
+158 |     if (realPos != null) {
+159 |       setState(() {
+160 |         _userPosition = realPos;
+161 |         _hasRealGps = true;
+162 |       });
+163 | 
+164 |       // Recentrage caméra sur la vraie position
+165 |       _mapController.move(realPos, 14.0);
+166 | 
+167 |       // Recherche spatiale autour de la position réelle (rayon 15 km)
+168 |       final results = widget.searchService.searchAroundMe(
+169 |         latitude: realPos.latitude,
+170 |         longitude: realPos.longitude,
+171 |         radiusKm: 15.0,
+172 |         limit: 120,
+173 |       );
+174 | 
+175 |       setState(() {
+176 |         _displayedFacilities = results;
+177 |         _isLoading = false;
+178 |       });
+179 | 
+180 |       ScaffoldMessenger.of(context).showSnackBar(
+181 |         SnackBar(
+182 |           content: Text(
+183 |             'Position GPS réelle localisée : ${realPos.latitude.toStringAsFixed(4)}°N, ${realPos.longitude.toStringAsFixed(4)}°E (${results.length} fiches à proximité)',
+184 |           ),
+185 |           duration: const Duration(seconds: 3),
+186 |           backgroundColor: Colors.teal.shade800,
+187 |         ),
+188 |       );
+189 |     } else {
+190 |       setState(() => _isLoading = false);
+191 |       ScaffoldMessenger.of(context).showSnackBar(
+192 |         const SnackBar(
+193 |           content: Text('Impossible d\'obtenir la position GPS actuelle. Vérifiez les autorisations de localisation.'),
+194 |           backgroundColor: Colors.deepOrange,
+195 |         ),
+196 |       );
+197 |     }
+198 |   }
+199 | 
+200 |   /// Ouvre le sélecteur modal des 58 Wilayas
+201 |   Future<void> _openWilayaPicker() async {
+202 |     final selected = await WilayaPickerSheet.show(
+203 |       context,
+204 |       currentCode: _selectedWilayaCode,
+205 |     );
+206 | 
+207 |     if (!mounted) return;
+208 | 
+209 |     if (selected != null) {
+210 |       setState(() {
+211 |         _selectedWilayaCode = selected.code;
+212 |         _selectedWilayaName = selected.name;
+213 |         _isLoading = true;
+214 |       });
+215 | 
+216 |       // 1. Déplacer instantanément la caméra sur le chef-lieu de la wilaya
+217 |       final chefLieu = LatLng(selected.lat, selected.lon);
+218 |       _mapController.move(chefLieu, 12.0);
+219 | 
+220 |       // 2. Filtrer la liste des établissements pour n'afficher que ceux de cette wilaya
+221 |       final results = widget.searchService.searchHybrid(
+222 |         wilayaCode: selected.code,
+223 |         category: _selectedCategory,
+224 |         onlyEmergency: _onlyEmergency,
+225 |         userLat: _userPosition.latitude,
+226 |         userLon: _userPosition.longitude,
+227 |         limit: 300,
+228 |       );
+229 | 
+230 |       setState(() {
+231 |         _displayedFacilities = results;
+232 |         _isLoading = false;
+233 |       });
+234 | 
+235 |       ScaffoldMessenger.of(context).showSnackBar(
+236 |         SnackBar(
+237 |           content: Text(
+238 |             'Wilaya : ${selected.code} - ${selected.name} (${results.length} fiches chargées)',
+239 |           ),
+240 |           duration: const Duration(seconds: 3),
+241 |           backgroundColor: Colors.teal.shade900,
+242 |         ),
+243 |       );
+244 |     } else {
+245 |       // Choix "Tout le pays" / Réinitialisation
+246 |       setState(() {
+247 |         _selectedWilayaCode = null;
+248 |         _selectedWilayaName = null;
+249 |         _isLoading = true;
+250 |       });
+251 | 
+252 |       _zoomToNational();
+253 |       _applyFilters();
+254 |     }
+255 |   }
+256 | 
+257 |   void _zoomToNational() {
+258 |     _mapController.move(widget.initialCenter, widget.initialZoom);
+259 |   }
+260 | 
+261 |   Color _getMarkerColor(HealthFacility facility) {
+262 |     if (facility.isEmergencyOrOnDuty) return Colors.red.shade700;
+263 |     final cat = facility.categorie.toLowerCase();
+264 |     if (cat.contains('pharmacie')) return Colors.green.shade700;
+265 |     if (cat.contains('hopital') || cat.contains('clinique')) return Colors.indigo.shade700;
+266 |     if (cat.contains('dentiste')) return Colors.teal.shade700;
+267 |     if (cat.contains('laboratoire')) return Colors.purple.shade700;
+268 |     return Colors.blue.shade700;
+269 |   }
+270 | 
+271 |   IconData _getMarkerIcon(HealthFacility facility) {
+272 |     if (facility.isEmergencyOrOnDuty) return Icons.emergency;
+273 |     final cat = facility.categorie.toLowerCase();
+274 |     if (cat.contains('pharmacie')) return Icons.local_pharmacy;
+275 |     if (cat.contains('hopital')) return Icons.local_hospital;
+276 |     if (cat.contains('dentiste')) return Icons.medical_services_outlined;
+277 |     if (cat.contains('laboratoire')) return Icons.biotech;
+278 |     return Icons.person;
+279 |   }
+DONE

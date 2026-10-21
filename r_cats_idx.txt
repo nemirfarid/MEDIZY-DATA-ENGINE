@@ -1,0 +1,62 @@
+﻿SIZE: 18709 bytes | LINES: 60 | OFFSET: 0
+{
+  "version": "1.0.15",
+  "generated_at": "2026-10-18T12:06:04.098097+00:00",
+  "total_categories": 102,
+  "categories": [
+    {
+      "code": "PHARM",
+      "name": "pharmacie",
+      "group": "Pharmacies",
+      "total_facilities": 6204,
+      "slug": "pharmacie"
+    },
+    {
+      "code": "CAB-MED",
+      "name": "cabinet mÃ©dical",
+      "group": "MÃ©decins & SpÃ©cialitÃ©s",
+      "total_facilities": 3767,
+      "slug": "cabinet-medical"
+    },
+    {
+      "code": "CLIN",
+      "name": "clinique",
+      "group": "HÃ´pitaux & Soins",
+      "total_facilities": 3117,
+      "slug": "clinique"
+    },
+    {
+      "code": "CAB-DENT",
+      "name": "cabinet dentaire",
+      "group": "Chirurgie Dentaire",
+      "total_facilities": 2502,
+      "slug": "cabinet-dentaire"
+    },
+    {
+      "code": "CTR-SANTE",
+      "name": "centre de santÃ©",
+      "group": "HÃ´pitaux & Soins",
+      "total_facilities": 2090,
+      "slug": "centre-de-sante"
+    },
+    {
+      "code": "HOP",
+      "name": "hÃ´pital",
+      "group": "HÃ´pitaux & Soins",
+      "total_facilities": 1917,
+      "slug": "hopital"
+    },
+    {
+      "code": "LABO",
+      "name": "laboratoire mÃ©dical",
+      "group": "Laboratoires & Diagnostic",
+      "total_facilities": 1617,
+      "slug": "laboratoire-medical"
+    },
+    {
+      "code": "GYNECO",
+      "name": "gynÃ©cologue",
+      "group": "MÃ©decins & SpÃ©cialitÃ©s",
+      "total_facilities": 1558,
+      "slug": "gynecologue"
+DONE

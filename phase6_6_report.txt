@@ -1,0 +1,49 @@
+=== MEDIZY PHASE 6.6 REPORT ===
+Date: Phase 6.6 execution
+
+=== CHEMINS EXACTS ===
+Base nationale test: C:\SANTE_DZ_SCRAPER\medizy_scraper_national_test.db
+Base production: C:\SANTE_DZ_SCRAPER\medizy_scraper.db (lecture seule, aucun modif)
+Exports: D:\SANTE_DZ_EXPORTS
+
+=== FICHIERS CRÉÉS (nouveaux) ===
+1. phase6_6_duplicate_review.csv
+2. phase6_6_manual_validation.csv
+3. phase6_6_gps_validation_queue.csv
+4. phase6_6_report.txt
+
+=== MISSION 1 - ABADLA ===
+Entrées analysées: 053be2b97429a342, 90832d666a6d2057, 679da9f6d5cbfa3f
+- 08-eph-02 (053be2b97429a342 et 90832d666a6d2057): même geo_id, mêmes coordonnées. 90832d666a6d2057 a nom corrompu - DOUBLON SOURCE PROBABLE
+- 08-epsp-01 (679da9f6d5cbfa3f): EPSP distinct - co-localisation légitime
+Conclusion: indéterminé sans validation externe. Aucune fusion.
+
+=== MISSION 2 - ARRIS ===
+06044aa518c75ffe (05-eph-04, Arris 2) vs 3e729654e392c74e (05-eph-03, Arris 1)
+- même GPS (centroïde), même catégorie, noms différents
+Conclusion: DOUBLON PROBABLE (classement conservateur). Pas de preuve documentaire suffisante. Aucune suppression/fusion.
+
+=== MISSION 3 - 4 ENTRÉES NON CLASSIFIÉES ===
+Traitées dans phase6_6_manual_validation.csv avec questions précises.
+
+=== MISSION 4 - QUALITÉ GPS ===
+118 entrées geoalgeria:msp
+- centroïde de commune: 109 (92.4%, priorité MOYENNE)
+- point OSM: 9 (7.6%, priorité BASSE)
+- owner_verified: 0
+- méthode inconnue: 0
+Ne pas assimiler osm_point à position terrain vérifiée.
+
+=== CONTRÔLES ===
+- 118 identifiants traçables ✓
+- 4 non classifiées préservées ✓
+- Valeurs brutes (????) préservées ✓
+- Aucune suppression/fusion ✓
+- Aucune modification production ✓
+- Tous fichiers nouveaux ✓
+
+=== CONCLUSION ===
+RÉCONCILIATION VALIDÉE AVEC RÉSERVES
+
+Aucune modification de production, aucune suppression et aucune fusion.
+Attente autorisation explicite avant phase suivante.

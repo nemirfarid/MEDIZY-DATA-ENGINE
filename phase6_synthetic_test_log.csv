@@ -1,0 +1,18 @@
+timestamp,action,pdf_id,place_id,nom,wilaya,postal_code,latitude,longitude,commune,geocode_source,validation_status,duplicate_check,phone_validation,website_validation,error_detail
+2026-10-11T03:37:22.170036,IMPORTED,SYNTH_001,miph_SYNTH_001,Hôpital Synthétique Test,Alger,16000,36.7469941,3.0840814,,NOMINATIM_POSTAL,GEOCODED_OK,OK,,,
+2026-10-11T03:37:22.176436,SKIP_BUSINESS_DUPLICATE,SYNTH_002,miph_SYNTH_002,Hôpital Synthétique Test,Alger,16000,,,,,DUPLICATE_BUSINESS,EXISTS_ID_80913,,,Business duplicate: same name+wilaya+cat (id=80913)
+2026-10-11T03:37:22.191229,IMPORTED,SYNTH_003,miph_SYNTH_003,Hôpital Code Postal Zéro,Oran,0,,,,REJECTED_POSTAL_ZERO,POSTAL_ZERO_NO_GEOCODE,OK,,,
+2026-10-11T03:37:32.218008,IMPORTED,SYNTH_004,miph_SYNTH_004,Hôpital Hors Bornes,Alger,16000,,,,NOMINATIM_ERROR_URLError,GEOCODE_FAILED,OK,,,
+2026-10-11T03:37:42.243894,IMPORTED,SYNTH_005,miph_SYNTH_005,Hôpital Même Nom Autre Wilaya,Oran,31000,,,,NOMINATIM_ERROR_URLError,GEOCODE_FAILED,OK,,,
+2026-10-11T03:41:16.490358,SKIP_DUPLICATE_ID,SYNTH_001,miph_SYNTH_001,Hôpital Synthétique Test,Alger,16000,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T03:41:16.557548,SKIP_BUSINESS_DUPLICATE,SYNTH_002,miph_SYNTH_002,Hôpital Synthétique Test,Alger,16000,,,,,DUPLICATE_BUSINESS,EXISTS_ID_80913,,,Business duplicate: same name+wilaya+cat (id=80913)
+2026-10-11T03:41:16.560109,SKIP_DUPLICATE_ID,SYNTH_003,miph_SYNTH_003,Hôpital Code Postal Zéro,Oran,0,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T03:41:16.561200,SKIP_DUPLICATE_ID,SYNTH_004,miph_SYNTH_004,Hôpital Hors Bornes,Alger,16000,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T03:41:16.562142,SKIP_DUPLICATE_ID,SYNTH_005,miph_SYNTH_005,Hôpital Même Nom Autre Wilaya,Oran,31000,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T03:41:18.811392,IMPORTED,SYNTH_006,miph_SYNTH_006,Hôpital Même Nom Autre Wilaya,Constantine,25000,36.3491417,6.6130137,Constantine ⵇⵙⴻⵟⵉⵏⴰ قسنطينة,NOMINATIM_POSTAL,GEOCODED_OK,OK,,,
+2026-10-11T03:41:26.797816,SKIP_DUPLICATE_ID,SYNTH_001,miph_SYNTH_001,Hôpital Synthétique Test,Alger,16000,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T03:41:26.804020,SKIP_BUSINESS_DUPLICATE,SYNTH_002,miph_SYNTH_002,Hôpital Synthétique Test,Alger,16000,,,,,DUPLICATE_BUSINESS,EXISTS_ID_80913,,,Business duplicate: same name+wilaya+cat (id=80913)
+2026-10-11T03:41:26.805103,SKIP_DUPLICATE_ID,SYNTH_003,miph_SYNTH_003,Hôpital Code Postal Zéro,Oran,0,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T03:41:26.806415,SKIP_DUPLICATE_ID,SYNTH_004,miph_SYNTH_004,Hôpital Hors Bornes,Alger,16000,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T03:41:26.807367,SKIP_DUPLICATE_ID,SYNTH_005,miph_SYNTH_005,Hôpital Même Nom Autre Wilaya,Oran,31000,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T03:41:26.808485,SKIP_DUPLICATE_ID,SYNTH_006,miph_SYNTH_006,Hôpital Même Nom Autre Wilaya,Constantine,25000,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB

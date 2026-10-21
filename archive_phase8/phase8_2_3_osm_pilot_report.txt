@@ -1,0 +1,73 @@
+PHASE 8.2.3 - OSM PILOT REAL EXECUTION (staging only)
+Date: 2026-10-15T03:26:28.335669
+
+ETAPE 1 - PROTECTIONS & PRE-CHECKS
+PROD: C:\SANTE_DZ_SCRAPER\medizy_scraper.db
+PROD SHA256 (full): a621ce56c192c487d273f0d8a6f6b3dfb28cea538ab3e02a406491c6d10c4605
+PROD integrity: ok
+STAGING: C:\SANTE_DZ_SCRAPER\staging_osm_pilot.db
+STAGING SHA256 (before): 719b0d3a7b3839990ee24d36af935f7d5aa80a09f26ff7670ac4857fd141f5bd
+STAGING integrity (before): ok
+No production writes performed. No fusion attempted.
+
+ETAPE 2 - COLLECTE SEQUENTIELLE (reelle)
+Wilayas: Illizi, El Meniaa, Tindouf
+Categories: amenity=hospital|clinic|doctors|dentist|pharmacy
+Query: area[name=...] for Illizi; bbox for El Meniaa/Tindouf (area lookup failed)
+Delays: 8s between wilayas, 20s on retryable errors (429/504)
+
+Per-wilaya results:
+Wilaya: Illizi (area)
+  HTTP code: 200
+  Status: ok
+  Retries: 0
+  Duration (s): 9.974715
+  Elements receus (raw): 7
+  Elements inserts: 0
+  Doublons internes ignores: 7
+  Coordonnees rejetees/invalides: 0
+  Entrees sans nom: 2
+  Erreur message: ok
+  Repartition par categorie: {"hospital": 2, "clinic": 4, "pharmacy": 1}
+Wilaya: El Meniaa (bbox)
+  HTTP code: 200
+  Status: ok
+  Retries: 0
+  Duration (s): 1.878499
+  Elements receus (raw): 128
+  Elements inserts: 128
+  Doublons internes ignores: 0
+  Coordonnees rejetees/invalides: 0
+  Entrees sans nom: 19
+  Erreur message: ok
+  Repartition par categorie: {"pharmacy": 35, "doctors": 51, "clinic": 22, "hospital": 15, "dentist": 5}
+Wilaya: Tindouf (bbox)
+  HTTP code: 200
+  Status: ok
+  Retries: 1
+  Duration (s): 1.094749
+  Elements receus (raw): 26
+  Elements inserts: 26
+  Doublons internes ignores: 0
+  Coordonnees rejetees/invalides: 0
+  Entrees sans nom: 0
+  Erreur message: ok
+  Repartition par categorie: {"doctors": 2, "pharmacy": 5, "hospital": 8, "clinic": 10, "dentist": 1}
+
+ETAPE 3 - VALIDATION STAGING
+STAGING entries before: 7
+STAGING entries after: 161
+Distinct osm_id: 161
+STAGING integrity (after): ok
+Source provenance: osm_overpass for all entries
+
+ETAPE 4 - POST-CHECK PROTECTION
+PROD SHA256 (after): a621ce56c192c487d273f0d8a6f6b3dfb28cea538ab3e02a406491c6d10c4605
+PROD integrity (after): ok
+PROD/exports unchanged: true
+
+REMARQUES:
+- Overpass may return partial results; empty response does not imply zero establishments.
+- Coordinates validated (lat/lon present).
+- Network errors/timeouts logged per wilaya.
+NOTE: Illizi results are from a re-run; initial 7 entries already existed (INSERT OR IGNORE). Staging total now 161 entries (7 Illizi + 128 El Meniaa + 26 Tindouf).

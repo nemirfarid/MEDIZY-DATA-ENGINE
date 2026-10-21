@@ -1,0 +1,121 @@
+timestamp,action,pdf_id,place_id,nom,wilaya,postal_code,latitude,longitude,commune,geocode_source,validation_status,duplicate_check,phone_validation,website_validation,error_detail
+2026-10-11T02:42:28.071936,SKIP_DUPLICATE_ID,158,miph_158,Institut National de Santé Publique,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.073807,SKIP_DUPLICATE_ID,843,miph_843,Etablissement Public Hospitalier OUM EL BOUAGHI (IBN SINA),Oum El Bouaghi,4001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.075159,SKIP_DUPLICATE_ID,999,miph_999,Etablissement Public Hospitalier El Emir Abdel Kader Oued Zenati,Guelma,24004,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.076683,SKIP_DUPLICATE_ID,1819,miph_1819,Etablissement Public Hospitalier Souk Ahras (IBN Rochd),Souk Ahras,41001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.077556,SKIP_DUPLICATE_ID,3519,miph_3519,Etablissement hospitalier Ain Turk Hôpital Docteur Medjbar Tami (Oran),Oran,31009,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.078304,SKIP_DUPLICATE_ID,4338,miph_4338,Etablissement Public Hospitalier Ain Beida (ZERDANI SALAH),Oum El Bouaghi,4002,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.078962,SKIP_DUPLICATE_ID,4462,miph_4462,Etablissement Hospitalier Spécialisé CLINIQUE DE CHIRURGIE CARDIAQUE PEDIATRIQUE DRAA BEN KHEDDA,Tizi Ouzou,15001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.079619,SKIP_DUPLICATE_ID,4492,miph_4492,Etablissement Hospitalier Spécialisé Rééducation Réadaptation Fonctionnelle Kasdi Merbah Tixeraine,Alger,16053,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.080248,SKIP_DUPLICATE_ID,7965,miph_7965,INFSPM Tiaret,Tiaret,14001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.080851,SKIP_DUPLICATE_ID,8050,miph_8050,IFPM Tamenghasset,Tamanrasset,11001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.081343,SKIP_DUPLICATE_ID,8054,miph_8054,IFPM EL ATTAF,Aïn Defla,44010,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.081841,SKIP_DUPLICATE_ID,8342,miph_8342,D?centralisAgence Nationale du Sang,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.082381,SKIP_DUPLICATE_ID,12106,miph_12106,Etablissement Public Hospitalier Bouguerra Boulaares Bekkeria Tebessa,Tébessa,12017,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.084884,SKIP_DUPLICATE_ID,12950,miph_12950,D?centralisCentre National de Toxicologie,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.085980,SKIP_DUPLICATE_ID,15762,miph_15762,Direction des Ressources Humaines,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.087042,SKIP_DUPLICATE_ID,15877,miph_15877,LNCPP,Alger,16001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.088015,SKIP_DUPLICATE_ID,15878,miph_15878,D?centralisEcole Nationale de Management et de l'Administration de la Santé,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.088849,SKIP_DUPLICATE_ID,15879,miph_15879,D?centralisANG,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.089625,SKIP_DUPLICATE_ID,21508,miph_21508,D?centralisCNPM,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.090161,SKIP_DUPLICATE_ID,21509,miph_21509,HOPITAL MIXTE DE DJELFA MOUDJAHID HATHAT BOUBAKEUR,Djelfa,17001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.090598,SKIP_DUPLICATE_ID,28795,miph_28795,Etablissement Public Hospitalier ain safra (nouvelle hôpital),Naâma,45003,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.091076,SKIP_DUPLICATE_ID,28800,miph_28800,Etablissement Hospitalier Spécialisé des urgences médico chirurgicales ahmed ben abid,Bordj Bou Arréridj,34001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.091519,SKIP_DUPLICATE_ID,28812,miph_28812,Etablissement Public Hospitalier nouvel hopital 240 Ain defla,Aïn Defla,44001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:42:28.091935,SKIP_DUPLICATE_ID,28834,miph_28834,Institut De Formation Param&eacute;dicale Mila,Mila,0,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.647492,SKIP_DUPLICATE_ID,158,miph_158,Institut National de Santé Publique,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.648928,SKIP_DUPLICATE_ID,843,miph_843,Etablissement Public Hospitalier OUM EL BOUAGHI (IBN SINA),Oum El Bouaghi,4001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.649570,SKIP_DUPLICATE_ID,999,miph_999,Etablissement Public Hospitalier El Emir Abdel Kader Oued Zenati,Guelma,24004,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.651295,SKIP_DUPLICATE_ID,1819,miph_1819,Etablissement Public Hospitalier Souk Ahras (IBN Rochd),Souk Ahras,41001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.652263,SKIP_DUPLICATE_ID,3519,miph_3519,Etablissement hospitalier Ain Turk Hôpital Docteur Medjbar Tami (Oran),Oran,31009,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.653259,SKIP_DUPLICATE_ID,4338,miph_4338,Etablissement Public Hospitalier Ain Beida (ZERDANI SALAH),Oum El Bouaghi,4002,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.654017,SKIP_DUPLICATE_ID,4462,miph_4462,Etablissement Hospitalier Spécialisé CLINIQUE DE CHIRURGIE CARDIAQUE PEDIATRIQUE DRAA BEN KHEDDA,Tizi Ouzou,15001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.654881,SKIP_DUPLICATE_ID,4492,miph_4492,Etablissement Hospitalier Spécialisé Rééducation Réadaptation Fonctionnelle Kasdi Merbah Tixeraine,Alger,16053,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.655599,SKIP_DUPLICATE_ID,7965,miph_7965,INFSPM Tiaret,Tiaret,14001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.656093,SKIP_DUPLICATE_ID,8050,miph_8050,IFPM Tamenghasset,Tamanrasset,11001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.656504,SKIP_DUPLICATE_ID,8054,miph_8054,IFPM EL ATTAF,Aïn Defla,44010,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.656872,SKIP_DUPLICATE_ID,8342,miph_8342,D?centralisAgence Nationale du Sang,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.657232,SKIP_DUPLICATE_ID,12106,miph_12106,Etablissement Public Hospitalier Bouguerra Boulaares Bekkeria Tebessa,Tébessa,12017,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.657590,SKIP_DUPLICATE_ID,12950,miph_12950,D?centralisCentre National de Toxicologie,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.657943,SKIP_DUPLICATE_ID,15762,miph_15762,Direction des Ressources Humaines,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.658296,SKIP_DUPLICATE_ID,15877,miph_15877,LNCPP,Alger,16001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.658708,SKIP_DUPLICATE_ID,15878,miph_15878,D?centralisEcole Nationale de Management et de l'Administration de la Santé,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.659143,SKIP_DUPLICATE_ID,15879,miph_15879,D?centralisANG,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.659640,SKIP_DUPLICATE_ID,21508,miph_21508,D?centralisCNPM,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.660141,SKIP_DUPLICATE_ID,21509,miph_21509,HOPITAL MIXTE DE DJELFA MOUDJAHID HATHAT BOUBAKEUR,Djelfa,17001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.660557,SKIP_DUPLICATE_ID,28795,miph_28795,Etablissement Public Hospitalier ain safra (nouvelle hôpital),Naâma,45003,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.660947,SKIP_DUPLICATE_ID,28800,miph_28800,Etablissement Hospitalier Spécialisé des urgences médico chirurgicales ahmed ben abid,Bordj Bou Arréridj,34001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.661336,SKIP_DUPLICATE_ID,28812,miph_28812,Etablissement Public Hospitalier nouvel hopital 240 Ain defla,Aïn Defla,44001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:25.661721,SKIP_DUPLICATE_ID,28834,miph_28834,Institut De Formation Param&eacute;dicale Mila,Mila,0,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.677100,SKIP_DUPLICATE_ID,158,miph_158,Institut National de Santé Publique,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.677549,SKIP_DUPLICATE_ID,843,miph_843,Etablissement Public Hospitalier OUM EL BOUAGHI (IBN SINA),Oum El Bouaghi,4001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.678013,SKIP_DUPLICATE_ID,999,miph_999,Etablissement Public Hospitalier El Emir Abdel Kader Oued Zenati,Guelma,24004,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.678370,SKIP_DUPLICATE_ID,1819,miph_1819,Etablissement Public Hospitalier Souk Ahras (IBN Rochd),Souk Ahras,41001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.678712,SKIP_DUPLICATE_ID,3519,miph_3519,Etablissement hospitalier Ain Turk Hôpital Docteur Medjbar Tami (Oran),Oran,31009,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.679038,SKIP_DUPLICATE_ID,4338,miph_4338,Etablissement Public Hospitalier Ain Beida (ZERDANI SALAH),Oum El Bouaghi,4002,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.679374,SKIP_DUPLICATE_ID,4462,miph_4462,Etablissement Hospitalier Spécialisé CLINIQUE DE CHIRURGIE CARDIAQUE PEDIATRIQUE DRAA BEN KHEDDA,Tizi Ouzou,15001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.679705,SKIP_DUPLICATE_ID,4492,miph_4492,Etablissement Hospitalier Spécialisé Rééducation Réadaptation Fonctionnelle Kasdi Merbah Tixeraine,Alger,16053,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.680037,SKIP_DUPLICATE_ID,7965,miph_7965,INFSPM Tiaret,Tiaret,14001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.680357,SKIP_DUPLICATE_ID,8050,miph_8050,IFPM Tamenghasset,Tamanrasset,11001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.680671,SKIP_DUPLICATE_ID,8054,miph_8054,IFPM EL ATTAF,Aïn Defla,44010,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.680990,SKIP_DUPLICATE_ID,8342,miph_8342,D?centralisAgence Nationale du Sang,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.681306,SKIP_DUPLICATE_ID,12106,miph_12106,Etablissement Public Hospitalier Bouguerra Boulaares Bekkeria Tebessa,Tébessa,12017,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.681623,SKIP_DUPLICATE_ID,12950,miph_12950,D?centralisCentre National de Toxicologie,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.682113,SKIP_DUPLICATE_ID,15762,miph_15762,Direction des Ressources Humaines,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.684285,SKIP_DUPLICATE_ID,15877,miph_15877,LNCPP,Alger,16001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.685014,SKIP_DUPLICATE_ID,15878,miph_15878,D?centralisEcole Nationale de Management et de l'Administration de la Santé,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.685701,SKIP_DUPLICATE_ID,15879,miph_15879,D?centralisANG,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.686412,SKIP_DUPLICATE_ID,21508,miph_21508,D?centralisCNPM,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.687200,SKIP_DUPLICATE_ID,21509,miph_21509,HOPITAL MIXTE DE DJELFA MOUDJAHID HATHAT BOUBAKEUR,Djelfa,17001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.687780,SKIP_DUPLICATE_ID,28795,miph_28795,Etablissement Public Hospitalier ain safra (nouvelle hôpital),Naâma,45003,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.688198,SKIP_DUPLICATE_ID,28800,miph_28800,Etablissement Hospitalier Spécialisé des urgences médico chirurgicales ahmed ben abid,Bordj Bou Arréridj,34001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.688553,SKIP_DUPLICATE_ID,28812,miph_28812,Etablissement Public Hospitalier nouvel hopital 240 Ain defla,Aïn Defla,44001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:43:28.688886,SKIP_DUPLICATE_ID,28834,miph_28834,Institut De Formation Param&eacute;dicale Mila,Mila,0,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.414759,SKIP_DUPLICATE_ID,158,miph_158,Institut National de Santé Publique,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.416721,SKIP_DUPLICATE_ID,843,miph_843,Etablissement Public Hospitalier OUM EL BOUAGHI (IBN SINA),Oum El Bouaghi,4001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.417348,SKIP_DUPLICATE_ID,999,miph_999,Etablissement Public Hospitalier El Emir Abdel Kader Oued Zenati,Guelma,24004,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.421270,SKIP_DUPLICATE_ID,1819,miph_1819,Etablissement Public Hospitalier Souk Ahras (IBN Rochd),Souk Ahras,41001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.422344,SKIP_DUPLICATE_ID,3519,miph_3519,Etablissement hospitalier Ain Turk Hôpital Docteur Medjbar Tami (Oran),Oran,31009,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.423262,SKIP_DUPLICATE_ID,4338,miph_4338,Etablissement Public Hospitalier Ain Beida (ZERDANI SALAH),Oum El Bouaghi,4002,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.423905,SKIP_DUPLICATE_ID,4462,miph_4462,Etablissement Hospitalier Spécialisé CLINIQUE DE CHIRURGIE CARDIAQUE PEDIATRIQUE DRAA BEN KHEDDA,Tizi Ouzou,15001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.424544,SKIP_DUPLICATE_ID,4492,miph_4492,Etablissement Hospitalier Spécialisé Rééducation Réadaptation Fonctionnelle Kasdi Merbah Tixeraine,Alger,16053,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.425224,SKIP_DUPLICATE_ID,7965,miph_7965,INFSPM Tiaret,Tiaret,14001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.425758,SKIP_DUPLICATE_ID,8050,miph_8050,IFPM Tamenghasset,Tamanrasset,11001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.426260,SKIP_DUPLICATE_ID,8054,miph_8054,IFPM EL ATTAF,Aïn Defla,44010,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.426735,SKIP_DUPLICATE_ID,8342,miph_8342,D?centralisAgence Nationale du Sang,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.427431,SKIP_DUPLICATE_ID,12106,miph_12106,Etablissement Public Hospitalier Bouguerra Boulaares Bekkeria Tebessa,Tébessa,12017,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.427930,SKIP_DUPLICATE_ID,12950,miph_12950,D?centralisCentre National de Toxicologie,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.428383,SKIP_DUPLICATE_ID,15762,miph_15762,Direction des Ressources Humaines,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.429022,SKIP_DUPLICATE_ID,15877,miph_15877,LNCPP,Alger,16001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.429664,SKIP_DUPLICATE_ID,15878,miph_15878,D?centralisEcole Nationale de Management et de l'Administration de la Santé,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.430235,SKIP_DUPLICATE_ID,15879,miph_15879,D?centralisANG,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.430712,SKIP_DUPLICATE_ID,21508,miph_21508,D?centralisCNPM,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.431162,SKIP_DUPLICATE_ID,21509,miph_21509,HOPITAL MIXTE DE DJELFA MOUDJAHID HATHAT BOUBAKEUR,Djelfa,17001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.431603,SKIP_DUPLICATE_ID,28795,miph_28795,Etablissement Public Hospitalier ain safra (nouvelle hôpital),Naâma,45003,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.432130,SKIP_DUPLICATE_ID,28800,miph_28800,Etablissement Hospitalier Spécialisé des urgences médico chirurgicales ahmed ben abid,Bordj Bou Arréridj,34001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.432642,SKIP_DUPLICATE_ID,28812,miph_28812,Etablissement Public Hospitalier nouvel hopital 240 Ain defla,Aïn Defla,44001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:07.433087,SKIP_DUPLICATE_ID,28834,miph_28834,Institut De Formation Param&eacute;dicale Mila,Mila,0,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.558321,SKIP_DUPLICATE_ID,158,miph_158,Institut National de Santé Publique,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.558852,SKIP_DUPLICATE_ID,843,miph_843,Etablissement Public Hospitalier OUM EL BOUAGHI (IBN SINA),Oum El Bouaghi,4001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.559281,SKIP_DUPLICATE_ID,999,miph_999,Etablissement Public Hospitalier El Emir Abdel Kader Oued Zenati,Guelma,24004,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.559714,SKIP_DUPLICATE_ID,1819,miph_1819,Etablissement Public Hospitalier Souk Ahras (IBN Rochd),Souk Ahras,41001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.560115,SKIP_DUPLICATE_ID,3519,miph_3519,Etablissement hospitalier Ain Turk Hôpital Docteur Medjbar Tami (Oran),Oran,31009,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.560501,SKIP_DUPLICATE_ID,4338,miph_4338,Etablissement Public Hospitalier Ain Beida (ZERDANI SALAH),Oum El Bouaghi,4002,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.560944,SKIP_DUPLICATE_ID,4462,miph_4462,Etablissement Hospitalier Spécialisé CLINIQUE DE CHIRURGIE CARDIAQUE PEDIATRIQUE DRAA BEN KHEDDA,Tizi Ouzou,15001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.561363,SKIP_DUPLICATE_ID,4492,miph_4492,Etablissement Hospitalier Spécialisé Rééducation Réadaptation Fonctionnelle Kasdi Merbah Tixeraine,Alger,16053,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.561786,SKIP_DUPLICATE_ID,7965,miph_7965,INFSPM Tiaret,Tiaret,14001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.562171,SKIP_DUPLICATE_ID,8050,miph_8050,IFPM Tamenghasset,Tamanrasset,11001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.562614,SKIP_DUPLICATE_ID,8054,miph_8054,IFPM EL ATTAF,Aïn Defla,44010,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.563046,SKIP_DUPLICATE_ID,8342,miph_8342,D?centralisAgence Nationale du Sang,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.563459,SKIP_DUPLICATE_ID,12106,miph_12106,Etablissement Public Hospitalier Bouguerra Boulaares Bekkeria Tebessa,Tébessa,12017,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.563846,SKIP_DUPLICATE_ID,12950,miph_12950,D?centralisCentre National de Toxicologie,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.564230,SKIP_DUPLICATE_ID,15762,miph_15762,Direction des Ressources Humaines,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.564661,SKIP_DUPLICATE_ID,15877,miph_15877,LNCPP,Alger,16001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.565426,SKIP_DUPLICATE_ID,15878,miph_15878,D?centralisEcole Nationale de Management et de l'Administration de la Santé,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.566008,SKIP_DUPLICATE_ID,15879,miph_15879,D?centralisANG,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.566489,SKIP_DUPLICATE_ID,21508,miph_21508,D?centralisCNPM,Alger,16058,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.569223,SKIP_DUPLICATE_ID,21509,miph_21509,HOPITAL MIXTE DE DJELFA MOUDJAHID HATHAT BOUBAKEUR,Djelfa,17001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.570253,SKIP_DUPLICATE_ID,28795,miph_28795,Etablissement Public Hospitalier ain safra (nouvelle hôpital),Naâma,45003,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.571825,SKIP_DUPLICATE_ID,28800,miph_28800,Etablissement Hospitalier Spécialisé des urgences médico chirurgicales ahmed ben abid,Bordj Bou Arréridj,34001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.572740,SKIP_DUPLICATE_ID,28812,miph_28812,Etablissement Public Hospitalier nouvel hopital 240 Ain defla,Aïn Defla,44001,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB
+2026-10-11T02:49:10.574024,SKIP_DUPLICATE_ID,28834,miph_28834,Institut De Formation Param&eacute;dicale Mila,Mila,0,,,,,DUPLICATE_ID,EXISTS_BY_PLACE_ID,,,place_id already exists in DB

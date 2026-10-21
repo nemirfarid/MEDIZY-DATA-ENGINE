@@ -1,0 +1,27 @@
+﻿core\models\health_facility.dart : 8 : final String categorie;
+core\models\health_facility.dart : 26 : required this.categorie,
+core\models\health_facility.dart : 47 : categorie: (map['categorie'] as String?) ?? 'Santé',
+core\models\health_facility.dart : 78 : 'categorie': categorie,
+core\models\health_facility.dart : 97 : final lowerCat = categorie.toLowerCase();
+core\models\health_facility.dart : 122 : sb.writeln('$nom ($categorie)');
+core\services\offline_health_search_service.dart : 53 : SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+core\services\offline_health_search_service.dart : 60 : SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+core\services\offline_health_search_service.dart : 67 : SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+core\services\offline_health_search_service.dart : 173 : SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+core\services\offline_health_search_service.dart : 233 : SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+core\services\offline_health_search_service.dart : 243 : SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+core\services\offline_health_search_service.dart : 249 : AND f.categorie = ?
+core\services\offline_health_search_service.dart : 311 : SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+core\services\offline_health_search_service.dart : 326 : sb.writeln('  AND f.categorie = ?');
+core\services\offline_health_search_service.dart : 355 : SELECT id, place_id, nom, categorie, wilaya, wilaya_code, commune,
+core\services\offline_health_search_service.dart : 368 : sb.writeln('  AND categorie = ?');
+core\services\offline_health_search_service.dart : 409 : final rows = db.select('SELECT categorie, COUNT(*) as c FROM facilities GROUP BY categorie ORDER BY c DESC;');
+core\services\offline_health_search_service.dart : 412 : map[r['categorie'] as String] = (r['c'] as num).toInt();
+core\services\offline_health_search_service.dart : 434 : SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+features\map\offline_map_view.dart : 263 : final cat = facility.categorie.toLowerCase();
+features\map\offline_map_view.dart : 273 : final cat = facility.categorie.toLowerCase();
+features\map\widgets\facet_filter_bar.dart : 28 : static const List<Map<String, String>> topCategories = [
+features\map\widgets\facet_filter_bar.dart : 148 : items: topCategories.map((c) {
+features\map\widgets\facility_detail_sheet.dart : 134 : label: Text(facility.categorie),
+TOTAL MATCHES: 25
+DONE

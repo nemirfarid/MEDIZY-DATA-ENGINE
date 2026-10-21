@@ -1,0 +1,6 @@
+﻿SIZE: 141 bytes
+Could not find a command named "analyze,--no-pub".
+
+Run 'flutter -h' (or 'flutter <command> -h') for available flutter commands and options.
+
+DONE

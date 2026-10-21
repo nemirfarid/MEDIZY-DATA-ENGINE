@@ -1,0 +1,121 @@
+﻿1 | import 'package:flutter/material.dart';
+2 | 
+3 | /// Barre de filtrage par facettes (Wilaya, Spécialité, Statut d'urgence)
+4 | class FacetFilterBar extends StatelessWidget {
+5 |   final String? selectedWilayaCode;
+6 |   final String? selectedWilayaName;
+7 |   final String? selectedCategory;
+8 |   final bool onlyEmergency;
+9 |   final ValueChanged<String?> onWilayaChanged;
+10 |   final VoidCallback? onWilayaPickerRequested;
+11 |   final ValueChanged<String?> onCategoryChanged;
+12 |   final ValueChanged<bool> onEmergencyToggled;
+13 |   final ValueChanged<String> onSearchSubmitted;
+14 | 
+15 |   const FacetFilterBar({
+16 |     Key? key,
+17 |     this.selectedWilayaCode,
+18 |     this.selectedWilayaName,
+19 |     this.selectedCategory,
+20 |     required this.onlyEmergency,
+21 |     required this.onWilayaChanged,
+22 |     this.onWilayaPickerRequested,
+23 |     required this.onCategoryChanged,
+24 |     required this.onEmergencyToggled,
+25 |     required this.onSearchSubmitted,
+26 |   }) : super(key: key);
+27 | 
+28 |   static const List<Map<String, String>> topCategories = [
+29 |     {'code': '', 'label': 'Toutes catégories'},
+30 |     {'code': 'Pharmacie', 'label': 'Pharmacies'},
+31 |     {'code': 'Médecin Généraliste', 'label': 'Généralistes'},
+32 |     {'code': 'Hôpital', 'label': 'Hôpitaux & Cliniques'},
+33 |     {'code': 'Laboratoire d\'analyses', 'label': 'Laboratoires'},
+34 |     {'code': 'Dentiste', 'label': 'Dentistes'},
+35 |     {'code': 'Cardiologue', 'label': 'Cardiologues'},
+36 |     {'code': 'Pédiatre', 'label': 'Pédiatres'},
+37 |     {'code': 'Gynécologue', 'label': 'Gynécologues'},
+38 |     {'code': 'Ophtalmologue', 'label': 'Ophtalmologues'},
+39 |   ];
+40 | 
+41 |   @override
+42 |   Widget build(BuildContext context) {
+43 |     final theme = Theme.of(context);
+44 | 
+45 |     return Container(
+46 |       decoration: BoxDecoration(
+47 |         color: theme.cardColor.withOpacity(0.96),
+48 |         boxShadow: const [
+49 |           BoxShadow(
+50 |             color: Colors.black12,
+51 |             blurRadius: 8,
+52 |             offset: Offset(0, 2),
+53 |           ),
+54 |         ],
+55 |       ),
+56 |       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+57 |       child: Column(
+58 |         mainAxisSize: MainAxisSize.min,
+59 |         children: [
+60 |           // Ligne 1 : Champ de recherche FTS5
+61 |           TextField(
+62 |             decoration: InputDecoration(
+63 |               hintText: 'Rechercher médecin, pharmacie, commune...',
+64 |               prefixIcon: const Icon(Icons.search, color: Colors.teal),
+65 |               suffixIcon: IconButton(
+66 |                 icon: const Icon(Icons.clear, size: 18),
+67 |                 onPressed: () => onSearchSubmitted(''),
+68 |               ),
+69 |               isDense: true,
+70 |               filled: true,
+71 |               fillColor: Colors.grey.shade100,
+72 |               border: OutlineInputBorder(
+73 |                 borderRadius: BorderRadius.circular(16),
+74 |                 borderSide: BorderSide.none,
+75 |               ),
+76 |               contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+77 |             ),
+78 |             onSubmitted: onSearchSubmitted,
+79 |           ),
+80 |           const SizedBox(height: 8),
+81 | 
+82 |           // Ligne 2 : Filtres rapides Wilaya (58), Catégorie, Urgence
+83 |           SingleChildScrollView(
+84 |             scrollDirection: Axis.horizontal,
+85 |             child: Row(
+86 |               children: [
+87 |                 // Sélecteur explicite Wilaya (58 Wilayas)
+88 |                 FilterChip(
+89 |                   avatar: Icon(
+90 |                     Icons.location_city,
+91 |                     size: 15,
+92 |                     color: selectedWilayaCode != null ? Colors.white : Colors.teal.shade800,
+93 |                   ),
+94 |                   label: Text(
+95 |                     selectedWilayaCode != null
+96 |                         ? '$selectedWilayaCode ${selectedWilayaName ?? ""}'
+97 |                         : 'Wilaya (58)',
+98 |                   ),
+99 |                   selected: selectedWilayaCode != null,
+100 |                   selectedColor: Colors.teal.shade800,
+101 |                   labelStyle: TextStyle(
+102 |                     color: selectedWilayaCode != null ? Colors.white : Colors.teal.shade900,
+103 |                     fontWeight: FontWeight.w600,
+104 |                     fontSize: 12,
+105 |                   ),
+106 |                   onSelected: (_) => onWilayaPickerRequested?.call(),
+107 |                 ),
+108 |                 const SizedBox(width: 8),
+109 | 
+110 |                 // Bouton filtre Urgence / 24h
+111 |                 FilterChip(
+112 |                   avatar: Icon(
+113 |                     Icons.emergency,
+114 |                     size: 16,
+115 |                     color: onlyEmergency ? Colors.white : Colors.red,
+116 |                   ),
+117 |                   label: const Text('Urgences & Garde'),
+118 |                   selected: onlyEmergency,
+119 |                   selectedColor: Colors.red.shade700,
+120 |                   labelStyle: TextStyle(
+DONE

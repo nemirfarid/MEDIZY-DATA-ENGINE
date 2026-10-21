@@ -1,0 +1,34 @@
+﻿SIZE: 1358 bytes | LINES: 32 | OFFSET: 0
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:sante_dz_medizy/main.dart';
+
+void main() {
+  testWidgets('Medizy splash screen visual and branding test', (WidgetTester tester) async {
+    await tester.pumpWidget(
+      const MaterialApp(
+        home: MedizySplashScreen(statusMessage: 'Initialisation du registre sanitaire national...'),
+      ),
+    );
+
+    // VÃ©rifie le logo circulaire avec coeur bien-Ãªtre et le nom Medizy
+    expect(find.byIcon(Icons.favorite_rounded), findsOneWidget);
+    // VÃ©rifie l'absence absolue de croix mÃ©dicale (+)
+    expect(find.byIcon(Icons.local_hospital), findsNothing);
+    expect(find.byIcon(Icons.add), findsNothing);
+    // VÃ©rifie la typographie et les textes officiels Medizy
+    expect(find.text('Medizy'), findsOneWidget);
+    expect(find.text('Votre santÃ© au quotidien'), findsOneWidget);
+    expect(find.text('Initialisation du registre sanitaire national...'), findsOneWidget);
+  });
+
+  testWidgets('Medizy app startup smoke test', (WidgetTester tester) async {
+    await tester.pumpWidget(const SanteDzMedizyApp());
+    await tester.pump();
+
+    // L'application s'initialise et affiche l'interface Medizy
+    expect(find.text('Medizy'), findsOneWidget);
+    expect(find.text('Carte Sanitaire Hors-Ligne (58 Wilayas)'), findsOneWidget);
+  });
+}
+DONE

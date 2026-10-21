@@ -1,0 +1,8 @@
+PHASE 8 - PILOTE MULTI-SOURCES
+2026-10-13 03:25:27
+Protection: production backed up
+Staging: staging_osm_pilot.db created
+Collectors: base_collector.py, osm_collector.py
+Pilote wilayas: Illizi, El Meniaa, Tindouf
+Action: collector structuré, prêt pour tests Overpass limités
+Aucune fusion/suppression en production

@@ -1,0 +1,3 @@
+﻿SIZE: 64 bytes | LINES: 1 | OFFSET: 0
+Analyzing SANTE_DZ_SCRAPER...                                   
+DONE

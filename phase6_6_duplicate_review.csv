@@ -1,0 +1,6 @@
+mission,place_id,geo_id,nom,nom_norm,wilaya,commune,categorie,lat,lng,source,created_at,conclusion
+ABADLA,053be2b97429a342,08-eph-02,Etablissement Public Hospitalier Abadla,abadla,Béchar,Abadla,hôpital public,31.019,-2.72387,geoalgeria:msp,2026-10-11T19:56:36.031308,DOUBLON SOURCE PROBABLE (même geo_id) - À CONFIRMER
+ABADLA,90832d666a6d2057,08-eph-02,??????? ???????? ??????????? ????????,??????? ???????? ??????????? ????????,Béchar,Abadla,hôpital public,31.019,-2.72387,geoalgeria:msp,2026-10-11T19:56:36.074389,DOUBLON SOURCE PROBABLE (même geo_id) - À CONFIRMER
+ABADLA,679da9f6d5cbfa3f,08-epsp-01,Etablissement Public de Sant? de Proximit? Abadla,etablissement public de sant? de proximit? abadla,Béchar,Abadla,centre de santé,31.019,-2.72387,geoalgeria:msp,2026-10-11T19:56:36.090564,DISTINCT (co-localisation légitime avec catégorie différente)
+ARRIS,06044aa518c75ffe,05-eph-04,Etablissement Public Hospitalier Arris 2,arris 2,Batna,Arris,hôpital public,35.25881,6.34706,geoalgeria:msp,2026-10-11T19:56:30.977016,"DOUBLON PROBABLE - À CONFIRMER (mêmes coords, même cat, noms distincts Arris 1/2)"
+ARRIS,3e729654e392c74e,05-eph-03,Etablissement Public Hospitalier Arris 1,arris 1,Batna,Arris,hôpital public,35.25881,6.34706,geoalgeria:msp,2026-10-11T19:56:30.683593,"DOUBLON PROBABLE - À CONFIRMER (mêmes coords, même cat, noms distincts Arris 1/2)"

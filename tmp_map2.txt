@@ -1,0 +1,167 @@
+﻿196 |       );
+197 |     }
+198 |   }
+199 | 
+200 |   /// Ouvre le sélecteur modal des 58 Wilayas
+201 |   Future<void> _openWilayaPicker() async {
+202 |     final selected = await WilayaPickerSheet.show(
+203 |       context,
+204 |       currentCode: _selectedWilayaCode,
+205 |     );
+206 | 
+207 |     if (!mounted) return;
+208 | 
+209 |     if (selected != null) {
+210 |       setState(() {
+211 |         _selectedWilayaCode = selected.code;
+212 |         _selectedWilayaName = selected.name;
+213 |         _isLoading = true;
+214 |       });
+215 | 
+216 |       // 1. Déplacer instantanément la caméra sur le chef-lieu de la wilaya
+217 |       final chefLieu = LatLng(selected.lat, selected.lon);
+218 |       _mapController.move(chefLieu, 12.0);
+219 | 
+220 |       // 2. Filtrer la liste des établissements pour n'afficher que ceux de cette wilaya
+221 |       final results = widget.searchService.searchHybrid(
+222 |         wilayaCode: selected.code,
+223 |         category: _selectedCategory,
+224 |         onlyEmergency: _onlyEmergency,
+225 |         userLat: _userPosition.latitude,
+226 |         userLon: _userPosition.longitude,
+227 |         limit: 300,
+228 |       );
+229 | 
+230 |       setState(() {
+231 |         _displayedFacilities = results;
+232 |         _isLoading = false;
+233 |       });
+234 | 
+235 |       ScaffoldMessenger.of(context).showSnackBar(
+236 |         SnackBar(
+237 |           content: Text(
+238 |             'Wilaya : ${selected.code} - ${selected.name} (${results.length} fiches chargées)',
+239 |           ),
+240 |           duration: const Duration(seconds: 3),
+241 |           backgroundColor: Colors.teal.shade900,
+242 |         ),
+243 |       );
+244 |     } else {
+245 |       // Choix "Tout le pays" / Réinitialisation
+246 |       setState(() {
+247 |         _selectedWilayaCode = null;
+248 |         _selectedWilayaName = null;
+249 |         _isLoading = true;
+250 |       });
+251 | 
+252 |       _zoomToNational();
+253 |       _applyFilters();
+254 |     }
+255 |   }
+256 | 
+257 |   void _zoomToNational() {
+258 |     _mapController.move(widget.initialCenter, widget.initialZoom);
+259 |   }
+260 | 
+261 |   Color _getMarkerColor(HealthFacility facility) {
+262 |     if (facility.isEmergencyOrOnDuty) return Colors.red.shade700;
+263 |     final cat = facility.categorie.toLowerCase();
+264 |     if (cat.contains('pharmacie')) return Colors.green.shade700;
+265 |     if (cat.contains('hopital') || cat.contains('clinique')) return Colors.indigo.shade700;
+266 |     if (cat.contains('dentiste')) return Colors.teal.shade700;
+267 |     if (cat.contains('laboratoire')) return Colors.purple.shade700;
+268 |     return Colors.blue.shade700;
+269 |   }
+270 | 
+271 |   IconData _getMarkerIcon(HealthFacility facility) {
+272 |     if (facility.isEmergencyOrOnDuty) return Icons.emergency;
+273 |     final cat = facility.categorie.toLowerCase();
+274 |     if (cat.contains('pharmacie')) return Icons.local_pharmacy;
+275 |     if (cat.contains('hopital')) return Icons.local_hospital;
+276 |     if (cat.contains('dentiste')) return Icons.medical_services_outlined;
+277 |     if (cat.contains('laboratoire')) return Icons.biotech;
+278 |     return Icons.person;
+279 |   }
+280 | 
+281 |   @override
+282 |   Widget build(BuildContext context) {
+283 |     return Scaffold(
+284 |       appBar: AppBar(
+285 |         titleSpacing: 8,
+286 |         title: InkWell(
+287 |           onTap: _openWilayaPicker,
+288 |           borderRadius: BorderRadius.circular(12),
+289 |           child: Container(
+290 |             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+291 |             decoration: BoxDecoration(
+292 |               color: Colors.white.withOpacity(0.15),
+293 |               borderRadius: BorderRadius.circular(12),
+294 |               border: Border.all(color: Colors.white24),
+295 |             ),
+296 |             child: Row(
+297 |               mainAxisSize: MainAxisSize.min,
+298 |               children: [
+299 |                 Icon(
+300 |                   _selectedWilayaCode != null ? Icons.location_on : Icons.public,
+301 |                   size: 18,
+302 |                   color: Colors.tealAccent.shade100,
+303 |                 ),
+304 |                 const SizedBox(width: 6),
+305 |                 Flexible(
+306 |                   child: Column(
+307 |                     crossAxisAlignment: CrossAxisAlignment.start,
+308 |                     mainAxisSize: MainAxisSize.min,
+309 |                     children: [
+310 |                       Row(
+311 |                         mainAxisSize: MainAxisSize.min,
+312 |                         children: [
+313 |                           Text(
+314 |                             _selectedWilayaCode != null
+315 |                                 ? '$_selectedWilayaCode - ${_selectedWilayaName ?? "Wilaya"}'
+316 |                                 : 'Toute l\'Algérie (58)',
+317 |                             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+318 |                             overflow: TextOverflow.ellipsis,
+319 |                           ),
+320 |                           const SizedBox(width: 4),
+321 |                           const Icon(Icons.arrow_drop_down, size: 18, color: Colors.white70),
+322 |                         ],
+323 |                       ),
+324 |                       Text(
+325 |                         _selectedWilayaCode != null
+326 |                             ? '${_displayedFacilities.length} fiches • Chef-lieu'
+327 |                             : '${_displayedFacilities.length} fiches • Hors-ligne',
+328 |                         style: const TextStyle(fontSize: 11, color: Colors.white70),
+329 |                       ),
+330 |                     ],
+331 |                   ),
+332 |                 ),
+333 |               ],
+334 |             ),
+335 |           ),
+336 |         ),
+337 |         backgroundColor: Colors.teal.shade800,
+338 |         foregroundColor: Colors.white,
+339 |         actions: [
+340 |           // Bouton sélecteur de Wilaya
+341 |           IconButton(
+342 |             icon: const Icon(Icons.tune),
+343 |             tooltip: 'Sélecteur de Wilaya (58)',
+344 |             onPressed: _openWilayaPicker,
+345 |           ),
+346 |           // Bascule de fond cartographique (OSM / CartoDB Voyager)
+347 |           IconButton(
+348 |             icon: Icon(_useCartoDb ? Icons.map : Icons.layers_outlined),
+349 |             tooltip: _useCartoDb
+350 |                 ? 'Fond CartoDB Voyager actif (Cliquer pour OSM)'
+351 |                 : 'Fond OSM Standard actif (Cliquer pour CartoDB)',
+352 |             onPressed: () => setState(() => _useCartoDb = !_useCartoDb),
+353 |           ),
+354 |         ],
+355 |       ),
+356 |       body: Stack(
+357 |         children: [
+358 |           // 1. Vue Cartographique flutter_map avec canevas neutre clair médical hors-ligne
+359 |           FlutterMap(
+360 |             mapController: _mapController,
+361 |             options: MapOptions(
+362 |               initialCenter: widget.initialCenter,

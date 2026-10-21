@@ -1,0 +1,93 @@
+﻿397 |     final row = db.select('SELECT COUNT(DISTINCT wilaya_code) AS c FROM facilities;').first;
+398 |     return (row['c'] as num).toInt();
+399 |   }
+400 | 
+401 |   /// Récupération de l'ensemble des 58 codes wilayas
+402 |   List<String> getAllWilayaCodes() {
+403 |     final rows = db.select('SELECT DISTINCT wilaya_code FROM facilities ORDER BY wilaya_code ASC;');
+404 |     return rows.map((r) => r['wilaya_code'] as String).toList();
+405 |   }
+406 | 
+407 |   /// Répartition des effectifs par catégorie
+408 |   Map<String, int> getCountByCategory() {
+409 |     final rows = db.select('SELECT categorie, COUNT(*) as c FROM facilities GROUP BY categorie ORDER BY c DESC;');
+410 |     final map = <String, int>{};
+411 |     for (final r in rows) {
+412 |       map[r['categorie'] as String] = (r['c'] as num).toInt();
+413 |     }
+414 |     return map;
+415 |   }
+416 | 
+417 |   /// Benchmark FTS5 : calcule la latence moyenne d'exécution sur une liste de requêtes courantes
+418 |   double benchmarkFtsLatencyMs(List<String> queries, {int limit = 20}) {
+419 |     if (queries.isEmpty) return 0.0;
+420 | 
+421 |     // Warmup du cache SQLite
+422 |     for (final q in queries.take(5)) {
+423 |       final match = formatFtsMatch(q);
+424 |       _ftsBenchStmt?.select([match]);
+425 |     }
+426 | 
+427 |     final stopwatch = Stopwatch()..start();
+428 |     for (final q in queries) {
+429 |       final match = formatFtsMatch(q);
+430 |       if (_ftsBenchStmt != null) {
+431 |         _ftsBenchStmt!.select([match]);
+432 |       } else {
+433 |         db.select('''
+434 |           SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+435 |           FROM facilities_fts
+436 |           WHERE facilities_fts MATCH ?
+437 |           LIMIT 20;
+438 |         ''', [match]);
+439 |       }
+440 |     }
+441 |     stopwatch.stop();
+442 |     return stopwatch.elapsedMicroseconds / (queries.length * 1000.0);
+443 |   }
+444 | 
+445 |   /// Benchmark R-Tree : calcule la latence moyenne d'extraction spatiale
+446 |   double benchmarkRtreeLatencyMs({
+447 |     required double latitude,
+448 |     required double longitude,
+449 |     double radiusKm = 5.0,
+450 |     int iterations = 100,
+451 |   }) {
+452 |     final deltaLat = radiusKm / 111.0;
+453 |     final latRad = _deg2rad(latitude);
+454 |     final cosLat = math.cos(latRad).abs();
+455 |     final deltaLon = radiusKm / (111.0 * (cosLat > 0.05 ? cosLat : 1.0));
+456 | 
+457 |     final minLat = latitude - deltaLat;
+458 |     final maxLat = latitude + deltaLat;
+459 |     final minLon = longitude - deltaLon;
+460 |     final maxLon = longitude + deltaLon;
+461 | 
+462 |     // Warmup
+463 |     _rtreeExtractStmt?.select([minLat, maxLat, minLon, maxLon]);
+464 | 
+465 |     final stopwatch = Stopwatch()..start();
+466 |     for (var i = 0; i < iterations; i++) {
+467 |       if (_rtreeExtractStmt != null) {
+468 |         _rtreeExtractStmt!.select([minLat, maxLat, minLon, maxLon]);
+469 |       } else {
+470 |         db.select('''
+471 |           SELECT id, min_lat, min_lon
+472 |           FROM facilities_rtree
+473 |           WHERE min_lat >= ? AND max_lat <= ?
+474 |             AND min_lon >= ? AND max_lon <= ?
+475 |           LIMIT 50;
+476 |         ''', [minLat, maxLat, minLon, maxLon]);
+477 |       }
+478 |     }
+479 |     stopwatch.stop();
+480 |     return stopwatch.elapsedMicroseconds / (iterations * 1000.0);
+481 |   }
+482 | }
+483 | class FileNotFoundError implements Exception {
+484 |   final String message;
+485 |   FileNotFoundError(this.message);
+486 |   @override
+487 |   String toString() => 'FileNotFoundError: $message';
+488 | }
+DONE

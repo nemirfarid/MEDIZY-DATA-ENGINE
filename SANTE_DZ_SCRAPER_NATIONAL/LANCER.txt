@@ -1,0 +1,20 @@
+COMMANDES EXACTES
+
+cd /d C:\SANTE_DZ_SCRAPER
+.venv\Scripts\activate
+python -m pip install -r requirements.txt
+python -m playwright install chromium
+
+TEST MOSTAGANEM :
+python scraper.py Mostaganem
+
+NATIONAL :
+python scraper.py
+
+RESULTAT :
+output\SANTE_DZ_GOOGLE_MAPS_NATIONAL.xlsx
+
+Le navigateur Google Maps s'ouvre. Ne ferme pas la fenêtre pendant le scraping.
+Le scraper ne contourne pas CAPTCHA/anti-bot et ne garantit pas que toutes les fiches
+de Google Maps soient récupérées. Les GPS ne sont enregistrés que lorsqu'ils sont
+présents dans l'URL rendue par Google Maps.

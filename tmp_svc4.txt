@@ -1,0 +1,116 @@
+﻿193 |     const double earthRadiusKm = 6371.0;
+194 |     final dLat = _deg2rad(lat2 - lat1);
+195 |     final dLon = _deg2rad(lon2 - lon1);
+196 | 
+197 |     final a = math.sin(dLat / 2) * math.sin(dLat / 2) +
+198 |         math.cos(_deg2rad(lat1)) *
+199 |             math.cos(_deg2rad(lat2)) *
+200 |             math.sin(dLon / 2) *
+201 |             math.sin(dLon / 2);
+202 | 
+203 |     final c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
+204 |     return earthRadiusKm * c;
+205 |   }
+206 | 
+207 |   static double _deg2rad(double deg) => deg * (math.pi / 180.0);
+208 | 
+209 |   /// Recherche spatiale par R-Tree pour un rayon géographique donné ("Autour de moi")
+210 |   List<HealthFacility> searchAroundMe({
+211 |     required double latitude,
+212 |     required double longitude,
+213 |     double radiusKm = 5.0,
+214 |     String? category,
+215 |     int limit = 50,
+216 |   }) {
+217 |     // Calcul de la Bounding Box
+218 |     final deltaLat = radiusKm / 111.0;
+219 |     final latRad = _deg2rad(latitude);
+220 |     final cosLat = math.cos(latRad).abs();
+221 |     final deltaLon = radiusKm / (111.0 * (cosLat > 0.05 ? cosLat : 1.0));
+222 | 
+223 |     final minLat = latitude - deltaLat;
+224 |     final maxLat = latitude + deltaLat;
+225 |     final minLon = longitude - deltaLon;
+226 |     final maxLon = longitude + deltaLon;
+227 | 
+228 |     final ResultSet results;
+229 |     if (category == null || category.isEmpty) {
+230 |       results = (_rtreeStmt != null)
+231 |           ? _rtreeStmt!.select([minLat, maxLat, minLon, maxLon])
+232 |           : db.select('''
+233 |               SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+234 |                      f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
+235 |               FROM facilities_rtree r
+236 |               JOIN facilities f ON f.id = r.id
+237 |               WHERE r.min_lat >= ? AND r.max_lat <= ?
+238 |                 AND r.min_lon >= ? AND r.max_lon <= ?
+239 |               LIMIT 250;
+240 |             ''', [minLat, maxLat, minLon, maxLon]);
+241 |     } else {
+242 |       results = db.select('''
+243 |         SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+244 |                f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
+245 |         FROM facilities_rtree r
+246 |         JOIN facilities f ON f.id = r.id
+247 |         WHERE r.min_lat >= ? AND r.max_lat <= ?
+248 |           AND r.min_lon >= ? AND r.max_lon <= ?
+249 |           AND f.categorie = ?
+250 |         LIMIT 250;
+251 |       ''', [minLat, maxLat, minLon, maxLon, category]);
+252 |     }
+253 | 
+254 |     // Calcul précis en mémoire de la distance Haversine et tri par proximité
+255 |     final facilities = <HealthFacility>[];
+256 |     for (final row in results) {
+257 |       final fac = HealthFacility.fromMap(row);
+258 |       final dist = calculateHaversineKm(latitude, longitude, fac.latitude, fac.longitude);
+259 |       if (dist <= radiusKm * 1.05) {
+260 |         fac.distanceKm = double.parse(dist.toStringAsFixed(2));
+261 |         facilities.add(fac);
+262 |       }
+263 |     }
+264 | 
+265 |     facilities.sort((a, b) => (a.distanceKm ?? 0).compareTo(b.distanceKm ?? 0));
+266 | 
+267 |     if (facilities.length > limit) {
+268 |       return facilities.sublist(0, limit);
+269 |     }
+270 |     return facilities;
+271 |   }
+272 | 
+273 |   // ===========================================================================
+274 |   // 3. RECHERCHE HYBRIDE COMBINÉE (TEXTE + FACETTES + DISTANCE)
+275 |   // ===========================================================================
+276 | 
+277 |   /// Recherche multi-critères : FTS5, code wilaya, catégorie, urgence et rayon
+278 |   List<HealthFacility> searchHybrid({
+279 |     String? query,
+280 |     String? wilayaCode,
+281 |     String? category,
+282 |     bool onlyEmergency = false,
+283 |     double? userLat,
+284 |     double? userLon,
+285 |     double radiusKm = 10.0,
+286 |     int limit = 50,
+287 |   }) {
+288 |     // Si une position utilisateur est fournie sans texte, basculer sur R-Tree
+289 |     if ((query == null || query.trim().isEmpty) && userLat != null && userLon != null) {
+290 |       var res = searchAroundMe(
+291 |         latitude: userLat,
+292 |         longitude: userLon,
+293 |         radiusKm: radiusKm,
+294 |         category: category,
+295 |         limit: limit * 2,
+296 |       );
+297 |       if (onlyEmergency) {
+298 |         res = res.where((f) => f.isEmergencyOrOnDuty).toList();
+299 |       }
+300 |       if (wilayaCode != null && wilayaCode.isNotEmpty) {
+301 |         res = res.where((f) => f.wilayaCode == wilayaCode).toList();
+302 |       }
+303 |       return res.take(limit).toList();
+304 |     }
+305 | 
+306 |     // Si du texte est fourni, utiliser FTS5
+307 |     if (query != null && query.trim().isNotEmpty) {
+DONE

@@ -1,0 +1,131 @@
+﻿1 | import 'package:flutter/material.dart';
+2 | import 'package:flutter_map/flutter_map.dart';
+3 | import 'package:latlong2/latlong.dart';
+4 | import '../../core/constants/algeria_wilayas.dart';
+5 | import '../../core/models/health_facility.dart';
+6 | import '../../core/services/location_service.dart';
+7 | import '../../core/services/offline_health_search_service.dart';
+8 | import 'widgets/facility_detail_sheet.dart';
+9 | import 'widgets/facet_filter_bar.dart';
+10 | import 'widgets/wilaya_picker_sheet.dart';
+11 | 
+12 | /// Visualiseur cartographique hors-ligne avec géolocalisation réelle, sélecteur des 58 Wilayas et moteur R-Tree/FTS5
+13 | class OfflineMapView extends StatefulWidget {
+14 |   final OfflineHealthSearchService searchService;
+15 |   final LatLng initialCenter;
+16 |   final double initialZoom;
+17 | 
+18 |   const OfflineMapView({
+19 |     Key? key,
+20 |     required this.searchService,
+21 |     this.initialCenter = const LatLng(28.0339, 1.6596), // Centre géographique de l'Algérie
+22 |     this.initialZoom = 5.8,
+23 |   }) : super(key: key);
+24 | 
+25 |   @override
+26 |   State<OfflineMapView> createState() => _OfflineMapViewState();
+27 | }
+28 | 
+29 | class _OfflineMapViewState extends State<OfflineMapView> {
+30 |   late final MapController _mapController;
+31 |   List<HealthFacility> _displayedFacilities = [];
+32 |   bool _isLoading = false;
+33 | 
+34 |   String? _selectedWilayaCode;
+35 |   String? _selectedWilayaName;
+36 |   String? _selectedCategory;
+37 |   bool _onlyEmergency = false;
+38 |   String _currentQuery = '';
+39 |   bool _useCartoDb = false;
+40 | 
+41 |   // Position utilisateur réelle (par défaut Alger avant détection GPS)
+42 |   LatLng _userPosition = LocationService.defaultPosition;
+43 |   bool _hasRealGps = false;
+44 | 
+45 |   @override
+46 |   void initState() {
+47 |     super.initState();
+48 |     _mapController = MapController();
+49 |     _initAppAndLocation();
+50 |   }
+51 | 
+52 |   /// Initialisation au démarrage : tentative de géolocalisation passive puis chargement des données
+53 |   Future<void> _initAppAndLocation() async {
+54 |     setState(() => _isLoading = true);
+55 | 
+56 |     try {
+57 |       // 1. Tenter de récupérer la position GPS sans forcer le popup si permission non accordée
+58 |       final detectedPos = await LocationService.getCurrentLocation(promptPermission: false);
+59 |       if (detectedPos != null && mounted) {
+60 |         _userPosition = detectedPos;
+61 |         _hasRealGps = true;
+62 |       }
+63 | 
+64 |       // 2. Chargement initial : si géolocalisé, chercher autour ; sinon charger selon la wilaya active ou vue nationale
+65 |       final results = widget.searchService.searchHybrid(
+66 |         query: _currentQuery.isNotEmpty ? _currentQuery : null,
+67 |         wilayaCode: _selectedWilayaCode,
+68 |         category: _selectedCategory,
+69 |         onlyEmergency: _onlyEmergency,
+70 |         userLat: _userPosition.latitude,
+71 |         userLon: _userPosition.longitude,
+72 |         limit: 150,
+73 |       );
+74 | 
+75 |       if (mounted) {
+76 |         setState(() {
+77 |           _displayedFacilities = results;
+78 |           _isLoading = false;
+79 |         });
+80 | 
+81 |         // Recentrage sur la position détectée si GPS actif
+82 |         if (_hasRealGps) {
+83 |           _mapController.move(_userPosition, 13.5);
+84 |         }
+85 |       }
+86 |     } catch (_) {
+87 |       if (mounted) {
+88 |         setState(() => _isLoading = false);
+89 |       }
+90 |     }
+91 |   }
+92 | 
+93 |   /// Actualisation des données selon les filtres actifs
+94 |   void _applyFilters() {
+95 |     setState(() => _isLoading = true);
+96 |     try {
+97 |       final results = widget.searchService.searchHybrid(
+98 |         query: _currentQuery.isNotEmpty ? _currentQuery : null,
+99 |         wilayaCode: _selectedWilayaCode,
+100 |         category: _selectedCategory,
+101 |         onlyEmergency: _onlyEmergency,
+102 |         userLat: _userPosition.latitude,
+103 |         userLon: _userPosition.longitude,
+104 |         limit: 200,
+105 |       );
+106 | 
+107 |       setState(() {
+108 |         _displayedFacilities = results;
+109 |         _isLoading = false;
+110 |       });
+111 | 
+112 |       // Si des résultats existent et qu'une recherche textuelle vient d'être tapée, centrer sur le premier résultat
+113 |       if (_currentQuery.isNotEmpty && results.isNotEmpty) {
+114 |         final first = results.first;
+115 |         _mapController.move(LatLng(first.latitude, first.longitude), 13.0);
+116 |       }
+117 |     } catch (_) {
+118 |       setState(() => _isLoading = false);
+119 |     }
+120 |   }
+121 | 
+122 |   /// Sollicite activement le capteur GPS du smartphone et recentre la caméra
+123 |   Future<void> _handleGpsLocationRequest() async {
+124 |     setState(() => _isLoading = true);
+125 | 
+126 |     // 1. Vérification si le service GPS est activé sur l'appareil
+127 |     final isEnabled = await LocationService.isServiceEnabled();
+128 |     if (!isEnabled && mounted) {
+129 |       setState(() => _isLoading = false);
+130 |       showDialog(
+DONE

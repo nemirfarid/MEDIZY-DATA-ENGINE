@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../core/models/health_facility.dart';
+import '../../../core/services/favorites_service.dart';
 
-/// Fiche détaillée d'un établissement de santé avec actions directes (Appel, Guidage, Partage)
+/// Fiche détaillée d'un établissement de santé avec actions directes (Appel, Guidage, Partage, Favoris)
 class FacilityDetailSheet extends StatelessWidget {
   final HealthFacility facility;
 
@@ -43,11 +45,130 @@ class FacilityDetailSheet extends StatelessWidget {
     }
   }
 
-  void _shareFacility(BuildContext context) {
-    Share.share(
-      facility.shareText,
-      subject: 'Santé DZ : ${facility.nom}',
-    );
+  /// Génère un texte préformaté prêt à envoyer via WhatsApp/SMS.
+  String _buildShareText() {
+    final sb = StringBuffer();
+    sb.writeln('Établissement : ${facility.nom}');
+    sb.writeln('Spécialité : ${facility.categorie}');
+    sb.writeln('Commune : ${facility.commune}, Wilaya ${facility.wilayaCode} - ${facility.wilaya}');
+    sb.writeln('Coordonnées GPS : ${facility.latitude.toStringAsFixed(6)}, ${facility.longitude.toStringAsFixed(6)}');
+    sb.writeln('Lien : https://maps.google.com/?q=${facility.latitude},${facility.longitude}');
+    if (facility.telephone != null && facility.telephone!.isNotEmpty) {
+      sb.writeln('Tél : ${facility.telephone}');
+    }
+    return sb.toString();
+  }
+
+  /// Partage la position via WhatsApp/SMS (share_plus avec champ SMS).
+  Future<void> _sharePosition(BuildContext context) async {
+    final text = _buildShareText();
+    try {
+      // Tentative WhatsApp d'abord (numéro de téléphone cible si disponible)
+      if (facility.callNumber != null) {
+        final whatsappUri = Uri.parse(
+          'whatsapp://send?phone=${facility.callNumber}&text=${Uri.encodeComponent(text)}',
+        );
+        if (await canLaunchUrl(whatsappUri)) {
+          await launchUrl(whatsappUri, mode: LaunchMode.externalApplication);
+          return;
+        }
+      }
+      // Fallback : share générique (SMS, email, etc.)
+      await Share.share(
+        text,
+        subject: 'Santé DZ : ${facility.nom}',
+      );
+    } catch (_) {
+      await Share.share(
+        text,
+        subject: 'Santé DZ : ${facility.nom}',
+      );
+    }
+  }
+
+  /// Copie le numéro de téléphone dans le presse-papier.
+  Future<void> _copyPhone(BuildContext context) async {
+    if (facility.callNumber == null) return;
+    await Clipboard.setData(ClipboardData(text: facility.callNumber!));
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Numéro copié dans le presse-papier'),
+          duration: Duration(seconds: 2),
+          backgroundColor: Colors.teal,
+        ),
+      );
+    }
+  }
+
+  /// Copie l'adresse dans le presse-papier.
+  Future<void> _copyAddress(BuildContext context) async {
+    if (facility.adresse == null || facility.adresse!.isEmpty) return;
+    await Clipboard.setData(ClipboardData(text: facility.adresse!));
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Adresse copiée dans le presse-papier'),
+          duration: Duration(seconds: 2),
+          backgroundColor: Colors.teal,
+        ),
+      );
+    }
+  }
+
+  /// Bascule le statut favori de l'établissement.
+  Future<void> _toggleFavorite(BuildContext context) async {
+    final favService = FavoritesService();
+    try {
+      await favService.init();
+      final isNowFavorite = await favService.toggleFavorite(
+        facilityId: facility.id,
+        nom: facility.nom,
+        categorie: facility.categorie,
+        wilayaCode: facility.wilayaCode,
+        wilaya: facility.wilaya,
+        commune: facility.commune,
+        telephone: facility.telephone,
+        adresse: facility.adresse,
+        latitude: facility.latitude,
+        longitude: facility.longitude,
+        source: facility.source,
+      );
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              isNowFavorite
+                  ? 'Ajouté aux favoris'
+                  : 'Retiré des favoris',
+            ),
+            duration: const Duration(seconds: 2),
+            backgroundColor: isNowFavorite ? Colors.amber : Colors.grey,
+          ),
+        );
+      }
+    } catch (_) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Erreur lors de la mise à jour des favoris'),
+            duration: Duration(seconds: 2),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
+
+  /// Vérifie si l'établissement est déjà favori.
+  Future<bool> _isFavorite() async {
+    final favService = FavoritesService();
+    try {
+      await favService.init();
+      return await favService.isFavorite(facility.id);
+    } catch (_) {
+      return false;
+    }
   }
 
   @override
@@ -96,6 +217,22 @@ class FacilityDetailSheet extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+              ),
+              // Étoile favoris
+              FutureBuilder<bool>(
+                future: _isFavorite(),
+                builder: (ctx, snapshot) {
+                  final isFav = snapshot.data ?? false;
+                  return IconButton(
+                    icon: Icon(
+                      isFav ? Icons.star : Icons.star_border,
+                      color: isFav ? Colors.amber : Colors.grey,
+                      size: 24,
+                    ),
+                    tooltip: isFav ? 'Retirer des favoris' : 'Ajouter aux favoris',
+                    onPressed: () => _toggleFavorite(context),
+                  );
+                },
               ),
               if (isEmergency)
                 Container(
@@ -166,6 +303,11 @@ class FacilityDetailSheet extends StatelessWidget {
                     style: theme.textTheme.bodyMedium,
                   ),
                 ),
+                IconButton(
+                  icon: const Icon(Icons.content_copy, size: 18, color: Colors.grey),
+                  tooltip: 'Copier l\'adresse',
+                  onPressed: () => _copyAddress(context),
+                ),
               ],
             ),
             const SizedBox(height: 8),
@@ -184,7 +326,7 @@ class FacilityDetailSheet extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          // Actions directes (Appel, Itinéraire, Partage)
+          // Actions directes (Appel, Itinéraire, Partage, Copie)
           Row(
             children: [
               // Appel direct
@@ -214,7 +356,27 @@ class FacilityDetailSheet extends StatelessWidget {
                     onPressed: null,
                   ),
                 ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 8),
+
+              // Copie téléphone
+              if (facility.callNumber != null)
+                Expanded(
+                  child: OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.teal.shade700,
+                      side: BorderSide(color: Colors.teal.shade300),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                    icon: const Icon(Icons.content_copy, size: 18),
+                    label: const Text('Copier Tél', style: TextStyle(fontSize: 11)),
+                    onPressed: () => _copyPhone(context),
+                  ),
+                )
+              else
+                const SizedBox(width: 0),
+
+              const SizedBox(width: 8),
 
               // Guidage GPS hors-ligne
               Expanded(
@@ -234,13 +396,21 @@ class FacilityDetailSheet extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: 8),
 
-              // Partage
-              IconButton.filledTonal(
-                icon: const Icon(Icons.share_outlined),
-                tooltip: 'Partager',
-                onPressed: () => _shareFacility(context),
+              // Partage position (WhatsApp/SMS)
+              Expanded(
+                child: OutlinedButton.icon(
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: Colors.green.shade700,
+                    side: BorderSide(color: Colors.green.shade300),
+                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  ),
+                  icon: const Icon(Icons.share_outlined, size: 18),
+                  label: const Text('Partager pos.', style: TextStyle(fontSize: 11)),
+                  onPressed: () => _sharePosition(context),
+                ),
               ),
             ],
           ),

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
-/// Barre de filtrage par facettes (Wilaya, Spécialité, Statut d'urgence, Conventionné Chifa)
+/// Barre de filtrage par facettes (Wilaya, Spécialité, Statut d'urgence, Conventionné Chifa, Favoris)
 class FacetFilterBar extends StatelessWidget {
   final String? selectedWilayaCode;
   final String? selectedWilayaName;
   final String? selectedCategory;
   final bool onlyEmergency;
   final bool showChifa;
+  final bool showFavorites;
   final ValueChanged<String?> onWilayaChanged;
   final VoidCallback? onWilayaPickerRequested;
   final ValueChanged<String?> onCategoryChanged;
   final ValueChanged<bool> onEmergencyToggled;
   final ValueChanged<bool> onChifaToggled;
+  final ValueChanged<bool> onFavoritesToggled;
   final ValueChanged<String> onSearchSubmitted;
 
   const FacetFilterBar({
@@ -21,11 +23,13 @@ class FacetFilterBar extends StatelessWidget {
     this.selectedCategory,
     required this.onlyEmergency,
     required this.showChifa,
+    required this.showFavorites,
     required this.onWilayaChanged,
     this.onWilayaPickerRequested,
     required this.onCategoryChanged,
     required this.onEmergencyToggled,
     required this.onChifaToggled,
+    required this.onFavoritesToggled,
     required this.onSearchSubmitted,
   }) : super(key: key);
 
@@ -149,6 +153,25 @@ class FacetFilterBar extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
 
+                // Bouton Favoris
+                FilterChip(
+                  avatar: Icon(
+                    Icons.star,
+                    size: 16,
+                    color: showFavorites ? Colors.white : Colors.amber.shade700,
+                  ),
+                  label: const Text('Mes favoris'),
+                  selected: showFavorites,
+                  selectedColor: Colors.amber.shade700,
+                  labelStyle: TextStyle(
+                    color: showFavorites ? Colors.white : Colors.amber.shade900,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12,
+                  ),
+                  onSelected: onFavoritesToggled,
+                ),
+                const SizedBox(width: 8),
+
                 // Sélecteur Catégorie
                 DropdownButtonHideUnderline(
                   child: Container(
@@ -183,7 +206,7 @@ class FacetFilterBar extends StatelessWidget {
                 const SizedBox(width: 8),
 
                 // Bouton Réinitialiser si des filtres sont actifs
-                if (selectedWilayaCode != null || selectedCategory != null || onlyEmergency || showChifa)
+                if (selectedWilayaCode != null || selectedCategory != null || onlyEmergency || showChifa || showFavorites)
                   ActionChip(
                     avatar: const Icon(Icons.refresh, size: 14),
                     label: const Text('Réinitialiser', style: TextStyle(fontSize: 11)),
@@ -192,6 +215,7 @@ class FacetFilterBar extends StatelessWidget {
                       onCategoryChanged(null);
                       onEmergencyToggled(false);
                       onChifaToggled(false);
+                      onFavoritesToggled(false);
                       onSearchSubmitted('');
                     },
                   ),

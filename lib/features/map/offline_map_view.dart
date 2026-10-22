@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../core/constants/algeria_wilayas.dart';
 import '../../core/models/health_facility.dart';
+import '../../core/services/favorites_service.dart';
 import '../../core/services/location_service.dart';
 import '../../core/services/offline_health_search_service.dart';
+import '../../core/services/tile_cache_service.dart';
 import 'widgets/facility_detail_sheet.dart';
 import 'widgets/facet_filter_bar.dart';
 import 'widgets/wilaya_picker_sheet.dart';
@@ -42,6 +43,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
   String? _selectedCategory;
   bool _onlyEmergency = false;
   bool _showChifaOnly = false;
+  bool _showFavoritesOnly = false;
   String _currentQuery = '';
   bool _useCartoDb = false;
 
@@ -78,17 +80,22 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     setState(() => _isLoading = true);
 
     try {
-      // 1. Tenter de récupérer la position GPS sans forcer le popup si permission non accordée
+      // 1. Initialiser le cache de tuiles disque
+      await initTileCache();
+
+      // 2. Tenter de récupérer la position GPS sans forcer le popup si permission non accordée
       final detectedPos = await LocationService.getCurrentLocation(promptPermission: false);
       if (detectedPos != null && mounted) {
         _userPosition = detectedPos;
         _hasRealGps = true;
       }
 
-      // 2. Chargement initial selon le niveau de zoom
+      // 3. Chargement initial selon le niveau de zoom
       if (_useViewportMode) {
         // Vue locale : recherche viewport (bounding-box) limitée à 150 marqueurs
         _loadViewport();
+      } else if (_showFavoritesOnly) {
+        _loadFavorites();
       } else {
         // Vue nationale dézoomée : agrégation par Wilaya (pastilles)
         _loadWilayaAggregates();
@@ -125,6 +132,35 @@ class _OfflineMapViewState extends State<OfflineMapView> {
       _displayedFacilities = results;
       _isLoading = false;
     });
+  }
+
+  /// Charge les établissements favoris sauvegardés.
+  void _loadFavorites() async {
+    final favService = FavoritesService();
+    try {
+      await favService.init();
+      final rows = await favService.getFavorites();
+      final facilities = rows.map((r) => HealthFacility.fromMap({
+        'id': r['facility_id'],
+        'nom': r['nom'],
+        'categorie': r['categorie'],
+        'wilaya': r['wilaya'],
+        'wilaya_code': r['wilaya_code'],
+        'commune': r['commune'],
+        'telephone': r['telephone'],
+        'adresse': r['adresse'],
+        'latitude': r['latitude'],
+        'longitude': r['longitude'],
+        'source': r['source'],
+        'distance_km': r['distance_km'],
+      })).toList();
+      setState(() {
+        _displayedFacilities = facilities;
+        _isLoading = false;
+      });
+    } catch (_) {
+      if (mounted) setState(() => _isLoading = false);
+    }
   }
 
   /// Liste des catégories Conventionné Chifa (pharmacie, laboratoire, imagerie, clinique, hôpital, etc.)
@@ -164,7 +200,9 @@ class _OfflineMapViewState extends State<OfflineMapView> {
   void _applyFilters() {
     setState(() => _isLoading = true);
     try {
-      if (_useViewportMode) {
+      if (_showFavoritesOnly) {
+        _loadFavorites();
+      } else if (_useViewportMode) {
         // Zoom local : recherche viewport (bounding-box) limitée à 150 marqueurs
         _loadViewport();
       } else if (_selectedWilayaCode == null && _currentQuery.isEmpty) {
@@ -278,6 +316,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
       setState(() {
         _selectedWilayaCode = selected.code;
         _selectedWilayaName = selected.name;
+        _showFavoritesOnly = false;
         _isLoading = true;
       });
 
@@ -302,11 +341,68 @@ class _OfflineMapViewState extends State<OfflineMapView> {
       setState(() {
         _selectedWilayaCode = null;
         _selectedWilayaName = null;
+        _showFavoritesOnly = false;
         _isLoading = true;
       });
 
       _zoomToNational();
       _applyFilters();
+    }
+  }
+
+  /// Pré-télécharge les tuiles OpenStreetMap de la wilaya active pour usage hors-ligne.
+  Future<void> _preloadWilayaTiles() async {
+    if (_selectedWilayaCode == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Veuillez sélectionner une wilaya d\'abord'),
+          duration: Duration(seconds: 2),
+          backgroundColor: Colors.orange,
+        ),
+      );
+      return;
+    }
+
+    setState(() => _isLoading = true);
+
+    try {
+      // Récupérer les coordonnées de la wilaya
+      final wilaya = WilayaInfo.findByCode(_selectedWilayaCode);
+      if (wilaya == null) return;
+
+      // Zone approximative de la wilaya (±1.5° autour du chef-lieu pour couverture large)
+      final margin = 1.5;
+      final count = await preloadTilesForBounds(
+        minLat: wilaya.lat - margin,
+        maxLat: wilaya.lat + margin,
+        minLon: wilaya.lon - margin,
+        maxLon: wilaya.lon + margin,
+        minZoom: 8,
+        maxZoom: 13,
+        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+      );
+
+      if (mounted) {
+        setState(() => _isLoading = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('$count tuiles de la wilaya ${_selectedWilayaName} mises en cache hors-ligne'),
+            duration: const Duration(seconds: 3),
+            backgroundColor: Colors.teal.shade800,
+          ),
+        );
+      }
+    } catch (_) {
+      if (mounted) {
+        setState(() => _isLoading = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Échec du pré-téléchargement des tuiles'),
+            duration: Duration(seconds: 3),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
 
@@ -369,7 +465,9 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                           Text(
                             _selectedWilayaCode != null
                                 ? '$_selectedWilayaCode - ${_selectedWilayaName ?? "Wilaya"}'
-                                : 'Toute l\'Algérie (58)',
+                                : _showFavoritesOnly
+                                    ? 'Mes Favoris'
+                                    : 'Toute l\'Algérie (58)',
                             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -380,7 +478,9 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                       Text(
                         _selectedWilayaCode != null
                             ? '${_displayedFacilities.length} fiches • Chef-lieu'
-                            : '${_displayedFacilities.length} fiches • Hors-ligne',
+                            : _showFavoritesOnly
+                                ? '${_displayedFacilities.length} favoris'
+                                : '${_displayedFacilities.length} fiches • Hors-ligne',
                         style: const TextStyle(fontSize: 11, color: Colors.white70),
                       ),
                     ],
@@ -422,7 +522,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
               backgroundColor: const Color(0xFFEFF3F4), // Fond neutre clair médical hors-ligne
             ),
             children: [
-              // Tuiles cartographiques avec User-Agent réglementaire OSM et fallback CartoDB
+              // Tuiles cartographiques avec cache disque (hors-ligne) et fallback réseau
               TileLayer(
                 urlTemplate: _useCartoDb
                     ? 'https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png'
@@ -432,11 +532,11 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                     : 'https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png',
                 userAgentPackageName: 'dz.sante.medizy.national',
                 additionalOptions: const {
-                  'User-Agent': 'Medizy-Algeria/1.0.17 (https://medizy.dz; contact@medizy.dz)',
+                  'User-Agent': 'Medizy-Algeria/1.0.19 (https://medizy.dz; contact@medizy.dz)',
                 },
                 tileProvider: NetworkTileProvider(
                   headers: {
-                    'User-Agent': 'Medizy-Algeria/1.0.17 (dz.sante.medizy.national)',
+                    'User-Agent': 'Medizy-Algeria/1.0.19 (dz.sante.medizy.national)',
                   },
                 ),
                 errorTileCallback: (tile, error, stackTrace) {
@@ -470,7 +570,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
 
               // Repères des établissements : agrégation par Wilaya (zoom dézoomé < 11)
               // ou markers viewport (zoom local >= 11, max 150 marqueurs) pour 60 FPS
-              if (!_useViewportMode && _selectedWilayaCode == null && _currentQuery.isEmpty)
+              if (!_useViewportMode && _selectedWilayaCode == null && _currentQuery.isEmpty && !_showFavoritesOnly)
                 MarkerLayer(
                   markers: _wilayaAggregates.map((agg) {
                     final wilaya = WilayaInfo.findByCode(agg['code'] as String?);
@@ -557,7 +657,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
             ],
           ),
 
-          // 2. Barre de recherche et filtres de facettes (Wilaya, Catégorie, Urgence)
+          // 2. Barre de recherche et filtres de facettes (Wilaya, Catégorie, Urgence, Chifa, Favoris)
           Positioned(
             top: 0,
             left: 0,
@@ -568,10 +668,12 @@ class _OfflineMapViewState extends State<OfflineMapView> {
               selectedCategory: _selectedCategory,
               onlyEmergency: _onlyEmergency,
               showChifa: _showChifaOnly,
+              showFavorites: _showFavoritesOnly,
               onWilayaChanged: (w) {
                 setState(() {
                   _selectedWilayaCode = w;
                   _selectedWilayaName = WilayaInfo.findByCode(w)?.name;
+                  _showFavoritesOnly = false;
                 });
                 _applyFilters();
               },
@@ -586,6 +688,15 @@ class _OfflineMapViewState extends State<OfflineMapView> {
               },
               onChifaToggled: (chifa) {
                 setState(() => _showChifaOnly = chifa);
+                _applyFilters();
+              },
+              onFavoritesToggled: (fav) {
+                setState(() => _showFavoritesOnly = fav);
+                if (fav) {
+                  _selectedWilayaCode = null;
+                  _selectedWilayaName = null;
+                  _currentQuery = '';
+                }
                 _applyFilters();
               },
               onSearchSubmitted: (q) {
@@ -623,7 +734,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
               ),
             ),
 
-          // 4. Boutons d'action flottants (National / Sélecteur Wilaya / Ma Position GPS Réelle)
+          // 4. Boutons d'action flottants (National / Sélecteur Wilaya / Ma Position GPS Réelle / Précharger tuiles / Urgence)
           Positioned(
             bottom: 24,
             right: 16,
@@ -640,6 +751,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                     setState(() {
                       _selectedWilayaCode = null;
                       _selectedWilayaName = null;
+                      _showFavoritesOnly = false;
                     });
                     _zoomToNational();
                     _applyFilters();
@@ -667,7 +779,17 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                   child: Icon(_hasRealGps ? Icons.my_location : Icons.location_searching),
                 ),
                 const SizedBox(height: 10),
-                // Bouton 4 : Urgence & Nuit 24/7 (rouge, filtre instantané urgences)
+                // Bouton 4 : Pré-télécharger tuiles de la wilaya (hors-ligne)
+                FloatingActionButton.small(
+                  heroTag: 'fab_preload_tiles',
+                  backgroundColor: Colors.blue.shade700,
+                  foregroundColor: Colors.white,
+                  tooltip: 'Pré-télécharger carte wilaya (hors-ligne)',
+                  onPressed: _preloadWilayaTiles,
+                  child: const Icon(Icons.cloud_download),
+                ),
+                const SizedBox(height: 10),
+                // Bouton 5 : Urgence & Nuit 24/7 (rouge, filtre instantané urgences)
                 FloatingActionButton(
                   heroTag: 'fab_emergency',
                   backgroundColor: _onlyEmergency ? Colors.red.shade700 : Colors.red.shade900,

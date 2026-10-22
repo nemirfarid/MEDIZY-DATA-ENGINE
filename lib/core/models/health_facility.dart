@@ -1,4 +1,3 @@
-import 'dart:math';
 
 /// Modèle officiel d'un établissement de santé qualifié - Santé DZ / Medizy
 class HealthFacility {

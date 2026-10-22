@@ -61,15 +61,15 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         _hasRealGps = true;
       }
 
-      // 2. Chargement initial : si géolocalisé, chercher autour ; sinon charger selon la wilaya active ou vue nationale
+      // 2. Chargement initial : vue nationale (toutes les wilayas) pour afficher l'intégralité du registre
       final results = widget.searchService.searchHybrid(
         query: _currentQuery.isNotEmpty ? _currentQuery : null,
-        wilayaCode: _selectedWilayaCode,
+        wilayaCode: _selectedWilayaCode, // null = vue nationale
         category: _selectedCategory,
         onlyEmergency: _onlyEmergency,
         userLat: _userPosition.latitude,
         userLon: _userPosition.longitude,
-        limit: 150,
+        limit: 50000, // Afficher l'intégralité de la base nationale
       );
 
       if (mounted) {
@@ -78,9 +78,11 @@ class _OfflineMapViewState extends State<OfflineMapView> {
           _isLoading = false;
         });
 
-        // Recentrage sur la position détectée si GPS actif
+        // Recentrage sur la position détectée si GPS actif, sinon vue nationale
         if (_hasRealGps) {
           _mapController.move(_userPosition, 13.5);
+        } else {
+          _mapController.move(widget.initialCenter, widget.initialZoom);
         }
       }
     } catch (_) {
@@ -101,7 +103,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         onlyEmergency: _onlyEmergency,
         userLat: _userPosition.latitude,
         userLon: _userPosition.longitude,
-        limit: 200,
+        limit: (_selectedWilayaCode == null && _currentQuery.isEmpty) ? 50000 : 10000,
       );
 
       setState(() {

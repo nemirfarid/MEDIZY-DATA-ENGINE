@@ -285,6 +285,76 @@ class OfflineHealthSearchService {
     double radiusKm = 10.0,
     int limit = 50,
   }) {
+    // Vue nationale sans filtre wilaya : charger toutes les fiches (sans contrainte spatiale)
+    if ((query == null || query.trim().isEmpty) &&
+        (wilayaCode == null || wilayaCode.isEmpty) &&
+        (userLat == null || userLon == null)) {
+      final sb = StringBuffer();
+      sb.writeln('''
+        SELECT id, place_id, nom, categorie, wilaya, wilaya_code, commune,
+               adresse, telephone, site_web, note, nombre_avis, latitude, longitude, source
+        FROM facilities
+        WHERE 1=1
+      ''');
+      final params = <dynamic>[];
+
+      if (category != null && category.isNotEmpty) {
+        sb.writeln('  AND categorie = ?');
+        params.add(category);
+      }
+
+      sb.writeln('ORDER BY nom ASC LIMIT ?;');
+      params.add(limit > 0 ? limit : 100000); // Pas de limite stricte en vue nationale
+
+      final ResultSet results = db.select(sb.toString(), params);
+      var facilities = results.map((r) => HealthFacility.fromMap(r)).toList();
+
+      if (onlyEmergency) {
+        facilities = facilities.where((f) => f.isEmergencyOrOnDuty).toList();
+      }
+
+      return facilities;
+    }
+
+    // Vue nationale avec géolocalisation présente mais sans filtre wilaya/texte : charger tout le pays
+    if ((query == null || query.trim().isEmpty) &&
+        (wilayaCode == null || wilayaCode.isEmpty)) {
+      final sb = StringBuffer();
+      sb.writeln('''
+        SELECT id, place_id, nom, categorie, wilaya, wilaya_code, commune,
+               adresse, telephone, site_web, note, nombre_avis, latitude, longitude, source
+        FROM facilities
+        WHERE 1=1
+      ''');
+      final params = <dynamic>[];
+
+      if (category != null && category.isNotEmpty) {
+        sb.writeln('  AND categorie = ?');
+        params.add(category);
+      }
+
+      sb.writeln('ORDER BY nom ASC LIMIT ?;');
+      params.add(limit > 1000 ? limit : 50000);
+
+      final ResultSet results = db.select(sb.toString(), params);
+      var facilities = results.map((r) => HealthFacility.fromMap(r)).toList();
+
+      if (onlyEmergency) {
+        facilities = facilities.where((f) => f.isEmergencyOrOnDuty).toList();
+      }
+
+      if (userLat != null && userLon != null) {
+        for (final fac in facilities) {
+          fac.distanceKm = double.parse(
+            calculateHaversineKm(userLat, userLon, fac.latitude, fac.longitude).toStringAsFixed(2),
+          );
+        }
+        facilities.sort((a, b) => (a.distanceKm ?? 0).compareTo(b.distanceKm ?? 0));
+      }
+
+      return facilities;
+    }
+
     // Si une position utilisateur est fournie sans texte, basculer sur R-Tree
     if ((query == null || query.trim().isEmpty) && userLat != null && userLon != null) {
       var res = searchAroundMe(

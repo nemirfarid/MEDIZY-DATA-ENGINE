@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../core/constants/algeria_wilayas.dart';
 import '../../core/models/health_facility.dart';
 import '../../core/services/location_service.dart';
@@ -8,6 +9,7 @@ import '../../core/services/offline_health_search_service.dart';
 import 'widgets/facility_detail_sheet.dart';
 import 'widgets/facet_filter_bar.dart';
 import 'widgets/wilaya_picker_sheet.dart';
+import 'dart:async';
 
 /// Visualiseur cartographique hors-ligne avec géolocalisation réelle, sélecteur des 58 Wilayas et moteur R-Tree/FTS5
 class OfflineMapView extends StatefulWidget {
@@ -29,12 +31,17 @@ class OfflineMapView extends StatefulWidget {
 class _OfflineMapViewState extends State<OfflineMapView> {
   late final MapController _mapController;
   List<HealthFacility> _displayedFacilities = [];
+  List<Map<String, dynamic>> _wilayaAggregates = []; // Pastilles d'agrégation par Wilaya
   bool _isLoading = false;
+  Timer? _zoomTimer;
+  double _currentZoom = 5.8;
+  bool _useViewportMode = false; // true = zoom local (viewport), false = vue nationale / agrégation
 
   String? _selectedWilayaCode;
   String? _selectedWilayaName;
   String? _selectedCategory;
   bool _onlyEmergency = false;
+  bool _showChifaOnly = false;
   String _currentQuery = '';
   bool _useCartoDb = false;
 
@@ -47,6 +54,23 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     super.initState();
     _mapController = MapController();
     _initAppAndLocation();
+    // Suivi du niveau de zoom pour basculer entre vue nationale (agrégation Wilaya)
+    // et vue locale (markers viewport, max 150).
+    _zoomTimer = Timer.periodic(const Duration(milliseconds: 200), (_) {
+      if (!mounted || _mapController.zoom == _currentZoom) return;
+      final newZoom = _mapController.zoom;
+      setState(() {
+        _currentZoom = newZoom;
+        _useViewportMode = newZoom >= 11.0;
+      });
+      _applyFilters();
+    });
+  }
+
+  @override
+  void dispose() {
+    _zoomTimer?.cancel();
+    super.dispose();
   }
 
   /// Initialisation au démarrage : tentative de géolocalisation passive puis chargement des données
@@ -61,23 +85,16 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         _hasRealGps = true;
       }
 
-      // 2. Chargement initial : vue nationale (toutes les wilayas) pour afficher l'intégralité du registre
-      final results = widget.searchService.searchHybrid(
-        query: _currentQuery.isNotEmpty ? _currentQuery : null,
-        wilayaCode: _selectedWilayaCode, // null = vue nationale
-        category: _selectedCategory,
-        onlyEmergency: _onlyEmergency,
-        userLat: _userPosition.latitude,
-        userLon: _userPosition.longitude,
-        limit: 50000, // Afficher l'intégralité de la base nationale
-      );
+      // 2. Chargement initial selon le niveau de zoom
+      if (_useViewportMode) {
+        // Vue locale : recherche viewport (bounding-box) limitée à 150 marqueurs
+        _loadViewport();
+      } else {
+        // Vue nationale dézoomée : agrégation par Wilaya (pastilles)
+        _loadWilayaAggregates();
+      }
 
       if (mounted) {
-        setState(() {
-          _displayedFacilities = results;
-          _isLoading = false;
-        });
-
         // Recentrage sur la position détectée si GPS actif, sinon vue nationale
         if (_hasRealGps) {
           _mapController.move(_userPosition, 13.5);
@@ -92,29 +109,88 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     }
   }
 
-  /// Actualisation des données selon les filtres actifs
+  /// Charge les marqueurs visibles dans le rectangle courant de la carte (zoom local >= 11).
+  /// Limite stricte de 150 marqueurs pour préserver le thread UI (60 FPS).
+  void _loadViewport() {
+    final bounds = _mapController.bounds!;
+    final results = widget.searchService.searchViewport(
+      minLat: bounds.southWest.latitude,
+      maxLat: bounds.northEast.latitude,
+      minLon: bounds.southWest.longitude,
+      maxLon: bounds.northEast.longitude,
+      category: _chifaActive ? _chifaCategory : _selectedCategory,
+      limit: 150,
+    );
+    setState(() {
+      _displayedFacilities = results;
+      _isLoading = false;
+    });
+  }
+
+  /// Liste des catégories Conventionné Chifa (pharmacie, laboratoire, imagerie, clinique, hôpital, etc.)
+  static const List<String> _chifaCategories = [
+    'pharmacie', 'laboratoire', 'centre d\'imagerie médicale', 'centre de radiologie',
+    'clinique', 'hôpital', 'polyclinique', 'centre médical', 'centre de santé',
+  ];
+
+  /// Retourne la catégorie Chifa correspondante si le filtre Chifa est actif, sinon null.
+  String? get _chifaCategory {
+    if (!_showChifaOnly) return null;
+    // Si une catégorie est déjà sélectionnée et qu'elle est Chifa-compatible, la garder
+    if (_selectedCategory != null && _chifaCategories.any((c) => _selectedCategory!.toLowerCase().contains(c.toLowerCase()))) {
+      return _selectedCategory;
+    }
+    // Sinon, on ne filtre pas par catégorie spécifique (tous les Chifa)
+    return null;
+  }
+
+  /// Indique si le filtre Chifa est actif
+  bool get _chifaActive => _showChifaOnly;
+
+  /// Charge les agrégations par Wilaya pour la vue nationale dézoomée (zoom < 11).
+  /// Une pastille par wilaya avec le nombre d'établissements (GROUP BY SQL mis en cache).
+  void _loadWilayaAggregates() {
+    final aggregates = widget.searchService.getWilayaAggregates(
+      category: _chifaActive ? _chifaCategory : _selectedCategory,
+      onlyEmergency: _onlyEmergency,
+    );
+    setState(() {
+      _wilayaAggregates = aggregates;
+      _isLoading = false;
+    });
+  }
+
+  /// Actualisation des données selon les filtres actifs et le niveau de zoom
   void _applyFilters() {
     setState(() => _isLoading = true);
     try {
-      final results = widget.searchService.searchHybrid(
-        query: _currentQuery.isNotEmpty ? _currentQuery : null,
-        wilayaCode: _selectedWilayaCode,
-        category: _selectedCategory,
-        onlyEmergency: _onlyEmergency,
-        userLat: _userPosition.latitude,
-        userLon: _userPosition.longitude,
-        limit: (_selectedWilayaCode == null && _currentQuery.isEmpty) ? 50000 : 10000,
-      );
+      if (_useViewportMode) {
+        // Zoom local : recherche viewport (bounding-box) limitée à 150 marqueurs
+        _loadViewport();
+      } else if (_selectedWilayaCode == null && _currentQuery.isEmpty) {
+        // Vue nationale dézoomée : agrégation par Wilaya
+        _loadWilayaAggregates();
+      } else {
+        // Filtre wilaya ou recherche textuelle : liste complète via searchHybrid
+        final results = widget.searchService.searchHybrid(
+          query: _currentQuery.isNotEmpty ? _currentQuery : null,
+          wilayaCode: _selectedWilayaCode,
+          category: _chifaActive ? _chifaCategory : _selectedCategory,
+          onlyEmergency: _onlyEmergency,
+          userLat: _userPosition.latitude,
+          userLon: _userPosition.longitude,
+          limit: (_selectedWilayaCode == null && _currentQuery.isEmpty) ? 50000 : 10000,
+        );
+        setState(() {
+          _displayedFacilities = results;
+          _isLoading = false;
+        });
 
-      setState(() {
-        _displayedFacilities = results;
-        _isLoading = false;
-      });
-
-      // Si des résultats existent et qu'une recherche textuelle vient d'être tapée, centrer sur le premier résultat
-      if (_currentQuery.isNotEmpty && results.isNotEmpty) {
-        final first = results.first;
-        _mapController.move(LatLng(first.latitude, first.longitude), 13.0);
+        // Si des résultats existent et qu'une recherche textuelle vient d'être tapée, centrer sur le premier résultat
+        if (_currentQuery.isNotEmpty && results.isNotEmpty) {
+          final first = results.first;
+          _mapController.move(LatLng(first.latitude, first.longitude), 13.0);
+        }
       }
     } catch (_) {
       setState(() => _isLoading = false);
@@ -163,26 +239,16 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         _hasRealGps = true;
       });
 
-      // Recentrage caméra sur la vraie position
+      // Recentrage caméra sur la vraie position (zoom local => mode viewport)
       _mapController.move(realPos, 14.0);
 
-      // Recherche spatiale autour de la position réelle (rayon 15 km)
-      final results = widget.searchService.searchAroundMe(
-        latitude: realPos.latitude,
-        longitude: realPos.longitude,
-        radiusKm: 15.0,
-        limit: 120,
-      );
-
-      setState(() {
-        _displayedFacilities = results;
-        _isLoading = false;
-      });
+      // Recherche viewport autour de la position réelle (bounding-box, max 150)
+      _loadViewport();
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Position GPS réelle localisée : ${realPos.latitude.toStringAsFixed(4)}°N, ${realPos.longitude.toStringAsFixed(4)}°E (${results.length} fiches à proximité)',
+            'Position GPS réelle localisée : ${realPos.latitude.toStringAsFixed(4)}°N, ${realPos.longitude.toStringAsFixed(4)}°E (${_displayedFacilities.length} fiches à proximité)',
           ),
           duration: const Duration(seconds: 3),
           backgroundColor: Colors.teal.shade800,
@@ -215,29 +281,17 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         _isLoading = true;
       });
 
-      // 1. Déplacer instantanément la caméra sur le chef-lieu de la wilaya
+      // 1. Déplacer instantanément la caméra sur le chef-lieu de la wilaya (zoom local => viewport)
       final chefLieu = LatLng(selected.lat, selected.lon);
       _mapController.move(chefLieu, 12.0);
 
-      // 2. Filtrer la liste des établissements pour n'afficher que ceux de cette wilaya
-      final results = widget.searchService.searchHybrid(
-        wilayaCode: selected.code,
-        category: _selectedCategory,
-        onlyEmergency: _onlyEmergency,
-        userLat: _userPosition.latitude,
-        userLon: _userPosition.longitude,
-        limit: 300,
-      );
-
-      setState(() {
-        _displayedFacilities = results;
-        _isLoading = false;
-      });
+      // 2. Filtrer la liste des établissements pour n'afficher que ceux de cette wilaya (viewport)
+      _loadViewport();
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Wilaya : ${selected.code} - ${selected.name} (${results.length} fiches chargées)',
+            'Wilaya : ${selected.code} - ${selected.name} (${_displayedFacilities.length} fiches chargées)',
           ),
           duration: const Duration(seconds: 3),
           backgroundColor: Colors.teal.shade900,
@@ -414,41 +468,92 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                 ],
               ),
 
-              // Repères des établissements avec code couleur par catégorie et icônes
-              MarkerLayer(
-                markers: _displayedFacilities.map((fac) {
-                  final color = _getMarkerColor(fac);
-                  final icon = _getMarkerIcon(fac);
-
-                  return Marker(
-                    point: LatLng(fac.latitude, fac.longitude),
-                    width: 38,
-                    height: 38,
-                    child: GestureDetector(
-                      onTap: () => FacilityDetailSheet.show(context, fac),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: color,
-                          shape: BoxShape.circle,
-                          border: Border.all(color: Colors.white, width: 2),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black26,
-                              blurRadius: 4,
-                              offset: Offset(0, 2),
+              // Repères des établissements : agrégation par Wilaya (zoom dézoomé < 11)
+              // ou markers viewport (zoom local >= 11, max 150 marqueurs) pour 60 FPS
+              if (!_useViewportMode && _selectedWilayaCode == null && _currentQuery.isEmpty)
+                MarkerLayer(
+                  markers: _wilayaAggregates.map((agg) {
+                    final wilaya = WilayaInfo.findByCode(agg['code'] as String?);
+                    if (wilaya == null) return const Marker(point: LatLng(0, 0), width: 0, height: 0, child: SizedBox.shrink());
+                    final nb = agg['nb'] as int;
+                    return Marker(
+                      point: LatLng(wilaya.lat, wilaya.lon),
+                      width: 46,
+                      height: 46,
+                      child: GestureDetector(
+                        onTap: () => _openWilayaPicker(),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.teal.shade700,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 3),
+                            boxShadow: const [
+                              BoxShadow(color: Colors.black26, blurRadius: 6, offset: Offset(0, 3)),
+                            ],
+                          ),
+                          child: Center(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  nb.toString(),
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                                Text(
+                                  agg['code'] as String,
+                                  style: const TextStyle(
+                                    color: Colors.white70,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10,
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                        child: Icon(
-                          icon,
-                          color: Colors.white,
-                          size: 20,
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }).toList(),
-              ),
+                    );
+                  }).toList(),
+                )
+              else
+                MarkerLayer(
+                  markers: _displayedFacilities.map((fac) {
+                    final color = _getMarkerColor(fac);
+                    final icon = _getMarkerIcon(fac);
+
+                    return Marker(
+                      point: LatLng(fac.latitude, fac.longitude),
+                      width: 38,
+                      height: 38,
+                      child: GestureDetector(
+                        onTap: () => FacilityDetailSheet.show(context, fac),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: color,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 2),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Icon(
+                            icon,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
             ],
           ),
 
@@ -462,6 +567,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
               selectedWilayaName: _selectedWilayaName,
               selectedCategory: _selectedCategory,
               onlyEmergency: _onlyEmergency,
+              showChifa: _showChifaOnly,
               onWilayaChanged: (w) {
                 setState(() {
                   _selectedWilayaCode = w;
@@ -476,6 +582,10 @@ class _OfflineMapViewState extends State<OfflineMapView> {
               },
               onEmergencyToggled: (em) {
                 setState(() => _onlyEmergency = em);
+                _applyFilters();
+              },
+              onChifaToggled: (chifa) {
+                setState(() => _showChifaOnly = chifa);
                 _applyFilters();
               },
               onSearchSubmitted: (q) {
@@ -555,6 +665,19 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                   tooltip: 'Ma position GPS réelle',
                   onPressed: _handleGpsLocationRequest,
                   child: Icon(_hasRealGps ? Icons.my_location : Icons.location_searching),
+                ),
+                const SizedBox(height: 10),
+                // Bouton 4 : Urgence & Nuit 24/7 (rouge, filtre instantané urgences)
+                FloatingActionButton(
+                  heroTag: 'fab_emergency',
+                  backgroundColor: _onlyEmergency ? Colors.red.shade700 : Colors.red.shade900,
+                  foregroundColor: Colors.white,
+                  tooltip: 'Urgence & Garde 24/7',
+                  onPressed: () {
+                    setState(() => _onlyEmergency = !_onlyEmergency);
+                    _applyFilters();
+                  },
+                  child: Icon(_onlyEmergency ? Icons.emergency : Icons.warning_amber),
                 ),
               ],
             ),

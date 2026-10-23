@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 /// Référentiel officiel des 58 Wilayas d'Algérie avec coordonnées GPS des chefs-lieux
 class WilayaInfo {
   final String code;
@@ -85,5 +87,48 @@ class WilayaInfo {
     } catch (_) {
       return null;
     }
+  }
+
+  /// Détecte la wilaya la plus proche d'une position GPS donnée.
+  /// Utilise la distance Haversine vers le chef-lieu de chaque wilaya comme proxy.
+  /// Retourne null si la liste des wilayas est vide.
+  static WilayaInfo? findNearestWilaya(double lat, double lon) {
+    if (allWilayas.isEmpty) return null;
+
+    WilayaInfo? nearest;
+    double? minDistance;
+
+    for (final w in allWilayas) {
+      final d = _haversineKm(lat, lon, w.lat, w.lon);
+      if (minDistance == null || d < minDistance) {
+        minDistance = d;
+        nearest = w;
+      }
+    }
+
+    return nearest;
+  }
+
+  static double _deg2rad(double deg) => deg * (math.pi / 180.0);
+
+  static double _haversineKm(
+    double lat1,
+    double lon1,
+    double lat2,
+    double lon2,
+  ) {
+    const double earthRadiusKm = 6371.0;
+    final dLat = _deg2rad(lat2 - lat1);
+    final dLon = _deg2rad(lon2 - lon1);
+
+    final a =
+        math.sin(dLat / 2) * math.sin(dLat / 2) +
+        math.cos(_deg2rad(lat1)) *
+            math.cos(_deg2rad(lat2)) *
+            math.sin(dLon / 2) *
+            math.sin(dLon / 2);
+
+    final c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
+    return earthRadiusKm * c;
   }
 }

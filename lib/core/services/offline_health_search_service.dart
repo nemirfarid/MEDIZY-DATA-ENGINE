@@ -44,9 +44,9 @@ class OfflineHealthSearchService {
     _db = sqlite3.open(resolvedPath, mode: OpenMode.readOnly);
 
     // Optimisations de performance mémoire (Memory-mapped I/O et cache)
-    _db!.execute('PRAGMA mmap_size = 268435456;');
-    _db!.execute('PRAGMA cache_size = -64000;');
-    _db!.execute('PRAGMA temp_store = MEMORY;');
+    _db!.execute('PRAGMA mmap_size = 30000000;');      // ~30 Mo mémoire-mappée pour lecture instantanée
+    _db!.execute('PRAGMA cache_size = -8000;');         // ~8 Mo de cache mémoire pour les requêtes
+    _db!.execute('PRAGMA temp_store = MEMORY;');        // Tables temporaires en RAM
 
     // Préparation des requêtes fréquentes pour éliminer l'overhead de compilation SQL (< 1 ms)
     _ftsStmt = _db!.prepare('''

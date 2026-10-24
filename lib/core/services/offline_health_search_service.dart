@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:sqlite3/sqlite3.dart';
 import '../models/health_facility.dart';
 
-/// Service de recherche hors-ligne hybride (FTS5 + R-Tree) - Santé DZ / Medizy
+/// Service de recherche hors-ligne hybride (FTS5 + R-Tree) - SantÃ© DZ / Medizy
 class OfflineHealthSearchService {
   Database? _db;
   bool _isInitialized = false;
@@ -40,15 +40,15 @@ class OfflineHealthSearchService {
       );
     }
 
-    // Ouverture en lecture seule (OpenMode.readOnly) pour sécurité absolue et perf maximale
+    // Ouverture en lecture seule (OpenMode.readOnly) pour sÃ©curitÃ© absolue et perf maximale
     _db = sqlite3.open(resolvedPath, mode: OpenMode.readOnly);
 
-    // Optimisations de performance mémoire (Memory-mapped I/O et cache)
-    _db!.execute('PRAGMA mmap_size = 30000000;');      // ~30 Mo mémoire-mappée pour lecture instantanée
-    _db!.execute('PRAGMA cache_size = -8000;');         // ~8 Mo de cache mémoire pour les requêtes
+    // Optimisations de performance mÃ©moire (Memory-mapped I/O et cache)
+    _db!.execute('PRAGMA mmap_size = 30000000;');      // ~30 Mo mÃ©moire-mappÃ©e pour lecture instantanÃ©e
+    _db!.execute('PRAGMA cache_size = -8000;');         // ~8 Mo de cache mÃ©moire pour les requÃªtes
     _db!.execute('PRAGMA temp_store = MEMORY;');        // Tables temporaires en RAM
 
-    // Préparation des requêtes fréquentes pour éliminer l'overhead de compilation SQL (< 1 ms)
+    // PrÃ©paration des requÃªtes frÃ©quentes pour Ã©liminer l'overhead de compilation SQL (< 1 ms)
     _ftsStmt = _db!.prepare('''
       SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
       FROM facilities_fts
@@ -101,35 +101,35 @@ class OfflineHealthSearchService {
 
   Database get db {
     if (!_isInitialized || _db == null) {
-      throw StateError('OfflineHealthSearchService non initialisé. Appeler initialize() au préalable.');
+      throw StateError('OfflineHealthSearchService non initialisÃ©. Appeler initialize() au prÃ©alable.');
     }
     return _db!;
   }
 
   // ===========================================================================
-  // 1. MOTEUR PLEIN TEXTE FTS5 (Recherche sémantique, translittération, accents)
+  // 1. MOTEUR PLEIN TEXTE FTS5 (Recherche sÃ©mantique, translittÃ©ration, accents)
   // ===========================================================================
 
-  /// Normalisation des accents français et translittération arabe/latine
+  /// Normalisation des accents franÃ§ais et translittÃ©ration arabe/latine
   static String normalizeQuery(String input) {
     var text = input.trim().toLowerCase();
 
-    // Remplacement des voyelles accentuées et cédilles
+    // Remplacement des voyelles accentuÃ©es et cÃ©dilles
     const accentMap = {
-      'à': 'a', 'á': 'a', 'â': 'a', 'ã': 'a', 'ä': 'a', 'å': 'a',
-      'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e',
-      'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i',
-      'ò': 'o', 'ó': 'o', 'ô': 'o', 'õ': 'o', 'ö': 'o',
-      'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u',
-      'ý': 'y', 'ÿ': 'y',
-      'ç': 'c', 'ñ': 'n',
+      'Ã ': 'a', 'Ã¡': 'a', 'Ã¢': 'a', 'Ã£': 'a', 'Ã¤': 'a', 'Ã¥': 'a',
+      'Ã¨': 'e', 'Ã©': 'e', 'Ãª': 'e', 'Ã«': 'e',
+      'Ã¬': 'i', 'Ã­': 'i', 'Ã®': 'i', 'Ã¯': 'i',
+      'Ã²': 'o', 'Ã³': 'o', 'Ã´': 'o', 'Ãµ': 'o', 'Ã¶': 'o',
+      'Ã¹': 'u', 'Ãº': 'u', 'Ã»': 'u', 'Ã¼': 'u',
+      'Ã½': 'y', 'Ã¿': 'y',
+      'Ã§': 'c', 'Ã±': 'n',
     };
 
     accentMap.forEach((acc, rep) {
       text = text.replaceAll(acc, rep);
     });
 
-    // Équivalences médicales et translittérations algériennes courantes
+    // Ã‰quivalences mÃ©dicales et translittÃ©rations algÃ©riennes courantes
     final replacements = {
       'docteur': 'dr',
       'hopital': 'hopital',
@@ -148,12 +148,12 @@ class OfflineHealthSearchService {
       text = text.replaceAll(RegExp('\\b$key\\b'), val);
     });
 
-    // Supprimer les caractères de ponctuation SQLite FTS5 dangereux
+    // Supprimer les caractÃ¨res de ponctuation SQLite FTS5 dangereux
     text = text.replaceAll(RegExp(r'["\*\^\{\}\[\]\(\)\:\+\-\?]'), ' ');
     return text.trim();
   }
 
-  /// Prépare la clause MATCH FTS5 avec préfixes jokers (*)
+  /// PrÃ©pare la clause MATCH FTS5 avec prÃ©fixes jokers (*)
   static String formatFtsMatch(String query) {
     final clean = normalizeQuery(query);
     final tokens = clean.split(RegExp(r'\s+')).where((t) => t.isNotEmpty).toList();
@@ -183,7 +183,7 @@ class OfflineHealthSearchService {
   // 2. FILTRAGE SPATIAL R-TREE ("Autour de moi" & Bounding Box)
   // ===========================================================================
 
-  /// Calcul de distance orthodromique (Haversine) en kilomètres
+  /// Calcul de distance orthodromique (Haversine) en kilomÃ¨tres
   static double calculateHaversineKm(
     double lat1,
     double lon1,
@@ -206,7 +206,7 @@ class OfflineHealthSearchService {
 
   static double _deg2rad(double deg) => deg * (math.pi / 180.0);
 
-  /// Recherche spatiale par R-Tree pour un rayon géographique donné ("Autour de moi")
+  /// Recherche spatiale par R-Tree pour un rayon gÃ©ographique donnÃ© ("Autour de moi")
   List<HealthFacility> searchAroundMe({
     required double latitude,
     required double longitude,
@@ -246,12 +246,12 @@ class OfflineHealthSearchService {
         JOIN facilities f ON f.id = r.id
         WHERE r.min_lat >= ? AND r.max_lat <= ?
           AND r.min_lon >= ? AND r.max_lon <= ?
-          AND f.categorie = ?
+          AND LOWER(f.categorie) = LOWER(?)
         LIMIT 250;
       ''', [minLat, maxLat, minLon, maxLon, category]);
     }
 
-    // Calcul précis en mémoire de la distance Haversine et tri par proximité
+    // Calcul prÃ©cis en mÃ©moire de la distance Haversine et tri par proximitÃ©
     final facilities = <HealthFacility>[];
     for (final row in results) {
       final fac = HealthFacility.fromMap(row);
@@ -271,12 +271,12 @@ class OfflineHealthSearchService {
   }
 
   // ===========================================================================
-  // 2b. VUEPORT BOUNDING-BOX (rendement 60 FPS) — R-Tree strict 150 marqueurs max
+  // 2b. VUEPORT BOUNDING-BOX (rendement 60 FPS) â€” R-Tree strict 150 marqueurs max
   // ===========================================================================
 
-  /// Récupère uniquement les structures dans le rectangle visible de l'écran (viewport)
-  /// avec une limite stricte de 150 marqueurs simultanés via l'index R-Tree SQLite.
-  /// Utilisé à zoom local (zoom >= 11) pour éviter de saturer le thread UI.
+  /// RÃ©cupÃ¨re uniquement les structures dans le rectangle visible de l'Ã©cran (viewport)
+  /// avec une limite stricte de 150 marqueurs simultanÃ©s via l'index R-Tree SQLite.
+  /// UtilisÃ© Ã  zoom local (zoom >= 11) pour Ã©viter de saturer le thread UI.
   List<HealthFacility> searchViewport({
     required double minLat,
     required double maxLat,
@@ -297,7 +297,7 @@ class OfflineHealthSearchService {
     final params = <dynamic>[minLat, maxLat, minLon, maxLon];
 
     if (category != null && category.isNotEmpty) {
-      sb.writeln('  AND f.categorie = ?');
+      sb.writeln('  AND LOWER(f.categorie) = LOWER(?)');
       params.add(category);
     }
 
@@ -308,8 +308,8 @@ class OfflineHealthSearchService {
     return results.map((r) => HealthFacility.fromMap(r)).toList();
   }
 
-  /// Agrégation par Wilaya pour les vues dézoomées (zoom < 11).
-  /// Retourne une pastille par wilaya avec le nombre d'établissements (GROUP BY mis en cache).
+  /// AgrÃ©gation par Wilaya pour les vues dÃ©zoomÃ©es (zoom < 11).
+  /// Retourne une pastille par wilaya avec le nombre d'Ã©tablissements (GROUP BY mis en cache).
   List<Map<String, dynamic>> getWilayaAggregates({
     String? category,
     bool onlyEmergency = false,
@@ -323,7 +323,7 @@ class OfflineHealthSearchService {
     final params = <dynamic>[];
 
     if (category != null && category.isNotEmpty) {
-      sb.writeln('  AND f.categorie = ?');
+      sb.writeln('  AND LOWER(f.categorie) = LOWER(?)');
       params.add(category);
     }
 
@@ -349,20 +349,20 @@ class OfflineHealthSearchService {
   }
 
   // ===========================================================================
-  // 2c. RECHERCHE ISOLATE (déport hors thread UI)
+  // 2c. RECHERCHE ISOLATE (dÃ©port hors thread UI)
   // ===========================================================================
 
-  /// Les requêtes SQLite s'exécutent en < 5 ms (benchmarks v1.0.17 confirmés) et
-  /// ne saturent pas le thread UI. Aucun déport Isolate n'est nécessaire pour la
+  /// Les requÃªtes SQLite s'exÃ©cutent en < 5 ms (benchmarks v1.0.17 confirmÃ©s) et
+  /// ne saturent pas le thread UI. Aucun dÃ©port Isolate n'est nÃ©cessaire pour la
   /// recherche viewport, car SQLite en mode lecture seule sur un appareil mobile
-  /// reste sous le budget 16 ms/frame à 60 FPS.
-  /// Une extension future pourra utiliser `compute()` avec un chemin DB isolé.
+  /// reste sous le budget 16 ms/frame Ã  60 FPS.
+  /// Une extension future pourra utiliser `compute()` avec un chemin DB isolÃ©.
 
   // ===========================================================================
-  // 3. RECHERCHE HYBRIDE COMBINÉE (TEXTE + FACETTES + DISTANCE)
+  // 3. RECHERCHE HYBRIDE COMBINÃ‰E (TEXTE + FACETTES + DISTANCE)
   // ===========================================================================
 
-  /// Recherche multi-critères : FTS5, code wilaya, catégorie, urgence et rayon
+  /// Recherche multi-critÃ¨res : FTS5, code wilaya, catÃ©gorie, urgence et rayon
   List<HealthFacility> searchHybrid({
     String? query,
     String? wilayaCode,
@@ -387,7 +387,7 @@ class OfflineHealthSearchService {
       final params = <dynamic>[];
 
       if (category != null && category.isNotEmpty) {
-        sb.writeln('  AND categorie = ?');
+        sb.writeln('  AND LOWER(categorie) = LOWER(?)');
         params.add(category);
       }
 
@@ -404,7 +404,7 @@ class OfflineHealthSearchService {
       return facilities;
     }
 
-    // Vue nationale avec géolocalisation présente mais sans filtre wilaya/texte : charger tout le pays
+    // Vue nationale avec gÃ©olocalisation prÃ©sente mais sans filtre wilaya/texte : charger tout le pays
     if ((query == null || query.trim().isEmpty) &&
         (wilayaCode == null || wilayaCode.isEmpty)) {
       final sb = StringBuffer();
@@ -417,7 +417,7 @@ class OfflineHealthSearchService {
       final params = <dynamic>[];
 
       if (category != null && category.isNotEmpty) {
-        sb.writeln('  AND categorie = ?');
+        sb.writeln('  AND LOWER(categorie) = LOWER(?)');
         params.add(category);
       }
 
@@ -481,7 +481,7 @@ class OfflineHealthSearchService {
       }
 
       if (category != null && category.isNotEmpty) {
-        sb.writeln('  AND f.categorie = ?');
+        sb.writeln('  AND LOWER(f.categorie) = LOWER(?)');
         params.add(category);
       }
 
@@ -507,7 +507,7 @@ class OfflineHealthSearchService {
       return facilities.take(limit).toList();
     }
 
-    // Requête par défaut sur wilaya et catégorie
+    // RequÃªte par dÃ©faut sur wilaya et catÃ©gorie
     final sb = StringBuffer();
     sb.writeln('''
       SELECT id, place_id, nom, categorie, wilaya, wilaya_code, commune,
@@ -523,7 +523,7 @@ class OfflineHealthSearchService {
     }
 
     if (category != null && category.isNotEmpty) {
-      sb.writeln('  AND categorie = ?');
+      sb.writeln('  AND LOWER(categorie) = LOWER(?)');
       params.add(category);
     }
 
@@ -541,7 +541,7 @@ class OfflineHealthSearchService {
   }
 
   // ===========================================================================
-  // 4. CONTRÔLE D'INTÉGRITÉ, COUVERTURE & BENCHMARKS
+  // 4. CONTRÃ”LE D'INTÃ‰GRITÃ‰, COUVERTURE & BENCHMARKS
   // ===========================================================================
 
   /// Comptage exact des fiches (doit renvoyer 35 832)
@@ -556,13 +556,13 @@ class OfflineHealthSearchService {
     return (row['c'] as num).toInt();
   }
 
-  /// Récupération de l'ensemble des 58 codes wilayas
+  /// RÃ©cupÃ©ration de l'ensemble des 58 codes wilayas
   List<String> getAllWilayaCodes() {
     final rows = db.select('SELECT DISTINCT wilaya_code FROM facilities ORDER BY wilaya_code ASC;');
     return rows.map((r) => r['wilaya_code'] as String).toList();
   }
 
-  /// Répartition des effectifs par catégorie
+  /// RÃ©partition des effectifs par catÃ©gorie
   Map<String, int> getCountByCategory() {
     final rows = db.select('SELECT categorie, COUNT(*) as c FROM facilities GROUP BY categorie ORDER BY c DESC;');
     final map = <String, int>{};
@@ -572,7 +572,7 @@ class OfflineHealthSearchService {
     return map;
   }
 
-  /// Benchmark FTS5 : calcule la latence moyenne d'exécution sur une liste de requêtes courantes
+  /// Benchmark FTS5 : calcule la latence moyenne d'exÃ©cution sur une liste de requÃªtes courantes
   double benchmarkFtsLatencyMs(List<String> queries, {int limit = 20}) {
     if (queries.isEmpty) return 0.0;
 

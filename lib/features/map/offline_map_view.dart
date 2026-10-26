@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -7,22 +8,26 @@ import '../../core/services/favorites_service.dart';
 import '../../core/services/location_service.dart';
 import '../../core/services/offline_health_search_service.dart';
 import '../../core/services/tile_cache_service.dart';
+import 'utils/specialty_marker_theme.dart';
 import 'widgets/facility_detail_sheet.dart';
 import 'widgets/facet_filter_bar.dart';
 import 'widgets/wilaya_picker_sheet.dart';
-import 'dart:async';
 
-/// Visualiseur cartographique hors-ligne avec gÃ©olocalisation rÃ©elle, sÃ©lecteur des 58 Wilayas et moteur R-Tree/FTS5
+/// Visualiseur cartographique hors-ligne avec géolocalisation réelle, sélecteur des 58 Wilayas et moteur R-Tree/FTS5
 class OfflineMapView extends StatefulWidget {
   final OfflineHealthSearchService searchService;
   final LatLng initialCenter;
   final double initialZoom;
+  final String? initialCategory;
+  final String? initialWilayaCode;
 
   const OfflineMapView({
     Key? key,
     required this.searchService,
-    this.initialCenter = const LatLng(28.0339, 1.6596), // Centre gÃ©ographique de l'AlgÃ©rie
+    this.initialCenter = const LatLng(28.0339, 1.6596), // Centre géographique de l'Algérie
     this.initialZoom = 5.8,
+    this.initialCategory,
+    this.initialWilayaCode,
   }) : super(key: key);
 
   @override
@@ -32,11 +37,11 @@ class OfflineMapView extends StatefulWidget {
 class _OfflineMapViewState extends State<OfflineMapView> {
   late final MapController _mapController;
   List<HealthFacility> _displayedFacilities = [];
-  List<Map<String, dynamic>> _wilayaAggregates = []; // Pastilles d'agrÃ©gation par Wilaya
+  List<Map<String, dynamic>> _wilayaAggregates = []; // Pastilles d'agrégation par Wilaya
   bool _isLoading = false;
   Timer? _zoomTimer;
   double _currentZoom = 5.8;
-  bool _useViewportMode = false; // true = zoom local (viewport), false = vue nationale / agrÃ©gation
+  bool _useViewportMode = false; // true = zoom local (viewport), false = vue nationale / agrégation
 
   String? _selectedWilayaCode;
   String? _selectedWilayaName;
@@ -45,9 +50,9 @@ class _OfflineMapViewState extends State<OfflineMapView> {
   bool _showChifaOnly = false;
   bool _showFavoritesOnly = false;
   String _currentQuery = '';
-  bool _useCartoDb = false;
+  bool _useAltOsmLayer = false;
 
-  // Position utilisateur rÃ©elle (par dÃ©faut Alger avant dÃ©tection GPS)
+  // Position utilisateur réelle (par défaut Alger avant détection GPS)
   LatLng _userPosition = LocationService.defaultPosition;
   bool _hasRealGps = false;
 
@@ -55,15 +60,23 @@ class _OfflineMapViewState extends State<OfflineMapView> {
   void initState() {
     super.initState();
     _mapController = MapController();
+    _selectedCategory = widget.initialCategory;
+    _selectedWilayaCode = widget.initialWilayaCode;
+    if (_selectedWilayaCode != null) {
+      _selectedWilayaName = WilayaInfo.findByCode(_selectedWilayaCode)?.name;
+    }
+
     _initAppAndLocation();
-    // Suivi du niveau de zoom pour basculer entre vue nationale (agrÃ©gation Wilaya)
+
+    // Suivi du niveau de zoom pour basculer entre vue nationale (agrégation Wilaya)
     // et vue locale (markers viewport, max 150).
     _zoomTimer = Timer.periodic(const Duration(milliseconds: 200), (_) {
-      if (!mounted || _mapController.zoom == _currentZoom) return;
-      final newZoom = _mapController.zoom;
+      if (!mounted) return;
+      final currentCameraZoom = _mapController.camera.zoom;
+      if (currentCameraZoom == _currentZoom) return;
       setState(() {
-        _currentZoom = newZoom;
-        _useViewportMode = newZoom >= 11.0;
+        _currentZoom = currentCameraZoom;
+        _useViewportMode = currentCameraZoom >= 11.0;
       });
       _applyFilters();
     });
@@ -75,8 +88,8 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     super.dispose();
   }
 
-  /// Initialisation au dÃ©marrage : dÃ©tection automatique de la Wilaya via GPS,
-  /// recentrage intelligent sur la position utilisateur (zoom 13) et chargement des donnÃ©es.
+  /// Initialisation au démarrage : détection automatique de la Wilaya via GPS,
+  /// recentrage intelligent sur la position utilisateur (zoom 13) et chargement des données.
   Future<void> _initAppAndLocation() async {
     setState(() => _isLoading = true);
 
@@ -84,7 +97,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
       // 1. Initialiser le cache de tuiles disque
       await initTileCache();
 
-      // 2. DÃ©tection automatique de position GPS : derniÃ¨re position connue d'abord (rapide),
+      // 2. Détection automatique de position GPS : dernière position connue d'abord (rapide),
       //    puis position actuelle avec timeout court (3s) pour ne pas bloquer l'UI en zone blanche.
       LatLng? detectedPos;
       detectedPos = await LocationService.getLastKnownPosition();
@@ -99,19 +112,21 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         _userPosition = detectedPos;
         _hasRealGps = true;
 
-        // 3. DÃ©tection automatique de la Wilaya active Ã  partir des coordonnÃ©es GPS
-        final nearestWilaya = WilayaInfo.findNearestWilaya(
-          detectedPos.latitude,
-          detectedPos.longitude,
-        );
-        if (nearestWilaya != null) {
-          setState(() {
-            _selectedWilayaCode = nearestWilaya.code;
-            _selectedWilayaName = nearestWilaya.name;
-          });
+        // 3. Détection automatique de la Wilaya active à partir des coordonnées GPS si aucune n'est imposée
+        if (_selectedWilayaCode == null) {
+          final nearestWilaya = WilayaInfo.findNearestWilaya(
+            detectedPos.latitude,
+            detectedPos.longitude,
+          );
+          if (nearestWilaya != null) {
+            setState(() {
+              _selectedWilayaCode = nearestWilaya.code;
+              _selectedWilayaName = nearestWilaya.name;
+            });
+          }
         }
 
-        // 4. Chargement initial en mode viewport (zoom local) depuis la position dÃ©tectÃ©e
+        // 4. Chargement initial en mode viewport (zoom local) depuis la position détectée
         _mapController.move(detectedPos, 13.0);
         _loadViewport();
 
@@ -119,8 +134,8 @@ class _OfflineMapViewState extends State<OfflineMapView> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                'Wilaya dÃ©tectÃ©e : $_selectedWilayaCode - $_selectedWilayaName '
-                '(${_displayedFacilities.length} fiches Ã  proximitÃ©)',
+                'Wilaya détectée : $_selectedWilayaCode - $_selectedWilayaName '
+                '(${_displayedFacilities.length} fiches à proximité)',
               ),
               duration: const Duration(seconds: 3),
               backgroundColor: Colors.teal.shade800,
@@ -128,10 +143,12 @@ class _OfflineMapViewState extends State<OfflineMapView> {
           );
         }
       } else {
-        // Pas de GPS : repli propre sur vue nationale sans popup bloquante
+        // Pas de GPS : repli propre sur centre par défaut
         _mapController.move(widget.initialCenter, widget.initialZoom);
         if (_showFavoritesOnly) {
           _loadFavorites();
+        } else if (_selectedCategory != null || _selectedWilayaCode != null) {
+          _applyFilters();
         } else {
           _loadWilayaAggregates();
         }
@@ -146,9 +163,9 @@ class _OfflineMapViewState extends State<OfflineMapView> {
   }
 
   /// Charge les marqueurs visibles dans le rectangle courant de la carte (zoom local >= 11).
-  /// Limite stricte de 150 marqueurs pour prÃ©server le thread UI (60 FPS).
+  /// Limite stricte de 150 marqueurs pour préserver le thread UI (60 FPS).
   void _loadViewport() {
-    final bounds = _mapController.bounds!;
+    final bounds = _mapController.camera.visibleBounds;
     final results = widget.searchService.searchViewport(
       minLat: bounds.southWest.latitude,
       maxLat: bounds.northEast.latitude,
@@ -163,7 +180,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     });
   }
 
-  /// Charge les Ã©tablissements favoris sauvegardÃ©s.
+  /// Charge les établissements favoris sauvegardés.
   void _loadFavorites() async {
     final favService = FavoritesService();
     try {
@@ -192,28 +209,28 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     }
   }
 
-  /// Liste des catÃ©gories ConventionnÃ© Chifa (pharmacie, laboratoire, imagerie, clinique, hÃ´pital, etc.)
+  /// Liste des catégories Conventionné Chifa (pharmacie, laboratoire, imagerie, clinique, hôpital, etc.)
   static const List<String> _chifaCategories = [
-    'pharmacie', 'laboratoire', 'centre d\'imagerie mÃ©dicale', 'centre de radiologie',
-    'clinique', 'hÃ´pital', 'polyclinique', 'centre mÃ©dical', 'centre de santÃ©',
+    'pharmacie', 'laboratoire', 'centre d\'imagerie médicale', 'centre de radiologie',
+    'clinique', 'hôpital', 'polyclinique', 'centre médical', 'centre de santé',
   ];
 
-  /// Retourne la catÃ©gorie Chifa correspondante si le filtre Chifa est actif, sinon null.
+  /// Retourne la catégorie Chifa correspondante si le filtre Chifa est actif, sinon null.
   String? get _chifaCategory {
     if (!_showChifaOnly) return null;
-    // Si une catÃ©gorie est dÃ©jÃ  sÃ©lectionnÃ©e et qu'elle est Chifa-compatible, la garder
+    // Si une catégorie est déjà sélectionnée et qu'elle est Chifa-compatible, la garder
     if (_selectedCategory != null && _chifaCategories.any((c) => _selectedCategory!.toLowerCase().contains(c.toLowerCase()))) {
       return _selectedCategory;
     }
-    // Sinon, on ne filtre pas par catÃ©gorie spÃ©cifique (tous les Chifa)
+    // Sinon, on ne filtre pas par catégorie spécifique (tous les Chifa)
     return null;
   }
 
   /// Indique si le filtre Chifa est actif
   bool get _chifaActive => _showChifaOnly;
 
-  /// Charge les agrÃ©gations par Wilaya pour la vue nationale dÃ©zoomÃ©e (zoom < 11).
-  /// Une pastille par wilaya avec le nombre d'Ã©tablissements (GROUP BY SQL mis en cache).
+  /// Charge les agrégations par Wilaya pour la vue nationale dézoomée (zoom < 11).
+  /// Une pastille par wilaya avec le nombre d'établissements (GROUP BY SQL mis en cache).
   void _loadWilayaAggregates() {
     final aggregates = widget.searchService.getWilayaAggregates(
       category: _chifaActive ? _chifaCategory : _selectedCategory,
@@ -225,20 +242,20 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     });
   }
 
-  /// Actualisation des donnÃ©es selon les filtres actifs et le niveau de zoom
+  /// Actualisation des données selon les filtres actifs et le niveau de zoom
   void _applyFilters() {
     setState(() => _isLoading = true);
     try {
       if (_showFavoritesOnly) {
         _loadFavorites();
       } else if (_useViewportMode) {
-        // Zoom local : recherche viewport (bounding-box) limitÃ©e Ã  150 marqueurs
+        // Zoom local : recherche viewport (bounding-box) limitée à 150 marqueurs
         _loadViewport();
-      } else if (_selectedWilayaCode == null && _currentQuery.isEmpty) {
-        // Vue nationale dÃ©zoomÃ©e : agrÃ©gation par Wilaya
+      } else if (_selectedWilayaCode == null && _currentQuery.isEmpty && _selectedCategory == null) {
+        // Vue nationale dézoomée sans catégorie : agrégation par Wilaya
         _loadWilayaAggregates();
       } else {
-        // Filtre wilaya ou recherche textuelle : liste complÃ¨te via searchHybrid
+        // Filtre wilaya, catégorie ou recherche textuelle : liste complète via searchHybrid
         final results = widget.searchService.searchHybrid(
           query: _currentQuery.isNotEmpty ? _currentQuery : null,
           wilayaCode: _selectedWilayaCode,
@@ -246,14 +263,14 @@ class _OfflineMapViewState extends State<OfflineMapView> {
           onlyEmergency: _onlyEmergency,
           userLat: _userPosition.latitude,
           userLon: _userPosition.longitude,
-          limit: (_selectedWilayaCode == null && _currentQuery.isEmpty) ? 50000 : 10000,
+          limit: (_selectedWilayaCode == null && _currentQuery.isEmpty && _selectedCategory == null) ? 50000 : 10000,
         );
         setState(() {
           _displayedFacilities = results;
           _isLoading = false;
         });
 
-        // Si des rÃ©sultats existent et qu'une recherche textuelle vient d'Ãªtre tapÃ©e, centrer sur le premier rÃ©sultat
+        // Si des résultats existent et qu'une recherche textuelle vient d'être tapée, centrer sur le premier résultat
         if (_currentQuery.isNotEmpty && results.isNotEmpty) {
           final first = results.first;
           _mapController.move(LatLng(first.latitude, first.longitude), 13.0);
@@ -264,11 +281,11 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     }
   }
 
-  /// Sollicite activement le capteur GPS du smartphone et recentre la camÃ©ra
+  /// Sollicite activement le capteur GPS du smartphone et recentre la caméra
   Future<void> _handleGpsLocationRequest() async {
     setState(() => _isLoading = true);
 
-    // 1. VÃ©rification si le service GPS est activÃ© sur l'appareil
+    // 1. Vérification si le service GPS est activé sur l'appareil
     final isEnabled = await LocationService.isServiceEnabled();
     if (!isEnabled && mounted) {
       setState(() => _isLoading = false);
@@ -279,11 +296,11 @@ class _OfflineMapViewState extends State<OfflineMapView> {
             children: [
               Icon(Icons.location_off, color: Colors.orange),
               SizedBox(width: 8),
-              Text('GPS DÃ©sactivÃ©'),
+              Text('GPS Désactivé'),
             ],
           ),
           content: const Text(
-            'Veuillez activer le service de localisation (GPS) dans les paramÃ¨tres de votre tÃ©lÃ©phone pour afficher les Ã©tablissements les plus proches de vous.',
+            'Veuillez activer le service de localisation (GPS) dans les paramètres de votre téléphone pour afficher les établissements les plus proches de vous.',
           ),
           actions: [
             TextButton(
@@ -296,7 +313,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
       return;
     }
 
-    // 2. RÃ©cupÃ©ration de la position GPS prÃ©cise
+    // 2. Récupération de la position GPS précise
     final realPos = await LocationService.getCurrentPosition(promptPermission: true);
     if (!mounted) return;
 
@@ -306,16 +323,16 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         _hasRealGps = true;
       });
 
-      // Recentrage camÃ©ra sur la vraie position (zoom local => mode viewport)
+      // Recentrage caméra sur la vraie position (zoom local => mode viewport)
       _mapController.move(realPos, 14.0);
 
-      // Recherche viewport autour de la position rÃ©elle (bounding-box, max 150)
+      // Recherche viewport autour de la position réelle (bounding-box, max 150)
       _loadViewport();
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Position GPS rÃ©elle localisÃ©e : ${realPos.latitude.toStringAsFixed(4)}Â°N, ${realPos.longitude.toStringAsFixed(4)}Â°E (${_displayedFacilities.length} fiches Ã  proximitÃ©)',
+            'Position GPS réelle localisée : ${realPos.latitude.toStringAsFixed(4)}°N, ${realPos.longitude.toStringAsFixed(4)}°E (${_displayedFacilities.length} fiches à proximité)',
           ),
           duration: const Duration(seconds: 3),
           backgroundColor: Colors.teal.shade800,
@@ -325,14 +342,14 @@ class _OfflineMapViewState extends State<OfflineMapView> {
       setState(() => _isLoading = false);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Impossible d\'obtenir la position GPS actuelle. VÃ©rifiez les autorisations de localisation.'),
+          content: Text('Impossible d\'obtenir la position GPS actuelle. Vérifiez les autorisations de localisation.'),
           backgroundColor: Colors.deepOrange,
         ),
       );
     }
   }
 
-  /// Ouvre le sÃ©lecteur modal des 58 Wilayas
+  /// Ouvre le sélecteur modal des 58 Wilayas
   Future<void> _openWilayaPicker() async {
     final selected = await WilayaPickerSheet.show(
       context,
@@ -349,24 +366,24 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         _isLoading = true;
       });
 
-      // 1. DÃ©placer instantanÃ©ment la camÃ©ra sur le chef-lieu de la wilaya (zoom local => viewport)
+      // 1. Déplacer instantanément la caméra sur le chef-lieu de la wilaya (zoom local => viewport)
       final chefLieu = LatLng(selected.lat, selected.lon);
       _mapController.move(chefLieu, 12.0);
 
-      // 2. Filtrer la liste des Ã©tablissements pour n'afficher que ceux de cette wilaya (viewport)
+      // 2. Filtrer la liste des établissements pour n'afficher que ceux de cette wilaya (viewport)
       _loadViewport();
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'Wilaya : ${selected.code} - ${selected.name} (${_displayedFacilities.length} fiches chargÃ©es)',
+            'Wilaya : ${selected.code} - ${selected.name} (${_displayedFacilities.length} fiches chargées)',
           ),
           duration: const Duration(seconds: 3),
           backgroundColor: Colors.teal.shade900,
         ),
       );
     } else {
-      // Choix "Tout le pays" / RÃ©initialisation
+      // Choix "Tout le pays" / Réinitialisation
       setState(() {
         _selectedWilayaCode = null;
         _selectedWilayaName = null;
@@ -379,12 +396,12 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     }
   }
 
-  /// PrÃ©-tÃ©lÃ©charge les tuiles OpenStreetMap de la wilaya active pour usage hors-ligne.
+  /// Pré-télécharge les tuiles OpenStreetMap de la wilaya active pour usage hors-ligne.
   Future<void> _preloadWilayaTiles() async {
     if (_selectedWilayaCode == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Veuillez sÃ©lectionner une wilaya d\'abord'),
+          content: Text('Veuillez sélectionner une wilaya d\'abord'),
           duration: Duration(seconds: 2),
           backgroundColor: Colors.orange,
         ),
@@ -395,11 +412,11 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     setState(() => _isLoading = true);
 
     try {
-      // RÃ©cupÃ©rer les coordonnÃ©es de la wilaya
+      // Récupérer les coordonnées de la wilaya
       final wilaya = WilayaInfo.findByCode(_selectedWilayaCode);
       if (wilaya == null) return;
 
-      // Zone approximative de la wilaya (Â±1.5Â° autour du chef-lieu pour couverture large)
+      // Zone approximative de la wilaya (±1.5° autour du chef-lieu pour couverture large)
       final margin = 1.5;
       final count = await preloadTilesForBounds(
         minLat: wilaya.lat - margin,
@@ -415,7 +432,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         setState(() => _isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('$count tuiles de la wilaya ${_selectedWilayaName} mises en cache hors-ligne'),
+            content: Text('$count tuiles de la wilaya $_selectedWilayaName mises en cache hors-ligne'),
             duration: const Duration(seconds: 3),
             backgroundColor: Colors.teal.shade800,
           ),
@@ -426,7 +443,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         setState(() => _isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Ã‰chec du prÃ©-tÃ©lÃ©chargement des tuiles'),
+            content: Text('Échec du pré-téléchargement des tuiles'),
             duration: Duration(seconds: 3),
             backgroundColor: Colors.red,
           ),
@@ -439,24 +456,12 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     _mapController.move(widget.initialCenter, widget.initialZoom);
   }
 
-  Color _getMarkerColor(HealthFacility facility) {
-    if (facility.isEmergencyOrOnDuty) return Colors.red.shade700;
-    final cat = facility.categorie.toLowerCase();
-    if (cat.contains('pharmacie')) return Colors.green.shade700;
-    if (cat.contains('hopital') || cat.contains('clinique')) return Colors.indigo.shade700;
-    if (cat.contains('dentiste')) return Colors.teal.shade700;
-    if (cat.contains('laboratoire')) return Colors.purple.shade700;
-    return Colors.blue.shade700;
-  }
-
-  IconData _getMarkerIcon(HealthFacility facility) {
-    if (facility.isEmergencyOrOnDuty) return Icons.emergency;
-    final cat = facility.categorie.toLowerCase();
-    if (cat.contains('pharmacie')) return Icons.local_pharmacy;
-    if (cat.contains('hopital')) return Icons.local_hospital;
-    if (cat.contains('dentiste')) return Icons.medical_services_outlined;
-    if (cat.contains('laboratoire')) return Icons.biotech;
-    return Icons.person;
+  SpecialtyMarkerTheme _getTheme(HealthFacility fac) {
+    return SpecialtyMarkerTheme.forCategory(
+      fac.categorie,
+      facilityName: fac.nom,
+      isEmergency: fac.isEmergencyOrOnDuty,
+    );
   }
 
   @override
@@ -496,7 +501,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                                 ? '$_selectedWilayaCode - ${_selectedWilayaName ?? "Wilaya"}'
                                 : _showFavoritesOnly
                                     ? 'Mes Favoris'
-                                    : 'Toute l\'AlgÃ©rie (58)',
+                                    : 'Toute l\'Algérie (58)',
                             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -506,10 +511,10 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                       ),
                       Text(
                         _selectedWilayaCode != null
-                            ? '${_displayedFacilities.length} fiches â€¢ Chef-lieu'
+                            ? '${_displayedFacilities.length} fiches • Chef-lieu'
                             : _showFavoritesOnly
                                 ? '${_displayedFacilities.length} favoris'
-                                : '${_displayedFacilities.length} fiches â€¢ Hors-ligne',
+                                : '${_displayedFacilities.length} fiches • Hors-ligne',
                         style: const TextStyle(fontSize: 11, color: Colors.white70),
                       ),
                     ],
@@ -522,25 +527,25 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         backgroundColor: Colors.teal.shade800,
         foregroundColor: Colors.white,
         actions: [
-          // Bouton sÃ©lecteur de Wilaya
+          // Bouton sélecteur de Wilaya
           IconButton(
             icon: const Icon(Icons.tune),
-            tooltip: 'SÃ©lecteur de Wilaya (58)',
+            tooltip: 'Sélecteur de Wilaya (58)',
             onPressed: _openWilayaPicker,
           ),
-          // Bascule de fond cartographique (OSM / CartoDB Voyager)
+          // Bascule de style cartographique (Standard OSM / Humanitaire HOT OSM)
           IconButton(
-            icon: Icon(_useCartoDb ? Icons.map : Icons.layers_outlined),
-            tooltip: _useCartoDb
-                ? 'Fond CartoDB Voyager actif (Cliquer pour OSM)'
-                : 'Fond OSM Standard actif (Cliquer pour CartoDB)',
-            onPressed: () => setState(() => _useCartoDb = !_useCartoDb),
+            icon: Icon(_useAltOsmLayer ? Icons.map_outlined : Icons.layers_outlined),
+            tooltip: _useAltOsmLayer
+                ? 'Fond OSM Humanitaire actif (Cliquer pour Standard OSM)'
+                : 'Fond OSM Standard actif (Cliquer pour OSM Humanitaire)',
+            onPressed: () => setState(() => _useAltOsmLayer = !_useAltOsmLayer),
           ),
         ],
       ),
       body: Stack(
         children: [
-          // 1. Vue Cartographique flutter_map avec canevas neutre clair mÃ©dical hors-ligne
+          // 1. Vue Cartographique flutter_map avec canevas neutre clair médical hors-ligne
           FlutterMap(
             mapController: _mapController,
             options: MapOptions(
@@ -548,17 +553,17 @@ class _OfflineMapViewState extends State<OfflineMapView> {
               initialZoom: widget.initialZoom,
               minZoom: 4.5,
               maxZoom: 18.0,
-              backgroundColor: const Color(0xFFEFF3F4), // Fond neutre clair mÃ©dical hors-ligne
+              backgroundColor: const Color(0xFFEFF3F4), // Fond neutre clair médical hors-ligne
             ),
             children: [
-              // Tuiles cartographiques avec cache disque (hors-ligne) et fallback rÃ©seau
+              // Tuiles cartographiques avec cache disque (hors-ligne) et fallback réseau standard OSM
               TileLayer(
-                urlTemplate: _useCartoDb
-                    ? 'https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png'
+                urlTemplate: _useAltOsmLayer
+                    ? 'https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
                     : 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                fallbackUrl: _useCartoDb
+                fallbackUrl: _useAltOsmLayer
                     ? 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
-                    : 'https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}@2x.png',
+                    : 'https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
                 userAgentPackageName: 'dz.sante.medizy.national',
                 additionalOptions: const {
                   'User-Agent': 'Medizy-Algeria/1.0.19 (https://medizy.dz; contact@medizy.dz)',
@@ -569,7 +574,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                   },
                 ),
                 errorTileCallback: (tile, error, stackTrace) {
-                  // Gestion gracieuse des erreurs rÃ©seau ou hors-ligne
+                  // Fallback automatique sans blocage ni filigrane API key
                 },
                 tileBuilder: (context, tileWidget, tile) {
                   return Container(
@@ -597,9 +602,9 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                 ],
               ),
 
-              // RepÃ¨res des Ã©tablissements : agrÃ©gation par Wilaya (zoom dÃ©zoomÃ© < 11)
+              // Repères des établissements : agrégation par Wilaya (zoom dézoomé < 11)
               // ou markers viewport (zoom local >= 11, max 150 marqueurs) pour 60 FPS
-              if (!_useViewportMode && _selectedWilayaCode == null && _currentQuery.isEmpty && !_showFavoritesOnly)
+              if (!_useViewportMode && _selectedWilayaCode == null && _currentQuery.isEmpty && _selectedCategory == null && !_showFavoritesOnly)
                 MarkerLayer(
                   markers: _wilayaAggregates.map((agg) {
                     final wilaya = WilayaInfo.findByCode(agg['code'] as String?);
@@ -651,20 +656,19 @@ class _OfflineMapViewState extends State<OfflineMapView> {
               else
                 MarkerLayer(
                   markers: _displayedFacilities.map((fac) {
-                    final color = _getMarkerColor(fac);
-                    final icon = _getMarkerIcon(fac);
+                    final theme = _getTheme(fac);
 
                     return Marker(
                       point: LatLng(fac.latitude, fac.longitude),
-                      width: 38,
-                      height: 38,
+                      width: 40,
+                      height: 40,
                       child: GestureDetector(
                         onTap: () => FacilityDetailSheet.show(context, fac, userPosition: _userPosition),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: color,
+                            color: theme.color,
                             shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 2),
+                            border: Border.all(color: Colors.white, width: 2.2),
                             boxShadow: const [
                               BoxShadow(
                                 color: Colors.black26,
@@ -674,7 +678,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                             ],
                           ),
                           child: Icon(
-                            icon,
+                            theme.icon,
                             color: Colors.white,
                             size: 20,
                           ),
@@ -686,7 +690,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
             ],
           ),
 
-          // 2. Barre de recherche et filtres de facettes (Wilaya, CatÃ©gorie, Urgence, Chifa, Favoris)
+          // 2. Barre de recherche et filtres de facettes (Wilaya, Catégorie, Urgence, Chifa, Favoris)
           Positioned(
             top: 0,
             left: 0,
@@ -763,7 +767,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
               ),
             ),
 
-          // 4. Boutons d'action flottants (National / SÃ©lecteur Wilaya / Ma Position GPS RÃ©elle / PrÃ©charger tuiles / Urgence)
+          // 4. Boutons d'action flottants (National / Sélecteur Wilaya / Ma Position GPS Réelle / Précharger tuiles / Urgence)
           Positioned(
             bottom: 24,
             right: 16,
@@ -788,7 +792,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                   child: const Icon(Icons.public),
                 ),
                 const SizedBox(height: 10),
-                // Bouton 2 : SÃ©lecteur de Wilaya
+                // Bouton 2 : Sélecteur de Wilaya
                 FloatingActionButton.small(
                   heroTag: 'fab_wilaya_selector',
                   backgroundColor: Colors.white,
@@ -798,27 +802,27 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                   child: const Icon(Icons.location_city),
                 ),
                 const SizedBox(height: 10),
-                // Bouton 3 : Ma Position RÃ©elle GPS
+                // Bouton 3 : Ma Position Réelle GPS
                 FloatingActionButton(
                   heroTag: 'fab_my_location',
                   backgroundColor: _hasRealGps ? Colors.teal.shade700 : Colors.teal.shade900,
                   foregroundColor: Colors.white,
-                  tooltip: 'Ma position GPS rÃ©elle',
+                  tooltip: 'Ma position GPS réelle',
                   onPressed: _handleGpsLocationRequest,
                   child: Icon(_hasRealGps ? Icons.my_location : Icons.location_searching),
                 ),
                 const SizedBox(height: 10),
-                // Bouton 4 : PrÃ©-tÃ©lÃ©charger tuiles de la wilaya (hors-ligne)
+                // Bouton 4 : Pré-télécharger tuiles de la wilaya (hors-ligne)
                 FloatingActionButton.small(
                   heroTag: 'fab_preload_tiles',
                   backgroundColor: Colors.blue.shade700,
                   foregroundColor: Colors.white,
-                  tooltip: 'PrÃ©-tÃ©lÃ©charger carte wilaya (hors-ligne)',
+                  tooltip: 'Pré-télécharger carte wilaya (hors-ligne)',
                   onPressed: _preloadWilayaTiles,
                   child: const Icon(Icons.cloud_download),
                 ),
                 const SizedBox(height: 10),
-                // Bouton 5 : Urgence & Nuit 24/7 (rouge, filtre instantanÃ© urgences)
+                // Bouton 5 : Urgence & Nuit 24/7 (rouge, filtre instantané urgences)
                 FloatingActionButton(
                   heroTag: 'fab_emergency',
                   backgroundColor: _onlyEmergency ? Colors.red.shade700 : Colors.red.shade900,

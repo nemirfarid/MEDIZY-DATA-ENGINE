@@ -5,6 +5,8 @@
 -keep class io.flutter.plugin.** { *; }
 -keep class com.tekartik.sqflite.** { *; }
 -keep class org.sqlite.** { *; }
+-keep class eu.simonbinder.sqlite3_flutter_libs.** { *; }
+-keep class org.sqlite.database.** { *; }
 
 -keepclasseswithmembernames class * {
     native <methods>;

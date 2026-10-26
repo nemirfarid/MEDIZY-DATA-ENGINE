@@ -107,15 +107,24 @@ class OfflineHealthSearchService {
   }
 
   // ===========================================================================
-  // 1. MOTEUR PLEIN TEXTE FTS5 (Recherche sÃ©mantique, translittÃ©ration, accents)
+  // 1. MOTEUR PLEIN TEXTE FTS5 (Recherche sémantique, translittération, accents)
   // ===========================================================================
 
-  /// Normalisation des accents franÃ§ais et translittÃ©ration arabe/latine
+  /// Normalisation des accents français et translittération arabe/latine
   static String normalizeQuery(String input) {
     var text = input.trim().toLowerCase();
 
-    // Remplacement des voyelles accentuÃ©es et cÃ©dilles
+    // Remplacement des voyelles accentuées et cédilles (UTF-8 direct et mojibake)
     const accentMap = {
+      'à': 'a', 'á': 'a', 'â': 'a', 'ã': 'a', 'ä': 'a', 'å': 'a',
+      'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e',
+      'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i',
+      'ò': 'o', 'ó': 'o', 'ô': 'o', 'õ': 'o', 'ö': 'o',
+      'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u',
+      'ý': 'y', 'ÿ': 'y',
+      'ç': 'c', 'ñ': 'n',
+      'œ': 'oe', 'æ': 'ae',
+      // Décodage de secours pour éventuel mojibake
       'Ã ': 'a', 'Ã¡': 'a', 'Ã¢': 'a', 'Ã£': 'a', 'Ã¤': 'a', 'Ã¥': 'a',
       'Ã¨': 'e', 'Ã©': 'e', 'Ãª': 'e', 'Ã«': 'e',
       'Ã¬': 'i', 'Ã­': 'i', 'Ã®': 'i', 'Ã¯': 'i',
@@ -129,7 +138,7 @@ class OfflineHealthSearchService {
       text = text.replaceAll(acc, rep);
     });
 
-    // Ã‰quivalences mÃ©dicales et translittÃ©rations algÃ©riennes courantes
+    // Équivalences médicales et translittérations algériennes courantes
     final replacements = {
       'docteur': 'dr',
       'hopital': 'hopital',
@@ -148,7 +157,7 @@ class OfflineHealthSearchService {
       text = text.replaceAll(RegExp('\\b$key\\b'), val);
     });
 
-    // Supprimer les caractÃ¨res de ponctuation SQLite FTS5 dangereux
+    // Supprimer les caractères de ponctuation SQLite FTS5 dangereux
     text = text.replaceAll(RegExp(r'["\*\^\{\}\[\]\(\)\:\+\-\?]'), ' ');
     return text.trim();
   }
@@ -271,7 +280,7 @@ class OfflineHealthSearchService {
   }
 
   // ===========================================================================
-  // 2b. VUEPORT BOUNDING-BOX (rendement 60 FPS) â€” R-Tree strict 150 marqueurs max
+  // 2b. VIEWPORT BOUNDING-BOX (rendement 60 FPS) — R-Tree strict 150 marqueurs max
   // ===========================================================================
 
   /// RÃ©cupÃ¨re uniquement les structures dans le rectangle visible de l'Ã©cran (viewport)

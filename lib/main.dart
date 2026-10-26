@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
-import 'package:sqlite3/open.dart';
-import 'package:sqlite3_flutter_libs/sqlite3_flutter_libs.dart';
 import 'core/services/offline_health_search_service.dart';
-import 'features/map/offline_map_view.dart';
+import 'features/home/presentation/screens/medizy_home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -82,7 +80,7 @@ class _SanteDzMedizyAppState extends State<SanteDzMedizyApp> {
         useMaterial3: true,
       ),
       home: _isReady
-          ? OfflineMapView(searchService: _searchService)
+          ? MedizyHomeScreen(searchService: _searchService)
           : MedizySplashScreen(statusMessage: _statusMessage),
     );
   }

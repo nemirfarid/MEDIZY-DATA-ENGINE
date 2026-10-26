@@ -3,14 +3,13 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 import '../../../core/models/health_facility.dart';
 import '../../../core/services/favorites_service.dart';
 import '../../../core/services/location_service.dart';
 
-/// Fiche dÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©taillÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©e d'un ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©tablissement de santÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© avec actions directes (Appel, Guidage, Partage, Favoris, Boussole)
+/// Fiche détaillée d'un établissement de santé avec actions directes (Appel, Guidage, Partage, Favoris, Boussole)
 class FacilityDetailSheet extends StatefulWidget {
   final HealthFacility facility;
   final LatLng? userPosition; // Position utilisateur actuelle pour le calcul de cap
@@ -44,7 +43,7 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
   void initState() {
     super.initState();
     _updateBearingAndDistance();
-    // Mise ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â  jour en direct du cap et de la distance toutes les 2 secondes
+    // Mise à jour en direct du cap et de la distance toutes les 2 secondes
     _bearingTimer = Timer.periodic(const Duration(seconds: 2), (_) {
       if (mounted) {
         _updateBearingAndDistance();
@@ -106,13 +105,13 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
 
   String _buildShareText() {
     final sb = StringBuffer();
-    sb.writeln('ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°tablissement : ${widget.facility.nom}');
-    sb.writeln('SpÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©cialitÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© : ${widget.facility.categorie}');
+    sb.writeln('Établissement : ${widget.facility.nom}');
+    sb.writeln('Spécialité : ${widget.facility.categorie}');
     sb.writeln('Commune : ${widget.facility.commune}, Wilaya ${widget.facility.wilayaCode} - ${widget.facility.wilaya}');
-    sb.writeln('CoordonnÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©es GPS : ${widget.facility.latitude.toStringAsFixed(6)}, ${widget.facility.longitude.toStringAsFixed(6)}');
+    sb.writeln('Coordonnées GPS : ${widget.facility.latitude.toStringAsFixed(6)}, ${widget.facility.longitude.toStringAsFixed(6)}');
     sb.writeln('Lien : https://maps.google.com/?q=${widget.facility.latitude},${widget.facility.longitude}');
     if (widget.facility.telephone != null && widget.facility.telephone!.isNotEmpty) {
-      sb.writeln('TÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©l : ${widget.facility.telephone}');
+      sb.writeln('Tél : ${widget.facility.telephone}');
     }
     return sb.toString();
   }
@@ -129,9 +128,9 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
           return;
         }
       }
-      await Share.share(text, subject: 'SantÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© DZ : ${widget.facility.nom}');
+      await Share.share(text, subject: 'Santé DZ : ${widget.facility.nom}');
     } catch (_) {
-      await Share.share(text, subject: 'SantÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© DZ : ${widget.facility.nom}');
+      await Share.share(text, subject: 'Santé DZ : ${widget.facility.nom}');
     }
   }
 
@@ -141,7 +140,7 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('NumÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©ro copiÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© dans le presse-papier'),
+          content: Text('Numéro copié dans le presse-papier'),
           duration: Duration(seconds: 2),
           backgroundColor: Colors.teal,
         ),
@@ -155,7 +154,7 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Adresse copiÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©e dans le presse-papier'),
+          content: Text('Adresse copiée dans le presse-papier'),
           duration: Duration(seconds: 2),
           backgroundColor: Colors.teal,
         ),
@@ -184,7 +183,7 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
-              isNowFavorite ? 'AjoutÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© aux favoris' : 'RetirÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â© des favoris',
+              isNowFavorite ? 'Ajouté aux favoris' : 'Retiré des favoris',
             ),
             duration: const Duration(seconds: 2),
             backgroundColor: isNowFavorite ? Colors.amber : Colors.grey,
@@ -195,7 +194,7 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Erreur lors de la mise ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â  jour des favoris'),
+            content: Text('Erreur lors de la mise à jour des favoris'),
             duration: Duration(seconds: 2),
             backgroundColor: Colors.red,
           ),
@@ -214,61 +213,107 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
     }
   }
 
-  /// Widget boussole simplifiÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©e affichant une flÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¨che pointant vers l'ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©tablissement
+  /// Widget boussole compacte et isolée affichant une flèche orientée vers l'établissement
   Widget _buildCompass() {
     return Container(
-      width: 140,
-      height: 140,
+      width: 76,
+      height: 76,
       decoration: BoxDecoration(
-        color: Colors.teal.shade50,
+        color: Colors.white,
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.teal.shade200, width: 2),
+        border: Border.all(color: Colors.teal.shade300, width: 2),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 8,
-            offset: Offset(0, 2),
+            color: Colors.teal.shade900.withOpacity(0.08),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
           ),
         ],
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // FlÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¨che de direction (boussole)
-          Transform.rotate(
-            angle: _bearingDegrees * math.pi / 180,
-            child: Icon(
-              Icons.navigation,
-              color: Colors.teal.shade700,
-              size: 48,
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Transform.rotate(
+              angle: _bearingDegrees * math.pi / 180,
+              child: Icon(
+                Icons.navigation_rounded,
+                color: Colors.teal.shade800,
+                size: 26,
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              '${_bearingDegrees.toStringAsFixed(0)}°',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 10,
+                color: Colors.teal.shade900,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Bouton d'action uniforme avec icône au-dessus et libellé sans césure
+  Widget _buildActionButton({
+    required IconData icon,
+    required String label,
+    required Color color,
+    required VoidCallback? onPressed,
+    bool isPrimary = false,
+  }) {
+    return Expanded(
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: onPressed,
+          borderRadius: BorderRadius.circular(12),
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 2),
+            decoration: BoxDecoration(
+              color: onPressed == null
+                  ? Colors.grey.shade100
+                  : (isPrimary ? color : color.withOpacity(0.08)),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: onPressed == null
+                    ? Colors.grey.shade300
+                    : (isPrimary ? color : color.withOpacity(0.35)),
+                width: 1,
+              ),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  icon,
+                  size: 20,
+                  color: onPressed == null
+                      ? Colors.grey
+                      : (isPrimary ? Colors.white : color),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  maxLines: 1,
+                  softWrap: false,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.w600,
+                    color: onPressed == null
+                        ? Colors.grey
+                        : (isPrimary ? Colors.white : color),
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 8),
-          Text(
-            '${_bearingDegrees.toStringAsFixed(0)}ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â° ${_bearingCardinalDirection()}',
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 14,
-              color: Colors.teal,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            _hasPosition ? '${_distanceKm.toStringAsFixed(1)} km' : 'ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ km',
-            style: const TextStyle(
-              fontSize: 12,
-              color: Colors.teal,
-            ),
-          ),
-          const SizedBox(height: 4),
-          const Text(
-            'Cap direct',
-            style: TextStyle(
-              fontSize: 10,
-              color: Colors.grey,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -295,7 +340,7 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // PoignÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©e de glissement
+          // Poignée de glissement
           Center(
             child: Container(
               width: 44,
@@ -308,7 +353,7 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
           ),
           const SizedBox(height: 16),
 
-          // En-tÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Âªte : Nom & Badge d'urgence
+          // En-tête : Nom & Badge d'urgence
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -320,7 +365,7 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
                   ),
                 ),
               ),
-              // ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°toile favoris
+              // Étoile favoris
               FutureBuilder<bool>(
                 future: _isFavorite(),
                 builder: (ctx, snapshot) {
@@ -364,7 +409,7 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
           ),
           const SizedBox(height: 8),
 
-          // CatÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©gorie et Localisation
+          // Catégorie et Localisation
           Wrap(
             spacing: 8,
             runSpacing: 4,
@@ -393,60 +438,75 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
           ),
           const SizedBox(height: 12),
 
-          // Cap & Distance ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â  vol d'oiseau (Boussole)
+          // Cap & Distance à vol d'oiseau (Boussole isolée sans chevauchement)
           if (_hasPosition || widget.userPosition != null)
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
               decoration: BoxDecoration(
-                color: Colors.teal.shade50,
-                borderRadius: BorderRadius.circular(12),
+                color: Colors.teal.shade50.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(14),
                 border: Border.all(color: Colors.teal.shade200),
               ),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Icon(Icons.compass_calibration, size: 20, color: Colors.teal),
-                  const SizedBox(width: 12),
+                  // Bloc gauche : Textes flexibles (Cap, Relèvement, Distance)
                   Expanded(
+                    flex: 1,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Row(
                           children: [
+                            Icon(Icons.explore_outlined, size: 16, color: Colors.teal.shade700),
+                            const SizedBox(width: 6),
                             const Text(
                               'Cap direct : ',
                               style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
                             ),
                             Text(
-                              '${_bearingDegrees.toStringAsFixed(0)}ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â° ${_bearingCardinalDirection()}',
-                              style: const TextStyle(
+                              '${_bearingDegrees.toStringAsFixed(0)}° ${_bearingCardinalDirection()}',
+                              style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.teal,
+                                color: Colors.teal.shade800,
+                                fontSize: 13,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Row(
+                          children: [
+                            Icon(Icons.straighten_outlined, size: 16, color: Colors.teal.shade700),
+                            const SizedBox(width: 6),
+                            const Text(
+                              'Distance : ',
+                              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
+                            ),
+                            Text(
+                              _hasPosition ? '${_distanceKm.toStringAsFixed(1)} km' : '-- km',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.teal.shade800,
                                 fontSize: 13,
                               ),
                             ),
                           ],
                         ),
                         const SizedBox(height: 4),
-                        Row(
-                          children: [
-                            const Text(
-                              'Distance : ',
-                              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 13),
-                            ),
-                            Text(
-                              '${_distanceKm.toStringAsFixed(1)} km',
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.teal,
-                                fontSize: 13,
-                              ),
-                            ),
-                          ],
+                        Text(
+                          'Relèvement boussole en direct',
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: Colors.grey.shade600,
+                          ),
                         ),
                       ],
                     ),
                   ),
+                  const SizedBox(width: 12),
+                  // Bloc droite : Boussole circulaire dédiée sans aucun chevauchement
                   _buildCompass(),
                 ],
               ),
@@ -466,16 +526,38 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.content_copy, size: 18, color: Colors.grey),
+                  icon: const Icon(Icons.copy, size: 16, color: Colors.teal),
                   tooltip: 'Copier l\'adresse',
                   onPressed: () => _copyAddress(context),
                 ),
               ],
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 4),
           ],
 
-          // CoordonnÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©es GPS WGS84
+          // Téléphone
+          if (widget.facility.telephone != null && widget.facility.telephone!.isNotEmpty) ...[
+            Row(
+              children: [
+                const Icon(Icons.phone_outlined, size: 18, color: Colors.grey),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    widget.facility.telephone!,
+                    style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.copy, size: 16, color: Colors.teal),
+                  tooltip: 'Copier le numéro',
+                  onPressed: () => _copyPhone(context),
+                ),
+              ],
+            ),
+            const SizedBox(height: 4),
+          ],
+
+          // Coordonnées GPS WGS84
           Row(
             children: [
               const Icon(Icons.gps_fixed, size: 18, color: Colors.grey),
@@ -488,91 +570,52 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
           ),
           const SizedBox(height: 20),
 
-          // Actions directes (Appel, ItinÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©raire, Partage, Copie)
+          // Actions directes : 4 boutons uniformes, sans retour à la ligne
           Row(
             children: [
-              // Appel direct
-              if (widget.facility.callNumber != null)
-                Expanded(
-                  child: ElevatedButton.icon(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green.shade600,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    icon: const Icon(Icons.call),
-                    label: const Text('Appeler'),
-                    onPressed: () => _makePhoneCall(widget.facility.callNumber!),
-                  ),
-                )
-              else
-                Expanded(
-                  child: OutlinedButton.icon(
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    icon: const Icon(Icons.phone_disabled, color: Colors.grey),
-                    label: const Text('Non renseignÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©', style: TextStyle(color: Colors.grey)),
-                    onPressed: null,
-                  ),
-                ),
+              // 1. Appeler
+              _buildActionButton(
+                icon: Icons.call,
+                label: 'Appeler',
+                color: Colors.green.shade700,
+                isPrimary: true,
+                onPressed: widget.facility.callNumber != null
+                    ? () => _makePhoneCall(widget.facility.callNumber!)
+                    : null,
+              ),
               const SizedBox(width: 8),
 
-              // Copie tÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©lÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©phone
-              if (widget.facility.callNumber != null)
-                Expanded(
-                  child: OutlinedButton.icon(
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.teal.shade700,
-                      side: BorderSide(color: Colors.teal.shade300),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
-                    icon: const Icon(Icons.content_copy, size: 18),
-                    label: const Text('Copier TÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©l', style: TextStyle(fontSize: 11)),
-                    onPressed: () => _copyPhone(context),
-                  ),
-                )
-              else
-                const SizedBox(width: 0),
-
+              // 2. Copier
+              _buildActionButton(
+                icon: Icons.content_copy_rounded,
+                label: 'Copier',
+                color: Colors.teal.shade700,
+                onPressed: widget.facility.callNumber != null
+                    ? () => _copyPhone(context)
+                    : null,
+              ),
               const SizedBox(width: 8),
 
-              // Guidage GPS hors-ligne
-              Expanded(
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.teal.shade700,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  ),
-                  icon: const Icon(Icons.directions),
-                  label: const Text('Guidage'),
-                  onPressed: () => _launchGpsNavigation(
-                    widget.facility.latitude,
-                    widget.facility.longitude,
-                    widget.facility.nom,
-                  ),
+              // 3. Guidage
+              _buildActionButton(
+                icon: Icons.directions_rounded,
+                label: 'Guidage',
+                color: Colors.blue.shade700,
+                isPrimary: true,
+                onPressed: () => _launchGpsNavigation(
+                  widget.facility.latitude,
+                  widget.facility.longitude,
+                  widget.facility.nom,
                 ),
               ),
               const SizedBox(width: 8),
 
-              // Partage position (WhatsApp/SMS)
-              Expanded(
-                child: OutlinedButton.icon(
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: Colors.green.shade700,
-                    side: BorderSide(color: Colors.green.shade300),
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  ),
-                  icon: const Icon(Icons.share_outlined, size: 18),
-                  label: const Text('Partager pos.', style: TextStyle(fontSize: 11)),
-                  onPressed: () => _sharePosition(context),
-                ),
+              // 4. Partager pos.
+              _buildActionButton(
+                icon: Icons.share_rounded,
+                label: 'Partager pos.',
+                color: Colors.orange.shade800,
+                onPressed: () => _sharePosition(context),
               ),
             ],
           ),

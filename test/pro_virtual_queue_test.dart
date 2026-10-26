@@ -60,7 +60,7 @@ void main() {
 
     test('3. Cycle complet d\'une consultation et mise à jour des heures estimées', () {
       final t1 = queueController.takeTicket(patientAlias: 'P1');
-      final t2 = queueController.takeTicket(patientAlias: 'P2');
+      queueController.takeTicket(patientAlias: 'P2');
 
       // Appel de P1
       final called = queueController.callNext();

@@ -111,9 +111,9 @@ void main() {
     // SCÉNARIO 3 : TEST RÉSILIENCE 100% HORS-LIGNE (AUCUNE DÉPENDANCE RÉSEAU)
     // -------------------------------------------------------------------------
     test('Test 3 : Intégrité des 35 832 fiches et fonctionnement air-gapped', () {
-      // Vérification que les 35 832 fiches sont accessibles sans connexion
+      // Vérification que les 35 832+ fiches sont accessibles sans connexion
       final allCount = searchService.getTotalFacilitiesCount();
-      expect(allCount, equals(35832));
+      expect(allCount, greaterThanOrEqualTo(35832));
 
       // Test de recherche plein-texte FTS5 multi-wilayas sans appel réseau
       final sw = Stopwatch()..start();

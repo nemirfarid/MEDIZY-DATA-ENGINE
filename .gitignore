@@ -31,3 +31,6 @@ pubspec.lock
 # Assets embarqués de l'application cliente
 !assets/data/*
 
+# Distribution et binaires
+dist/*.apk
+*.apk

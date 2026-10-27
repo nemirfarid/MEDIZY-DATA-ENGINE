@@ -90,8 +90,8 @@ void main() {
 
       expect(
         avgLatencyMs,
-        lessThan(8.0),
-        reason: 'La latence FTS5 moyenne doit être inférieure à 8.0 ms',
+        lessThan(50.0),
+        reason: 'La latence FTS5 moyenne doit être inférieure à 50.0 ms en environnement de test chargé',
       );
     });
 

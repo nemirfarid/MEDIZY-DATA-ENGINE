@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import '../../../core/models/geo_models.dart';
+import '../../../core/models/health_search_filter.dart';
 import '../../../core/models/pharmacy.dart';
 import '../../../core/utils/geo_calculator.dart';
 import '../services/health_directory_service.dart';
@@ -105,6 +106,29 @@ class HealthSearchNotifier extends ChangeNotifier {
     await search(isLoadMore: false);
   }
 
+  /// Alias direct pour sélection de catégorie
+  Future<void> setCategory(String? category) => setSpecialty(category);
+
+  /// Applique un filtre global directement (ex: redirection depuis la Home)
+  Future<void> setFilter(HealthSearchFilter newFilter) async {
+    _state = _state.copyWith(
+      filter: newFilter.copyWith(offset: 0),
+      onlyChifa: newFilter.onlyChifa,
+    );
+    await search(isLoadMore: false);
+  }
+
+  /// Bascule du filtre exclusif "Convention Chifa" (ضمان اجتماعي)
+  Future<void> setOnlyChifa(bool onlyChifa) async {
+    if (onlyChifa == _state.onlyChifa) return;
+
+    _state = _state.copyWith(
+      onlyChifa: onlyChifa,
+      filter: _state.filter.copyWith(onlyChifa: onlyChifa),
+    );
+    await search(isLoadMore: false);
+  }
+
   /// Bascule du filtre exclusif "Pharmacie de garde"
   Future<void> setOnlyOnDutyPharmacies(bool onlyOnDuty) async {
     if (onlyOnDuty == _state.onlyOnDutyPharmacies) return;
@@ -199,6 +223,10 @@ class HealthSearchNotifier extends ChangeNotifier {
 
         if (_state.onlyOnDutyPharmacies) {
           items = items.where((item) => item is Pharmacy && item.isOnDuty).toList();
+        }
+
+        if (_state.onlyChifa) {
+          items = items.where((item) => item.isChifa).toList();
         }
 
         if (_state.hasLocation) {

@@ -78,7 +78,7 @@ class _WilayaPickerSheetState extends State<WilayaPickerSheet> {
                 TextButton.icon(
                   onPressed: () => Navigator.pop(context, null), // Réinitialise à Vue Nationale
                   icon: const Icon(Icons.public, size: 18),
-                  label: const Text('Tout le pays'),
+                  label: const Text('Toute l\'Algérie (36 417 fiches)'),
                   style: TextButton.styleFrom(foregroundColor: Colors.teal.shade800),
                 ),
               ],

@@ -27,7 +27,7 @@ class FavoritesService {
 
     _db = await openDatabase(
       dbPath,
-      version: 1,
+      version: 2,
       onCreate: (db, version) async {
         await db.execute('''
           CREATE TABLE user_saved_facilities (
@@ -45,6 +45,7 @@ class FavoritesService {
             source TEXT,
             is_favorite INTEGER NOT NULL DEFAULT 0,
             is_recent INTEGER NOT NULL DEFAULT 0,
+            personal_note TEXT,
             saved_at TEXT NOT NULL DEFAULT (datetime('now')),
             updated_at TEXT NOT NULL DEFAULT (datetime('now')),
             UNIQUE(facility_id)
@@ -60,7 +61,19 @@ class FavoritesService {
           CREATE INDEX idx_facilities_wilaya ON user_saved_facilities(wilaya_code);
         ''');
       },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          try {
+            await db.execute('ALTER TABLE user_saved_facilities ADD COLUMN personal_note TEXT;');
+          } catch (_) {}
+        }
+      },
     );
+
+    // Sécurité défensive : s'assurer que la colonne personal_note existe
+    try {
+      await _db!.execute('ALTER TABLE user_saved_facilities ADD COLUMN personal_note TEXT;');
+    } catch (_) {}
 
     _isInitialized = true;
   }
@@ -247,6 +260,40 @@ class FavoritesService {
       'SELECT COUNT(*) as c FROM user_saved_facilities WHERE is_favorite = 1',
     );
     return (result.first['c'] as int);
+  }
+
+  /// Enregistre une note personnelle privée pour un établissement
+  Future<void> savePersonalNote(int facilityId, String note) async {
+    final existing = await db.query(
+      'user_saved_facilities',
+      where: 'facility_id = ?',
+      whereArgs: [facilityId],
+    );
+
+    final now = DateTime.now().toIso8601String();
+    if (existing.isNotEmpty) {
+      await db.update(
+        'user_saved_facilities',
+        {
+          'personal_note': note.trim(),
+          'updated_at': now,
+        },
+        where: 'facility_id = ?',
+        whereArgs: [facilityId],
+      );
+    }
+  }
+
+  /// Récupère la note personnelle privée d'un établissement
+  Future<String?> getPersonalNote(int facilityId) async {
+    final rows = await db.query(
+      'user_saved_facilities',
+      columns: ['personal_note'],
+      where: 'facility_id = ?',
+      whereArgs: [facilityId],
+    );
+    if (rows.isEmpty) return null;
+    return rows.first['personal_note'] as String?;
   }
 
   /// Ferme la base de données.

@@ -166,6 +166,8 @@ class _HealthSearchScreenState extends State<HealthSearchScreen> {
                   return HealthDirectoryMapView(
                     facilities: displayedList,
                     enableTiles: widget.enableMapTiles,
+                    activeCategory: state.selectedCategory,
+                    onClearCategory: () => widget.notifier.setCategory(null),
                     onFacilitySelected: (facility) {
                       _showDetail(context, facility);
                     },

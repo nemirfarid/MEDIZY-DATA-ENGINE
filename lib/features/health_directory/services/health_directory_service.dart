@@ -11,6 +11,14 @@ import '../../../core/services/sqlite_database_manager.dart';
 abstract interface class IHealthDirectoryService {
   Future<Result<void, DatabaseFailure>> initialize({String? customPath});
   Future<Result<List<HealthProfessional>, DatabaseFailure>> search(HealthSearchFilter filter);
+  Future<Result<List<HealthProfessional>, DatabaseFailure>> searchViewport({
+    required double minLat,
+    required double maxLat,
+    required double minLon,
+    required double maxLon,
+    String? category,
+    int limit = 150,
+  });
   Future<Result<List<Wilaya>, DatabaseFailure>> getWilayas();
   Future<Result<List<Commune>, DatabaseFailure>> getCommunesForWilaya(String wilayaCode);
   Future<Result<List<String>, DatabaseFailure>> getSpecialties();
@@ -29,6 +37,26 @@ class HealthDirectoryService implements IHealthDirectoryService {
     return _dbManager.initialize(customPath: customPath);
   }
 
+  /// Prépare la syntaxe MATCH FTS5 avec préfixes jokers (*)
+  static String formatFtsQuery(String query) {
+    var text = query.trim().toLowerCase();
+    const accentMap = {
+      'à': 'a', 'á': 'a', 'â': 'a', 'ä': 'a',
+      'è': 'e', 'é': 'e', 'ê': 'e', 'ë': 'e',
+      'ì': 'i', 'í': 'i', 'î': 'i', 'ï': 'i',
+      'ò': 'o', 'ó': 'o', 'ô': 'o', 'ö': 'o',
+      'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u',
+      'ç': 'c',
+    };
+    accentMap.forEach((acc, rep) {
+      text = text.replaceAll(acc, rep);
+    });
+    text = text.replaceAll(RegExp(r'["\*\^\{\}\[\]\(\)\:\+\-\?]'), ' ').trim();
+    final tokens = text.split(RegExp(r'\s+')).where((t) => t.isNotEmpty).toList();
+    if (tokens.isEmpty) return '';
+    return tokens.map((t) => '$t*').join(' AND ');
+  }
+
   @override
   Future<Result<List<HealthProfessional>, DatabaseFailure>> search(
     HealthSearchFilter filter,
@@ -42,43 +70,89 @@ class HealthDirectoryService implements IHealthDirectoryService {
     try {
       final whereClauses = <String>[];
       final params = <Object?>[];
+      String fromSql = 'facilities f';
+
+      final queryText = filter.query?.trim();
+      final hasFtsQuery = queryText != null && queryText.isNotEmpty;
+      final ftsMatch = hasFtsQuery ? formatFtsQuery(queryText) : '';
+
+      if (hasFtsQuery && ftsMatch.isNotEmpty) {
+        fromSql = 'facilities f JOIN facilities_fts fts ON fts.rowid = f.id';
+        whereClauses.add('facilities_fts MATCH ?');
+        params.add(ftsMatch);
+      } else if (hasFtsQuery) {
+        final cleanQuery = '%$queryText%';
+        whereClauses.add('(f.nom LIKE ? OR f.commune LIKE ? OR f.adresse LIKE ?)');
+        params.addAll([cleanQuery, cleanQuery, cleanQuery]);
+      }
 
       if (filter.wilayaCode != null && filter.wilayaCode!.trim().isNotEmpty) {
         final code = filter.wilayaCode!.trim().padLeft(2, '0');
-        whereClauses.add('wilaya_code = ?');
+        whereClauses.add('f.wilaya_code = ?');
         params.add(code);
       }
 
       if (filter.commune != null && filter.commune!.trim().isNotEmpty) {
-        whereClauses.add('LOWER(commune) = LOWER(?)');
+        whereClauses.add('LOWER(f.commune) = LOWER(?)');
         params.add(filter.commune!.trim());
       }
 
       if (filter.specialty != null && filter.specialty!.trim().isNotEmpty) {
-        whereClauses.add('LOWER(categorie) = LOWER(?)');
-        params.add(filter.specialty!.trim());
-      }
-
-      if (filter.query != null && filter.query!.trim().isNotEmpty) {
-        final cleanQuery = '%${filter.query!.trim()}%';
-        whereClauses.add('(nom LIKE ? OR commune LIKE ? OR adresse LIKE ?)');
-        params.addAll([cleanQuery, cleanQuery, cleanQuery]);
+        _appendCategoryClause(whereClauses, params, filter.specialty!, col: 'f.categorie', nomCol: 'f.nom');
       }
 
       final whereSql = whereClauses.isEmpty ? '' : 'WHERE ${whereClauses.join(' AND ')}';
       final sql = '''
-        SELECT id, place_id, nom, categorie, wilaya, wilaya_code, commune,
-               adresse, telephone, site_web, note, nombre_avis, latitude, longitude, source
-        FROM facilities
+        SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+               f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
+        FROM $fromSql
         $whereSql
-        ORDER BY nom ASC
+        ORDER BY f.nom ASC
         LIMIT ? OFFSET ?;
       ''';
 
       params.add(filter.limit);
       params.add(filter.offset);
 
-      final ResultSet resultSet = db.select(sql, params);
+      ResultSet resultSet;
+      try {
+        resultSet = db.select(sql, params);
+      } catch (_) {
+        // En cas d'erreur de syntaxe FTS, repli défensif sur LIKE
+        if (hasFtsQuery) {
+          final fallbackWhere = <String>[];
+          final fallbackParams = <Object?>[];
+          final cleanQuery = '%$queryText%';
+          fallbackWhere.add('(nom LIKE ? OR commune LIKE ? OR adresse LIKE ?)');
+          fallbackParams.addAll([cleanQuery, cleanQuery, cleanQuery]);
+
+          if (filter.wilayaCode != null && filter.wilayaCode!.trim().isNotEmpty) {
+            fallbackWhere.add('wilaya_code = ?');
+            fallbackParams.add(filter.wilayaCode!.trim().padLeft(2, '0'));
+          }
+          if (filter.commune != null && filter.commune!.trim().isNotEmpty) {
+            fallbackWhere.add('LOWER(commune) = LOWER(?)');
+            fallbackParams.add(filter.commune!.trim());
+          }
+          if (filter.specialty != null && filter.specialty!.trim().isNotEmpty) {
+            _appendCategoryClause(fallbackWhere, fallbackParams, filter.specialty!, col: 'categorie', nomCol: 'nom');
+          }
+          final fallbackSql = '''
+            SELECT id, place_id, nom, categorie, wilaya, wilaya_code, commune,
+                   adresse, telephone, site_web, note, nombre_avis, latitude, longitude, source
+            FROM facilities
+            WHERE ${fallbackWhere.join(' AND ')}
+            ORDER BY nom ASC
+            LIMIT ? OFFSET ?;
+          ''';
+          fallbackParams.add(filter.limit);
+          fallbackParams.add(filter.offset);
+          resultSet = db.select(fallbackSql, fallbackParams);
+        } else {
+          rethrow;
+        }
+      }
+
       final results = <HealthProfessional>[];
 
       for (final Row row in resultSet) {
@@ -112,6 +186,82 @@ class HealthDirectoryService implements IHealthDirectoryService {
     } catch (e, stack) {
       return Failure(
         DatabaseExecutionFailure('Échec lors de l\'exécution de la recherche: $e', stack),
+      );
+    }
+  }
+
+  @override
+  Future<Result<List<HealthProfessional>, DatabaseFailure>> searchViewport({
+    required double minLat,
+    required double maxLat,
+    required double minLon,
+    required double maxLon,
+    String? category,
+    int limit = 150,
+  }) async {
+    final dbResult = _dbManager.getDatabase();
+    if (dbResult.isFailure) {
+      return Failure(dbResult.errorOrNull!);
+    }
+    final db = dbResult.dataOrNull!;
+
+    try {
+      final sb = StringBuffer();
+      sb.writeln('''
+        SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+               f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
+        FROM facilities_rtree r
+        JOIN facilities f ON f.id = r.id
+        WHERE r.min_lat >= ? AND r.max_lat <= ?
+          AND r.min_lon >= ? AND r.max_lon <= ?
+      ''');
+      final params = <dynamic>[minLat, maxLat, minLon, maxLon];
+
+      if (category != null && category.trim().isNotEmpty) {
+        final dummyList = <String>[];
+        _appendCategoryClause(dummyList, params, category.trim(), col: 'f.categorie', nomCol: 'f.nom');
+        for (final clause in dummyList) {
+          sb.writeln('  AND $clause');
+        }
+      }
+
+      sb.writeln('ORDER BY f.nom ASC LIMIT ?;');
+      params.add(limit);
+
+      final ResultSet resultSet = db.select(sb.toString(), params);
+      final results = <HealthProfessional>[];
+
+      for (final Row row in resultSet) {
+        final map = <String, Object?>{
+          'id': row['id'],
+          'place_id': row['place_id'],
+          'nom': row['nom'],
+          'categorie': row['categorie'],
+          'wilaya': row['wilaya'],
+          'wilaya_code': row['wilaya_code'],
+          'commune': row['commune'],
+          'adresse': row['adresse'],
+          'telephone': row['telephone'],
+          'site_web': row['site_web'],
+          'note': row['note'],
+          'nombre_avis': row['nombre_avis'],
+          'latitude': row['latitude'],
+          'longitude': row['longitude'],
+          'source': row['source'],
+        };
+
+        final cat = (row['categorie'] as String?)?.toLowerCase() ?? '';
+        if (cat.contains('pharmacie')) {
+          results.add(Pharmacy.fromRow(map));
+        } else {
+          results.add(HealthProfessional.fromRow(map));
+        }
+      }
+
+      return Success(List.unmodifiable(results));
+    } catch (e, stack) {
+      return Failure(
+        DatabaseExecutionFailure('Échec lors de la recherche spatiale viewport: $e', stack),
       );
     }
   }
@@ -221,6 +371,76 @@ class HealthDirectoryService implements IHealthDirectoryService {
           stack,
         ),
       );
+    }
+  }
+
+  static void _appendCategoryClause(
+    List<String> whereClauses,
+    List<dynamic> params,
+    String category, {
+    String col = 'f.categorie',
+    String? nomCol = 'f.nom',
+  }) {
+    final cat = category.trim().toLowerCase();
+    switch (cat) {
+      case 'dentiste':
+        whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['dentiste', '%dentist%', '%dentaire%']);
+        break;
+      case 'pharmacie':
+        whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['pharmacie', '%pharmacie%', '%officine%']);
+        break;
+      case 'laboratoire':
+        whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['laboratoire', '%laboratoire%', '%analyse%']);
+        break;
+      case 'imagerie':
+        whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['imagerie', '%imagerie%', '%radiolog%', '%scanner%']);
+        break;
+      case 'pédiatre':
+      case 'pediatre':
+        whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['pédiatre', '%pédiat%', '%pediat%']);
+        break;
+      case 'cardiologue':
+        whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ?)');
+        params.addAll(['cardiologue', '%cardio%']);
+        break;
+      case 'généraliste':
+      case 'generaliste':
+        whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['généraliste', '%généralist%', '%generalist%', '%cabinet médical%', '%médecin%']);
+        break;
+      case 'clinique':
+        whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['clinique', '%clinique%', '%hôpital%', '%hopital%']);
+        break;
+      case 'gynécologue':
+      case 'gynecologue':
+        whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['gynécologue', '%gynéco%', '%gyneco%']);
+        break;
+      case 'ophtalmologue':
+      case 'ophtalmo':
+        whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ?)');
+        params.addAll(['ophtalmologue', '%ophtalmo%']);
+        break;
+      case 'urgences':
+      case 'urgence':
+        if (nomCol != null) {
+          whereClauses.add('(LOWER($col) LIKE ? OR LOWER($nomCol) LIKE ? OR LOWER($nomCol) LIKE ? OR LOWER($nomCol) LIKE ?)');
+          params.addAll(['%urgence%', '%urgenc%', '%garde%', '%24/24%']);
+        } else {
+          whereClauses.add('(LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+          params.addAll(['%urgence%', '%hopital%']);
+        }
+        break;
+      default:
+        whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ?)');
+        params.addAll([cat, '%$cat%']);
+        break;
     }
   }
 

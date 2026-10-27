@@ -35,15 +35,17 @@ class FacetFilterBar extends StatelessWidget {
 
   static const List<Map<String, String>> topCategories = [
     {'code': '', 'label': 'Toutes catégories'},
-    {'code': 'Pharmacie', 'label': 'Pharmacies'},
-    {'code': 'Médecin Généraliste', 'label': 'Généralistes'},
-    {'code': 'Hôpital', 'label': 'Hôpitaux & Cliniques'},
-    {'code': 'Laboratoire d\'analyses', 'label': 'Laboratoires'},
-    {'code': 'Dentiste', 'label': 'Dentistes'},
-    {'code': 'Cardiologue', 'label': 'Cardiologues'},
-    {'code': 'Pédiatre', 'label': 'Pédiatres'},
-    {'code': 'Gynécologue', 'label': 'Gynécologues'},
-    {'code': 'Ophtalmologue', 'label': 'Ophtalmologues'},
+    {'code': 'généraliste', 'label': 'Généralistes'},
+    {'code': 'dentiste', 'label': 'Dentistes'},
+    {'code': 'pédiatre', 'label': 'Pédiatres'},
+    {'code': 'pharmacie', 'label': 'Pharmacies'},
+    {'code': 'clinique', 'label': 'Cliniques & Hôpitaux'},
+    {'code': 'laboratoire', 'label': 'Laboratoires'},
+    {'code': 'cardiologue', 'label': 'Cardiologues'},
+    {'code': 'imagerie', 'label': 'Imagerie & Radiologie'},
+    {'code': 'ophtalmologue', 'label': 'Ophtalmologues'},
+    {'code': 'gynécologue', 'label': 'Gynécologues'},
+    {'code': 'urgences', 'label': 'Urgences 24/7'},
   ];
 
   @override
@@ -184,7 +186,9 @@ class FacetFilterBar extends StatelessWidget {
                       ),
                     ),
                     child: DropdownButton<String>(
-                      value: selectedCategory ?? '',
+                      value: topCategories.any((c) => c['code'] == (selectedCategory ?? ''))
+                          ? (selectedCategory ?? '')
+                          : '',
                       isDense: true,
                       style: TextStyle(
                         color: selectedCategory != null ? Colors.teal.shade900 : Colors.black87,

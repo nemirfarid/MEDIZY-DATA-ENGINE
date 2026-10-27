@@ -8,6 +8,7 @@ import '../../core/services/favorites_service.dart';
 import '../../core/services/location_service.dart';
 import '../../core/services/offline_health_search_service.dart';
 import '../../core/services/tile_cache_service.dart';
+import '../emergency/presentation/widgets/sos_emergency_button.dart';
 import 'utils/specialty_marker_theme.dart';
 import 'widgets/facility_detail_sheet.dart';
 import 'widgets/facet_filter_bar.dart';
@@ -42,6 +43,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
   Timer? _zoomTimer;
   double _currentZoom = 5.8;
   bool _useViewportMode = false; // true = zoom local (viewport), false = vue nationale / agrégation
+  int _totalCategoryResults = 0;
 
   String? _selectedWilayaCode;
   String? _selectedWilayaName;
@@ -51,6 +53,24 @@ class _OfflineMapViewState extends State<OfflineMapView> {
   bool _showFavoritesOnly = false;
   String _currentQuery = '';
   bool _useAltOsmLayer = false;
+
+  String _getCategoryDisplayName(String? slug) {
+    if (slug == null || slug.isEmpty) return '';
+    const map = {
+      'dentiste': 'Dentistes',
+      'pharmacie': 'Pharmacies',
+      'laboratoire': 'Laboratoires',
+      'imagerie': 'Imagerie & Radio',
+      'pédiatre': 'Pédiatres',
+      'cardiologue': 'Cardiologues',
+      'généraliste': 'Médecins Généralistes',
+      'clinique': 'Cliniques & Hôpitaux',
+      'gynécologue': 'Gynécologues',
+      'ophtalmologue': 'Ophtalmologues',
+      'urgences': 'Urgences & Gardes',
+    };
+    return map[slug.toLowerCase()] ?? (slug[0].toUpperCase() + slug.substring(1));
+  }
 
   // Position utilisateur réelle (par défaut Alger avant détection GPS)
   LatLng _userPosition = LocationService.defaultPosition;
@@ -236,8 +256,13 @@ class _OfflineMapViewState extends State<OfflineMapView> {
       category: _chifaActive ? _chifaCategory : _selectedCategory,
       onlyEmergency: _onlyEmergency,
     );
+    int total = 0;
+    for (final agg in aggregates) {
+      total += (agg['nb'] as int? ?? 0);
+    }
     setState(() {
       _wilayaAggregates = aggregates;
+      _totalCategoryResults = total;
       _isLoading = false;
     });
   }
@@ -251,8 +276,8 @@ class _OfflineMapViewState extends State<OfflineMapView> {
       } else if (_useViewportMode) {
         // Zoom local : recherche viewport (bounding-box) limitée à 150 marqueurs
         _loadViewport();
-      } else if (_selectedWilayaCode == null && _currentQuery.isEmpty && _selectedCategory == null) {
-        // Vue nationale dézoomée sans catégorie : agrégation par Wilaya
+      } else if (_selectedWilayaCode == null && _currentQuery.isEmpty) {
+        // Vue nationale dézoomée : agrégation par Wilaya (avec ou sans catégorie)
         _loadWilayaAggregates();
       } else {
         // Filtre wilaya, catégorie ou recherche textuelle : liste complète via searchHybrid
@@ -501,7 +526,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                                 ? '$_selectedWilayaCode - ${_selectedWilayaName ?? "Wilaya"}'
                                 : _showFavoritesOnly
                                     ? 'Mes Favoris'
-                                    : 'Toute l\'Algérie (58)',
+                                    : 'Toute l\'Algérie (36 417 fiches)',
                             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -514,7 +539,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                             ? '${_displayedFacilities.length} fiches • Chef-lieu'
                             : _showFavoritesOnly
                                 ? '${_displayedFacilities.length} favoris'
-                                : '${_displayedFacilities.length} fiches • Hors-ligne',
+                                : '${_displayedFacilities.length > 0 ? _displayedFacilities.length : 36417} fiches • 58 Wilayas',
                         style: const TextStyle(fontSize: 11, color: Colors.white70),
                       ),
                     ],
@@ -604,7 +629,7 @@ class _OfflineMapViewState extends State<OfflineMapView> {
 
               // Repères des établissements : agrégation par Wilaya (zoom dézoomé < 11)
               // ou markers viewport (zoom local >= 11, max 150 marqueurs) pour 60 FPS
-              if (!_useViewportMode && _selectedWilayaCode == null && _currentQuery.isEmpty && _selectedCategory == null && !_showFavoritesOnly)
+              if (!_useViewportMode && _selectedWilayaCode == null && _currentQuery.isEmpty && !_showFavoritesOnly)
                 MarkerLayer(
                   markers: _wilayaAggregates.map((agg) {
                     final wilaya = WilayaInfo.findByCode(agg['code'] as String?);
@@ -612,40 +637,38 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                     final nb = agg['nb'] as int;
                     return Marker(
                       point: LatLng(wilaya.lat, wilaya.lon),
-                      width: 46,
-                      height: 46,
+                      width: 150,
+                      height: 38,
                       child: GestureDetector(
-                        onTap: () => _openWilayaPicker(),
+                        onTap: () {
+                          _mapController.move(LatLng(wilaya.lat, wilaya.lon), 13.0);
+                          setState(() {
+                            _selectedWilayaCode = wilaya.code;
+                            _selectedWilayaName = wilaya.name;
+                            _currentZoom = 13.0;
+                            _useViewportMode = true;
+                          });
+                          _applyFilters();
+                        },
                         child: Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                           decoration: BoxDecoration(
-                            color: Colors.teal.shade700,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 3),
+                            color: Colors.teal.shade800,
+                            borderRadius: BorderRadius.circular(18),
+                            border: Border.all(color: Colors.white, width: 2),
                             boxShadow: const [
                               BoxShadow(color: Colors.black26, blurRadius: 6, offset: Offset(0, 3)),
                             ],
                           ),
                           child: Center(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  nb.toString(),
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13,
-                                  ),
-                                ),
-                                Text(
-                                  agg['code'] as String,
-                                  style: const TextStyle(
-                                    color: Colors.white70,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ],
+                            child: Text(
+                              '${wilaya.name} : $nb',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ),
@@ -738,6 +761,49 @@ class _OfflineMapViewState extends State<OfflineMapView> {
               },
             ),
           ),
+
+          // 2.5. Badge actif et dismissible de catégorie sélectionnée
+          if (_selectedCategory != null && _selectedCategory!.isNotEmpty)
+            Positioned(
+              top: 108,
+              left: 16,
+              child: Material(
+                elevation: 4,
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.filter_alt, size: 16, color: Colors.teal.shade800),
+                      const SizedBox(width: 6),
+                      Text(
+                        '${_getCategoryDisplayName(_selectedCategory)} (${_useViewportMode ? _displayedFacilities.length : _totalCategoryResults} résultats)',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.teal.shade900,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      GestureDetector(
+                        key: const Key('clear_category_chip_button'),
+                        onTap: () {
+                          setState(() => _selectedCategory = null);
+                          _applyFilters();
+                        },
+                        child: Icon(
+                          Icons.cancel,
+                          size: 18,
+                          color: Colors.grey.shade600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
 
           // 3. Indicateur de chargement
           if (_isLoading)
@@ -835,6 +901,16 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                   child: Icon(_onlyEmergency ? Icons.emergency : Icons.warning_amber),
                 ),
               ],
+            ),
+          ),
+
+          // 5. Bouton d'Urgence Immédiate "SOS Santé 24/7" (Toujours accessible en bas à gauche)
+          Positioned(
+            bottom: 24,
+            left: 16,
+            child: SosEmergencyButton(
+              searchService: widget.searchService,
+              userPosition: _userPosition,
             ),
           ),
         ],

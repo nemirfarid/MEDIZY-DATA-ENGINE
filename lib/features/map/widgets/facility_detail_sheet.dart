@@ -8,6 +8,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../../core/models/health_facility.dart';
 import '../../../core/services/favorites_service.dart';
 import '../../../core/services/location_service.dart';
+import '../../navigation/presentation/offline_compass_sheet.dart';
 
 /// Fiche détaillée d'un établissement de santé avec actions directes (Appel, Guidage, Partage, Favoris, Boussole)
 class FacilityDetailSheet extends StatefulWidget {
@@ -38,10 +39,14 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
   double _distanceKm = 0.0;
   double _bearingDegrees = 0.0;
   bool _hasPosition = false;
+  late final TextEditingController _noteController;
+  bool _isNoteSaving = false;
 
   @override
   void initState() {
     super.initState();
+    _noteController = TextEditingController();
+    _loadPersonalNote();
     _updateBearingAndDistance();
     // Mise à jour en direct du cap et de la distance toutes les 2 secondes
     _bearingTimer = Timer.periodic(const Duration(seconds: 2), (_) {
@@ -51,9 +56,44 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
     });
   }
 
+  Future<void> _loadPersonalNote() async {
+    final favService = FavoritesService();
+    try {
+      await favService.init();
+      final note = await favService.getPersonalNote(widget.facility.id);
+      if (note != null && note.isNotEmpty && mounted) {
+        setState(() {
+          _noteController.text = note;
+        });
+      }
+    } catch (_) {}
+  }
+
+  Future<void> _savePersonalNote() async {
+    setState(() => _isNoteSaving = true);
+    final favService = FavoritesService();
+    try {
+      await favService.init();
+      await favService.savePersonalNote(widget.facility.id, _noteController.text);
+      if (mounted) {
+        setState(() => _isNoteSaving = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Note personnelle enregistrée (stockage 100% privé)'),
+            duration: Duration(seconds: 2),
+            backgroundColor: Colors.teal,
+          ),
+        );
+      }
+    } catch (_) {
+      if (mounted) setState(() => _isNoteSaving = false);
+    }
+  }
+
   @override
   void dispose() {
     _bearingTimer?.cancel();
+    _noteController.dispose();
     super.dispose();
   }
 
@@ -90,16 +130,6 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
     final Uri launchUri = Uri(scheme: 'tel', path: phoneNumber);
     if (await canLaunchUrl(launchUri)) {
       await launchUrl(launchUri);
-    }
-  }
-
-  Future<void> _launchGpsNavigation(double lat, double lon, String label) async {
-    final Uri geoUri = Uri.parse('geo:$lat,$lon?q=$lat,$lon(${Uri.encodeComponent(label)})');
-    if (await canLaunchUrl(geoUri)) {
-      await launchUrl(geoUri, mode: LaunchMode.externalApplication);
-    } else {
-      final Uri webUri = Uri.parse('https://maps.google.com/?q=$lat,$lon');
-      await launchUrl(webUri, mode: LaunchMode.externalApplication);
     }
   }
 
@@ -323,6 +353,8 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
     final theme = Theme.of(context);
     final isEmergency = widget.facility.isEmergencyOrOnDuty;
 
+    final bottomInset = MediaQuery.of(context).viewInsets.bottom;
+
     return Container(
       decoration: BoxDecoration(
         color: theme.scaffoldBackgroundColor,
@@ -335,11 +367,12 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
           ),
         ],
       ),
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+      padding: EdgeInsets.fromLTRB(20, 12, 20, 24 + bottomInset),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
           // Poignée de glissement
           Center(
             child: Container(
@@ -420,6 +453,14 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
                 backgroundColor: Colors.teal.shade50,
                 labelStyle: TextStyle(color: Colors.teal.shade800, fontSize: 12),
               ),
+              if (widget.facility.hasChifa)
+                Chip(
+                  avatar: const Icon(Icons.verified, size: 14, color: Colors.green),
+                  label: const Text('CHIFA ✓', style: TextStyle(fontWeight: FontWeight.bold)),
+                  visualDensity: VisualDensity.compact,
+                  backgroundColor: Colors.green.shade50,
+                  labelStyle: TextStyle(color: Colors.green.shade800, fontSize: 12),
+                ),
               Chip(
                 label: Text('${widget.facility.commune} (${widget.facility.wilayaCode} - ${widget.facility.wilaya})'),
                 visualDensity: VisualDensity.compact,
@@ -568,7 +609,7 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 16),
 
           // Actions directes : 4 boutons uniformes, sans retour à la ligne
           Row(
@@ -596,17 +637,22 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
               ),
               const SizedBox(width: 8),
 
-              // 3. Guidage
+              // 3. Guidage (Boussole Hors-ligne & GPS)
               _buildActionButton(
-                icon: Icons.directions_rounded,
+                icon: Icons.explore_rounded,
                 label: 'Guidage',
                 color: Colors.blue.shade700,
                 isPrimary: true,
-                onPressed: () => _launchGpsNavigation(
-                  widget.facility.latitude,
-                  widget.facility.longitude,
-                  widget.facility.nom,
-                ),
+                onPressed: () {
+                  OfflineCompassSheet.show(
+                    context,
+                    targetName: widget.facility.nom,
+                    targetCategory: widget.facility.categorie,
+                    targetLat: widget.facility.latitude,
+                    targetLon: widget.facility.longitude,
+                    userPosition: widget.userPosition,
+                  );
+                },
               ),
               const SizedBox(width: 8),
 
@@ -619,7 +665,95 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
               ),
             ],
           ),
+          const SizedBox(height: 16),
+
+          // Carnet Médical Local Privé & Notes
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.grey.shade50,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.grey.shade200),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Icon(Icons.edit_note, size: 18, color: Colors.teal.shade700),
+                    const SizedBox(width: 6),
+                    Expanded(
+                      child: Text(
+                        'Carnet médical local (Note privée)',
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.teal.shade900,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    Text(
+                      'Stocké localement',
+                      style: TextStyle(fontSize: 10, color: Colors.grey.shade600),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: _noteController,
+                  maxLines: 2,
+                  decoration: InputDecoration(
+                    hintText: 'Ex: Secrétaire joignable le matin, Dr reçoit sans RDV...',
+                    hintStyle: TextStyle(fontSize: 12, color: Colors.grey.shade400),
+                    isDense: true,
+                    contentPadding: const EdgeInsets.all(10),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.grey.shade300),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(color: Colors.teal.shade400, width: 1.5),
+                    ),
+                  ),
+                  style: const TextStyle(fontSize: 12),
+                ),
+                const SizedBox(height: 8),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: ElevatedButton.icon(
+                    onPressed: _isNoteSaving ? null : _savePersonalNote,
+                    icon: _isNoteSaving
+                        ? const SizedBox(
+                            width: 12,
+                            height: 12,
+                            child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white),
+                          )
+                        : const Icon(Icons.save_outlined, size: 14),
+                    label: const Text('Enregistrer la note', style: TextStyle(fontSize: 11)),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.teal,
+                      foregroundColor: Colors.white,
+                      visualDensity: VisualDensity.compact,
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
+      ),
       ),
     );
   }

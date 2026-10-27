@@ -14,6 +14,8 @@ abstract interface class IUserStorageService {
   Future<Result<bool, DatabaseFailure>> toggleFavorite(HealthProfessional facility);
   Future<Result<bool, DatabaseFailure>> isFavorite(int facilityId);
   Future<Result<List<HealthProfessional>, DatabaseFailure>> getFavorites();
+  Future<Result<void, DatabaseFailure>> savePersonalNote(int facilityId, String note);
+  Future<Result<String?, DatabaseFailure>> getPersonalNote(int facilityId);
 
   // Historique des consultations (plafonné à 20)
   Future<Result<void, DatabaseFailure>> recordView(HealthProfessional facility);
@@ -42,6 +44,16 @@ abstract interface class IUserStorageService {
 
 /// Implémentation SQLite de la base de données utilisateur dédiée (Offline-First)
 class UserStorageService implements IUserStorageService {
+  static final UserStorageService instance = UserStorageService();
+
+  UserStorageService();
+
+  factory UserStorageService.inMemory() {
+    final svc = UserStorageService();
+    svc.initialize(customPath: ':memory:');
+    return svc;
+  }
+
   Database? _db;
   bool _isInitialized = false;
 
@@ -57,14 +69,19 @@ class UserStorageService implements IUserStorageService {
       final dbPath = customPath ?? 'sante_dz_user_data.db';
       final db = sqlite3.open(dbPath);
 
-      // 1. Table des favoris
+      // 1. Table des favoris avec note personnelle
       db.execute('''
         CREATE TABLE IF NOT EXISTS user_favorites (
           facility_id INTEGER PRIMARY KEY,
           facility_json TEXT NOT NULL,
+          personal_note TEXT,
           created_at INTEGER NOT NULL
         );
       ''');
+
+      try {
+        db.execute('ALTER TABLE user_favorites ADD COLUMN personal_note TEXT;');
+      } catch (_) {}
 
       // 2. Table de l'historique de consultation
       db.execute('''
@@ -187,6 +204,42 @@ class UserStorageService implements IUserStorageService {
       return Success(List.unmodifiable(list));
     } catch (e, stack) {
       return Failure(DatabaseExecutionFailure('Échec de récupération des favoris: $e', stack));
+    }
+  }
+
+  @override
+  Future<Result<void, DatabaseFailure>> savePersonalNote(int facilityId, String note) async {
+    final dbResult = _checkDb();
+    if (dbResult.isFailure) return Failure(dbResult.errorOrNull!);
+    final db = dbResult.dataOrNull!;
+
+    try {
+      db.execute('''
+        INSERT INTO user_favorites (facility_id, facility_json, personal_note, created_at)
+        VALUES (?, '{}', ?, ?)
+        ON CONFLICT(facility_id) DO UPDATE SET personal_note = excluded.personal_note;
+      ''', [facilityId, note.trim(), DateTime.now().millisecondsSinceEpoch]);
+      return const Success(null);
+    } catch (e, stack) {
+      return Failure(DatabaseExecutionFailure('Erreur enregistrement note: $e', stack));
+    }
+  }
+
+  @override
+  Future<Result<String?, DatabaseFailure>> getPersonalNote(int facilityId) async {
+    final dbResult = _checkDb();
+    if (dbResult.isFailure) return Failure(dbResult.errorOrNull!);
+    final db = dbResult.dataOrNull!;
+
+    try {
+      final rows = db.select(
+        'SELECT personal_note FROM user_favorites WHERE facility_id = ?;',
+        [facilityId],
+      );
+      if (rows.isEmpty) return const Success(null);
+      return Success(rows.first['personal_note'] as String?);
+    } catch (e, stack) {
+      return Failure(DatabaseExecutionFailure('Erreur lecture note: $e', stack));
     }
   }
 

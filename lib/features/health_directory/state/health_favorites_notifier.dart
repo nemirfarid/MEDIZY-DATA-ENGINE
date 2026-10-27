@@ -98,4 +98,14 @@ class HealthFavoritesNotifier extends ChangeNotifier {
   Future<Result<CrowdReport, DatabaseFailure>> submitReport(CrowdReport report) async {
     return _storageService.enqueueReport(report);
   }
+
+  /// Sauvegarde une note personnelle privée pour un praticien ou établissement
+  Future<Result<void, DatabaseFailure>> savePersonalNote(int facilityId, String note) async {
+    return _storageService.savePersonalNote(facilityId, note);
+  }
+
+  /// Récupère la note personnelle privée d'un praticien ou établissement
+  Future<Result<String?, DatabaseFailure>> getPersonalNote(int facilityId) async {
+    return _storageService.getPersonalNote(facilityId);
+  }
 }

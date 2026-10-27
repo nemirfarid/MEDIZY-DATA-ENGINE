@@ -20,7 +20,7 @@ class CategoryGrid extends StatelessWidget {
       'label': 'Généraliste',
       'icon': Icons.medical_services_rounded,
       'color': Color(0xFF00695C),
-      'slug': 'médecin',
+      'slug': 'généraliste',
     },
     {
       'label': 'Dentiste',
@@ -32,7 +32,7 @@ class CategoryGrid extends StatelessWidget {
       'label': 'Pédiatre',
       'icon': Icons.child_care_rounded,
       'color': Color(0xFF00ACC1),
-      'slug': 'pédiatrie',
+      'slug': 'pédiatre',
     },
     {
       'label': 'Pharmacie',
@@ -53,10 +53,10 @@ class CategoryGrid extends StatelessWidget {
       'slug': 'laboratoire',
     },
     {
-      'label': 'Cardiologie',
+      'label': 'Cardiologue',
       'icon': Icons.favorite_rounded,
       'color': Color(0xFFC62828),
-      'slug': 'cardiologie',
+      'slug': 'cardiologue',
     },
     {
       'label': 'Imagerie',
@@ -65,22 +65,22 @@ class CategoryGrid extends StatelessWidget {
       'slug': 'imagerie',
     },
     {
-      'label': 'Ophtalmo',
+      'label': 'Ophtalmologue',
       'icon': Icons.visibility_rounded,
       'color': Color(0xFF00897B),
-      'slug': 'ophtalmologie',
+      'slug': 'ophtalmologue',
     },
     {
-      'label': 'Gynéco',
+      'label': 'Gynécologue',
       'icon': Icons.female_rounded,
       'color': Color(0xFFAD1457),
-      'slug': 'gynécologie',
+      'slug': 'gynécologue',
     },
     {
-      'label': 'Urgences',
+      'label': 'Urgences 24/7',
       'icon': Icons.emergency_rounded,
       'color': Color(0xFFB71C1C),
-      'slug': 'urgence',
+      'slug': 'urgences',
     },
     {
       'label': 'Paramédical',

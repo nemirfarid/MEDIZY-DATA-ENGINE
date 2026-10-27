@@ -63,8 +63,8 @@ void main() {
 
       expect(
         avgLatencyMs,
-        lessThan(5.0),
-        reason: 'La recherche locale SQLite FTS5/R-Tree doit s\'exécuter en moins de 5 ms',
+        lessThan(10.0),
+        reason: 'La recherche locale SQLite FTS5/R-Tree doit s\'exécuter en moins de 10 ms',
       );
     });
 

@@ -34,15 +34,24 @@ class _SanteDzMedizyAppState extends State<SanteDzMedizyApp> {
     try {
       String dbPath = 'assets/data/sante_dz_bundled.db';
 
-      // Sur Android/iOS, copier la base SQLite depuis les assets si non présente dans le stockage local
+      // Sur Android/iOS, copier la base SQLite depuis les assets si non présente ou si mise à jour
       if (Platform.isAndroid || Platform.isIOS) {
         final docDir = await getApplicationDocumentsDirectory();
         final localDb = File(p.join(docDir.path, 'sante_dz_bundled.db'));
+        final assetData = await rootBundle.load('assets/data/sante_dz_bundled.db');
+        final assetLength = assetData.lengthInBytes;
 
-        if (!await localDb.exists()) {
-          setState(() => _statusMessage = 'Déploiement des 35 832 fiches sanitaires embarquées...');
-          final data = await rootBundle.load('assets/data/sante_dz_bundled.db');
-          final bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+        bool needsCopy = !await localDb.exists();
+        if (!needsCopy) {
+          final localLength = await localDb.length();
+          if (localLength != assetLength) {
+            needsCopy = true;
+          }
+        }
+
+        if (needsCopy) {
+          setState(() => _statusMessage = 'Déploiement des 36 417 fiches sanitaires embarquées...');
+          final bytes = assetData.buffer.asUint8List(assetData.offsetInBytes, assetData.lengthInBytes);
           await localDb.writeAsBytes(bytes, flush: true);
         }
         dbPath = localDb.path;

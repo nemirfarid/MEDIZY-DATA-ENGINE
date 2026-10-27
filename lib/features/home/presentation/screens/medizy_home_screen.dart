@@ -1,18 +1,56 @@
 import 'package:flutter/material.dart';
+import '../../../../core/models/health_search_filter.dart';
 import '../../../../core/services/offline_health_search_service.dart';
+import '../../../emergency/presentation/widgets/sos_emergency_button.dart';
+import '../../../health_directory/presentation/screens/health_search_screen.dart';
+import '../../../health_directory/services/health_directory_service.dart';
+import '../../../health_directory/state/health_search_notifier.dart';
 import '../../../map/offline_map_view.dart';
 import '../widgets/category_grid.dart';
 
 /// Page d'accueil épurée et moderne MEDIZY
 /// Présente une vue claire et aérée avec uniquement une grille responsive
-/// de catégories de santé et accès direct à la cartographie.
-class MedizyHomeScreen extends StatelessWidget {
+/// de catégories de santé, accès direct à la cartographie et transmission réactive d'état.
+class MedizyHomeScreen extends StatefulWidget {
   final OfflineHealthSearchService searchService;
+  final HealthSearchNotifier? notifier;
 
   const MedizyHomeScreen({
     super.key,
     required this.searchService,
+    this.notifier,
   });
+
+  @override
+  State<MedizyHomeScreen> createState() => _MedizyHomeScreenState();
+}
+
+class _MedizyHomeScreenState extends State<MedizyHomeScreen> {
+  late final HealthSearchNotifier _notifier;
+
+  @override
+  void initState() {
+    super.initState();
+    _notifier = widget.notifier ??
+        HealthSearchNotifier(
+          directoryService: HealthDirectoryService(),
+        );
+  }
+
+  void _onCategorySelected(String slug) {
+    // 1. Transmission réactive d'état vers HealthSearchNotifier
+    _notifier.setFilter(HealthSearchFilter(category: slug));
+
+    // 2. Navigation vers la carte avec filtre immédiatement actif
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => OfflineMapView(
+          searchService: widget.searchService,
+          initialCategory: slug,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +87,23 @@ class MedizyHomeScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
+            icon: const Icon(Icons.search_rounded),
+            tooltip: 'Recherche et Annuaire',
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => HealthSearchScreen(notifier: _notifier),
+                ),
+              );
+            },
+          ),
+          IconButton(
             icon: const Icon(Icons.map_rounded),
             tooltip: 'Ouvrir la carte',
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (_) => OfflineMapView(searchService: searchService),
+                  builder: (_) => OfflineMapView(searchService: widget.searchService),
                 ),
               );
             },
@@ -107,22 +156,13 @@ class MedizyHomeScreen extends StatelessWidget {
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 child: CategoryGrid(
-                  searchService: searchService,
-                  onCategorySelected: (slug) {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => OfflineMapView(
-                          searchService: searchService,
-                          initialCategory: slug,
-                        ),
-                      ),
-                    );
-                  },
+                  searchService: widget.searchService,
+                  onCategorySelected: _onCategorySelected,
                 ),
               ),
             ),
 
-            // Barre d'action inférieure : Voir toute la carte
+            // Barre d'action inférieure : Explorer la Carte Nationale
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               decoration: BoxDecoration(
@@ -142,7 +182,7 @@ class MedizyHomeScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (_) => OfflineMapView(searchService: searchService),
+                        builder: (_) => OfflineMapView(searchService: widget.searchService),
                       ),
                     );
                   },
@@ -164,6 +204,9 @@ class MedizyHomeScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: SosEmergencyButton(
+        searchService: widget.searchService,
       ),
     );
   }

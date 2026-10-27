@@ -25,6 +25,14 @@ class HealthFilterBar extends StatelessWidget {
         final selectedSpecialty = state.filter.specialty;
         final isDutyActive = state.onlyOnDutyPharmacies;
 
+        final totalNational = state.availableWilayas.fold<int>(
+          0,
+          (sum, w) => sum + w.totalFacilities,
+        );
+        final nationalLabel = totalNational > 0
+            ? 'Toute l\'Algérie ($totalNational fiches)'
+            : 'Toute l\'Algérie (36 417 fiches)';
+
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -67,18 +75,19 @@ class HealthFilterBar extends StatelessWidget {
                   child: DropdownButton<String?>(
                     key: const Key('wilaya_dropdown'),
                     value: selectedWilaya,
-                    hint: const Text('Toutes les Wilayas', style: TextStyle(fontSize: 13)),
+                    hint: Text(nationalLabel, style: const TextStyle(fontSize: 13)),
                     icon: const Icon(Icons.arrow_drop_down, size: 20),
                     isDense: true,
                     items: [
-                      const DropdownMenuItem<String?>(
+                      DropdownMenuItem<String?>(
                         value: null,
-                        child: Text('Toutes les Wilayas (58)', style: TextStyle(fontSize: 13)),
+                        child: Text(nationalLabel, style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600)),
                       ),
                       ...state.availableWilayas.map((w) {
+                        final countSuffix = w.totalFacilities > 0 ? ' (${w.totalFacilities})' : '';
                         return DropdownMenuItem<String?>(
                           value: w.code,
-                          child: Text('${w.code} - ${w.name}', style: const TextStyle(fontSize: 13)),
+                          child: Text('${w.code} - ${w.name}$countSuffix', style: const TextStyle(fontSize: 13)),
                         );
                       }),
                     ],
@@ -168,7 +177,27 @@ class HealthFilterBar extends StatelessWidget {
               ),
               const SizedBox(width: 8),
 
-              // 4. Switch rapide "Pharmacie de garde"
+              // 4. Switch rapide "Convention Chifa" (ضمان اجتماعي)
+              FilterChip(
+                key: const Key('chifa_filter_chip'),
+                selected: state.onlyChifa,
+                avatar: Icon(
+                  Icons.verified,
+                  size: 16,
+                  color: state.onlyChifa ? Colors.white : Colors.green.shade800,
+                ),
+                label: const Text('Convention Chifa (ضمان اجتماعي)', style: TextStyle(fontSize: 13)),
+                selectedColor: Colors.green.shade800,
+                labelStyle: TextStyle(
+                  color: state.onlyChifa ? Colors.white : Colors.black87,
+                  fontWeight: state.onlyChifa ? FontWeight.bold : FontWeight.normal,
+                ),
+                checkmarkColor: Colors.white,
+                onSelected: (val) => notifier.setOnlyChifa(val),
+              ),
+              const SizedBox(width: 8),
+
+              // 5. Switch rapide "Pharmacie de garde"
               FilterChip(
                 key: const Key('duty_filter_chip'),
                 selected: isDutyActive,

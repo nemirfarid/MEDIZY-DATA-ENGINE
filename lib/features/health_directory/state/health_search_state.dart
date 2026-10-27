@@ -24,6 +24,7 @@ class HealthSearchState {
   final List<Commune> availableCommunes;
   final List<String> availableSpecialties;
   final bool onlyOnDutyPharmacies;
+  final bool onlyChifa;
   final double? userLatitude;
   final double? userLongitude;
   final bool hasReachedMax;
@@ -37,6 +38,7 @@ class HealthSearchState {
     this.availableCommunes = const [],
     this.availableSpecialties = const [],
     this.onlyOnDutyPharmacies = false,
+    this.onlyChifa = false,
     this.userLatitude,
     this.userLongitude,
     this.hasReachedMax = false,
@@ -49,6 +51,7 @@ class HealthSearchState {
   bool get isEmpty => status == HealthSearchStatus.empty;
   bool get isError => status == HealthSearchStatus.error;
   bool get hasLocation => userLatitude != null && userLongitude != null;
+  String? get selectedCategory => filter.category;
 
   HealthSearchState copyWith({
     HealthSearchStatus? status,
@@ -58,6 +61,7 @@ class HealthSearchState {
     List<Commune>? availableCommunes,
     List<String>? availableSpecialties,
     bool? onlyOnDutyPharmacies,
+    bool? onlyChifa,
     double? userLatitude,
     double? userLongitude,
     bool? hasReachedMax,
@@ -73,6 +77,7 @@ class HealthSearchState {
       availableCommunes: availableCommunes ?? this.availableCommunes,
       availableSpecialties: availableSpecialties ?? this.availableSpecialties,
       onlyOnDutyPharmacies: onlyOnDutyPharmacies ?? this.onlyOnDutyPharmacies,
+      onlyChifa: onlyChifa ?? this.onlyChifa,
       userLatitude: clearUserLocation ? null : (userLatitude ?? this.userLatitude),
       userLongitude: clearUserLocation ? null : (userLongitude ?? this.userLongitude),
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
@@ -89,6 +94,7 @@ class HealthSearchState {
           results == other.results &&
           filter == other.filter &&
           onlyOnDutyPharmacies == other.onlyOnDutyPharmacies &&
+          onlyChifa == other.onlyChifa &&
           userLatitude == other.userLatitude &&
           userLongitude == other.userLongitude &&
           hasReachedMax == other.hasReachedMax &&
@@ -100,6 +106,7 @@ class HealthSearchState {
       results.hashCode ^
       filter.hashCode ^
       onlyOnDutyPharmacies.hashCode ^
+      onlyChifa.hashCode ^
       userLatitude.hashCode ^
       userLongitude.hashCode ^
       hasReachedMax.hashCode ^
@@ -107,5 +114,5 @@ class HealthSearchState {
 
   @override
   String toString() =>
-      'HealthSearchState(status: $status, count: ${results.length}, maxReached: $hasReachedMax, loc: $hasLocation, failure: $failure)';
+      'HealthSearchState(status: $status, count: ${results.length}, maxReached: $hasReachedMax, chifa: $onlyChifa, loc: $hasLocation, failure: $failure)';
 }

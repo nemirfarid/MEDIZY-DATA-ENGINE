@@ -59,6 +59,33 @@ abstract final class GeoCalculator {
     return List.unmodifiable(updatedList);
   }
 
+  /// Calcule le relèvement initial (azimut) en degrés [0, 360) entre deux coordonnées GPS
+  static double bearingBetween({
+    required double startLatitude,
+    required double startLongitude,
+    required double endLatitude,
+    required double endLongitude,
+  }) {
+    final lat1 = _degreesToRadians(startLatitude);
+    final lat2 = _degreesToRadians(endLatitude);
+    final dLon = _degreesToRadians(endLongitude - startLongitude);
+
+    final y = math.sin(dLon) * math.cos(lat2);
+    final x = math.cos(lat1) * math.sin(lat2) -
+        math.sin(lat1) * math.cos(lat2) * math.cos(dLon);
+
+    final initialBearingRad = math.atan2(y, x);
+    final bearingDeg = (initialBearingRad * 180.0 / math.pi + 360.0) % 360.0;
+    return bearingDeg;
+  }
+
+  /// Retourne le point cardinal correspondant à un azimut en degrés (N, NE, E, SE, S, SO, O, NO, etc.)
+  static String cardinalDirection(double bearingDegrees) {
+    const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSO', 'SO', 'OSO', 'O', 'ONO', 'NO', 'NNO'];
+    final idx = ((bearingDegrees / 22.5).round()) % 16;
+    return directions[idx];
+  }
+
   static double _degreesToRadians(double degrees) {
     return degrees * (math.pi / 180.0);
   }

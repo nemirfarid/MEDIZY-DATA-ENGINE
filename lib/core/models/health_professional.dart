@@ -135,6 +135,25 @@ class HealthProfessional {
         lowerCat.contains('urgence');
   }
 
+  /// Indique si l'établissement est conventionné Chifa (ضمان اجتماعي CNAS/CASNOS)
+  bool get isChifa {
+    final cat = categorie.toLowerCase();
+    final name = nom.toLowerCase();
+    return cat.contains('pharmacie') ||
+        cat.contains('laboratoire') ||
+        cat.contains('imagerie') ||
+        cat.contains('radiolog') ||
+        cat.contains('clinique') ||
+        cat.contains('hôpital') ||
+        cat.contains('hopital') ||
+        cat.contains('polyclinique') ||
+        cat.contains('centre de santé') ||
+        cat.contains('santé') ||
+        name.contains('chifa') ||
+        name.contains('cnas') ||
+        name.contains('casnos');
+  }
+
   /// Numéro de téléphone nettoyé pour appel direct
   String? get cleanPhoneNumber {
     if (telephone == null || telephone!.trim().isEmpty) return null;

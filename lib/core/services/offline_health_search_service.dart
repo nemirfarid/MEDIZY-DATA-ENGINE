@@ -248,19 +248,21 @@ class OfflineHealthSearchService {
               LIMIT 250;
             ''', [minLat, maxLat, minLon, maxLon]);
     } else {
-      results = db.select('''
+      final sb = StringBuffer('''
         SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
                f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
         FROM facilities_rtree r
         JOIN facilities f ON f.id = r.id
         WHERE r.min_lat >= ? AND r.max_lat <= ?
           AND r.min_lon >= ? AND r.max_lon <= ?
-          AND LOWER(f.categorie) = LOWER(?)
-        LIMIT 250;
-      ''', [minLat, maxLat, minLon, maxLon, category]);
+      ''');
+      final p = <dynamic>[minLat, maxLat, minLon, maxLon];
+      appendCategoryClause(sb, p, category, col: 'f.categorie', nomCol: 'f.nom');
+      sb.writeln('LIMIT 250;');
+      results = db.select(sb.toString(), p);
     }
 
-    // Calcul prÃ©cis en mÃ©moire de la distance Haversine et tri par proximitÃ©
+    // Calcul précis en mémoire de la distance Haversine et tri par proximité
     final facilities = <HealthFacility>[];
     for (final row in results) {
       final fac = HealthFacility.fromMap(row);
@@ -279,13 +281,131 @@ class OfflineHealthSearchService {
     return facilities;
   }
 
+  /// Clôture SQL robuste et stricte pour les catégories de santé avec prise en charge des synonymes réels de la BD
+  static void appendCategoryClause(
+    StringBuffer sb,
+    List<dynamic> params,
+    String category, {
+    String col = 'f.categorie',
+    String? nomCol = 'f.nom',
+  }) {
+    final cat = category.trim().toLowerCase();
+    switch (cat) {
+      case 'dentiste':
+        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['dentiste', '%dentist%', '%dentaire%']);
+        break;
+      case 'pharmacie':
+        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['pharmacie', '%pharmacie%', '%officine%']);
+        break;
+      case 'laboratoire':
+        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['laboratoire', '%laboratoire%', '%analyse%']);
+        break;
+      case 'imagerie':
+        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['imagerie', '%imagerie%', '%radiolog%', '%scanner%']);
+        break;
+      case 'pédiatre':
+      case 'pediatre':
+        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['pédiatre', '%pédiat%', '%pediat%']);
+        break;
+      case 'cardiologue':
+        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ?)');
+        params.addAll(['cardiologue', '%cardio%']);
+        break;
+      case 'généraliste':
+      case 'generaliste':
+        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['généraliste', '%généralist%', '%generalist%', '%cabinet médical%', '%médecin%']);
+        break;
+      case 'clinique':
+        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['clinique', '%clinique%', '%hôpital%', '%hopital%']);
+        break;
+      case 'gynécologue':
+      case 'gynecologue':
+        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+        params.addAll(['gynécologue', '%gynéco%', '%gyneco%']);
+        break;
+      case 'ophtalmologue':
+      case 'ophtalmo':
+        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ?)');
+        params.addAll(['ophtalmologue', '%ophtalmo%']);
+        break;
+      case 'urgences':
+      case 'urgence':
+        if (nomCol != null) {
+          sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($nomCol) LIKE ? OR LOWER($nomCol) LIKE ? OR LOWER($nomCol) LIKE ?)');
+          params.addAll(['%urgence%', '%urgenc%', '%garde%', '%24/24%']);
+        } else {
+          sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
+          params.addAll(['%urgence%', '%hopital%']);
+        }
+        break;
+      default:
+        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ?)');
+        params.addAll([cat, '%$cat%']);
+        break;
+    }
+  }
+
+  /// Recherche instantanée des urgences les plus proches dans un rayon de 10 km (SOS Santé 24/7)
+  List<HealthFacility> searchSosEmergencies({
+    required double latitude,
+    required double longitude,
+    double radiusKm = 10.0,
+    int limit = 50,
+  }) {
+    // Calcul de la Bounding Box 10 km
+    final deltaLat = radiusKm / 111.0;
+    final latRad = _deg2rad(latitude);
+    final cosLat = math.cos(latRad).abs();
+    final deltaLon = radiusKm / (111.0 * (cosLat > 0.05 ? cosLat : 1.0));
+
+    final minLat = latitude - deltaLat;
+    final maxLat = latitude + deltaLat;
+    final minLon = longitude - deltaLon;
+    final maxLon = longitude + deltaLon;
+
+    final results = db.select('''
+      SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+             f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
+      FROM facilities_rtree r
+      JOIN facilities f ON f.id = r.id
+      WHERE r.min_lat >= ? AND r.max_lat <= ?
+        AND r.min_lon >= ? AND r.max_lon <= ?
+        AND (
+          f.nom LIKE '%urgenc%' OR f.nom LIKE '%garde%' OR f.nom LIKE '%24/24%' OR f.nom LIKE '%chu%' OR f.nom LIKE '%eph%'
+          OR f.categorie LIKE '%pharmacie%' OR f.categorie LIKE '%clinique%' OR f.categorie LIKE '%hôpital%' OR f.categorie LIKE '%hopital%'
+          OR f.categorie LIKE '%polyclinique%' OR f.categorie LIKE '%urgence%'
+        )
+      LIMIT 200;
+    ''', [minLat, maxLat, minLon, maxLon]);
+
+    final facilities = <HealthFacility>[];
+    for (final row in results) {
+      final fac = HealthFacility.fromMap(row);
+      final dist = calculateHaversineKm(latitude, longitude, fac.latitude, fac.longitude);
+      if (dist <= radiusKm * 1.05) {
+        fac.distanceKm = double.parse(dist.toStringAsFixed(2));
+        facilities.add(fac);
+      }
+    }
+
+    facilities.sort((a, b) => (a.distanceKm ?? 0).compareTo(b.distanceKm ?? 0));
+    return facilities.take(limit).toList();
+  }
+
   // ===========================================================================
   // 2b. VIEWPORT BOUNDING-BOX (rendement 60 FPS) — R-Tree strict 150 marqueurs max
   // ===========================================================================
 
-  /// RÃ©cupÃ¨re uniquement les structures dans le rectangle visible de l'Ã©cran (viewport)
-  /// avec une limite stricte de 150 marqueurs simultanÃ©s via l'index R-Tree SQLite.
-  /// UtilisÃ© Ã  zoom local (zoom >= 11) pour Ã©viter de saturer le thread UI.
+  /// Récupère uniquement les structures dans le rectangle visible de l'écran (viewport)
+  /// avec une limite stricte de 150 marqueurs simultanés via l'index R-Tree SQLite.
+  /// Utilisé à zoom local (zoom >= 11) pour éviter de saturer le thread UI.
   List<HealthFacility> searchViewport({
     required double minLat,
     required double maxLat,
@@ -306,8 +426,7 @@ class OfflineHealthSearchService {
     final params = <dynamic>[minLat, maxLat, minLon, maxLon];
 
     if (category != null && category.isNotEmpty) {
-      sb.writeln('  AND LOWER(f.categorie) = LOWER(?)');
-      params.add(category);
+      appendCategoryClause(sb, params, category, col: 'f.categorie', nomCol: 'f.nom');
     }
 
     sb.writeln('ORDER BY f.rowid LIMIT ?;');
@@ -317,8 +436,8 @@ class OfflineHealthSearchService {
     return results.map((r) => HealthFacility.fromMap(r)).toList();
   }
 
-  /// AgrÃ©gation par Wilaya pour les vues dÃ©zoomÃ©es (zoom < 11).
-  /// Retourne une pastille par wilaya avec le nombre d'Ã©tablissements (GROUP BY mis en cache).
+  /// Agrégation par Wilaya pour les vues dézoomées (zoom < 11).
+  /// Retourne une pastille par wilaya avec le nombre d'établissements (GROUP BY mis en cache).
   List<Map<String, dynamic>> getWilayaAggregates({
     String? category,
     bool onlyEmergency = false,
@@ -332,8 +451,7 @@ class OfflineHealthSearchService {
     final params = <dynamic>[];
 
     if (category != null && category.isNotEmpty) {
-      sb.writeln('  AND LOWER(f.categorie) = LOWER(?)');
-      params.add(category);
+      appendCategoryClause(sb, params, category, col: 'f.categorie', nomCol: 'f.nom');
     }
 
     if (onlyEmergency) {
@@ -396,8 +514,7 @@ class OfflineHealthSearchService {
       final params = <dynamic>[];
 
       if (category != null && category.isNotEmpty) {
-        sb.writeln('  AND LOWER(categorie) = LOWER(?)');
-        params.add(category);
+        appendCategoryClause(sb, params, category, col: 'categorie', nomCol: 'nom');
       }
 
       sb.writeln('ORDER BY nom ASC LIMIT ?;');
@@ -413,7 +530,7 @@ class OfflineHealthSearchService {
       return facilities;
     }
 
-    // Vue nationale avec gÃ©olocalisation prÃ©sente mais sans filtre wilaya/texte : charger tout le pays
+    // Vue nationale avec géolocalisation présente mais sans filtre wilaya/texte : charger tout le pays
     if ((query == null || query.trim().isEmpty) &&
         (wilayaCode == null || wilayaCode.isEmpty)) {
       final sb = StringBuffer();
@@ -426,8 +543,7 @@ class OfflineHealthSearchService {
       final params = <dynamic>[];
 
       if (category != null && category.isNotEmpty) {
-        sb.writeln('  AND LOWER(categorie) = LOWER(?)');
-        params.add(category);
+        appendCategoryClause(sb, params, category, col: 'categorie', nomCol: 'nom');
       }
 
       sb.writeln('ORDER BY nom ASC LIMIT ?;');
@@ -490,8 +606,7 @@ class OfflineHealthSearchService {
       }
 
       if (category != null && category.isNotEmpty) {
-        sb.writeln('  AND LOWER(f.categorie) = LOWER(?)');
-        params.add(category);
+        appendCategoryClause(sb, params, category, col: 'f.categorie', nomCol: 'f.nom');
       }
 
       sb.writeln('ORDER BY fts.rank LIMIT ?;');
@@ -516,7 +631,7 @@ class OfflineHealthSearchService {
       return facilities.take(limit).toList();
     }
 
-    // RequÃªte par dÃ©faut sur wilaya et catÃ©gorie
+    // Requête par défaut sur wilaya et catégorie
     final sb = StringBuffer();
     sb.writeln('''
       SELECT id, place_id, nom, categorie, wilaya, wilaya_code, commune,
@@ -532,8 +647,7 @@ class OfflineHealthSearchService {
     }
 
     if (category != null && category.isNotEmpty) {
-      sb.writeln('  AND LOWER(categorie) = LOWER(?)');
-      params.add(category);
+      appendCategoryClause(sb, params, category, col: 'categorie', nomCol: 'nom');
     }
 
     sb.writeln('ORDER BY nom ASC LIMIT ?;');

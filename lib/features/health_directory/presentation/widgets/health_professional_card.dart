@@ -168,26 +168,26 @@ class HealthProfessionalCard extends StatelessWidget {
                     ),
 
                   // Badge Conventionné Chifa
-                  if (isPharma && acceptsChifa)
+                  if ((isPharma && acceptsChifa) || professional.isChifa)
                     Container(
                       key: Key('badge_chifa_${professional.id}'),
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFE3F2FD),
+                        color: const Color(0xFFE8F5E9),
                         borderRadius: BorderRadius.circular(6),
-                        border: Border.all(color: const Color(0xFF1976D2)),
+                        border: Border.all(color: const Color(0xFF2E7D32), width: 1.2),
                       ),
                       child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.verified, size: 13, color: Color(0xFF1976D2)),
+                          Icon(Icons.verified, size: 13, color: Color(0xFF2E7D32)),
                           SizedBox(width: 4),
                           Text(
-                            'Chifa CNAS/CASNOS',
+                            'CHIFA ✓',
                             style: TextStyle(
                               fontSize: 11.5,
-                              fontWeight: FontWeight.w600,
-                              color: Color(0xFF0D47A1),
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF1B5E20),
                             ),
                           ),
                         ],

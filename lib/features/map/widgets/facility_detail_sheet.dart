@@ -9,6 +9,7 @@ import '../../../core/models/health_facility.dart';
 import '../../../core/services/favorites_service.dart';
 import '../../../core/services/location_service.dart';
 import '../../navigation/presentation/offline_compass_sheet.dart';
+import '../../pharma/utils/whatsapp_utils.dart';
 
 /// Fiche détaillée d'un établissement de santé avec actions directes (Appel, Guidage, Partage, Favoris, Boussole)
 class FacilityDetailSheet extends StatefulWidget {
@@ -624,6 +625,16 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
                     ? () => _makePhoneCall(widget.facility.callNumber!)
                     : null,
               ),
+              if (WhatsAppUtils.isAlgerianMobile(widget.facility.telephone)) ...[
+                const SizedBox(width: 8),
+                _buildActionButton(
+                  icon: Icons.chat_bubble_rounded,
+                  label: 'WhatsApp',
+                  color: const Color(0xFF25D366),
+                  isPrimary: true,
+                  onPressed: () => _openWhatsApp(context),
+                ),
+              ],
               const SizedBox(width: 8),
 
               // 2. Copier
@@ -756,5 +767,16 @@ class _FacilityDetailSheetState extends State<FacilityDetailSheet> {
       ),
       ),
     );
+  }
+
+  Future<void> _openWhatsApp(BuildContext context) async {
+    final urlStr = WhatsAppUtils.generateWhatsAppUrl(phone: widget.facility.telephone);
+    if (urlStr == null) return;
+    final uri = Uri.parse(urlStr);
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } catch (_) {}
   }
 }

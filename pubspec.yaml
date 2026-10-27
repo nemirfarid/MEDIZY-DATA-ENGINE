@@ -1,7 +1,7 @@
 name: sante_dz_medizy
 description: "Application mobile Santé DZ / Medizy - Programme National Sanitaire Algérie (Offline-First)"
 publish_to: 'none'
-version: 1.0.19+19
+version: 1.4.0+14
 
 environment:
   sdk: '>=3.0.0 <4.0.0'

@@ -6,6 +6,8 @@ import '../../../health_directory/presentation/screens/health_search_screen.dart
 import '../../../health_directory/services/health_directory_service.dart';
 import '../../../health_directory/state/health_search_notifier.dart';
 import '../../../map/offline_map_view.dart';
+import '../../../pharma/presentation/widgets/dci_equivalents_sheet.dart';
+import '../../../pharma/services/dz_medication_service.dart';
 import '../widgets/category_grid.dart';
 
 /// Page d'accueil épurée et moderne MEDIZY
@@ -14,11 +16,13 @@ import '../widgets/category_grid.dart';
 class MedizyHomeScreen extends StatefulWidget {
   final OfflineHealthSearchService searchService;
   final HealthSearchNotifier? notifier;
+  final DzMedicationService? medicationService;
 
   const MedizyHomeScreen({
     super.key,
     required this.searchService,
     this.notifier,
+    this.medicationService,
   });
 
   @override
@@ -27,6 +31,7 @@ class MedizyHomeScreen extends StatefulWidget {
 
 class _MedizyHomeScreenState extends State<MedizyHomeScreen> {
   late final HealthSearchNotifier _notifier;
+  late final DzMedicationService _medicationService;
 
   @override
   void initState() {
@@ -35,6 +40,10 @@ class _MedizyHomeScreenState extends State<MedizyHomeScreen> {
         HealthSearchNotifier(
           directoryService: HealthDirectoryService(),
         );
+    _medicationService = widget.medicationService ?? DzMedicationService();
+    if (!_medicationService.isInitialized) {
+      _medicationService.initialize();
+    }
   }
 
   void _onCategorySelected(String slug) {
@@ -86,6 +95,17 @@ class _MedizyHomeScreenState extends State<MedizyHomeScreen> {
           ],
         ),
         actions: [
+          IconButton(
+            key: const Key('home_dci_button'),
+            icon: const Icon(Icons.medication_rounded),
+            tooltip: 'Équivalents & Génériques (DCI)',
+            onPressed: () {
+              DciEquivalentsSheet.show(
+                context,
+                medicationService: _medicationService,
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.search_rounded),
             tooltip: 'Recherche et Annuaire',

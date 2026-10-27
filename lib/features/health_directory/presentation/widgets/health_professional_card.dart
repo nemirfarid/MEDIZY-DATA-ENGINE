@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../core/models/health_professional.dart';
 import '../../../../core/models/pharmacy.dart';
+import '../../../pharma/utils/whatsapp_utils.dart';
 
 /// Card de présentation d'un établissement ou professionnel de santé
 class HealthProfessionalCard extends StatelessWidget {
   final HealthProfessional professional;
   final VoidCallback onTap;
   final VoidCallback? onCallPressed;
+  final VoidCallback? onWhatsAppPressed;
   final bool isFavorite;
   final VoidCallback? onFavoriteToggle;
 
@@ -15,6 +18,7 @@ class HealthProfessionalCard extends StatelessWidget {
     required this.professional,
     required this.onTap,
     this.onCallPressed,
+    this.onWhatsAppPressed,
     this.isFavorite = false,
     this.onFavoriteToggle,
   });
@@ -108,6 +112,14 @@ class HealthProfessionalCard extends StatelessWidget {
                       iconSize: 22,
                       tooltip: 'Appel direct',
                       onPressed: onCallPressed,
+                    ),
+                  if (WhatsAppUtils.isAlgerianMobile(professional.telephone))
+                    IconButton(
+                      key: Key('card_whatsapp_button_${professional.id}'),
+                      icon: const Icon(Icons.chat_bubble_rounded, color: Color(0xFF25D366)),
+                      iconSize: 20,
+                      tooltip: 'WhatsApp & Ordonnance',
+                      onPressed: onWhatsAppPressed ?? () => _openWhatsApp(context),
                     ),
                 ],
               ),
@@ -249,5 +261,16 @@ class HealthProfessionalCard extends StatelessWidget {
     if (cat.contains('dentiste')) return Icons.medical_services_outlined;
     if (cat.contains('laboratoire')) return Icons.biotech;
     return Icons.person_outline;
+  }
+
+  Future<void> _openWhatsApp(BuildContext context) async {
+    final urlStr = WhatsAppUtils.generateWhatsAppUrl(phone: professional.telephone);
+    if (urlStr == null) return;
+    final uri = Uri.parse(urlStr);
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } catch (_) {}
   }
 }

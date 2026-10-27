@@ -1,14 +1,14 @@
 @echo off
 setlocal EnableDelayedExpansion
-title MEDIZY v1.3.0 - Installateur Mobile Automatique
+title MEDIZY v1.4.0 - Installateur Mobile Automatique
 
 echo ===============================================================================
 echo     MEDIZY - DEPLOIEMENT RAPIDE SUR SMARTPHONE ANDROID (TERRAIN)
-echo     Version : v1.3.0 National (58 Wilayas - Base hors-ligne 36 417 fiches)
+echo     Version : v1.4.0 National (58 Wilayas - DCI, Generiques & WhatsApp Express)
 echo ===============================================================================
 echo.
 
-set "APK_PATH=%~dp0dist\Medizy-v1.3.0-National-Release.apk"
+set "APK_PATH=%~dp0dist\Medizy-v1.4.0-National-Release.apk"
 
 if not exist "%APK_PATH%" (
     echo [ERREUR] Le binaire d'installation est introuvable :
@@ -97,7 +97,7 @@ if %errorlevel% neq 0 (
 )
 
 echo.
-powershell -NoProfile -ExecutionPolicy Bypass -Command "[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Write-Host '===============================================================================' -ForegroundColor Cyan; Write-Host '  FELICITATIONS ! INSTALLATION TERMINEE AVEC SUCCES SUR LE SMARTPHONE !' -ForegroundColor Green; Write-Host '  MEDIZY v1.3.0 National est pret a fonctionner 100% hors-ligne.' -ForegroundColor White; Write-Host '  -----------------------------------------------------------------------------' -ForegroundColor DarkGray; Write-Host '  ! مبروك ! تم تثبيت تطبيق ميديزي (MEDIZY) بنجاح على هاتفك المحمول' -ForegroundColor Yellow; Write-Host '  دليل الصحة الوطني الجزائري (58 ولاية) جاهز للاستخدام الكامل بدون إنترنت' -ForegroundColor Cyan; Write-Host '===============================================================================' -ForegroundColor Cyan"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "[Console]::OutputEncoding = [System.Text.Encoding]::UTF8; Write-Host '===============================================================================' -ForegroundColor Cyan; Write-Host '  FELICITATIONS ! INSTALLATION TERMINEE AVEC SUCCES SUR LE SMARTPHONE !' -ForegroundColor Green; Write-Host '  MEDIZY v1.4.0 National est pret a fonctionner 100% hors-ligne.' -ForegroundColor White; Write-Host '  -----------------------------------------------------------------------------' -ForegroundColor DarkGray; Write-Host '  ! مبروك ! تم تثبيت تطبيق ميديزي (MEDIZY) بنجاح على هاتفك المحمول' -ForegroundColor Yellow; Write-Host '  دليل الصحة الوطني الجزائري (58 ولاية) جاهز للاستخدام الكامل بدون إنترنت' -ForegroundColor Cyan; Write-Host '===============================================================================' -ForegroundColor Cyan"
 echo.
 
 set /p LAUNCH="Voulez-vous lancer l'application sur le telephone des maintenant ? (O/N) : "

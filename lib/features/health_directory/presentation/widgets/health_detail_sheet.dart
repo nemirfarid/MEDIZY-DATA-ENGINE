@@ -5,6 +5,7 @@ import '../../../../core/models/health_professional.dart';
 import '../../../../core/models/pharmacy.dart';
 import '../../../../core/services/user_storage_service.dart';
 import '../../../navigation/presentation/offline_compass_sheet.dart';
+import '../../../pharma/utils/whatsapp_utils.dart';
 import 'report_anomaly_dialog.dart';
 
 /// Fiche détaillée d'un professionnel ou établissement de santé (Modal BottomSheet)
@@ -296,7 +297,7 @@ class _HealthDetailSheetState extends State<HealthDetailSheet> {
             Row(
               children: [
                 // Bouton 1 : Appel direct
-                if (professional.telephone != null && professional.telephone!.isNotEmpty)
+                if (professional.telephone != null && professional.telephone!.isNotEmpty) ...[
                   Expanded(
                     child: ElevatedButton.icon(
                       key: const Key('action_call_button'),
@@ -311,10 +312,29 @@ class _HealthDetailSheetState extends State<HealthDetailSheet> {
                       onPressed: () => _handleCall(context),
                     ),
                   ),
-                if (professional.telephone != null && professional.telephone!.isNotEmpty)
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 8),
+                ],
 
-                // Bouton 2 : Guidage (Boussole Hors-ligne & GPS)
+                // Bouton 2 : Contact WhatsApp & Ordonnance (pour les numéros mobiles algériens)
+                if (WhatsAppUtils.isAlgerianMobile(professional.telephone)) ...[
+                  Expanded(
+                    child: ElevatedButton.icon(
+                      key: const Key('action_whatsapp_button'),
+                      icon: const Icon(Icons.chat_bubble_rounded, size: 18),
+                      label: const Text('WhatsApp', style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF25D366),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      ),
+                      onPressed: () => _handleWhatsApp(context),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                ],
+
+                // Bouton 3 : Guidage (Boussole Hors-ligne & GPS)
                 Expanded(
                   child: OutlinedButton.icon(
                     key: const Key('action_nav_button'),
@@ -509,5 +529,21 @@ class _HealthDetailSheetState extends State<HealthDetailSheet> {
       targetLat: lat,
       targetLon: lon,
     );
+  }
+
+  Future<void> _handleWhatsApp(BuildContext context, {String? medicationName}) async {
+    final phone = widget.professional.telephone;
+    final urlStr = WhatsAppUtils.generateWhatsAppUrl(
+      phone: phone,
+      medicationName: medicationName,
+    );
+    if (urlStr == null) return;
+
+    final uri = Uri.parse(urlStr);
+    try {
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    } catch (_) {}
   }
 }

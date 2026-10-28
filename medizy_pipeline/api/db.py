@@ -46,6 +46,13 @@ class DatabaseService:
         self.db_url = db_url or os.environ.get("DATABASE_URL")
         self.is_postgres = bool(self.db_url and self.db_url.startswith(("postgres://", "postgresql://")))
         self.pg_pool = None
+        self._pool_type = "none"
+
+        # Paramétrage haute concurrence du pool PostGIS
+        self.pool_min_size = int(os.environ.get("DB_POOL_MIN_SIZE", "10"))
+        self.pool_max_size = int(os.environ.get("DB_POOL_MAX_SIZE", "50"))
+        self.pool_timeout = float(os.environ.get("DB_POOL_TIMEOUT", "10.0"))
+
         if os.environ.get("SQLITE_DB_PATH"):
             self.sqlite_path = os.environ["SQLITE_DB_PATH"]
         elif os.path.exists("E:\\"):
@@ -56,23 +63,50 @@ class DatabaseService:
 
         if self.is_postgres:
             try:
-                import psycopg2
-                from psycopg2 import pool
-                # Pool de connexions réutilisables (min 2, max 20)
-                self.pg_pool = pool.ThreadedConnectionPool(2, 20, self.db_url)
-                logger.info("Pool PostgreSQL initialisé avec succès.")
+                # 1. Tentative avec psycopg_pool (psycopg v3 - Async/Sync pool)
+                try:
+                    from psycopg_pool import ConnectionPool
+                    self.pg_pool = ConnectionPool(
+                        conninfo=self.db_url,
+                        min_size=self.pool_min_size,
+                        max_size=self.pool_max_size,
+                        timeout=self.pool_timeout,
+                        max_idle=300.0,
+                    )
+                    self._pool_type = "psycopg_pool"
+                    logger.info(
+                        f"Pool PostgreSQL psycopg_pool initialisé (min={self.pool_min_size}, "
+                        f"max={self.pool_max_size}, timeout={self.pool_timeout}s)."
+                    )
+                except ImportError:
+                    # 2. Repli psycopg2 ThreadedConnectionPool
+                    from psycopg2 import pool
+                    self.pg_pool = pool.ThreadedConnectionPool(
+                        minconn=self.pool_min_size,
+                        maxconn=self.pool_max_size,
+                        dsn=self.db_url,
+                    )
+                    self._pool_type = "psycopg2_threaded"
+                    logger.info(
+                        f"Pool PostgreSQL psycopg2 Threaded initialisé (min={self.pool_min_size}, "
+                        f"max={self.pool_max_size})."
+                    )
             except Exception as e:
                 logger.warning(f"Échec initialisation PostgreSQL ({e}). Bascule vers SQLite ({self.sqlite_path}).")
                 self.is_postgres = False
 
     def _get_pg_connection(self):
+        if getattr(self, "_pool_type", None) == "psycopg_pool":
+            return self.pg_pool.getconn(timeout=self.pool_timeout)
         return self.pg_pool.getconn()
 
     def _release_pg_connection(self, conn):
-        self.pg_pool.putconn(conn)
+        if conn is not None and self.pg_pool is not None:
+            self.pg_pool.putconn(conn)
 
     def _get_sqlite_connection(self):
         import sqlite3
+
         conn = sqlite3.connect(self.sqlite_path)
         conn.row_factory = sqlite3.Row
         return conn
@@ -907,10 +941,14 @@ class DatabaseService:
         """Ferme proprement les connexions et pools actifs."""
         if self.pg_pool:
             try:
-                self.pg_pool.closeall()
+                if getattr(self, "_pool_type", None) == "psycopg_pool":
+                    self.pg_pool.close()
+                else:
+                    self.pg_pool.closeall()
                 logger.info("Pool de connexions PostgreSQL fermé avec succès.")
             except Exception as e:
                 logger.error(f"Erreur lors de la fermeture du pool PostgreSQL: {e}")
+
 
 
 _db_service_instance: Optional[DatabaseService] = None

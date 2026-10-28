@@ -1,0 +1,413 @@
+{
+  "execution_date": "2026-10-28T01:05:36Z",
+  "elapsed_seconds": 349.43,
+  "total_fetched": 45,
+  "total_inserted": 42,
+  "total_duplicates_skipped": 3,
+  "total_errors": 0,
+  "wilayas": {
+    "Adrar": {
+      "fetched": 45,
+      "inserted": 42,
+      "duplicates": 3,
+      "errors": 0
+    },
+    "Chlef": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Laghouat": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Oum El Bouaghi": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Batna": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Béjaïa": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Biskra": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Béchar": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Blida": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Bouira": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Tamanrasset": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Tébessa": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Tlemcen": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Tiaret": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Tizi Ouzou": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Alger": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Djelfa": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Jijel": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Sétif": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Saïda": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Skikda": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Sidi Bel Abbès": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Annaba": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Guelma": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Constantine": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Médéa": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Mostaganem": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "M'Sila": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Mascara": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Ouargla": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Oran": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "El Bayadh": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Illizi": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Bordj Bou Arréridj": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Boumerdès": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "El Tarf": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Tindouf": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Tissemsilt": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "El Oued": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Khenchela": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Souk Ahras": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Tipaza": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Mila": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Aïn Defla": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Naâma": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Aïn Témouchent": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Ghardaïa": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Relizane": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Timimoun": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Bordj Badji Mokhtar": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Ouled Djellal": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Béni Abbès": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "In Salah": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "In Guezzam": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Touggourt": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "Djanet": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "El Meghaier": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    },
+    "El Meniaa": {
+      "fetched": 0,
+      "inserted": 0,
+      "duplicates": 0,
+      "errors": 0
+    }
+  },
+  "typology_breakdown": {
+    "Adrar": {
+      "Cabinet Médical": 3,
+      "Clinique": 19,
+      "Dispensaire": 2,
+      "EPH": 3,
+      "EPSP": 3,
+      "Hôpital": 6,
+      "Polyclinique": 6
+    },
+    "Alger": {
+      "CHU": 3,
+      "Cabinet Médical": 499,
+      "Centre de Santé": 14,
+      "Clinique": 598,
+      "Dispensaire": 15,
+      "EHS": 3,
+      "EPH": 1,
+      "EPSP": 11,
+      "Hôpital": 48,
+      "Polyclinique": 45,
+      "Urgences": 14
+    },
+    "Mostaganem": {
+      "Cabinet Médical": 57,
+      "Centre de Santé": 2,
+      "Clinique": 53,
+      "Dispensaire": 2,
+      "EPH": 1,
+      "EPSP": 3,
+      "Hôpital": 12,
+      "Urgences": 3
+    },
+    "Oran": {
+      "CHU": 2,
+      "Cabinet Médical": 52,
+      "Centre de Santé": 5,
+      "Clinique": 122,
+      "Dispensaire": 5,
+      "EHS": 1,
+      "EPH": 2,
+      "EPSP": 6,
+      "Hôpital": 12,
+      "Polyclinique": 24,
+      "Urgences": 1
+    }
+  },
+  "national_totals": {
+    "CHU": 5,
+    "EPH": 7,
+    "EPSP": 23,
+    "Polyclinique": 75,
+    "Clinique": 792,
+    "Total": 1658
+  }
+}

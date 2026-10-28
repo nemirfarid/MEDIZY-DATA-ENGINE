@@ -1,0 +1,110 @@
+version: '3.8'
+
+services:
+  postgis:
+    image: postgis/postgis:16-3.4
+    container_name: medizy-postgis
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-medizy_db}
+      POSTGRES_USER: ${POSTGRES_USER:-medizy_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-medizy_password}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+      - ./medizy_pipeline/sql/001_facilities_and_suggestions_postgis.sql:/docker-entrypoint-initdb.d/001_init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-medizy_user} -d ${POSTGRES_DB:-medizy_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: medizy-redis
+    restart: always
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "256mb", "--maxmemory-policy", "allkeys-lru"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: medizy-api
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL:-postgresql://${POSTGRES_USER:-medizy_user}:${POSTGRES_PASSWORD:-medizy_password}@postgis:5432/${POSTGRES_DB:-medizy_db}}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - ADMIN_JWT_SECRET=${ADMIN_JWT_SECRET:-medizy-jwt-super-secret-key-production-change-me-2026}
+      - ADMIN_API_KEY=${ADMIN_API_KEY:-medizy-admin-secret-key-2026}
+      - ADMIN_USERNAME=${ADMIN_USERNAME:-admin@medizy.dz}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-MedizyAdmin2026!}
+      - ENABLE_METRICS=${ENABLE_METRICS:-true}
+      - READ_ONLY_MODE=${READ_ONLY_MODE:-false}
+      - CORS_ORIGINS=${CORS_ORIGINS:-*}
+    depends_on:
+      postgis:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  ingest-scheduler:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: medizy-scheduler
+    restart: always
+    command: ["python", "-m", "medizy_pipeline.scheduler.cron_ingest", "--daemon", "--time", "${INGEST_SCHEDULE_TIME:-02:00}", "--delay", "${INGEST_DELAY_SECONDS:-3.0}"]
+    environment:
+      - DATABASE_URL=${DATABASE_URL:-postgresql://${POSTGRES_USER:-medizy_user}:${POSTGRES_PASSWORD:-medizy_password}@postgis:5432/${POSTGRES_DB:-medizy_db}}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379/0}
+      - INGEST_SCHEDULE_TIME=${INGEST_SCHEDULE_TIME:-02:00}
+      - INGEST_DELAY_SECONDS=${INGEST_DELAY_SECONDS:-3.0}
+    depends_on:
+      postgis:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    container_name: medizy-prometheus
+    restart: always
+    volumes:
+      - ./medizy_pipeline/observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - api
+
+  grafana:
+    image: grafana/grafana:10.4.0
+    container_name: medizy-grafana
+    restart: always
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GF_SECURITY_ADMIN_PASSWORD:-MedizyGrafana2026!}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+
+volumes:
+  postgis_data:
+  redis_data:
+  prometheus_data:
+  grafana_data:

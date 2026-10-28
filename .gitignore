@@ -1,4 +1,30 @@
-# Environnement Python
+# ==============================================================================
+# MEDIZY / SANTÉ DZ — Fichier d'exclusion Git (.gitignore)
+# ==============================================================================
+
+# Fichiers d'environnement, secrets et certificats
+.env
+.env.*
+.env.production
+.env.local
+.env.test
+!.env.example
+*.pem
+*.key
+*.cert
+
+# Sauvegardes, dumps et bases de données
+*.dump
+*.dump.*
+backups/
+*.sql
+!medizy_pipeline/sql/*.sql
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Environnement Python & Tests
 .venv/
 venv/
 __pycache__/
@@ -6,31 +32,26 @@ __pycache__/
 *$py.class
 .pytest_cache/
 
-# Bases de données SQLite et sauvegardes
-*.db
-*.db-journal
-*.db-wal
-*.db-shm
-backups/
-
-# Logs et rapports volumineux
+# Logs, audits et exports temporaires
 *.log
 *.tmp
 *.bak
 *.pdf
-exports/
+*.jsonl
 *.gz
+exports/
 .mobile_cache/
+ingestion_report.json
 
-# Flutter & Dart
+
+# Flutter, Dart & Mobiles
 .dart_tool/
 build/
 *.dll
 pubspec.lock
+dist/*.apk
+*.apk
 
 # Assets embarqués de l'application cliente
 !assets/data/*
 
-# Distribution et binaires
-dist/*.apk
-*.apk

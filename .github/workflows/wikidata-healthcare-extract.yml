@@ -1,0 +1,26 @@
+name: Build Wikidata Algeria healthcare staging extract
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "43 5 8 * *"
+permissions:
+  contents: read
+  actions: write
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Collect public Wikidata healthcare entities
+        run: python tools/wikidata_healthcare/extract_wikidata_healthcare.py
+      - name: Upload isolated staging artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: medizy-wikidata-healthcare-${{ github.run_number }}
+          path: data/staging/wikidata_algeria_healthcare.csv
+          if-no-files-found: error
+          retention-days: 14

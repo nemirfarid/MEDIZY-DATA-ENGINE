@@ -17,10 +17,19 @@ jobs:
           python-version: "3.12"
       - name: Collect public Wikidata healthcare entities
         run: python tools/wikidata_healthcare/extract_wikidata_healthcare.py
-      - name: Audit staging candidates (read-only)\n        run: |\n          python tools/quality_audit/audit_staging.py \\\n            --input data/staging/wikidata_algeria_healthcare.csv \\\n            --output data/staging/wikidata_audited_candidates.csv \\\n            --report data/staging/wikidata_quality_report.json\n      - name: Upload isolated staging artifact
+      - name: Audit staging candidates (read-only)
+        run: |
+          python tools/quality_audit/audit_staging.py \
+            --input data/staging/wikidata_algeria_healthcare.csv \
+            --output data/staging/wikidata_audited_candidates.csv \
+            --report data/staging/wikidata_quality_report.json
+      - name: Upload isolated staging artifact
         uses: actions/upload-artifact@v4
         with:
           name: medizy-wikidata-healthcare-${{ github.run_number }}
-          path: |\n            data/staging/wikidata_algeria_healthcare.csv\n            data/staging/wikidata_audited_candidates.csv\n            data/staging/wikidata_quality_report.json
+          path: |
+            data/staging/wikidata_algeria_healthcare.csv
+            data/staging/wikidata_audited_candidates.csv
+            data/staging/wikidata_quality_report.json
           if-no-files-found: error
           retention-days: 14

@@ -1,0 +1,30 @@
+name: Build Algeria healthcare staging extract
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 4 1 * *"
+permissions:
+  contents: read
+  actions: write
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install extractor
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r tools/osm_healthcare/requirements.txt
+      - name: Download current Geofabrik Algeria extract and extract health features
+        run: python tools/osm_healthcare/extract_osm_healthcare.py --download
+      - name: Upload staging CSV as workflow artifact (not committed to repository)
+        uses: actions/upload-artifact@v4
+        with:
+          name: medizy-osm-healthcare-${{ github.run_number }}
+          path: data/staging/osm_algeria_healthcare.csv
+          if-no-files-found: error
+          retention-days: 14

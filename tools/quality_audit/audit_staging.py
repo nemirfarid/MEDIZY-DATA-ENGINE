@@ -17,7 +17,7 @@ GENERIC = re.compile(
 ALLOWED = {
     "hospital", "clinic", "pharmacy", "medical_practice",
     "dental_practice", "health_center", "medical_center",
-    "medical_laboratory", "health_post", "healthcare"
+    "medical_laboratory", "health_post"
 }
 FIELDS = [
     "source","source_id","name","category","latitude","longitude",
@@ -41,7 +41,7 @@ def main():
     a=ap.parse_args()
     rows=read_csv(a.input)
     master=read_csv(a.master) if a.master else []
-    master_ids={norm(r.get(k)) for r in master for k in ("source_id","place_id","osm_id","wikidata_id") if r.get(k)}
+    master_ids={(norm(r.get("source")), norm(r.get(k))) for r in master for k in ("source_id","place_id","osm_id","wikidata_id") if r.get(k)}
     seen=set(); accepted=[]; rejected=Counter(); flags_count=Counter()
     for r in rows:
         name=(r.get("name") or r.get("name_fr") or r.get("name_ar") or "").strip()
@@ -62,7 +62,7 @@ def main():
         key=(norm(r.get("source")),norm(sid)) if sid else None
         if key and key in seen: flags.append("duplicate_source_identifier")
         if key: seen.add(key)
-        if sid and norm(sid) in master_ids: flags.append("already_in_master_by_identifier")
+        if sid and (norm(r.get("source")), norm(sid)) in master_ids: flags.append("already_in_master_by_identifier")
         for f in flags: flags_count[f]+=1
         if flags:
             rejected.update(flags)

@@ -1,0 +1,29 @@
+name: Scrape open Algeria healthcare datasets
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "35 5 2 * *"
+permissions:
+  contents: read
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install open GeoAlgeria datasets
+        run: |
+          npm init -y
+          npm install --no-save @geoalgeria/sante @geoalgeria/cliniques @geoalgeria/pharmacies
+      - name: Extract into isolated staging files
+        run: node tools/open_sources/scrape_geoalgeria.mjs
+      - name: Upload data artifacts (not committed to repository)
+        uses: actions/upload-artifact@v4
+        with:
+          name: medizy-geoalgeria-health-${{ github.run_number }}
+          path: data/staging/geoalgeria/
+          if-no-files-found: error
+          retention-days: 14

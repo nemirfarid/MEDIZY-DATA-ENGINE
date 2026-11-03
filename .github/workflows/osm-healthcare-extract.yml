@@ -19,12 +19,21 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r tools/osm_healthcare/requirements.txt
-      - name: Download current Geofabrik Algeria extract and extract health features
+      - name: Download current Geofabrik Algeria extract and extract clinical facilities
         run: python tools/osm_healthcare/extract_osm_healthcare.py --download
-      - name: Upload staging CSV as workflow artifact (not committed to repository)
+      - name: Run read-only quality audit
+        run: |
+          python tools/quality_audit/audit_staging.py \
+            --input data/staging/osm_algeria_healthcare.csv \
+            --output data/staging/osm_algeria_healthcare_review_candidates.csv \
+            --report data/staging/osm_algeria_healthcare_quality_report.json
+      - name: Upload isolated staging outputs (never committed to production)
         uses: actions/upload-artifact@v4
         with:
           name: medizy-osm-healthcare-${{ github.run_number }}
-          path: data/staging/osm_algeria_healthcare.csv
+          path: |
+            data/staging/osm_algeria_healthcare.csv
+            data/staging/osm_algeria_healthcare_review_candidates.csv
+            data/staging/osm_algeria_healthcare_quality_report.json
           if-no-files-found: error
           retention-days: 14

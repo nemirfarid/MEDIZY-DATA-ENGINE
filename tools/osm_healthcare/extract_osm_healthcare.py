@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Extract healthcare POIs from an official Geofabrik Algeria OSM PBF extract.
+"""Extract clinical healthcare objects from Geofabrik Algeria OSM PBF.
 
-Output is a source-attributed staging CSV only. It never writes to MEDIZY DB.
-OSM data is ODbL; preserve attribution and review share-alike obligations.
+Staging only: never reads or writes the MEDIZY production database.
+OSM data is ODbL 1.0; retain attribution and review share-alike obligations.
 """
 from __future__ import annotations
-import argparse, csv, json, math, urllib.request
+import argparse, csv, json, urllib.request
 from pathlib import Path
 import osmium
 
@@ -17,11 +17,7 @@ FIELDS = [
     "latitude", "longitude", "geometry_method", "source_url", "license",
     "review_status"
 ]
-HEALTH_AMENITIES = {
-    "hospital", "clinic", "doctors", "dentist", "pharmacy", "health_post",
-    "nursing_home", "social_facility", "blood_donation", "veterinary"
-}
-
+# Deliberately excludes veterinary, social services, nursing homes and suppliers.
 def first(tags, *keys):
     for key in keys:
         value = tags.get(key)
@@ -30,17 +26,16 @@ def first(tags, *keys):
     return ""
 
 def classify(t):
-    healthcare = t.get("healthcare", "")
-    amenity = t.get("amenity", "")
-    shop = t.get("shop", "")
-    if amenity == "pharmacy" or healthcare == "pharmacy": return "pharmacy"
-    if amenity == "hospital" or healthcare == "hospital": return "hospital"
-    if amenity == "clinic" or healthcare == "clinic": return "clinic"
-    if amenity == "doctors" or healthcare in {"doctor", "doctors"}: return "medical_practice"
-    if amenity == "dentist" or healthcare == "dentist": return "dental_practice"
-    if healthcare: return "healthcare_" + healthcare
-    if amenity in HEALTH_AMENITIES: return "health_" + amenity
-    if shop == "medical_supply": return "medical_supply_shop"
+    h, a = t.get("healthcare", ""), t.get("amenity", "")
+    if a == "pharmacy" or h == "pharmacy": return "pharmacy"
+    if a == "hospital" or h == "hospital": return "hospital"
+    if a == "clinic" or h in {"clinic", "clinic;doctor"}: return "clinic"
+    if a == "doctors" or h in {"doctor", "doctors"}: return "medical_practice"
+    if a == "dentist" or h == "dentist": return "dental_practice"
+    if h in {"health_centre", "health_center", "centre"}: return "health_center"
+    if h in {"laboratory", "medical_laboratory"}: return "medical_laboratory"
+    if h in {"rehabilitation", "physiotherapist"}: return "medical_practice"
+    if a == "health_post" or h == "health_post": return "health_post"
     return ""
 
 def coordinates(obj):
@@ -52,7 +47,7 @@ def coordinates(obj):
             return sum(p.lat for p in locs)/len(locs), sum(p.lon for p in locs)/len(locs), "way_node_average"
     except Exception:
         pass
-    return "", "", "not_available"
+    return "", "", "relation_geometry_not_resolved"
 
 class Handler(osmium.SimpleHandler):
     def __init__(self):
@@ -89,6 +84,7 @@ class Handler(osmium.SimpleHandler):
         }
     def node(self, n): self.add(n,"node")
     def way(self, w): self.add(w,"way")
+    def relation(self, r): self.add(r,"relation")
 
 def main():
     p=argparse.ArgumentParser()
@@ -111,6 +107,11 @@ def main():
         w=csv.DictWriter(f,fieldnames=FIELDS); w.writeheader()
         w.writerows(sorted(h.rows.values(),key=lambda x:(x["category"],x["wilaya"],x["name"])))
     summary={}
-    for row in h.rows.values(): summary[row["category"]]=summary.get(row["category"],0)+1
-    print(json.dumps({"unique_osm_objects":len(h.rows),"by_category":summary,"csv":str(out)},ensure_ascii=False,indent=2))
-if __name__=="__main__": main()
+    unresolved=0
+    for row in h.rows.values():
+        summary[row["category"]]=summary.get(row["category"],0)+1
+        if not row["latitude"]: unresolved += 1
+    print(json.dumps({"unique_osm_objects":len(h.rows),"by_category":summary,
+      "relation_or_geometry_unresolved":unresolved,"csv":str(out),
+      "production_database_modified":False},ensure_ascii=False,indent=2))
+if __name__ == "__main__": main()

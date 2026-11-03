@@ -1,0 +1,39 @@
+name: Google Maps small demo (one query)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Prepare one search query
+        run: |
+          printf '%s\n' "pharmacies in Sidi Ali, Mostaganem, Algeria" > queries.txt
+          mkdir -p output
+
+      - name: Run a limited one-query test
+        run: |
+          docker pull gosom/google-maps-scraper:latest
+          docker run --rm \
+            -v "${{ github.workspace }}/queries.txt:/queries.txt:ro" \
+            -v "${{ github.workspace }}/output:/out" \
+            gosom/google-maps-scraper:latest \
+            -input /queries.txt \
+            -results /out/google_maps_demo.csv \
+            -depth 1 \
+            -c 1 \
+            -exit-on-inactivity 3m
+
+      - name: Upload demo CSV
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: google-maps-small-demo
+          path: output/google_maps_demo.csv
+          if-no-files-found: warn
+          retention-days: 3

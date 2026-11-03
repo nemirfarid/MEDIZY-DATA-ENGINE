@@ -30,7 +30,7 @@ def read_csv(path):
         return list(csv.DictReader(f))
 
 def norm(v):
-    return re.sub(r"\\s+", " ", (v or "").strip()).casefold()
+    return re.sub(r"\s+", " ", (v or "").strip()).casefold()
 
 def main():
     ap=argparse.ArgumentParser()

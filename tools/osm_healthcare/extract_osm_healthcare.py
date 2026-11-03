@@ -53,6 +53,7 @@ class Handler(osmium.SimpleHandler):
     def __init__(self):
         super().__init__()
         self.rows = {}
+        self.relations_skipped_geometry = 0
     def add(self, obj, kind):
         t = obj.tags
         category = classify(t)
@@ -84,7 +85,11 @@ class Handler(osmium.SimpleHandler):
         }
     def node(self, n): self.add(n,"node")
     def way(self, w): self.add(w,"way")
-    def relation(self, r): self.add(r,"relation")
+    def relation(self, r):
+        # Relations need a proper area/centroid pass. Do not emit blank-coordinate
+        # records that could be mistaken for usable facilities.
+        if classify(r.tags):
+            self.relations_skipped_geometry += 1
 
 def main():
     p=argparse.ArgumentParser()
@@ -112,6 +117,8 @@ def main():
         summary[row["category"]]=summary.get(row["category"],0)+1
         if not row["latitude"]: unresolved += 1
     print(json.dumps({"unique_osm_objects":len(h.rows),"by_category":summary,
-      "relation_or_geometry_unresolved":unresolved,"csv":str(out),
+      "relation_or_geometry_unresolved":unresolved,
+      "classified_relations_skipped_pending_geometry":h.relations_skipped_geometry,
+      "csv":str(out),
       "production_database_modified":False},ensure_ascii=False,indent=2))
 if __name__ == "__main__": main()

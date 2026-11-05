@@ -104,10 +104,13 @@ class _DirectoryHomeState extends State<DirectoryHome> {
     const SizedBox(height:12),
     Row(children:[const Expanded(child:Text('Carte à proximité',style:TextStyle(fontSize:18,fontWeight:FontWeight.w800,color:_navy))),
       TextButton(onPressed:()=>setState(()=>_tab=1),child:const Text('Explorer'))]),
-    SizedBox(height:190,child:ClipRRect(borderRadius:BorderRadius.circular(23),child:FlutterMap(
-      mapController:_controller,options:const MapOptions(initialCenter:LatLng(35.95,0.10),initialZoom:8),
-      children:[TileLayer(urlTemplate:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-        userAgentPackageName:'dz.medizy.mobile'),const RichAttributionWidget(attributions:[TextSourceAttribution('© OpenStreetMap contributors')])]))),
+    InkWell(onTap:()=>setState(()=>_tab=1),child:Container(height:190,decoration:BoxDecoration(
+      borderRadius:BorderRadius.circular(23),gradient:const LinearGradient(colors:[Color(0xFFDCEFEA),Color(0xFFE5EDF6)])),
+      child:Stack(children:[Positioned.fill(child:CustomPaint(painter:_MapPreviewPainter())),
+        Center(child:Container(padding:const EdgeInsets.symmetric(horizontal:17,vertical:12),decoration:BoxDecoration(
+          color:Colors.white.withOpacity(.94),borderRadius:BorderRadius.circular(16)),child:const Row(mainAxisSize:MainAxisSize.min,children:[
+          Icon(Icons.map_rounded,color:_teal),SizedBox(width:9),Text('Voir la carte',style:TextStyle(fontWeight:FontWeight.w700,color:_navy)),
+        ])))]))),
     const SizedBox(height:18),_privacyCard(),
   ]);
 
@@ -143,4 +146,17 @@ class _DirectoryHomeState extends State<DirectoryHome> {
 class _Category {
   const _Category(this.name,this.icon,this.color);
   final String name;final IconData icon;final Color color;
+}
+
+class _MapPreviewPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final road = Paint()..color = Colors.white.withOpacity(.85)..strokeWidth = 9..style = PaintingStyle.stroke;
+    final fine = Paint()..color = const Color(0xFFB7D5C8)..strokeWidth = 2..style = PaintingStyle.stroke;
+    final p = Path()..moveTo(-10,size.height*.72)..cubicTo(size.width*.25,size.height*.4,size.width*.35,size.height*.95,size.width*.58,size.height*.48)..cubicTo(size.width*.7,size.height*.2,size.width*.85,size.height*.65,size.width+10,size.height*.3);
+    canvas.drawPath(p,road); canvas.drawPath(p,fine);
+    final p2=Path()..moveTo(size.width*.15,-5)..cubicTo(size.width*.4,size.height*.35,size.width*.5,size.height*.15,size.width*.75,size.height+5);
+    canvas.drawPath(p2,road); canvas.drawPath(p2,fine);
+  }
+  @override bool shouldRepaint(covariant CustomPainter oldDelegate)=>false;
 }

@@ -1,0 +1,33 @@
+name: Android APK
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'mobile/**'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.5'
+          channel: stable
+      - name: Restore Android project scaffolding
+        run: flutter create --platforms android --org dz.medizy --project-name medizy_mobile mobile
+      - name: Restore committed Flutter app files
+        run: git checkout $GITHUB_SHA -- mobile/pubspec.yaml mobile/lib/main.dart mobile/analysis_options.yaml
+      - name: Resolve dependencies
+        working-directory: mobile
+        run: flutter pub get
+      - name: Analyze and test
+        working-directory: mobile
+        run: flutter analyze && flutter test
+      - name: Build APK
+        working-directory: mobile
+        run: flutter build apk --release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: medizy-android-apk
+          path: mobile/build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 14

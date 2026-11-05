@@ -16,7 +16,7 @@ jobs:
       - name: Restore Android project scaffolding
         run: flutter create --platforms android --org dz.medizy --project-name medizy_mobile mobile
       - name: Restore committed Flutter app files
-        run: git checkout $GITHUB_SHA -- mobile/pubspec.yaml mobile/lib/main.dart mobile/analysis_options.yaml
+        run: git checkout $GITHUB_SHA -- mobile/pubspec.yaml mobile/lib/main.dart mobile/analysis_options.yaml mobile/test/widget_test.dart
       - name: Resolve dependencies
         working-directory: mobile
         run: flutter pub get

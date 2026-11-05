@@ -24,28 +24,59 @@ jobs:
         run: flutter create --platforms android --org dz.medizy --project-name medizy_mobile mobile
       - name: Restore committed Flutter app files
         run: git checkout $GITHUB_SHA -- mobile/pubspec.yaml mobile/lib/main.dart mobile/analysis_options.yaml mobile/test/widget_test.dart
-      - name: Install MEDIZY Android launcher and splash branding
+      - name: Install proper MEDIZY adaptive launcher icon and splash
         working-directory: mobile
         shell: bash
         run: |
-          mkdir -p android/app/src/main/res/drawable android/app/src/main/res/mipmap
-          cat > android/app/src/main/res/drawable/ic_medizy_mark.xml <<'EOF'
+          mkdir -p android/app/src/main/res/drawable android/app/src/main/res/mipmap-anydpi-v26 android/app/src/main/res/mipmap-mdpi android/app/src/main/res/mipmap-hdpi android/app/src/main/res/mipmap-xhdpi android/app/src/main/res/mipmap-xxhdpi android/app/src/main/res/mipmap-xxxhdpi
+          cat > android/app/src/main/res/drawable/ic_medizy_foreground.xml <<'EOF'
           <vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="512" android:viewportHeight="512">
-            <path android:fillColor="#0B1329" android:pathData="M0,0h512v512h-512z"/>
-            <path android:fillColor="#06B6D4" android:pathData="M256,70 C170,70 100,140 100,228 C100,332 256,445 256,445 C256,445 412,332 412,228 C412,140 342,70 256,70 Z"/>
-            <path android:fillColor="#0B1329" android:pathData="M256,130 C203,130 160,173 160,225 C160,278 203,321 256,321 C309,321 352,278 352,225 C352,173 309,130 256,130 Z"/>
-            <path android:fillColor="#38BDF8" android:pathData="M185,244 L220,184 L256,230 L292,184 L327,244 L307,256 L292,225 L256,274 L220,225 L205,256 Z"/>
-            <path android:fillColor="#FFFFFF" android:pathData="M256,277 A9,9 0 1 0 256,295 A9,9 0 1 0 256,277 Z"/>
+            <path android:fillColor="#06B6D4" android:pathData="M256,54 C166,54 92,128 92,222 C92,326 256,458 256,458 C256,458 420,326 420,222 C420,128 346,54 256,54 Z"/>
+            <path android:fillColor="#0B1329" android:pathData="M256,137 C207,137 167,177 167,226 C167,275 207,315 256,315 C305,315 345,275 345,226 C345,177 305,137 256,137 Z"/>
+            <path android:fillColor="#FFFFFF" android:pathData="M190,246 L222,190 L256,232 L290,190 L322,246 L304,258 L290,230 L256,278 L222,230 L208,258 Z"/>
+            <path android:fillColor="#FFFFFF" android:pathData="M256,286 A10,10 0 1 0 256,306 A10,10 0 1 0 256,286 Z"/>
           </vector>
           EOF
-          cp android/app/src/main/res/drawable/ic_medizy_mark.xml android/app/src/main/res/mipmap/ic_launcher.xml
+          cat > android/app/src/main/res/drawable/ic_medizy_background.xml <<'EOF'
+          <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle"><solid android:color="#0B1329"/></shape>
+          EOF
+          cat > android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml <<'EOF'
+          <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+            <background android:drawable="@drawable/ic_medizy_background"/>
+            <foreground android:drawable="@drawable/ic_medizy_foreground"/>
+          </adaptive-icon>
+          EOF
+          python3 - <<'PY'
+          from PIL import Image, ImageDraw
+          import os
+          sizes = {"mdpi":48,"hdpi":72,"xhdpi":96,"xxhdpi":144,"xxxhdpi":192}
+          for density,size in sizes.items():
+              im=Image.new("RGBA",(size,size),"#0B1329")
+              d=ImageDraw.Draw(im)
+              # Stylized turquoise location pin with dark center and white MEDIZY M.
+              s=size/512
+              pts=[(256*s,54*s),(166*s,54*s),(92*s,128*s),(92*s,222*s),(256*s,458*s),(420*s,222*s),(420*s,128*s),(346*s,54*s)]
+              d.polygon(pts,fill="#06B6D4")
+              d.ellipse((167*s,137*s,345*s,315*s),fill="#0B1329")
+              d.line([(190*s,246*s),(222*s,190*s),(256*s,232*s),(290*s,190*s),(322*s,246*s)],fill="#FFFFFF",width=max(2,int(20*s)),joint="curve")
+              d.ellipse((246*s,286*s,266*s,306*s),fill="#FFFFFF")
+              im.save(f"android/app/src/main/res/mipmap-{density}/ic_launcher.png")
+          PY
           cat > android/app/src/main/res/drawable/launch_background.xml <<'EOF'
           <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-            <item><shape android:shape="rectangle"><solid android:color="#F4FAF9"/></shape></item>
-            <item android:gravity="center" android:width="108dp" android:height="108dp" android:drawable="@drawable/ic_medizy_mark"/>
+            <item><shape android:shape="rectangle"><solid android:color="#0B1329"/></shape></item>
+            <item android:gravity="center" android:width="144dp" android:height="144dp" android:drawable="@drawable/ic_medizy_foreground"/>
           </layer-list>
           EOF
-          sed -i 's#android:icon="@mipmap/ic_launcher"#android:icon="@mipmap/ic_launcher"#' android/app/src/main/AndroidManifest.xml
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("android/app/src/main/AndroidManifest.xml")
+          s=p.read_text()
+          s=s.replace('android:icon="@mipmap/ic_launcher"', 'android:icon="@mipmap/ic_launcher"')
+          if 'android:roundIcon=' not in s:
+              s=s.replace('android:icon="@mipmap/ic_launcher"', 'android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher"')
+          p.write_text(s)
+          PY
       - name: Bundle compressed healthcare directory
         run: mkdir -p mobile/assets && cp mobile/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz mobile/assets/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz
       - name: Resolve dependencies

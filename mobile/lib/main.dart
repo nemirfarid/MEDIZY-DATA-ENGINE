@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -47,7 +49,6 @@ class _DirectoryHomeState extends State<DirectoryHome> {
 
   @override
   Widget build(BuildContext context) {
-    final isMap = _tab == 1;
     return Scaffold(
       appBar: AppBar(
         title: Row(children: [
@@ -60,11 +61,7 @@ class _DirectoryHomeState extends State<DirectoryHome> {
         ]),
         actions: [IconButton(tooltip:'Paramètres',onPressed:()=>_showInfo(context),icon:const Icon(Icons.tune_rounded))],
       ),
-      body: SafeArea(child: IndexedStack(index:_tab,children:[
-        _home(),
-        _map(),
-        _favorites(),
-      ])),
+      body: SafeArea(child: _tab == 0 ? _home() : _tab == 1 ? _map() : _favorites()),
       bottomNavigationBar: NavigationBar(
         selectedIndex:_tab,
         onDestinationSelected:(v)=>setState(()=>_tab=v),
@@ -153,9 +150,9 @@ class _MapPreviewPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final road = Paint()..color = Colors.white.withOpacity(.85)..strokeWidth = 9..style = PaintingStyle.stroke;
     final fine = Paint()..color = const Color(0xFFB7D5C8)..strokeWidth = 2..style = PaintingStyle.stroke;
-    final p = Path()..moveTo(-10,size.height*.72)..cubicTo(size.width*.25,size.height*.4,size.width*.35,size.height*.95,size.width*.58,size.height*.48)..cubicTo(size.width*.7,size.height*.2,size.width*.85,size.height*.65,size.width+10,size.height*.3);
+    final p = ui.Path()..moveTo(-10,size.height*.72)..cubicTo(size.width*.25,size.height*.4,size.width*.35,size.height*.95,size.width*.58,size.height*.48)..cubicTo(size.width*.7,size.height*.2,size.width*.85,size.height*.65,size.width+10,size.height*.3);
     canvas.drawPath(p,road); canvas.drawPath(p,fine);
-    final p2=Path()..moveTo(size.width*.15,-5)..cubicTo(size.width*.4,size.height*.35,size.width*.5,size.height*.15,size.width*.75,size.height+5);
+    final p2=ui.Path()..moveTo(size.width*.15,-5)..cubicTo(size.width*.4,size.height*.35,size.width*.5,size.height*.15,size.width*.75,size.height+5);
     canvas.drawPath(p2,road); canvas.drawPath(p2,fine);
   }
   @override bool shouldRepaint(covariant CustomPainter oldDelegate)=>false;

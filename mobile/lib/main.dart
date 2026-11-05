@@ -8,9 +8,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 void main()=>runApp(const MedizyApp());
 
-Future<List<Map<String,String>>> _parseDirectory(List<int> bytes) async {
-  final decoded = await compute<List<int>, List<Map<String,String>>>(
-    (input) {
+List<Map<String,String>> _parseDirectoryIsolate(List<int> input) {
       final text = utf8.decode(gzip.decode(input), allowMalformed: true);
       final rows = const CsvToListConverter(shouldParseNumbers: false).convert(text);
       if (rows.length < 2) return <Map<String,String>>[];
@@ -25,11 +23,9 @@ Future<List<Map<String,String>>> _parseDirectory(List<int> bytes) async {
         result.add(item);
       }
       return result;
-    },
-    bytes,
-  );
-  return decoded;
-}
+  }
+
+Future<List<Map<String,String>>> _parseDirectory(List<int> bytes) => compute(_parseDirectoryIsolate, bytes);
 
 const teal=Color(0xff159c98),navy=Color(0xff17354f);
 class MedizyApp extends StatelessWidget{const MedizyApp({super.key});@override Widget build(BuildContext c)=>MaterialApp(title:'MEDIZY',debugShowCheckedModeBanner:false,theme:ThemeData(useMaterial3:true,colorScheme:ColorScheme.fromSeed(seedColor:teal)),home:const Home());}

@@ -13,14 +13,23 @@ List<Map<String,String>> _parseDirectoryIsolate(List<int> input) {
       final rows = const CsvToListConverter(shouldParseNumbers: false).convert(text);
       if (rows.length < 2) return <Map<String,String>>[];
       final headers = rows.first.map((v) => v.toString().trim()).toList();
+      // Keep only directory fields; retaining every CSV cell for 75k+ rows
+      // creates excessive memory pressure on Android and can stall startup.
+      String norm(String v) => v.toLowerCase().replaceAll(RegExp(r'[^a-z0-9]'), '');
+      const wanted = ['nom','name','structure','etablissement','designation','categorie','category','type','nature','wilaya','commune','ville','city','adresse','address','latitude','lat','longitude','lon','lng','telephone','phone','tel'];
+      final keep = <int>{if (headers.isNotEmpty) 0};
+      for (var i = 0; i < headers.length; i++) {
+        final h = norm(headers[i]);
+        if (wanted.any((w) => h == norm(w) || h.contains(norm(w)))) keep.add(i);
+      }
       final result = <Map<String,String>>[];
       for (final row in rows.skip(1)) {
         if (row.every((v) => v.toString().trim().isEmpty)) continue;
         final item = <String,String>{};
-        for (var i=0; i<headers.length && i<row.length; i++) {
-          item[headers[i]] = row[i].toString().trim();
+        for (final i in keep) {
+          if (i < headers.length && i < row.length) item[headers[i]] = row[i].toString().trim();
         }
-        result.add(item);
+        if (item.values.any((v) => v.isNotEmpty)) result.add(item);
       }
       return result;
   }
@@ -76,5 +85,5 @@ class HS extends State<Home>{
   });
  }
 
- Widget map(){final ps=filtered.where((s)=>s.lat!=null&&s.lon!=null&&s.lat!>=-90&&s.lat!<=90&&s.lon!>=-180&&s.lon!<=180).toList();return FlutterMap(mapController:mc,options:const MapOptions(initialCenter:LatLng(36.75,3.05),initialZoom:5),children:[TileLayer(urlTemplate:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',userAgentPackageName:'dz.medizy.mobile'),MarkerLayer(markers:ps.map((s)=>Marker(point:LatLng(s.lat!,s.lon!),child:const Icon(Icons.location_on,color:teal,size:36))).toList()),const RichAttributionWidget(attributions:[TextSourceAttribution('© OpenStreetMap contributors')]),Positioned(top:8,left:8,right:8,child:Material(child:TextField(onChanged:(v)=>setState(()=>q=v),decoration:const InputDecoration(prefixIcon:Icon(Icons.search),hintText:'Rechercher',border:InputBorder.none)))),Positioned(bottom:8,left:8,right:8,child:Card(child:Padding(padding:const EdgeInsets.all(12),child:Text('${ps.length} géolocalisées / ${data.length} structures'))))]);}
+ Widget map(){if(loading)return const Center(child:CircularProgressIndicator(color:teal));if(err!=null)return list(const <S>[]);final ps=filtered.where((s)=>s.lat!=null&&s.lon!=null&&s.lat!>=-90&&s.lat!<=90&&s.lon!>=-180&&s.lon!<=180).toList();return FlutterMap(mapController:mc,options:const MapOptions(initialCenter:LatLng(36.75,3.05),initialZoom:5),children:[TileLayer(urlTemplate:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',userAgentPackageName:'dz.medizy.mobile'),MarkerLayer(markers:ps.map((s)=>Marker(point:LatLng(s.lat!,s.lon!),child:const Icon(Icons.location_on,color:teal,size:36))).toList()),const RichAttributionWidget(attributions:[TextSourceAttribution('© OpenStreetMap contributors')]),Positioned(top:8,left:8,right:8,child:Material(child:TextField(onChanged:(v)=>setState(()=>q=v),decoration:const InputDecoration(prefixIcon:Icon(Icons.search),hintText:'Rechercher',border:InputBorder.none)))),Positioned(bottom:8,left:8,right:8,child:Card(child:Padding(padding:const EdgeInsets.all(12),child:Text('${ps.length} géolocalisées / ${data.length} structures'))))]);}
 }

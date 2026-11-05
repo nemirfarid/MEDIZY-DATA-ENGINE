@@ -82,7 +82,7 @@ class _DirectoryHomeState extends State<DirectoryHome> {
       gradient:const LinearGradient(colors:[Color(0xFF153B58),Color(0xFF187E89)]),
       borderRadius:BorderRadius.circular(26)),child:Column(crossAxisAlignment:CrossAxisAlignment.start,children:[
       const Text('Votre santé, près de vous',style:TextStyle(color:Colors.white,fontSize:23,fontWeight:FontWeight.w800)),
-      const SizedBox(height:7),Text('Explorez les structures de santé en Algérie',style:TextStyle(color:Colors.white.withValues(alpha:.85))),
+      const SizedBox(height:7),Text('Explorez les structures de santé en Algérie',style:TextStyle(color:Colors.white.withOpacity(.85))),
       const SizedBox(height:17),TextField(onChanged:(v)=>setState(()=>_query=v),decoration:InputDecoration(
         filled:true,fillColor:Colors.white,hintText:'Structure, spécialité, commune…',
         prefixIcon:const Icon(Icons.search_rounded,color:_teal),border:OutlineInputBorder(borderRadius:BorderRadius.circular(16),borderSide:BorderSide.none))),
@@ -97,7 +97,7 @@ class _DirectoryHomeState extends State<DirectoryHome> {
     GridView.builder(shrinkWrap:true,physics:const NeverScrollableScrollPhysics(),itemCount:_categories.length,
       gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:4,crossAxisSpacing:9,mainAxisSpacing:12,childAspectRatio:.78),
       itemBuilder:(context,i){final c=_categories[i];return InkWell(onTap:()=>setState(()=>_category=c.name),child:Column(children:[
-        Container(width:58,height:58,decoration:BoxDecoration(color:c.color.withValues(alpha:.12),borderRadius:BorderRadius.circular(19)),
+        Container(width:58,height:58,decoration:BoxDecoration(color:c.color.withOpacity(.12),borderRadius:BorderRadius.circular(19)),
           child:Icon(c.icon,color:c.color,size:27)),const SizedBox(height:7),
         Text(c.name,textAlign:TextAlign.center,maxLines:2,style:const TextStyle(fontSize:11.5,fontWeight:FontWeight.w600)),
       ]));}),

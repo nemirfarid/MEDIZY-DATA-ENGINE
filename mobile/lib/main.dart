@@ -6,6 +6,30 @@ import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 void main()=>runApp(const MedizyApp());
+
+Future<List<Map<String,String>>> _parseDirectory(List<int> bytes) async {
+  final decoded = await compute<List<int>, List<Map<String,String>>>(
+    (input) {
+      final text = utf8.decode(gzip.decode(input), allowMalformed: true);
+      final rows = const CsvToListConverter(shouldParseNumbers: false).convert(text);
+      if (rows.length < 2) return <Map<String,String>>[];
+      final headers = rows.first.map((v) => v.toString().trim()).toList();
+      final result = <Map<String,String>>[];
+      for (final row in rows.skip(1)) {
+        if (row.every((v) => v.toString().trim().isEmpty)) continue;
+        final item = <String,String>{};
+        for (var i=0; i<headers.length && i<row.length; i++) {
+          item[headers[i]] = row[i].toString().trim();
+        }
+        result.add(item);
+      }
+      return result;
+    },
+    bytes,
+  );
+  return decoded;
+}
+
 const teal=Color(0xff159c98),navy=Color(0xff17354f);
 class MedizyApp extends StatelessWidget{const MedizyApp({super.key});@override Widget build(BuildContext c)=>MaterialApp(title:'MEDIZY',debugShowCheckedModeBanner:false,theme:ThemeData(useMaterial3:true,colorScheme:ColorScheme.fromSeed(seedColor:teal)),home:const Home());}
 class S{
@@ -21,7 +45,20 @@ class Home extends StatefulWidget{const Home({super.key});@override State<Home>c
 class HS extends State<Home>{
  List<S> data=[];Set<int> fav={};String q='',cat='Toutes';int tab=0;bool loading=true;String? err;final mc=MapController();
  @override void initState(){super.initState();load();}
- Future<void> load()async{try{final b=(await rootBundle.load('assets/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz')).buffer.asUint8List();final rows=const CsvToListConverter(shouldParseNumbers:false).convert(utf8.decode(gzip.decode(b),allowMalformed:true));if(rows.length<2)throw Exception('CSV vide');final h=rows.first.map((x)=>x.toString().trim()).toList();final out=<S>[];for(final r in rows.skip(1)){if(r.every((x)=>x.toString().trim().isEmpty))continue;final m=<String,String>{};for(var i=0;i<h.length&&i<r.length;i++)m[h[i]]=r[i].toString().trim();out.add(S(m));}if(mounted)setState(()=>data=out);}catch(e){if(mounted)setState(()=>err='Chargement impossible : $e');}finally{if(mounted)setState(()=>loading=false);}}
+ Future<void> load() async {
+  try {
+    final bytes = (await rootBundle.load('assets/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz')).buffer.asUint8List();
+    final rows = await _parseDirectory(bytes);
+    if (rows.isEmpty) throw Exception('CSV vide');
+    final parsed = rows.map(S.new).toList(growable: false);
+    if (mounted) setState(() => data = parsed);
+  } catch (e) {
+    if (mounted) setState(() => err = 'Chargement impossible : $e');
+  } finally {
+    if (mounted) setState(() => loading = false);
+  }
+}
+
  List<String>get cats=>['Toutes',...{for(final s in data)s.type}.where((x)=>x.isNotEmpty).toList()..sort()];
  List<S>get filtered=>data.where((s)=>(cat=='Toutes'||s.type.toLowerCase()==cat.toLowerCase())&&(q.isEmpty||s.text.contains(q.toLowerCase()))).toList();
  @override Widget build(BuildContext c)=>Scaffold(appBar:AppBar(title:const Text('MEDIZY',style:TextStyle(fontWeight:FontWeight.w900))),body:tab==1?map():tab==2?list(data.where((s)=>fav.contains(data.indexOf(s))).toList()):home(),bottomNavigationBar:NavigationBar(selectedIndex:tab,onDestinationSelected:(v)=>setState(()=>tab=v),destinations:const [NavigationDestination(icon:Icon(Icons.home),label:'Annuaire'),NavigationDestination(icon:Icon(Icons.map),label:'Carte'),NavigationDestination(icon:Icon(Icons.bookmark),label:'Favoris')]));

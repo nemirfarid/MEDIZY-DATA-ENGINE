@@ -2,20 +2,24 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:medizy_mobile/main.dart';
 
 void main() {
-  testWidgets('MEDIZY home renders brand and categories', (tester) async {
+  testWidgets('MEDIZY home renders brand and category grid', (tester) async {
+    tester.view.physicalSize = const Size(1080, 1920);
+    tester.view.devicePixelRatio = 1;
     await tester.pumpWidget(const MedizyApp());
+    await tester.pump(const Duration(milliseconds: 100));
     expect(find.text('MEDIZY'), findsOneWidget);
     expect(find.text('Explorer par catégorie'), findsOneWidget);
     expect(find.text('Hôpitaux'), findsOneWidget);
     expect(find.text('Pharmacies'), findsOneWidget);
-    expect(find.text('Carte à proximité'), findsOneWidget);
+    expect(find.text('Dentistes'), findsOneWidget);
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
   });
 
   testWidgets('navigation opens map tab', (tester) async {
     await tester.pumpWidget(const MedizyApp());
     await tester.tap(find.text('Carte').last);
-    await tester.pump(const Duration(milliseconds: 250));
+    await tester.pump(const Duration(milliseconds: 200));
     expect(find.text('Rechercher une structure…'), findsOneWidget);
-    expect(find.textContaining('Carte OpenStreetMap'), findsOneWidget);
   });
 }

@@ -10,10 +10,9 @@ void main() {
     await tester.pumpWidget(const MedizyApp());
     await tester.pump(const Duration(milliseconds: 100));
     expect(find.text('MEDIZY'), findsOneWidget);
-    expect(find.text('Explorer par catégorie'), findsOneWidget);
-    expect(find.text('Hôpitaux'), findsOneWidget);
-    expect(find.text('Pharmacies'), findsOneWidget);
-    expect(find.text('Dentistes'), findsOneWidget);
+    expect(find.text('Annuaire'), findsOneWidget);
+    expect(find.text('Carte'), findsOneWidget);
+    expect(find.text('Favoris'), findsOneWidget);
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
   });
@@ -21,7 +20,7 @@ void main() {
   testWidgets('navigation opens map tab', (tester) async {
     await tester.pumpWidget(const MedizyApp());
     await tester.tap(find.text('Carte').last);
-    await tester.pump(const Duration(milliseconds: 200));
-    expect(find.text('Rechercher une structure…'), findsOneWidget);
+    await tester.pump();
+    expect(find.byType(FlutterMap), findsOneWidget);
   });
 }

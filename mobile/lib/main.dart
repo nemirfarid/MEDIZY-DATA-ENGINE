@@ -26,6 +26,21 @@ class HS extends State<Home>{
  List<S>get filtered=>data.where((s)=>(cat=='Toutes'||s.type.toLowerCase()==cat.toLowerCase())&&(q.isEmpty||s.text.contains(q.toLowerCase()))).toList();
  @override Widget build(BuildContext c)=>Scaffold(appBar:AppBar(title:const Text('MEDIZY',style:TextStyle(fontWeight:FontWeight.w900))),body:tab==1?map():tab==2?list(data.where((s)=>fav.contains(data.indexOf(s))).toList()):home(),bottomNavigationBar:NavigationBar(selectedIndex:tab,onDestinationSelected:(v)=>setState(()=>tab=v),destinations:const [NavigationDestination(icon:Icon(Icons.home),label:'Annuaire'),NavigationDestination(icon:Icon(Icons.map),label:'Carte'),NavigationDestination(icon:Icon(Icons.bookmark),label:'Favoris')]));
  Widget home()=>Column(children:[Padding(padding:const EdgeInsets.all(12),child:TextField(onChanged:(v)=>setState(()=>q=v),decoration:InputDecoration(hintText:'Structure, commune, wilaya…',prefixIcon:const Icon(Icons.search,color:teal),filled:true,border:OutlineInputBorder(borderRadius:BorderRadius.circular(14),borderSide:BorderSide.none)))),SizedBox(height:46,child:ListView(scrollDirection:Axis.horizontal,children:cats.map((x)=>Padding(padding:const EdgeInsets.symmetric(horizontal:3),child:ChoiceChip(label:Text(x),selected:cat==x,onSelected:(_)=>setState(()=>cat=x)))).toList())),Expanded(child:list(filtered))]);
- Widget list(List<S> xs){if(loading)return const Center(child:CircularProgressIndicator());if(err!=null)return Center(child:Text(err!));if(xs.isEmpty)return Center(child:Text(data.isEmpty?'Annuaire absent':'Aucun résultat'));return ListView.builder(itemCount:xs.length,itemBuilder:(c,i){final s=xs[i],id=data.indexOf(s);return Card(child:ListTile(leading:const Icon(Icons.local_hospital,color:teal),title:Text(s.name,maxLines:2),subtitle:Text([s.type,s.commune,s.wilaya,s.address].where((x)=>x.isNotEmpty).join(' • '),maxLines:2),trailing:IconButton(icon:Icon(fav.contains(id)?Icons.bookmark:Icons.bookmark_border),onPressed:()=>setState(()=>fav.contains(id)?fav.remove(id):fav.add(id))),onTap:()=>showModalBottomSheet(context:c,builder:(_)=>SafeArea(child:SingleChildScrollView(padding:const EdgeInsets.all(16),child:Column(crossAxisAlignment:CrossAxisAlignment.start,children:[Text(s.name,style:const TextStyle(fontSize:20,fontWeight:FontWeight.bold)),...s.d.entries.where((e)=>e.value.isNotEmpty).take(40).map((e)=>Text('${e.key}: ${e.value}'))])))));});}
+ Widget list(List<S> xs){
+  if(loading)return const Center(child:CircularProgressIndicator());
+  if(err!=null)return Center(child:Text(err!));
+  if(xs.isEmpty)return Center(child:Text(data.isEmpty?'Annuaire absent':'Aucun résultat'));
+  return ListView.builder(itemCount:xs.length,itemBuilder:(context,i){
+   final s=xs[i]; final id=data.indexOf(s);
+   return Card(child:ListTile(
+    leading:const Icon(Icons.local_hospital,color:teal),
+    title:Text(s.name,maxLines:2),
+    subtitle:Text([s.type,s.commune,s.wilaya,s.address].where((x)=>x.isNotEmpty).join(' • '),maxLines:2),
+    trailing:IconButton(icon:Icon(fav.contains(id)?Icons.bookmark:Icons.bookmark_border),onPressed:(){setState((){if(fav.contains(id)){fav.remove(id);}else{fav.add(id);}});}),
+    onTap:(){showModalBottomSheet(context:context,builder:(sheetContext)=>SafeArea(child:SingleChildScrollView(padding:const EdgeInsets.all(16),child:Column(crossAxisAlignment:CrossAxisAlignment.start,children:[Text(s.name,style:const TextStyle(fontSize:20,fontWeight:FontWeight.bold)),...s.d.entries.where((e)=>e.value.isNotEmpty).take(40).map((e)=>Text(e.key+': '+e.value))]))));}
+   ));
+  });
+ }
+
  Widget map(){final ps=filtered.where((s)=>s.lat!=null&&s.lon!=null&&s.lat!>=-90&&s.lat!<=90&&s.lon!>=-180&&s.lon!<=180).toList();return FlutterMap(mapController:mc,options:const MapOptions(initialCenter:LatLng(36.75,3.05),initialZoom:5),children:[TileLayer(urlTemplate:'https://tile.openstreetmap.org/{z}/{x}/{y}.png',userAgentPackageName:'dz.medizy.mobile'),MarkerLayer(markers:ps.map((s)=>Marker(point:LatLng(s.lat!,s.lon!),child:const Icon(Icons.location_on,color:teal,size:36))).toList()),const RichAttributionWidget(attributions:[TextSourceAttribution('© OpenStreetMap contributors')]),Positioned(top:8,left:8,right:8,child:Material(child:TextField(onChanged:(v)=>setState(()=>q=v),decoration:const InputDecoration(prefixIcon:Icon(Icons.search),hintText:'Rechercher',border:InputBorder.none)))),Positioned(bottom:8,left:8,right:8,child:Card(child:Padding(padding:const EdgeInsets.all(12),child:Text('${ps.length} géolocalisées / ${data.length} structures'))))]);}
 }

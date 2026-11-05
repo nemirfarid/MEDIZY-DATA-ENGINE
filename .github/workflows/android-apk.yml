@@ -35,7 +35,7 @@ jobs:
             <path android:fillColor="#06B6D4" android:pathData="M256,70 C170,70 100,140 100,228 C100,332 256,445 256,445 C256,445 412,332 412,228 C412,140 342,70 256,70 Z"/>
             <path android:fillColor="#0B1329" android:pathData="M256,130 C203,130 160,173 160,225 C160,278 203,321 256,321 C309,321 352,278 352,225 C352,173 309,130 256,130 Z"/>
             <path android:fillColor="#38BDF8" android:pathData="M185,244 L220,184 L256,230 L292,184 L327,244 L307,256 L292,225 L256,274 L220,225 L205,256 Z"/>
-            <circle android:fillColor="#FFFFFF" android:cx="256" android:cy="286" android:radius="9"/>
+            <path android:fillColor="#FFFFFF" android:pathData="M256,277 A9,9 0 1 0 256,295 A9,9 0 1 0 256,277 Z"/>
           </vector>
           EOF
           cp android/app/src/main/res/drawable/ic_medizy_mark.xml android/app/src/main/res/mipmap/ic_launcher.xml

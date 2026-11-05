@@ -1,0 +1,13 @@
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+android/local.properties
+*.keystore
+*.jks
+.env
+*.db
+*.sqlite
+*.xlsx
+*.csv

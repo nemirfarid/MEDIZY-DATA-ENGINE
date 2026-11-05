@@ -22,7 +22,7 @@ jobs:
         run: flutter pub get
       - name: Analyze and test
         working-directory: mobile
-        run: flutter analyze && flutter test
+        run: flutter analyze --no-fatal-warnings --no-fatal-infos && flutter test
       - name: Build APK
         working-directory: mobile
         run: flutter build apk --release

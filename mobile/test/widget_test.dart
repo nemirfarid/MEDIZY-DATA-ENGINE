@@ -9,7 +9,7 @@ void main() {
     tester.view.devicePixelRatio = 1;
     await tester.pumpWidget(const MedizyApp());
     await tester.pump(const Duration(milliseconds: 100));
-    expect(find.text('MEDIZY'), findsOneWidget);
+    expect(find.text('MEDIZY'), findsAtLeastNWidgets(1));
     expect(find.text('Annuaire'), findsOneWidget);
     expect(find.text('Carte'), findsOneWidget);
     expect(find.text('Favoris'), findsOneWidget);

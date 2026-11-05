@@ -37,7 +37,7 @@ jobs:
             <path android:fillColor="#38BDF8" android:pathData="M185,244 L220,184 L256,230 L292,184 L327,244 L307,256 L292,225 L256,274 L220,225 L205,256 Z"/>
             <circle android:fillColor="#FFFFFF" android:cx="256" android:cy="286" android:radius="9"/>
           </vector>
-          EOFOF
+          EOF
           cp android/app/src/main/res/drawable/ic_medizy_mark.xml android/app/src/main/res/mipmap/ic_launcher.xml
           cat > android/app/src/main/res/drawable/launch_background.xml <<'EOF'
           <layer-list xmlns:android="http://schemas.android.com/apk/res/android">

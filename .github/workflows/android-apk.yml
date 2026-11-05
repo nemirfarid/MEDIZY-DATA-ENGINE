@@ -24,6 +24,8 @@ jobs:
         run: flutter create --platforms android --org dz.medizy --project-name medizy_mobile mobile
       - name: Restore committed Flutter app files
         run: git checkout $GITHUB_SHA -- mobile/pubspec.yaml mobile/lib/main.dart mobile/analysis_options.yaml mobile/test/widget_test.dart
+      - name: Bundle compressed healthcare directory
+        run: mkdir -p mobile/assets && cp Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz mobile/assets/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz
       - name: Resolve dependencies
         working-directory: mobile
         run: flutter pub get

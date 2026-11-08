@@ -13,6 +13,7 @@ void main() {
     expect(find.text('Annuaire'), findsOneWidget);
     expect(find.text('Carte'), findsOneWidget);
     expect(find.text('Favoris'), findsOneWidget);
+    expect(find.text('Assistant IA'), findsOneWidget);
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
   });

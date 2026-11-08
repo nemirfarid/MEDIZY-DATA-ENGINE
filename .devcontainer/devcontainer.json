@@ -1,0 +1,23 @@
+{
+  "name": "MEDIZY Flutter development (Codespaces)",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Dart-Code.flutter",
+        "Dart-Code.dart-code",
+        "GitHub.copilot",
+        "GitHub.copilot-chat"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "files.autoSave": "onFocusChange"
+      }
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/setup-flutter.sh",
+  "remoteUser": "vscode"
+}

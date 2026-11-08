@@ -83,3 +83,5 @@ jobs:
           name: medizy-android-apk
           path: mobile/build/app/outputs/flutter-apk/app-release.apk
           retention-days: 14
+
+# Rebuild trigger requested by repository owner.

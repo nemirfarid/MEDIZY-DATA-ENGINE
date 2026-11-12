@@ -18,8 +18,8 @@ android {
         applicationId = "dz.sante.medizy.national"
         minSdk = flutter.minSdkVersion
         targetSdk = 34
-        versionCode = 17
-        versionName = "1.0.17"
+        versionCode = 36
+        versionName = "1.0.36"
 
         ndk {
             abiFilters.addAll(listOf("arm64-v8a", "armeabi-v7a"))

@@ -33,7 +33,7 @@ class HealthProfessionalCard extends StatelessWidget {
 
     return Card(
       key: Key('facility_card_${professional.id}'),
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 6),
       elevation: 0.5,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(14),
@@ -46,7 +46,7 @@ class HealthProfessionalCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(14),
         child: Padding(
-          padding: const EdgeInsets.all(14),
+          padding: EdgeInsets.all(14),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -55,7 +55,7 @@ class HealthProfessionalCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(8),
+                    padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       color: _getCategoryColor().withValues(alpha: 0.12),
                       shape: BoxShape.circle,
@@ -150,7 +150,7 @@ class HealthProfessionalCard extends StatelessWidget {
                   // Badge de proximité relative
                   if (distance != null)
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
                         color: isClose ? const Color(0xFFE8F5E9) : Colors.grey.shade100,
                         borderRadius: BorderRadius.circular(6),
@@ -183,7 +183,7 @@ class HealthProfessionalCard extends StatelessWidget {
                   if ((isPharma && acceptsChifa) || professional.isChifa)
                     Container(
                       key: Key('badge_chifa_${professional.id}'),
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
                         color: const Color(0xFFE8F5E9),
                         borderRadius: BorderRadius.circular(6),
@@ -210,7 +210,7 @@ class HealthProfessionalCard extends StatelessWidget {
                   if (isOnDuty)
                     Container(
                       key: Key('badge_duty_${professional.id}'),
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                       decoration: BoxDecoration(
                         color: const Color(0xFFFFEBEE),
                         borderRadius: BorderRadius.circular(6),
@@ -254,9 +254,9 @@ class HealthProfessionalCard extends StatelessWidget {
 
   IconData _getCategoryIcon() {
     final cat = professional.categorie.toLowerCase();
-    if (cat.contains('pharmacie')) return Icons.local_pharmacy;
+    if (cat.contains('pharmacie')) return Icons.medication_rounded;
     if (cat.contains('hopital') || cat.contains('clinique') || cat.contains('chu')) {
-      return Icons.local_hospital;
+      return Icons.domain_rounded;
     }
     if (cat.contains('dentiste')) return Icons.medical_services_outlined;
     if (cat.contains('laboratoire')) return Icons.biotech;

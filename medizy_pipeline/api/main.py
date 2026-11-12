@@ -21,6 +21,7 @@ from .db import close_db_service, get_db_service
 from .routes.facilities import router as facilities_router
 from .routes.suggestions import router as suggestions_router
 from .routes.admin_moderation import router as admin_moderation_router
+from .routes.structures import router as structures_router
 
 logging.basicConfig(
     level=logging.INFO,
@@ -117,6 +118,7 @@ async def read_only_mode_middleware(request, call_next):
 app.include_router(facilities_router)
 app.include_router(suggestions_router)
 app.include_router(admin_moderation_router)
+app.include_router(structures_router)   # Annuaire Sanitaire National (41 421 structures)
 
 # Instrumentation Prometheus & Métriques (/metrics)
 from .metrics import setup_prometheus_instrumentator

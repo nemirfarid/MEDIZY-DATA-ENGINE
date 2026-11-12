@@ -1,3 +1,5 @@
+import '../emergency/presentation/widgets/sos_emergency_sheet.dart';
+import '../../core/services/medizy_locale.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -8,13 +10,15 @@ import '../../core/services/favorites_service.dart';
 import '../../core/services/location_service.dart';
 import '../../core/services/offline_health_search_service.dart';
 import '../../core/services/tile_cache_service.dart';
-import '../emergency/presentation/widgets/sos_emergency_button.dart';
+import '../../core/theme/medizy_theme.dart';
 import 'utils/specialty_marker_theme.dart';
 import 'widgets/facility_detail_sheet.dart';
 import 'widgets/facet_filter_bar.dart';
 import 'widgets/wilaya_picker_sheet.dart';
+import 'widgets/medizy_map_marker.dart';
 
-/// Visualiseur cartographique hors-ligne avec géolocalisation réelle, sélecteur des 58 Wilayas et moteur R-Tree/FTS5
+/// Visualiseur cartographique Medizy — Google Maps uniquement (Plan + Satellite)
+/// Structures de santé uniquement (POI médical), logos Medizy superposés aux coordonnées GPS exactes
 class OfflineMapView extends StatefulWidget {
   final OfflineHealthSearchService searchService;
   final LatLng initialCenter;
@@ -23,13 +27,13 @@ class OfflineMapView extends StatefulWidget {
   final String? initialWilayaCode;
 
   const OfflineMapView({
-    Key? key,
+    super.key,
     required this.searchService,
     this.initialCenter = const LatLng(28.0339, 1.6596), // Centre géographique de l'Algérie
     this.initialZoom = 5.8,
     this.initialCategory,
     this.initialWilayaCode,
-  }) : super(key: key);
+  });
 
   @override
   State<OfflineMapView> createState() => _OfflineMapViewState();
@@ -38,43 +42,32 @@ class OfflineMapView extends StatefulWidget {
 class _OfflineMapViewState extends State<OfflineMapView> {
   late final MapController _mapController;
   List<HealthFacility> _displayedFacilities = [];
-  List<Map<String, dynamic>> _wilayaAggregates = []; // Pastilles d'agrégation par Wilaya
+  List<Map<String, dynamic>> _wilayaAggregates = [];
   bool _isLoading = false;
   Timer? _zoomTimer;
   double _currentZoom = 5.8;
-  bool _useViewportMode = false; // true = zoom local (viewport), false = vue nationale / agrégation
+  bool _useViewportMode = false;
+  bool _isNearMeMode = false;
   int _totalCategoryResults = 0;
 
   String? _selectedWilayaCode;
   String? _selectedWilayaName;
+  String? _selectedCommune;
+  List<String> _availableCommunes = [];
   String? _selectedCategory;
   bool _onlyEmergency = false;
   bool _showChifaOnly = false;
   bool _showFavoritesOnly = false;
   String _currentQuery = '';
-  bool _useAltOsmLayer = false;
 
-  String _getCategoryDisplayName(String? slug) {
-    if (slug == null || slug.isEmpty) return '';
-    const map = {
-      'dentiste': 'Dentistes',
-      'pharmacie': 'Pharmacies',
-      'laboratoire': 'Laboratoires',
-      'imagerie': 'Imagerie & Radio',
-      'pédiatre': 'Pédiatres',
-      'cardiologue': 'Cardiologues',
-      'généraliste': 'Médecins Généralistes',
-      'clinique': 'Cliniques & Hôpitaux',
-      'gynécologue': 'Gynécologues',
-      'ophtalmologue': 'Ophtalmologues',
-      'urgences': 'Urgences & Gardes',
-    };
-    return map[slug.toLowerCase()] ?? (slug[0].toUpperCase() + slug.substring(1));
-  }
+  // Mode de fond de carte : 0 = Google Maps Plan, 1 = Google Maps Satellite
+  int _mapLayerMode = 0;
 
-  // Position utilisateur réelle (par défaut Alger avant détection GPS)
   LatLng _userPosition = LocationService.defaultPosition;
   bool _hasRealGps = false;
+
+  // Suivi des marqueurs sélectionnés pour la fiche détail
+  HealthFacility? _selectedFacility;
 
   @override
   void initState() {
@@ -86,19 +79,27 @@ class _OfflineMapViewState extends State<OfflineMapView> {
       _selectedWilayaName = WilayaInfo.findByCode(_selectedWilayaCode)?.name;
     }
 
-    _initAppAndLocation();
+    if (_selectedCategory == null) {
+      _initAppAndLocation();
+    } else {
+      _useViewportMode = true;
+      _isLoading = true;
+      final results = widget.searchService.searchHybrid(
+        category: _selectedCategory,
+        limit: 50000,
+      );
+      setState(() {
+        _displayedFacilities = results;
+        _totalCategoryResults = results.length;
+        _isLoading = false;
+      });
+    }
 
-    // Suivi du niveau de zoom pour basculer entre vue nationale (agrégation Wilaya)
-    // et vue locale (markers viewport, max 150).
-    _zoomTimer = Timer.periodic(const Duration(milliseconds: 200), (_) {
+    _zoomTimer = Timer.periodic(const Duration(milliseconds: 800), (_) {
       if (!mounted) return;
       final currentCameraZoom = _mapController.camera.zoom;
-      if (currentCameraZoom == _currentZoom) return;
-      setState(() {
-        _currentZoom = currentCameraZoom;
-        _useViewportMode = currentCameraZoom >= 11.0;
-      });
-      _applyFilters();
+      if ((currentCameraZoom - _currentZoom).abs() < 0.5) return;
+      _currentZoom = currentCameraZoom;
     });
   }
 
@@ -108,23 +109,18 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     super.dispose();
   }
 
-  /// Initialisation au démarrage : détection automatique de la Wilaya via GPS,
-  /// recentrage intelligent sur la position utilisateur (zoom 13) et chargement des données.
   Future<void> _initAppAndLocation() async {
     setState(() => _isLoading = true);
 
     try {
-      // 1. Initialiser le cache de tuiles disque
       await initTileCache();
 
-      // 2. Détection automatique de position GPS : dernière position connue d'abord (rapide),
-      //    puis position actuelle avec timeout court (3s) pour ne pas bloquer l'UI en zone blanche.
       LatLng? detectedPos;
       detectedPos = await LocationService.getLastKnownPosition();
       if (detectedPos == null) {
         detectedPos = await LocationService.getCurrentPosition(
-          promptPermission: false,
-          timeoutSeconds: 3,
+          promptPermission: true,
+          timeoutSeconds: 6,
         );
       }
 
@@ -132,7 +128,6 @@ class _OfflineMapViewState extends State<OfflineMapView> {
         _userPosition = detectedPos;
         _hasRealGps = true;
 
-        // 3. Détection automatique de la Wilaya active à partir des coordonnées GPS si aucune n'est imposée
         if (_selectedWilayaCode == null) {
           final nearestWilaya = WilayaInfo.findNearestWilaya(
             detectedPos.latitude,
@@ -146,7 +141,6 @@ class _OfflineMapViewState extends State<OfflineMapView> {
           }
         }
 
-        // 4. Chargement initial en mode viewport (zoom local) depuis la position détectée
         _mapController.move(detectedPos, 13.0);
         _loadViewport();
 
@@ -158,16 +152,28 @@ class _OfflineMapViewState extends State<OfflineMapView> {
                 '(${_displayedFacilities.length} fiches à proximité)',
               ),
               duration: const Duration(seconds: 3),
-              backgroundColor: Colors.teal.shade800,
+              backgroundColor: MedizyTheme.primary,
+              behavior: SnackBarBehavior.floating,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             ),
           );
         }
       } else {
-        // Pas de GPS : repli propre sur centre par défaut
         _mapController.move(widget.initialCenter, widget.initialZoom);
         if (_showFavoritesOnly) {
           _loadFavorites();
-        } else if (_selectedCategory != null || _selectedWilayaCode != null) {
+        } else if (_selectedCategory != null) {
+          _useViewportMode = true;
+          final results = widget.searchService.searchHybrid(
+            category: _selectedCategory,
+            limit: 50000,
+          );
+          setState(() {
+            _displayedFacilities = results;
+            _totalCategoryResults = results.length;
+            _isLoading = false;
+          });
+        } else if (_selectedWilayaCode != null) {
           _applyFilters();
         } else {
           _loadWilayaAggregates();
@@ -182,8 +188,6 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     }
   }
 
-  /// Charge les marqueurs visibles dans le rectangle courant de la carte (zoom local >= 11).
-  /// Limite stricte de 150 marqueurs pour préserver le thread UI (60 FPS).
   void _loadViewport() {
     final bounds = _mapController.camera.visibleBounds;
     final results = widget.searchService.searchViewport(
@@ -200,7 +204,6 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     });
   }
 
-  /// Charge les établissements favoris sauvegardés.
   void _loadFavorites() async {
     final favService = FavoritesService();
     try {
@@ -229,28 +232,21 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     }
   }
 
-  /// Liste des catégories Conventionné Chifa (pharmacie, laboratoire, imagerie, clinique, hôpital, etc.)
   static const List<String> _chifaCategories = [
     'pharmacie', 'laboratoire', 'centre d\'imagerie médicale', 'centre de radiologie',
     'clinique', 'hôpital', 'polyclinique', 'centre médical', 'centre de santé',
   ];
 
-  /// Retourne la catégorie Chifa correspondante si le filtre Chifa est actif, sinon null.
   String? get _chifaCategory {
     if (!_showChifaOnly) return null;
-    // Si une catégorie est déjà sélectionnée et qu'elle est Chifa-compatible, la garder
     if (_selectedCategory != null && _chifaCategories.any((c) => _selectedCategory!.toLowerCase().contains(c.toLowerCase()))) {
       return _selectedCategory;
     }
-    // Sinon, on ne filtre pas par catégorie spécifique (tous les Chifa)
     return null;
   }
 
-  /// Indique si le filtre Chifa est actif
   bool get _chifaActive => _showChifaOnly;
 
-  /// Charge les agrégations par Wilaya pour la vue nationale dézoomée (zoom < 11).
-  /// Une pastille par wilaya avec le nombre d'établissements (GROUP BY SQL mis en cache).
   void _loadWilayaAggregates() {
     final aggregates = widget.searchService.getWilayaAggregates(
       category: _chifaActive ? _chifaCategory : _selectedCategory,
@@ -267,23 +263,16 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     });
   }
 
-  /// Actualisation des données selon les filtres actifs et le niveau de zoom
   void _applyFilters() {
     setState(() => _isLoading = true);
     try {
       if (_showFavoritesOnly) {
         _loadFavorites();
-      } else if (_useViewportMode) {
-        // Zoom local : recherche viewport (bounding-box) limitée à 150 marqueurs
-        _loadViewport();
-      } else if (_selectedWilayaCode == null && _currentQuery.isEmpty) {
-        // Vue nationale dézoomée : agrégation par Wilaya (avec ou sans catégorie)
-        _loadWilayaAggregates();
-      } else {
-        // Filtre wilaya, catégorie ou recherche textuelle : liste complète via searchHybrid
+      } else if (_selectedCommune != null || _selectedWilayaCode != null || _currentQuery.isNotEmpty) {
         final results = widget.searchService.searchHybrid(
           query: _currentQuery.isNotEmpty ? _currentQuery : null,
           wilayaCode: _selectedWilayaCode,
+          commune: _selectedCommune,
           category: _chifaActive ? _chifaCategory : _selectedCategory,
           onlyEmergency: _onlyEmergency,
           userLat: _userPosition.latitude,
@@ -295,50 +284,51 @@ class _OfflineMapViewState extends State<OfflineMapView> {
           _isLoading = false;
         });
 
-        // Si des résultats existent et qu'une recherche textuelle vient d'être tapée, centrer sur le premier résultat
         if (_currentQuery.isNotEmpty && results.isNotEmpty) {
           final first = results.first;
           _mapController.move(LatLng(first.latitude, first.longitude), 13.0);
         }
+      } else if (_useViewportMode) {
+        _loadViewport();
+      } else {
+        _loadWilayaAggregates();
       }
     } catch (_) {
       setState(() => _isLoading = false);
     }
   }
 
-  /// Sollicite activement le capteur GPS du smartphone et recentre la caméra
   Future<void> _handleGpsLocationRequest() async {
     setState(() => _isLoading = true);
 
-    // 1. Vérification si le service GPS est activé sur l'appareil
     final isEnabled = await LocationService.isServiceEnabled();
     if (!isEnabled && mounted) {
       setState(() => _isLoading = false);
-      showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Row(
-            children: [
-              Icon(Icons.location_off, color: Colors.orange),
-              SizedBox(width: 8),
-              Text('GPS Désactivé'),
+      if (mounted) {
+        showDialog(
+          context: context,
+          builder: (ctx) => AlertDialog(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            title: Row(
+              children: [
+                Icon(Icons.location_off, color: MedizyTheme.warning),
+                const SizedBox(width: 8),
+                Text(MedizyLocale.translateUI('GPS Désactivé')),
+              ],
+            ),
+            content: Text(MedizyLocale.translateUI('Veuillez activer le service de localisation')),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: Text(MedizyLocale.translateUI('OK')),
+              ),
             ],
           ),
-          content: const Text(
-            'Veuillez activer le service de localisation (GPS) dans les paramètres de votre téléphone pour afficher les établissements les plus proches de vous.',
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(ctx),
-              child: const Text('OK'),
-            ),
-          ],
-        ),
-      );
+        );
+      }
       return;
     }
 
-    // 2. Récupération de la position GPS précise
     final realPos = await LocationService.getCurrentPosition(promptPermission: true);
     if (!mounted) return;
 
@@ -346,35 +336,57 @@ class _OfflineMapViewState extends State<OfflineMapView> {
       setState(() {
         _userPosition = realPos;
         _hasRealGps = true;
+        _isNearMeMode = true;
+        _selectedWilayaCode = null;
+        _selectedWilayaName = null;
+        _selectedCommune = null;
+        _availableCommunes = [];
+        _useViewportMode = true;
       });
 
-      // Recentrage caméra sur la vraie position (zoom local => mode viewport)
-      _mapController.move(realPos, 14.0);
+      _mapController.move(realPos, 14.5);
 
-      // Recherche viewport autour de la position réelle (bounding-box, max 150)
-      _loadViewport();
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Position GPS réelle localisée : ${realPos.latitude.toStringAsFixed(4)}°N, ${realPos.longitude.toStringAsFixed(4)}°E (${_displayedFacilities.length} fiches à proximité)',
-          ),
-          duration: const Duration(seconds: 3),
-          backgroundColor: Colors.teal.shade800,
-        ),
+      final results = widget.searchService.searchAroundMe(
+        latitude: realPos.latitude,
+        longitude: realPos.longitude,
+        radiusKm: 25.0,
+        category: _selectedCategory,
+        limit: 250,
       );
+
+      setState(() {
+        _displayedFacilities = results;
+        _isLoading = false;
+      });
+
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              '${MedizyLocale.translateUI('Près de moi')} : ${results.length} ${MedizyLocale.translateUI('Structures de santé')}',
+            ),
+            duration: const Duration(seconds: 3),
+            backgroundColor: MedizyTheme.primary,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        );
+      }
     } else {
       setState(() => _isLoading = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Impossible d\'obtenir la position GPS actuelle. Vérifiez les autorisations de localisation.'),
-          backgroundColor: Colors.deepOrange,
-        ),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(MedizyLocale.translateUI('Impossible d\'obtenir la position GPS')),
+            backgroundColor: MedizyTheme.error,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          ),
+        );
+      }
     }
   }
 
-  /// Ouvre le sélecteur modal des 58 Wilayas
   Future<void> _openWilayaPicker() async {
     final selected = await WilayaPickerSheet.show(
       context,
@@ -384,31 +396,34 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     if (!mounted) return;
 
     if (selected != null) {
+      final communes = widget.searchService.getCommunesForWilaya(selected.code);
       setState(() {
         _selectedWilayaCode = selected.code;
         _selectedWilayaName = selected.name;
+        _selectedCommune = null;
+        _availableCommunes = communes;
         _showFavoritesOnly = false;
         _isLoading = true;
       });
 
-      // 1. Déplacer instantanément la caméra sur le chef-lieu de la wilaya (zoom local => viewport)
       final chefLieu = LatLng(selected.lat, selected.lon);
       _mapController.move(chefLieu, 12.0);
-
-      // 2. Filtrer la liste des établissements pour n'afficher que ceux de cette wilaya (viewport)
       _loadViewport();
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Wilaya : ${selected.code} - ${selected.name} (${_displayedFacilities.length} fiches chargées)',
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Wilaya : ${selected.code} - ${selected.name} (${_displayedFacilities.length} ${MedizyLocale.translateUI('Structures de santé')})',
+            ),
+            duration: const Duration(seconds: 3),
+            backgroundColor: MedizyTheme.primaryDark,
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           ),
-          duration: const Duration(seconds: 3),
-          backgroundColor: Colors.teal.shade900,
-        ),
-      );
+        );
+      }
     } else {
-      // Choix "Tout le pays" / Réinitialisation
       setState(() {
         _selectedWilayaCode = null;
         _selectedWilayaName = null;
@@ -421,500 +436,631 @@ class _OfflineMapViewState extends State<OfflineMapView> {
     }
   }
 
-  /// Pré-télécharge les tuiles OpenStreetMap de la wilaya active pour usage hors-ligne.
-  Future<void> _preloadWilayaTiles() async {
-    if (_selectedWilayaCode == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Veuillez sélectionner une wilaya d\'abord'),
-          duration: Duration(seconds: 2),
-          backgroundColor: Colors.orange,
-        ),
-      );
-      return;
-    }
-
-    setState(() => _isLoading = true);
-
-    try {
-      // Récupérer les coordonnées de la wilaya
-      final wilaya = WilayaInfo.findByCode(_selectedWilayaCode);
-      if (wilaya == null) return;
-
-      // Zone approximative de la wilaya (±1.5° autour du chef-lieu pour couverture large)
-      final margin = 1.5;
-      final count = await preloadTilesForBounds(
-        minLat: wilaya.lat - margin,
-        maxLat: wilaya.lat + margin,
-        minLon: wilaya.lon - margin,
-        maxLon: wilaya.lon + margin,
-        minZoom: 8,
-        maxZoom: 13,
-        urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-      );
-
-      if (mounted) {
-        setState(() => _isLoading = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('$count tuiles de la wilaya $_selectedWilayaName mises en cache hors-ligne'),
-            duration: const Duration(seconds: 3),
-            backgroundColor: Colors.teal.shade800,
-          ),
-        );
-      }
-    } catch (_) {
-      if (mounted) {
-        setState(() => _isLoading = false);
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Échec du pré-téléchargement des tuiles'),
-            duration: Duration(seconds: 3),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    }
-  }
-
   void _zoomToNational() {
     _mapController.move(widget.initialCenter, widget.initialZoom);
   }
 
-  SpecialtyMarkerTheme _getTheme(HealthFacility fac) {
-    return SpecialtyMarkerTheme.forCategory(
-      fac.categorie,
-      facilityName: fac.nom,
-      isEmergency: fac.isEmergencyOrOnDuty,
+  void _toggleLanguage() {
+    setState(() {
+      MedizyLocale.toggleLanguage();
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          MedizyLocale.isArabic
+              ? 'اللغة: العربية'
+              : 'Langue: Français',
+        ),
+        duration: const Duration(seconds: 2),
+        backgroundColor: MedizyTheme.accent,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      ),
     );
+  }
+
+  void _toggleMapLayer() {
+    setState(() {
+      _mapLayerMode = (_mapLayerMode + 1) % 2;
+    });
+    final names = [
+      MedizyLocale.t('Google Maps Plan', 'خرائط جوجل - خريطة'),
+      MedizyLocale.t('Google Maps Satellite', 'خرائط جوجل - قمر صناعي'),
+    ];
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('${MedizyLocale.translateUI('Fond de carte')} : ${names[_mapLayerMode]}'),
+          duration: const Duration(seconds: 1),
+          backgroundColor: MedizyTheme.primary,
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        ),
+      );
+    }
+  }
+
+  String _getCategoryDisplayName(String? slug) {
+    if (slug == null || slug.isEmpty) return '';
+    return MedizyLocale.translateCategory(slug);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        titleSpacing: 8,
-        title: InkWell(
-          onTap: _openWilayaPicker,
-          borderRadius: BorderRadius.circular(12),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.15),
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: Colors.white24),
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  _selectedWilayaCode != null ? Icons.location_on : Icons.public,
-                  size: 18,
-                  color: Colors.tealAccent.shade100,
-                ),
-                const SizedBox(width: 6),
-                Flexible(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            _selectedWilayaCode != null
-                                ? '$_selectedWilayaCode - ${_selectedWilayaName ?? "Wilaya"}'
-                                : _showFavoritesOnly
-                                    ? 'Mes Favoris'
-                                    : 'Toute l\'Algérie (36 417 fiches)',
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          const SizedBox(width: 4),
-                          const Icon(Icons.arrow_drop_down, size: 18, color: Colors.white70),
-                        ],
-                      ),
-                      Text(
-                        _selectedWilayaCode != null
-                            ? '${_displayedFacilities.length} fiches • Chef-lieu'
-                            : _showFavoritesOnly
-                                ? '${_displayedFacilities.length} favoris'
-                                : '${_displayedFacilities.length > 0 ? _displayedFacilities.length : 36417} fiches • 58 Wilayas',
-                        style: const TextStyle(fontSize: 11, color: Colors.white70),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-        backgroundColor: Colors.teal.shade800,
-        foregroundColor: Colors.white,
-        actions: [
-          // Bouton sélecteur de Wilaya
-          IconButton(
-            icon: const Icon(Icons.tune),
-            tooltip: 'Sélecteur de Wilaya (58)',
-            onPressed: _openWilayaPicker,
-          ),
-          // Bascule de style cartographique (Standard OSM / Humanitaire HOT OSM)
-          IconButton(
-            icon: Icon(_useAltOsmLayer ? Icons.map_outlined : Icons.layers_outlined),
-            tooltip: _useAltOsmLayer
-                ? 'Fond OSM Humanitaire actif (Cliquer pour Standard OSM)'
-                : 'Fond OSM Standard actif (Cliquer pour OSM Humanitaire)',
-            onPressed: () => setState(() => _useAltOsmLayer = !_useAltOsmLayer),
-          ),
-        ],
-      ),
-      body: Stack(
-        children: [
-          // 1. Vue Cartographique flutter_map avec canevas neutre clair médical hors-ligne
-          FlutterMap(
-            mapController: _mapController,
-            options: MapOptions(
-              initialCenter: widget.initialCenter,
-              initialZoom: widget.initialZoom,
-              minZoom: 4.5,
-              maxZoom: 18.0,
-              backgroundColor: const Color(0xFFEFF3F4), // Fond neutre clair médical hors-ligne
-            ),
-            children: [
-              // Tuiles cartographiques avec cache disque (hors-ligne) et fallback réseau standard OSM
-              TileLayer(
-                urlTemplate: _useAltOsmLayer
-                    ? 'https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'
-                    : 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                fallbackUrl: _useAltOsmLayer
-                    ? 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
-                    : 'https://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
-                userAgentPackageName: 'dz.sante.medizy.national',
-                additionalOptions: const {
-                  'User-Agent': 'Medizy-Algeria/1.0.19 (https://medizy.dz; contact@medizy.dz)',
-                },
-                tileProvider: NetworkTileProvider(
-                  headers: {
-                    'User-Agent': 'Medizy-Algeria/1.0.19 (dz.sante.medizy.national)',
-                  },
-                ),
-                errorTileCallback: (tile, error, stackTrace) {
-                  // Fallback automatique sans blocage ni filigrane API key
-                },
-                tileBuilder: (context, tileWidget, tile) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey.shade200, width: 0.1),
-                    ),
-                    child: tileWidget,
-                  );
-                },
-              ),
+    final isArabic = MedizyLocale.isArabic;
 
-              // Marqueur de la position de l'utilisateur
-              MarkerLayer(
-                markers: [
-                  Marker(
-                    point: _userPosition,
-                    width: 44,
-                    height: 44,
-                    child: Icon(
-                      Icons.my_location,
-                      color: _hasRealGps ? Colors.tealAccent.shade400 : Colors.blueGrey.shade400,
-                      size: 28,
+    return Directionality(
+      textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
+      child: Scaffold(
+        appBar: AppBar(
+          titleSpacing: 8,
+          title: InkWell(
+            onTap: _openWilayaPicker,
+            borderRadius: BorderRadius.circular(12),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.white24),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    _selectedWilayaCode != null ? Icons.location_on : Icons.public,
+                    size: 18,
+                    color: MedizyTheme.accentLight,
+                  ),
+                  const SizedBox(width: 6),
+                  Flexible(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                _selectedWilayaCode != null
+                                    ? '$_selectedWilayaCode - ${_selectedWilayaName ?? "Wilaya"}'
+                                    : _showFavoritesOnly
+                                        ? MedizyLocale.translateUI('Mes Favoris')
+                                        : MedizyLocale.t('Toute l\'Algérie (40 752 fiches)', 'كامل الجزائر (40 752 هيكل صحي)'),
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14, fontFamily: 'Cairo'),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            const Icon(Icons.arrow_drop_down, size: 18, color: Colors.white70),
+                          ],
+                        ),
+                        Text(
+                          _selectedWilayaCode != null
+                              ? '${_displayedFacilities.length} ${MedizyLocale.translateUI('fiches à proximité')} • ${MedizyLocale.translateUI('Chef-lieu')}'
+                              : _showFavoritesOnly
+                                  ? '${_displayedFacilities.length} ${MedizyLocale.translateUI('Mes favoris')}'
+                                  : '${_displayedFacilities.length > 0 ? _displayedFacilities.length : 40752} ${MedizyLocale.translateUI('Structures de santé')} • 58 ${MedizyLocale.translateUI('Wilayas')}',
+                          style: const TextStyle(fontSize: 11, color: Colors.white70, fontFamily: 'Cairo'),
+                        ),
+                      ],
                     ),
                   ),
                 ],
               ),
-
-              // Repères des établissements : agrégation par Wilaya (zoom dézoomé < 11)
-              // ou markers viewport (zoom local >= 11, max 150 marqueurs) pour 60 FPS
-              if (!_useViewportMode && _selectedWilayaCode == null && _currentQuery.isEmpty && !_showFavoritesOnly)
-                MarkerLayer(
-                  markers: _wilayaAggregates.map((agg) {
-                    final wilaya = WilayaInfo.findByCode(agg['code'] as String?);
-                    if (wilaya == null) return const Marker(point: LatLng(0, 0), width: 0, height: 0, child: SizedBox.shrink());
-                    final nb = agg['nb'] as int;
-                    return Marker(
-                      point: LatLng(wilaya.lat, wilaya.lon),
-                      width: 150,
-                      height: 38,
-                      child: GestureDetector(
-                        onTap: () {
-                          _mapController.move(LatLng(wilaya.lat, wilaya.lon), 13.0);
-                          setState(() {
-                            _selectedWilayaCode = wilaya.code;
-                            _selectedWilayaName = wilaya.name;
-                            _currentZoom = 13.0;
-                            _useViewportMode = true;
-                          });
-                          _applyFilters();
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                          decoration: BoxDecoration(
-                            color: Colors.teal.shade800,
-                            borderRadius: BorderRadius.circular(18),
-                            border: Border.all(color: Colors.white, width: 2),
-                            boxShadow: const [
-                              BoxShadow(color: Colors.black26, blurRadius: 6, offset: Offset(0, 3)),
-                            ],
-                          ),
-                          child: Center(
-                            child: Text(
-                              '${wilaya.name} : $nb',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                )
-              else
-                MarkerLayer(
-                  markers: _displayedFacilities.map((fac) {
-                    final theme = _getTheme(fac);
-
-                    return Marker(
-                      point: LatLng(fac.latitude, fac.longitude),
-                      width: 40,
-                      height: 40,
-                      child: GestureDetector(
-                        onTap: () => FacilityDetailSheet.show(context, fac, userPosition: _userPosition),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: theme.color,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.white, width: 2.2),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Colors.black26,
-                                blurRadius: 4,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: Icon(
-                            theme.icon,
-                            color: Colors.white,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
-            ],
-          ),
-
-          // 2. Barre de recherche et filtres de facettes (Wilaya, Catégorie, Urgence, Chifa, Favoris)
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: FacetFilterBar(
-              selectedWilayaCode: _selectedWilayaCode,
-              selectedWilayaName: _selectedWilayaName,
-              selectedCategory: _selectedCategory,
-              onlyEmergency: _onlyEmergency,
-              showChifa: _showChifaOnly,
-              showFavorites: _showFavoritesOnly,
-              onWilayaChanged: (w) {
-                setState(() {
-                  _selectedWilayaCode = w;
-                  _selectedWilayaName = WilayaInfo.findByCode(w)?.name;
-                  _showFavoritesOnly = false;
-                });
-                _applyFilters();
-              },
-              onWilayaPickerRequested: _openWilayaPicker,
-              onCategoryChanged: (cat) {
-                setState(() => _selectedCategory = cat);
-                _applyFilters();
-              },
-              onEmergencyToggled: (em) {
-                setState(() => _onlyEmergency = em);
-                _applyFilters();
-              },
-              onChifaToggled: (chifa) {
-                setState(() => _showChifaOnly = chifa);
-                _applyFilters();
-              },
-              onFavoritesToggled: (fav) {
-                setState(() => _showFavoritesOnly = fav);
-                if (fav) {
-                  _selectedWilayaCode = null;
-                  _selectedWilayaName = null;
-                  _currentQuery = '';
-                }
-                _applyFilters();
-              },
-              onSearchSubmitted: (q) {
-                setState(() => _currentQuery = q);
-                _applyFilters();
-              },
             ),
           ),
+          backgroundColor: MedizyTheme.primaryDark,
+          foregroundColor: Colors.white,
+          actions: [
+            // Bouton SOS
+            IconButton(
+              icon: const Icon(Icons.emergency_rounded, color: Colors.amberAccent, size: 26),
+              tooltip: MedizyLocale.t('SOS Urgences 24/7', 'طوارئ صحية 24/7'),
+              onPressed: () {
+                SosEmergencySheet.show(context, searchService: widget.searchService, userPosition: _userPosition);
+              },
+            ),
+            // Bouton sélecteur Wilaya
+            IconButton(
+              icon: const Icon(Icons.tune, size: 24),
+              tooltip: MedizyLocale.t('Sélecteur de Wilaya (58)', 'اختيار الولاية (58)'),
+              onPressed: _openWilayaPicker,
+            ),
+            // Bouton bascule langue FR/AR
+            IconButton(
+              icon: Icon(
+                isArabic ? Icons.translate_rounded : Icons.language_rounded,
+                color: MedizyTheme.accentLight,
+                size: 24,
+              ),
+              tooltip: isArabic
+                  ? MedizyLocale.t('Passer au français', 'التبديل إلى الفرنسية')
+                  : MedizyLocale.t('Passer en arabe', 'التبديل إلى العربية'),
+              onPressed: _toggleLanguage,
+            ),
+            // Sélecteur de style cartographique (Plan / Satellite)
+            IconButton(
+              icon: Icon(
+                _mapLayerMode == 0 ? Icons.map_rounded : Icons.satellite_alt_rounded,
+                color: MedizyTheme.accentLight,
+                size: 24,
+              ),
+              tooltip: _mapLayerMode == 0
+                  ? MedizyLocale.t('Google Maps Plan (cliquer pour Satellite)', 'خريطة جوجل (اضغط للقمر الصناعي)')
+                  : MedizyLocale.t('Google Maps Satellite (cliquer pour Plan)', 'قمر صناعي جوجل (اضغط للخريطة)'),
+              onPressed: _toggleMapLayer,
+            ),
+          ],
+        ),
+        body: Stack(
+          children: [
+            // 1. Carte Google Maps avec tuiles stylisées (POI médical uniquement)
+            FlutterMap(
+              mapController: _mapController,
+              options: MapOptions(
+                initialCenter: widget.initialCenter,
+                initialZoom: widget.initialZoom,
+                minZoom: 4.5,
+                maxZoom: 19.0,
+                backgroundColor: MedizyTheme.background,
+                onPositionChanged: (camera, hasGesture) {
+                  if ((camera.zoom ?? 11.0) >= 11.0) {
+                    _loadViewport();
+                  }
+                },
+              ),
+              children: [
+                // Tuiles Google Maps - Style médical (POI santé uniquement)
+                TileLayer(
+                  urlTemplate: _mapLayerMode == 0
+                      // Google Maps Plan (Roadmap) - POI médical uniquement
+                      ? 'https://mt1.google.com/vt/lyrs=m&apistyle=s.t:2|p.v:off,s.t:36|p.v:on&x={x}&y={y}&z={z}'
+                      // Google Maps Satellite/Hybrid - POI médical uniquement
+                      : 'https://mt1.google.com/vt/lyrs=y&apistyle=s.t:2|p.v:off,s.t:36|p.v:on&x={x}&y={y}&z={z}',
+                  fallbackUrl: _mapLayerMode == 0
+                      ? 'https://mt0.google.com/vt/lyrs=m&apistyle=s.t:2|p.v:off,s.t:36|p.v:on&x={x}&y={y}&z={z}'
+                      : 'https://mt0.google.com/vt/lyrs=y&apistyle=s.t:2|p.v:off,s.t:36|p.v:on&x={x}&y={y}&z={z}',
+                  userAgentPackageName: 'dz.sante.medizy.national',
+                  additionalOptions: const {
+                    'User-Agent': 'Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 Medizy/1.0',
+                  },
+                  tileProvider: NetworkTileProvider(
+                    headers: {
+                      'User-Agent': 'Mozilla/5.0 (Linux; Android 10) AppleWebKit/537.36 Medizy/1.0',
+                      'Referer': 'https://medizy.dz',
+                    },
+                  ),
+                  errorTileCallback: (tile, error, stackTrace) {
+                    // Silencieux - fallback automatique
+                  },
+                  tileBuilder: (context, tileWidget, tile) {
+                    return Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: MedizyTheme.outlineVariant, width: 0.2),
+                      ),
+                      child: tileWidget,
+                    );
+                  },
+                ),
 
-          // 2.5. Badge actif et dismissible de catégorie sélectionnée
-          if (_selectedCategory != null && _selectedCategory!.isNotEmpty)
+                // Marqueur position utilisateur (GPS)
+                MarkerLayer(
+                  markers: [
+                    Marker(
+                      point: _userPosition,
+                      width: 52,
+                      height: 52,
+                      child: MedizyUserLocationMarker(
+                        hasRealGps: _hasRealGps,
+                        size: 52,
+                      ),
+                    ),
+                  ],
+                ),
+
+                // Marqueurs : Agrégation Wilaya (zoom < 11, vue nationale)
+                if (!_useViewportMode && _selectedWilayaCode == null && _currentQuery.isEmpty && !_showFavoritesOnly)
+                  MarkerLayer(
+                    markers: _wilayaAggregates.map((agg) {
+                      final wilaya = WilayaInfo.findByCode(agg['code'] as String?);
+                      if (wilaya == null) return const Marker(point: LatLng(0, 0), width: 0, height: 0, child: SizedBox.shrink());
+                      final nb = agg['nb'] as int;
+                      final isSelected = _selectedWilayaCode == wilaya.code;
+                      return Marker(
+                        point: LatLng(wilaya.lat, wilaya.lon),
+                        width: 170,
+                        height: 48,
+                        child: MedizyClusterMarker(
+                          wilayaCode: wilaya.code,
+                          wilayaName: wilaya.name,
+                          count: nb,
+                          isSelected: isSelected,
+                          onTap: () {
+                            _mapController.move(LatLng(wilaya.lat, wilaya.lon), 13.0);
+                            setState(() {
+                              _selectedWilayaCode = wilaya.code;
+                              _selectedWilayaName = wilaya.name;
+                              _currentZoom = 13.0;
+                              _useViewportMode = true;
+                            });
+                            _applyFilters();
+                          },
+                        ),
+                      );
+                    }).toList(),
+                  )
+                else
+                  // Marqueurs : Structures de santé (viewport zoom >= 11)
+                  MarkerLayer(
+                    markers: _displayedFacilities.map((fac) {
+                      final isSelected = _selectedFacility?.id == fac.id;
+
+                      return Marker(
+                        point: LatLng(fac.latitude, fac.longitude),
+                        width: 52,
+                        height: 52,
+                        child: MedizyMapMarker(
+                          facility: fac,
+                          isSelected: isSelected,
+                          isEmergency: fac.isEmergencyOrOnDuty,
+                          activeFilterCategory: _selectedCategory,
+                          onTap: () {
+                            setState(() => _selectedFacility = fac);
+                            FacilityDetailSheet.show(context, fac, userPosition: _userPosition);
+                          },
+                          size: 48,
+                        ),
+                      );
+                    }).toList(),
+                  ),
+              ],
+            ),
+
+            // 2. Barre de recherche et filtres (FacetFilterBar)
             Positioned(
-              top: 108,
-              left: 16,
-              child: Material(
-                elevation: 4,
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
+              top: 0,
+              left: 0,
+              right: 0,
+              child: FacetFilterBar(
+                selectedWilayaCode: _selectedWilayaCode,
+                selectedWilayaName: _selectedWilayaName,
+                selectedCommune: _selectedCommune,
+                availableCommunes: _availableCommunes,
+                selectedCategory: _selectedCategory,
+                onlyEmergency: _onlyEmergency,
+                showChifa: _showChifaOnly,
+                showFavorites: _showFavoritesOnly,
+                isNearMeActive: _isNearMeMode,
+                onWilayaChanged: (w) {
+                  setState(() {
+                    _selectedWilayaCode = w;
+                    _selectedWilayaName = WilayaInfo.findByCode(w)?.name;
+                    _selectedCommune = null;
+                    _availableCommunes = w != null ? widget.searchService.getCommunesForWilaya(w) : [];
+                    _isNearMeMode = false;
+                    _showFavoritesOnly = false;
+                  });
+                  _applyFilters();
+                },
+                onWilayaPickerRequested: () {
+                  setState(() => _isNearMeMode = false);
+                  _openWilayaPicker();
+                },
+                onCommuneChanged: (com) {
+                  setState(() {
+                    _selectedCommune = com;
+                    _isNearMeMode = false;
+                  });
+                  _applyFilters();
+                  if (com != null && _displayedFacilities.isNotEmpty) {
+                    final f = _displayedFacilities.first;
+                    _mapController.move(LatLng(f.latitude, f.longitude), 13.5);
+                  }
+                },
+                onCategoryChanged: (cat) {
+                  setState(() => _selectedCategory = cat);
+                  _applyFilters();
+                },
+                onEmergencyToggled: (em) {
+                  setState(() => _onlyEmergency = em);
+                  _applyFilters();
+                },
+                onChifaToggled: (chifa) {
+                  setState(() => _showChifaOnly = chifa);
+                  _applyFilters();
+                },
+                onFavoritesToggled: (fav) {
+                  setState(() => _showFavoritesOnly = fav);
+                  if (fav) {
+                    _selectedWilayaCode = null;
+                    _selectedWilayaName = null;
+                    _selectedCommune = null;
+                    _currentQuery = '';
+                    _isNearMeMode = false;
+                  }
+                  _applyFilters();
+                },
+                onSearchSubmitted: (q) {
+                  setState(() => _currentQuery = q);
+                  _applyFilters();
+                },
+              ),
+            ),
+
+            // 2.2. Barre déroulante des Communes
+            if (_selectedWilayaCode != null && _availableCommunes.isNotEmpty)
+              Positioned(
+                top: 104,
+                left: 12,
+                right: 12,
+                child: Container(
+                  height: 42,
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: MedizyTheme.shadowS,
+                  ),
+                  child: ListView(
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
                     children: [
-                      Icon(Icons.filter_alt, size: 16, color: Colors.teal.shade800),
-                      const SizedBox(width: 6),
-                      Text(
-                        '${_getCategoryDisplayName(_selectedCategory)} (${_useViewportMode ? _displayedFacilities.length : _totalCategoryResults} résultats)',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.teal.shade900,
+                      Padding(
+                        padding: const EdgeInsets.only(right: 6),
+                        child: ChoiceChip(
+                          label: Text(
+                            MedizyLocale.t('Toutes communes', 'كل البلديات'),
+                            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold, fontFamily: 'Cairo'),
+                          ),
+                          selected: _selectedCommune == null,
+                          selectedColor: MedizyTheme.primary,
+                          labelStyle: TextStyle(
+                            color: _selectedCommune == null ? Colors.white : MedizyTheme.primaryDark,
+                            fontFamily: 'Cairo',
+                          ),
+                          onSelected: (selected) {
+                            if (selected) {
+                              setState(() => _selectedCommune = null);
+                              _applyFilters();
+                            }
+                          },
                         ),
                       ),
-                      const SizedBox(width: 8),
-                      GestureDetector(
-                        key: const Key('clear_category_chip_button'),
-                        onTap: () {
-                          setState(() => _selectedCategory = null);
-                          _applyFilters();
-                        },
-                        child: Icon(
-                          Icons.cancel,
-                          size: 18,
-                          color: Colors.grey.shade600,
-                        ),
-                      ),
+                      ..._availableCommunes.map((com) {
+                        final isSelected = _selectedCommune == com;
+                        return Padding(
+                          padding: const EdgeInsets.only(right: 6),
+                          child: ChoiceChip(
+                            label: Text(com, style: const TextStyle(fontSize: 12, fontFamily: 'Cairo')),
+                            selected: isSelected,
+                            selectedColor: MedizyTheme.primaryLight,
+                            labelStyle: TextStyle(
+                              color: isSelected ? Colors.white : MedizyTheme.textSecondary,
+                              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                              fontFamily: 'Cairo',
+                            ),
+                            onSelected: (selected) {
+                              setState(() => _selectedCommune = selected ? com : null);
+                              _applyFilters();
+                              if (selected && _displayedFacilities.isNotEmpty) {
+                                final f = _displayedFacilities.first;
+                                _mapController.move(LatLng(f.latitude, f.longitude), 13.5);
+                              }
+                            },
+                          ),
+                        );
+                      }).toList(),
                     ],
                   ),
                 ),
               ),
-            ),
 
-          // 3. Indicateur de chargement
-          if (_isLoading)
-            const Positioned(
-              top: 110,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Card(
+            // 2.5. Badge catégorie active
+            if (_selectedCategory != null && _selectedCategory!.isNotEmpty)
+              Positioned(
+                top: _selectedWilayaCode != null && _availableCommunes.isNotEmpty ? 152 : 108,
+                left: isArabic ? null : 16,
+                right: isArabic ? 16 : null,
+                child: Material(
                   elevation: 4,
+                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.white,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(
-                          width: 16,
-                          height: 16,
-                          child: CircularProgressIndicator(strokeWidth: 2),
+                        Icon(Icons.filter_alt, size: 16, color: MedizyTheme.primary),
+                        const SizedBox(width: 6),
+                        Text(
+                          '${_getCategoryDisplayName(_selectedCategory)} (${_useViewportMode ? _displayedFacilities.length : _totalCategoryResults} ${MedizyLocale.translateUI('résultats')})',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: MedizyTheme.primaryDark,
+                            fontFamily: 'Cairo',
+                          ),
                         ),
-                        SizedBox(width: 12),
-                        Text('Recherche locale SQLite en cours...'),
+                        const SizedBox(width: 8),
+                        GestureDetector(
+                          key: const Key('clear_category_chip_button'),
+                          onTap: () {
+                            setState(() => _selectedCategory = null);
+                            _applyFilters();
+                          },
+                          child: Icon(
+                            Icons.remove_circle_outline,
+                            size: 18,
+                            color: MedizyTheme.textTertiary,
+                          ),
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
-            ),
 
-          // 4. Boutons d'action flottants (National / Sélecteur Wilaya / Ma Position GPS Réelle / Précharger tuiles / Urgence)
-          Positioned(
-            bottom: 24,
-            right: 16,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // Bouton 1 : Vue Nationale (Tout le pays)
-                FloatingActionButton.small(
-                  heroTag: 'fab_national',
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.teal.shade800,
-                  tooltip: 'Vue Nationale (58 Wilayas)',
-                  onPressed: () {
-                    setState(() {
-                      _selectedWilayaCode = null;
-                      _selectedWilayaName = null;
-                      _showFavoritesOnly = false;
-                    });
-                    _zoomToNational();
-                    _applyFilters();
-                  },
-                  child: const Icon(Icons.public),
+            // 3. Indicateur de chargement
+            if (_isLoading)
+              Positioned(
+                top: 110,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: Card(
+                    elevation: 4,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2.5,
+                              valueColor: AlwaysStoppedAnimation<Color>(MedizyTheme.primary),
+                            ),
+                          ),
+                          const SizedBox(width: 14),
+                          Text(
+                            MedizyLocale.t('Recherche locale en cours...', 'جاري البحث المحلي...'),
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500,
+                              color: MedizyTheme.textPrimary,
+                              fontFamily: 'Cairo',
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                const SizedBox(height: 10),
-                // Bouton 2 : Sélecteur de Wilaya
-                FloatingActionButton.small(
-                  heroTag: 'fab_wilaya_selector',
-                  backgroundColor: Colors.white,
-                  foregroundColor: Colors.teal.shade800,
-                  tooltip: 'Choisir une Wilaya (58)',
-                  onPressed: _openWilayaPicker,
-                  child: const Icon(Icons.location_city),
-                ),
-                const SizedBox(height: 10),
-                // Bouton 3 : Ma Position Réelle GPS
-                FloatingActionButton(
-                  heroTag: 'fab_my_location',
-                  backgroundColor: _hasRealGps ? Colors.teal.shade700 : Colors.teal.shade900,
-                  foregroundColor: Colors.white,
-                  tooltip: 'Ma position GPS réelle',
-                  onPressed: _handleGpsLocationRequest,
-                  child: Icon(_hasRealGps ? Icons.my_location : Icons.location_searching),
-                ),
-                const SizedBox(height: 10),
-                // Bouton 4 : Pré-télécharger tuiles de la wilaya (hors-ligne)
-                FloatingActionButton.small(
-                  heroTag: 'fab_preload_tiles',
-                  backgroundColor: Colors.blue.shade700,
-                  foregroundColor: Colors.white,
-                  tooltip: 'Pré-télécharger carte wilaya (hors-ligne)',
-                  onPressed: _preloadWilayaTiles,
-                  child: const Icon(Icons.cloud_download),
-                ),
-                const SizedBox(height: 10),
-                // Bouton 5 : Urgence & Nuit 24/7 (rouge, filtre instantané urgences)
-                FloatingActionButton(
-                  heroTag: 'fab_emergency',
-                  backgroundColor: _onlyEmergency ? Colors.red.shade700 : Colors.red.shade900,
-                  foregroundColor: Colors.white,
-                  tooltip: 'Urgence & Garde 24/7',
-                  onPressed: () {
-                    setState(() => _onlyEmergency = !_onlyEmergency);
-                    _applyFilters();
-                  },
-                  child: Icon(_onlyEmergency ? Icons.emergency : Icons.warning_amber),
-                ),
-              ],
-            ),
-          ),
+              ),
 
-          // 5. Bouton d'Urgence Immédiate "SOS Santé 24/7" (Toujours accessible en bas à gauche)
-          Positioned(
-            bottom: 24,
-            left: 16,
-            child: SosEmergencyButton(
-              searchService: widget.searchService,
-              userPosition: _userPosition,
+            // 4. Boutons d'action flottants (FAB column)
+            Positioned(
+              bottom: 24,
+              right: isArabic ? null : 16,
+              left: isArabic ? 16 : null,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Vue Nationale
+                  _MedizyFAB(
+                    heroTag: 'fab_national',
+                    icon: Icons.public_rounded,
+                    backgroundColor: Colors.white,
+                    foregroundColor: MedizyTheme.primary,
+                    tooltip: MedizyLocale.t('Vue Nationale (58 Wilayas)', 'عرض وطني (58 ولاية)'),
+                    onPressed: () {
+                      setState(() {
+                        _selectedWilayaCode = null;
+                        _selectedWilayaName = null;
+                        _showFavoritesOnly = false;
+                      });
+                      _zoomToNational();
+                      _applyFilters();
+                    },
+                  ),
+                  const SizedBox(height: 10),
+                  // Sélecteur Wilaya
+                  _MedizyFAB(
+                    heroTag: 'fab_wilaya_selector',
+                    icon: Icons.location_city_rounded,
+                    backgroundColor: Colors.white,
+                    foregroundColor: MedizyTheme.primary,
+                    tooltip: MedizyLocale.t('Choisir une Wilaya (58)', 'اختيار ولاية (58)'),
+                    onPressed: _openWilayaPicker,
+                  ),
+                  const SizedBox(height: 10),
+                  // Ma Position GPS
+                  _MedizyFAB(
+                    heroTag: 'fab_my_location',
+                    icon: _hasRealGps ? Icons.my_location_rounded : Icons.location_searching_rounded,
+                    backgroundColor: _hasRealGps ? MedizyTheme.primary : MedizyTheme.primaryDark,
+                    foregroundColor: Colors.white,
+                    tooltip: MedizyLocale.t('Ma position GPS réelle', 'موقعي الحقيقي GPS'),
+                    onPressed: _handleGpsLocationRequest,
+                    isLarge: true,
+                  ),
+                  const SizedBox(height: 10),
+                  // Urgence 24/7
+                  _MedizyFAB(
+                    heroTag: 'fab_emergency',
+                    icon: _onlyEmergency ? Icons.emergency_rounded : Icons.warning_amber_rounded,
+                    backgroundColor: _onlyEmergency ? MedizyTheme.error : MedizyTheme.error.withValues(alpha: 0.8),
+                    foregroundColor: Colors.white,
+                    tooltip: MedizyLocale.t('Urgence & Garde 24/7', 'طوارئ ومناوبة 24/7'),
+                    onPressed: () {
+                      setState(() => _onlyEmergency = !_onlyEmergency);
+                      _applyFilters();
+                    },
+                    isLarge: true,
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
+    );
+  }
+}
+
+/// Bouton FAB stylisé Medizy
+class _MedizyFAB extends StatelessWidget {
+  final String heroTag;
+  final IconData icon;
+  final Color backgroundColor;
+  final Color foregroundColor;
+  final String tooltip;
+  final VoidCallback onPressed;
+  final bool isLarge;
+
+  const _MedizyFAB({
+    required this.heroTag,
+    required this.icon,
+    required this.backgroundColor,
+    required this.foregroundColor,
+    required this.tooltip,
+    required this.onPressed,
+    this.isLarge = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: tooltip,
+      child: isLarge
+          ? FloatingActionButton(
+              heroTag: heroTag,
+              backgroundColor: backgroundColor,
+              foregroundColor: foregroundColor,
+              elevation: 6,
+              focusElevation: 8,
+              hoverElevation: 8,
+              highlightElevation: 10,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+              onPressed: onPressed,
+              child: Icon(icon, size: 26),
+            )
+          : FloatingActionButton.small(
+              heroTag: heroTag,
+              backgroundColor: backgroundColor,
+              foregroundColor: foregroundColor,
+              elevation: 4,
+              focusElevation: 6,
+              hoverElevation: 6,
+              highlightElevation: 8,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              onPressed: onPressed,
+              child: Icon(icon, size: 20),
+            ),
     );
   }
 }

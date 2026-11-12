@@ -1,0 +1,25 @@
+================================================================================
+RAPPORT D'ALIGNEMENT - WILAYA 54 - Touggourt
+Nom arabe: تقرت
+Date: 2026-11-11 03:48:13
+================================================================================
+
+RÉSUMÉ:
+  - Communes traitées: 2
+  - Établissements total: 0
+  - Coordonnées vérifiées: 0
+  - Écarts détectés: 0
+  - Taux de validation: 0.0%
+
+================================================================================
+DÉTAIL PAR COMMUNE:
+================================================================================
+
+
+📍 COMMUNE: Ain Guezzam (ar: عين قزام)
+   Établissements: 0 | Vérifiés: 0 | Écarts: 0
+   ✅ Toutes coordonnées cohérentes
+
+📍 COMMUNE: Tin Zouatine (ar: تين زواتين)
+   Établissements: 0 | Vérifiés: 0 | Écarts: 0
+   ✅ Toutes coordonnées cohérentes

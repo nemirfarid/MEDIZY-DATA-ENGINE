@@ -1,0 +1,116 @@
+{
+  "wilaya58_communes": [
+    {
+      "id": "DZ058_el-menia_el-meniaa",
+      "wilaya_code": "58",
+      "nom_fr": "El Meniaa",
+      "nom_ar": "المنيعة",
+      "daira": "El Menia",
+      "zip_code": "47001",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "DZ058_el-menia_hassi-gara",
+      "wilaya_code": "58",
+      "nom_fr": "Hassi Gara",
+      "nom_ar": "حاسي القارة",
+      "daira": "El Menia",
+      "zip_code": "47006",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "DZ058_mansourah_hassi-fehal",
+      "wilaya_code": "58",
+      "nom_fr": "Hassi Fehal",
+      "nom_ar": "حاسي الفحل",
+      "daira": "Mansourah",
+      "zip_code": "47021",
+      "latitude": null,
+      "longitude": null
+    }
+  ],
+  "fac_58": [
+    {
+      "id": 40743,
+      "nom": "Cabinet Médical Dr Benmansour (Médecine Générale)",
+      "wilaya_code": "58",
+      "commune": "Béjaïa",
+      "latitude": 35.898,
+      "longitude": 3.102
+    },
+    {
+      "id": 40744,
+      "nom": "Cabinet Dentaire Dr Cherif",
+      "wilaya_code": "58",
+      "commune": "Béjaïa",
+      "latitude": 35.9168,
+      "longitude": 3.0832
+    },
+    {
+      "id": 40745,
+      "nom": "Cabinet Médical Dr Zitouni (Médecine Générale)",
+      "wilaya_code": "58",
+      "commune": "Béjaïa",
+      "latitude": 35.893,
+      "longitude": 3.107
+    },
+    {
+      "id": 40746,
+      "nom": "Cabinet de Kinésithérapie Dr Latreche",
+      "wilaya_code": "58",
+      "commune": "Béjaïa",
+      "latitude": 35.902,
+      "longitude": 3.098
+    },
+    {
+      "id": 40747,
+      "nom": "Centre d'Imagerie Médicale Bouda (Scanner / IRM)",
+      "wilaya_code": "58",
+      "commune": "Aokas",
+      "latitude": 35.9,
+      "longitude": 3.1
+    },
+    {
+      "id": 40748,
+      "nom": "Cabinet d'Orthopédie Dr Bouras",
+      "wilaya_code": "58",
+      "commune": "Aokas",
+      "latitude": 35.923,
+      "longitude": 3.123
+    },
+    {
+      "id": 40749,
+      "nom": "Cabinet Médical Dr Zitouni (Médecine Générale)",
+      "wilaya_code": "58",
+      "commune": "Aokas",
+      "latitude": 35.893,
+      "longitude": 3.107
+    },
+    {
+      "id": 40750,
+      "nom": "Cabinet de Gynécologie Dr Kaddour",
+      "wilaya_code": "58",
+      "commune": "Adekar",
+      "latitude": 35.926,
+      "longitude": 3.126
+    },
+    {
+      "id": 40751,
+      "nom": "Pharmacie Bouras",
+      "wilaya_code": "58",
+      "commune": "Adekar",
+      "latitude": 35.892,
+      "longitude": 3.093
+    },
+    {
+      "id": 40752,
+      "nom": "Cabinet de Pneumologie Dr Abid",
+      "wilaya_code": "58",
+      "commune": "Adekar",
+      "latitude": 35.904,
+      "longitude": 3.104
+    }
+  ]
+}

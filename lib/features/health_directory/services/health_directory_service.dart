@@ -77,9 +77,9 @@ class HealthDirectoryService implements IHealthDirectoryService {
       final ftsMatch = hasFtsQuery ? formatFtsQuery(queryText) : '';
 
       if (hasFtsQuery && ftsMatch.isNotEmpty) {
-        fromSql = 'facilities f JOIN facilities_fts fts ON fts.rowid = f.id';
-        whereClauses.add('facilities_fts MATCH ?');
-        params.add(ftsMatch);
+        final cleanQuery = '%$queryText%';
+        whereClauses.add('(f.nom LIKE ? OR f.commune LIKE ? OR f.adresse LIKE ? OR f.wilaya LIKE ?)');
+        params.addAll([cleanQuery, cleanQuery, cleanQuery, cleanQuery]);
       } else if (hasFtsQuery) {
         final cleanQuery = '%$queryText%';
         whereClauses.add('(f.nom LIKE ? OR f.commune LIKE ? OR f.adresse LIKE ?)');
@@ -410,8 +410,16 @@ class HealthDirectoryService implements IHealthDirectoryService {
         break;
       case 'généraliste':
       case 'generaliste':
-        whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
-        params.addAll(['généraliste', '%généralist%', '%generalist%', '%cabinet médical%', '%médecin%']);
+        whereClauses.add('''
+          (
+            (LOWER($col) = 'généraliste' OR LOWER($col) LIKE '%généralist%' OR LOWER($col) LIKE '%generalist%' OR LOWER($col) = 'medecin' OR LOWER($col) = 'médecin')
+            AND LOWER($col) NOT LIKE '%pédiatr%'
+            AND LOWER($col) NOT LIKE '%dentist%'
+            AND LOWER($col) NOT LIKE '%cardio%'
+            AND LOWER($col) NOT LIKE '%gynéco%'
+            AND LOWER($col) NOT LIKE '%ophtalm%'
+          )
+        ''');
         break;
       case 'clinique':
         whereClauses.add('(LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');

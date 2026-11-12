@@ -1,0 +1,130 @@
+{
+  "timestamp": "2026-11-12T12:00:39.107148",
+  "total_facilities": 40752,
+  "repaired": 9540,
+  "unchanged": 30533,
+  "no_match": 679,
+  "dry_run": false,
+  "sample": [
+    {
+      "id": 164,
+      "wilaya_code": "01",
+      "old_commune": "Charouine",
+      "new_commune": "Aoulef",
+      "distance": 6,
+      "old_lat": 35.9,
+      "old_lon": 3.1,
+      "new_lat": 26.624,
+      "new_lon": 0.862,
+      "coords_changed": true
+    },
+    {
+      "id": 165,
+      "wilaya_code": "01",
+      "old_commune": "Charouine",
+      "new_commune": "Aoulef",
+      "distance": 6,
+      "old_lat": 35.9,
+      "old_lon": 3.1,
+      "new_lat": 26.624,
+      "new_lon": 0.862,
+      "coords_changed": true
+    },
+    {
+      "id": 166,
+      "wilaya_code": "01",
+      "old_commune": "Charouine",
+      "new_commune": "Aoulef",
+      "distance": 6,
+      "old_lat": 35.9,
+      "old_lon": 3.1,
+      "new_lat": 26.624,
+      "new_lon": 0.862,
+      "coords_changed": true
+    },
+    {
+      "id": 167,
+      "wilaya_code": "01",
+      "old_commune": "Charouine",
+      "new_commune": "Aoulef",
+      "distance": 6,
+      "old_lat": 35.9,
+      "old_lon": 3.1,
+      "new_lat": 26.624,
+      "new_lon": 0.862,
+      "coords_changed": true
+    },
+    {
+      "id": 168,
+      "wilaya_code": "01",
+      "old_commune": "Charouine",
+      "new_commune": "Aoulef",
+      "distance": 6,
+      "old_lat": 35.9,
+      "old_lon": 3.1,
+      "new_lat": 26.624,
+      "new_lon": 0.862,
+      "coords_changed": true
+    },
+    {
+      "id": 169,
+      "wilaya_code": "01",
+      "old_commune": "Charouine",
+      "new_commune": "Aoulef",
+      "distance": 6,
+      "old_lat": 35.902,
+      "old_lon": 3.098,
+      "new_lat": 26.624,
+      "new_lon": 0.862,
+      "coords_changed": true
+    },
+    {
+      "id": 170,
+      "wilaya_code": "01",
+      "old_commune": "Charouine",
+      "new_commune": "Aoulef",
+      "distance": 6,
+      "old_lat": 35.897,
+      "old_lon": 3.103,
+      "new_lat": 26.624,
+      "new_lon": 0.862,
+      "coords_changed": true
+    },
+    {
+      "id": 171,
+      "wilaya_code": "01",
+      "old_commune": "Charouine",
+      "new_commune": "Aoulef",
+      "distance": 6,
+      "old_lat": 35.901,
+      "old_lon": 3.101,
+      "new_lat": 26.624,
+      "new_lon": 0.862,
+      "coords_changed": true
+    },
+    {
+      "id": 172,
+      "wilaya_code": "01",
+      "old_commune": "Charouine",
+      "new_commune": "Aoulef",
+      "distance": 6,
+      "old_lat": 35.902,
+      "old_lon": 3.102,
+      "new_lat": 26.624,
+      "new_lon": 0.862,
+      "coords_changed": true
+    },
+    {
+      "id": 173,
+      "wilaya_code": "01",
+      "old_commune": "Charouine",
+      "new_commune": "Aoulef",
+      "distance": 6,
+      "old_lat": 35.903,
+      "old_lon": 3.103,
+      "new_lat": 26.624,
+      "new_lon": 0.862,
+      "coords_changed": true
+    }
+  ]
+}

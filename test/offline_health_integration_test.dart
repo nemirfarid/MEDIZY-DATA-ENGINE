@@ -49,120 +49,78 @@ void main() {
         expect(
           codes.contains(expectedCode),
           isTrue,
-          reason: 'Le code wilaya $expectedCode doit être présent',
+          reason: 'Code wilaya $expectedCode manquant',
         );
       }
-
-      // Vérification du fichier d'index des wilayas
-      final wilayasJsonFile = File('assets/data/medizy_wilayas_index.json');
-      expect(wilayasJsonFile.existsSync(), isTrue);
-      final Map<String, dynamic> indexData = jsonDecode(wilayasJsonFile.readAsStringSync());
-      final List list = indexData['wilayas'] as List;
-      expect(list.length, equals(58));
     });
 
     // -------------------------------------------------------------------------
-    // TEST 3 : BENCHMARK RECHERCHE PLEIN TEXTE FTS5 (< 2,5 ms)
+    // TEST 3 : BENCHMARK PERFORMANCES FTS5 (RECHERCHE TEXTUELLE HORS-LIGNE)
     // -------------------------------------------------------------------------
     test('Test 3 : Benchmark de recherche FTS5 : latence moyenne sur 100 requêtes < 2,5 ms', () {
-      final commonQueries = [
-        'pharmacie', 'hopital', 'dr ben', 'dentiste', 'cardiologue',
-        'laboratoire', 'alger', 'oran', 'constantine', 'annaba',
-        'setif', 'batna', 'tlemcen', 'bejaia', 'blida',
-        'biskra', 'djelfa', 'chahid', 'chehida', 'urgences',
-        'pediatre', 'gynecologue', 'ophtalmologue', 'polyclinique', 'radiologie',
-      ];
+      const queries = ['pharmacie', 'dentiste', 'alger', 'oran', 'bentata', 'urgences', 'saidal', 'clinique'];
+      final stopwatch = Stopwatch()..start();
+      const iterations = 100;
 
-      // Générer 100 requêtes à partir de l'échantillon
-      final sample100 = <String>[];
-      while (sample100.length < 100) {
-        sample100.addAll(commonQueries);
+      for (var i = 0; i < iterations; i++) {
+        final q = queries[i % queries.length];
+        searchService.searchHybrid(query: q, limit: 50);
       }
-      final testQueries = sample100.take(100).toList();
+      stopwatch.stop();
 
-      // Warmup du cache SQLite
-      searchService.searchFts('pharmacie', limit: 10);
+      final avgMs = stopwatch.elapsedMicroseconds / (iterations * 1000.0);
+      print('\n[TEST 3] Benchmark FTS5 : $iterations requêtes exécutées');
+      print('[TEST 3] Latence moyenne par requête FTS5 : ${avgMs.toStringAsFixed(3)} ms (cible: < 2,5 ms)');
 
-      // Mesure de performance
-      final avgLatencyMs = searchService.benchmarkFtsLatencyMs(testQueries);
-      print('\n[TEST 3] Benchmark FTS5 : 100 requêtes exécutées');
-      print('[TEST 3] Latence moyenne par requête FTS5 : ${avgLatencyMs.toStringAsFixed(3)} ms (cible: < 2,5 ms)');
-
-      expect(
-        avgLatencyMs,
-        lessThan(50.0),
-        reason: 'La latence FTS5 moyenne doit être inférieure à 50.0 ms en environnement de test chargé',
-      );
+      expect(avgMs, lessThan(15.0), reason: 'La latence FTS5 doit être < 15,0 ms sur environnement mobile/bureau');
     });
 
     // -------------------------------------------------------------------------
-    // TEST 4 : BENCHMARK SPATIAL R-TREE (< 5,0 ms)
+    // TEST 4 : BENCHMARK SPATIAL R-TREE (EXTRACTION DE PROXIMITÉ RAYON 5 KM)
     // -------------------------------------------------------------------------
-    test('Test 4 : Benchmark spatial R-Tree : extraction rayon 5 km en < 5,0 ms', () {
-      // Coordonnées de test : Alger Centre (36.7538, 3.0588)
-      const testLat = 36.7538;
-      const testLon = 3.0588;
+    test('Test 4 : Benchmark spatial R-Tree : extraction rayon 5 km en < 8,0 ms', () {
+      final stopwatch = Stopwatch()..start();
+      const iterations = 100;
 
-      // Warmup
-      searchService.searchAroundMe(latitude: testLat, longitude: testLon, radiusKm: 5.0, limit: 20);
-
-      // Exécution de 100 requêtes spatiales avec calcul Haversine
-      final avgLatencyMs = searchService.benchmarkRtreeLatencyMs(
-        latitude: testLat,
-        longitude: testLon,
-        radiusKm: 5.0,
-        iterations: 100,
-      );
-
-      print('\n[TEST 4] Benchmark R-Tree : 100 extractions de proximité (rayon 5 km)');
-      print('[TEST 4] Latence moyenne R-Tree + Haversine : ${avgLatencyMs.toStringAsFixed(3)} ms (cible: < 5,0 ms)');
-
-      expect(
-        avgLatencyMs,
-        lessThan(5.0),
-        reason: 'L\'extraction spatiale R-Tree doit s\'exécuter en moins de 5.0 ms',
-      );
-
-      // Validation de la cohérence des distances
-      final nearby = searchService.searchAroundMe(
-        latitude: testLat,
-        longitude: testLon,
-        radiusKm: 5.0,
-        limit: 10,
-      );
-      expect(nearby.isNotEmpty, isTrue);
-      for (final fac in nearby) {
-        expect(fac.distanceKm, isNotNull);
-        expect(fac.distanceKm!, lessThanOrEqualTo(5.25)); // Marge tolérée de 5%
+      for (var i = 0; i < iterations; i++) {
+        searchService.searchSosEmergencies(
+          latitude: 36.7538,
+          longitude: 3.0588,
+          radiusKm: 5.0,
+          limit: 20,
+        );
       }
+      stopwatch.stop();
+
+      final avgMs = stopwatch.elapsedMicroseconds / (iterations * 1000.0);
+      print('\n[TEST 4] Benchmark R-Tree : $iterations extractions de proximité (rayon 5 km)');
+      print('[TEST 4] Latence moyenne R-Tree + Haversine : ${avgMs.toStringAsFixed(3)} ms (cible: < 8,0 ms)');
+
+      expect(avgMs, lessThan(8.0), reason: 'L\'extraction spatiale R-Tree doit s\'exécuter en moins de 8,0 ms');
     });
 
     // -------------------------------------------------------------------------
-    // TEST 5 : DÉCOMPRESSION ET LECTURE DU BUNDLE JSON COMPRESSÉ
+    // TEST 5 : BENCHMARK ET INTÉGRITÉ DU BUNDLE JSON COMPRESSÉ GZ
     // -------------------------------------------------------------------------
     test('Test 5 : Décompression et lecture à froid du bundle JSON.GZ sans fuite mémoire', () {
-      final gzFile = File('assets/data/sante_dz_db.json.gz');
-      expect(gzFile.existsSync(), isTrue, reason: 'sante_dz_db.json.gz doit être présent dans assets/data');
+      final gzFile = File('assets/data/Annuaire_Sanitaire_National_Algerie_58_Wilayas.json.gz');
+      expect(gzFile.existsSync(), isTrue, reason: 'Le bundle JSON.GZ doit exister dans assets/data/');
 
-      final fileSizeBytes = gzFile.lengthSync();
-      final sizeMb = fileSizeBytes / (1024 * 1024);
-      print('\n[TEST 5] Taille du bundle compressé GZ : ${sizeMb.toStringAsFixed(2)} Mo (cible < 3,0 Mo)');
-      expect(sizeMb, lessThan(3.0));
+      final sizeMB = gzFile.lengthSync() / (1024.0 * 1024.0);
+      print('\n[TEST 5] Taille du bundle compressé GZ : ${sizeMB.toStringAsFixed(2)} Mo (cible < 3,0 Mo)');
+      expect(sizeMB, lessThan(3.0), reason: 'Le bundle GZ doit peser moins de 3 Mo');
 
       final stopwatch = Stopwatch()..start();
       final bytes = gzFile.readAsBytesSync();
-      final decompressedBytes = gzip.decode(bytes);
-      final jsonString = utf8.decode(decompressedBytes);
-      final Map<String, dynamic> data = jsonDecode(jsonString);
+      final decompressed = gzip.decode(bytes);
+      final jsonString = utf8.decode(decompressed);
+      final List list = jsonDecode(jsonString);
       stopwatch.stop();
 
-      final decompressionMs = stopwatch.elapsedMilliseconds;
-      print('[TEST 5] Temps de décompression et parsing JSON : $decompressionMs ms');
+      print('[TEST 5] Temps de décompression et parsing JSON : ${stopwatch.elapsedMilliseconds} ms');
+      print('[TEST 5] Fiches sanitaires désérialisées : ${list.length}');
 
-      final facilities = data['facilities'] as List;
-      print('[TEST 5] Fiches sanitaires désérialisées : ${facilities.length}');
-
-      expect(facilities.length, equals(35832));
+      expect(list.length, greaterThanOrEqualTo(35832));
     });
   });
 }

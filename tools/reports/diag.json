@@ -1,0 +1,207 @@
+{
+  "communes_01": [
+    {
+      "id": "DZ001_aoulef_timekten",
+      "wilaya_code": "01",
+      "nom_fr": "Timekten",
+      "nom_ar": "تيمقتن",
+      "daira": "Aoulef",
+      "zip_code": "01041",
+      "latitude": 26.826,
+      "longitude": 1.16
+    },
+    {
+      "id": "DZ001_adrar_bouda",
+      "wilaya_code": "01",
+      "nom_fr": "Bouda",
+      "nom_ar": "بودة",
+      "daira": "Adrar",
+      "zip_code": "01023",
+      "latitude": 28.017,
+      "longitude": -1.188
+    },
+    {
+      "id": "DZ001_adrar_ouled-ahmed-timmi",
+      "wilaya_code": "01",
+      "nom_fr": "Ouled Ahmed Timmi",
+      "nom_ar": "أولاد أحمد تيمي",
+      "daira": "Adrar",
+      "zip_code": "01025",
+      "latitude": 27.98,
+      "longitude": -0.702
+    },
+    {
+      "id": "DZ001_adrar_adrar",
+      "wilaya_code": "01",
+      "nom_fr": "Adrar",
+      "nom_ar": "أدرار",
+      "daira": "Adrar",
+      "zip_code": "01000",
+      "latitude": 27.942,
+      "longitude": -0.215
+    },
+    {
+      "id": "DZ001_fenoughil_fenoughil",
+      "wilaya_code": "01",
+      "nom_fr": "Fenoughil",
+      "nom_ar": "فنوغيل",
+      "daira": "Fenoughil",
+      "zip_code": "01008",
+      "latitude": 27.611,
+      "longitude": -1.242
+    },
+    {
+      "id": "DZ001_zaouiat-kounta_in-zghmir",
+      "wilaya_code": "01",
+      "nom_fr": "In Zghmir",
+      "nom_ar": "إن زغمير",
+      "daira": "Zaouiat Kounta",
+      "zip_code": "01047",
+      "latitude": 27.241,
+      "longitude": -1.332
+    },
+    {
+      "id": "DZ001_reggane_reggane",
+      "wilaya_code": "01",
+      "nom_fr": "Reggane",
+      "nom_ar": "رقان",
+      "daira": "Reggane",
+      "zip_code": "01004",
+      "latitude": 25.383,
+      "longitude": -2.03
+    },
+    {
+      "id": "DZ001_reggane_sali",
+      "wilaya_code": "01",
+      "nom_fr": "Sali",
+      "nom_ar": "سالي",
+      "daira": "Reggane",
+      "zip_code": "01009",
+      "latitude": 26.74,
+      "longitude": -2.039
+    },
+    {
+      "id": "DZ001_tsabit_sebaa",
+      "wilaya_code": "01",
+      "nom_fr": "Sebaa",
+      "nom_ar": "السبع",
+      "daira": "Tsabit",
+      "zip_code": "01022",
+      "latitude": 28.255,
+      "longitude": -0.038
+    },
+    {
+      "id": "DZ001_tsabit_tsabit",
+      "wilaya_code": "01",
+      "nom_fr": "Tsabit",
+      "nom_ar": "تسابيت",
+      "daira": "Tsabit",
+      "zip_code": "01011",
+      "latitude": 28.679,
+      "longitude": -1.284
+    },
+    {
+      "id": "DZ001_fenoughil_tamest",
+      "wilaya_code": "01",
+      "nom_fr": "Tamest",
+      "nom_ar": "تامست",
+      "daira": "Fenoughil",
+      "zip_code": "01020",
+      "latitude": 27.448,
+      "longitude": -1.409
+    },
+    {
+      "id": "DZ001_fenoughil_tamantit",
+      "wilaya_code": "01",
+      "nom_fr": "Tamantit",
+      "nom_ar": "تامنطيط",
+      "daira": "Fenoughil",
+      "zip_code": "01021",
+      "latitude": 27.529,
+      "longitude": -1.325
+    },
+    {
+      "id": "DZ001_aoulef_tit",
+      "wilaya_code": "01",
+      "nom_fr": "Tit",
+      "nom_ar": "تيت",
+      "daira": "Aoulef",
+      "zip_code": "01031",
+      "latitude": 27.029,
+      "longitude": 1.458
+    },
+    {
+      "id": "DZ001_zaouiat-kounta_zaouiet-kounta",
+      "wilaya_code": "01",
+      "nom_fr": "Zaouiet Kounta",
+      "nom_ar": "زاوية كنتة",
+      "daira": "Zaouiat Kounta",
+      "zip_code": "01007",
+      "latitude": 27.241,
+      "longitude": -1.332
+    },
+    {
+      "id": "DZ001_aoulef_akabli",
+      "wilaya_code": "01",
+      "nom_fr": "Akabli",
+      "nom_ar": "اقبلي",
+      "daira": "Aoulef",
+      "zip_code": "01044",
+      "latitude": 26.826,
+      "longitude": 1.16
+    },
+    {
+      "id": "DZ001_aoulef_aoulef",
+      "wilaya_code": "01",
+      "nom_fr": "Aoulef",
+      "nom_ar": "أولف",
+      "daira": "Aoulef",
+      "zip_code": "01003",
+      "latitude": 26.624,
+      "longitude": 0.862
+    }
+  ],
+  "fac_stats_01_adrar": {
+    "n": 93,
+    "mnlat": 35.882,
+    "mxlat": 35.93,
+    "mnlon": 3.079,
+    "mxlon": 3.13
+  },
+  "communes_null": 42,
+  "communes_total": 1541,
+  "fac_null": 0,
+  "fac_total": 40752,
+  "fac_sample_01": [
+    {
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "latitude": 35.9,
+      "longitude": 3.1
+    },
+    {
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "latitude": 35.9,
+      "longitude": 3.1
+    },
+    {
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "latitude": 35.9,
+      "longitude": 3.1
+    },
+    {
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "latitude": 35.9,
+      "longitude": 3.1
+    },
+    {
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "latitude": 35.9,
+      "longitude": 3.1
+    }
+  ]
+}

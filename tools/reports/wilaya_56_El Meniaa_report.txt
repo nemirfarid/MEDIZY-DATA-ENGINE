@@ -1,0 +1,25 @@
+================================================================================
+RAPPORT D'ALIGNEMENT - WILAYA 56 - El Meniaa
+Nom arabe: المنيعة
+Date: 2026-11-11 03:48:14
+================================================================================
+
+RÉSUMÉ:
+  - Communes traitées: 2
+  - Établissements total: 0
+  - Coordonnées vérifiées: 0
+  - Écarts détectés: 0
+  - Taux de validation: 0.0%
+
+================================================================================
+DÉTAIL PAR COMMUNE:
+================================================================================
+
+
+📍 COMMUNE: Bordj El Haouass (ar: برج الحواس)
+   Établissements: 0 | Vérifiés: 0 | Écarts: 0
+   ✅ Toutes coordonnées cohérentes
+
+📍 COMMUNE: Djanet (ar: جانت)
+   Établissements: 0 | Vérifiés: 0 | Écarts: 0
+   ✅ Toutes coordonnées cohérentes

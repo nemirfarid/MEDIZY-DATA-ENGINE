@@ -1,0 +1,10 @@
+{
+  "total_facilities": 40752,
+  "total_communes": 1543,
+  "facilities_null_coords": 0,
+  "communes_null_coords": 42,
+  "facilities_matched": 40748,
+  "facilities_matched_commune": 42976,
+  "facilities_within_10km": 40170,
+  "distinct_coords": 677
+}

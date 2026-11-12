@@ -166,7 +166,7 @@ class _OfflineCompassSheetState extends State<OfflineCompassSheet> {
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
       ),
-      padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
+      padding: EdgeInsets.fromLTRB(20, 12, 20, 24),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -185,7 +185,7 @@ class _OfflineCompassSheetState extends State<OfflineCompassSheet> {
           Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: Colors.teal.shade50,
                   shape: BoxShape.circle,
@@ -211,7 +211,7 @@ class _OfflineCompassSheetState extends State<OfflineCompassSheet> {
                 ),
               ),
               IconButton(
-                icon: const Icon(Icons.close),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: () => Navigator.of(context).pop(),
               ),
             ],
@@ -220,7 +220,7 @@ class _OfflineCompassSheetState extends State<OfflineCompassSheet> {
 
           // 1. BOUSSOLE HORS-LIGNE AUTONOME
           Container(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(16),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 colors: [const Color(0xFF004D40), Colors.teal.shade800],
@@ -380,7 +380,7 @@ class _OfflineCompassSheetState extends State<OfflineCompassSheet> {
                     foregroundColor: Colors.teal.shade800,
                     side: BorderSide(color: Colors.teal.shade700),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    padding: EdgeInsets.symmetric(vertical: 12),
                   ),
                 ),
               ),
@@ -394,7 +394,7 @@ class _OfflineCompassSheetState extends State<OfflineCompassSheet> {
                     foregroundColor: Colors.indigo.shade800,
                     side: BorderSide(color: Colors.indigo.shade600),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    padding: const EdgeInsets.symmetric(vertical: 12),
+                    padding: EdgeInsets.symmetric(vertical: 12),
                   ),
                 ),
               ),

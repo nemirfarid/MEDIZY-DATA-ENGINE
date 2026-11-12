@@ -10,3 +10,6 @@ prometheus-client>=0.20.0
 prometheus-fastapi-instrumentator>=7.0.0
 psycopg2-binary>=2.9.9
 shapely>=2.0.0
+# ─── Intelligence Artificielle Google Gemini ───────────────────────────────
+google-genai>=2.25.0          # SDK officiel Google Generative AI (Interactions API)
+python-dotenv>=1.0.0          # Chargement des variables d'environnement depuis .env

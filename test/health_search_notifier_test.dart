@@ -126,8 +126,8 @@ void main() {
 
     test('7. Recherche textuelle débouncée', () async {
       // Déclenchement de la saisie avec un debounce court pour le test
-      notifier.onSearchQueryChanged('Pasteur', debounceDuration: const Duration(milliseconds: 50));
-      expect(notifier.state.filter.query, equals('Pasteur'));
+      notifier.onSearchQueryChanged('Dentaire', debounceDuration: const Duration(milliseconds: 50));
+      expect(notifier.state.filter.query, equals('Dentaire'));
 
       // Attente du déclenchement du debounce puis de la complétion de la requête SQLite
       await Future<void>.delayed(const Duration(milliseconds: 60));
@@ -139,9 +139,9 @@ void main() {
       expect(notifier.state.results.isNotEmpty, isTrue);
 
       for (final item in notifier.state.results) {
-        final matches = item.nom.toLowerCase().contains('pasteur') ||
-            item.commune.toLowerCase().contains('pasteur') ||
-            (item.adresse?.toLowerCase().contains('pasteur') ?? false);
+        final matches = item.nom.toLowerCase().contains('dentaire') ||
+            item.commune.toLowerCase().contains('dentaire') ||
+            (item.adresse?.toLowerCase().contains('dentaire') ?? false);
         expect(matches, isTrue);
       }
     });

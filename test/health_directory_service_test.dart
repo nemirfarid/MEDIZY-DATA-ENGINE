@@ -82,9 +82,9 @@ void main() {
       }
     });
 
-    test('4. Recherche par mot-clé textuel (ex: "Pasteur")', () async {
+    test('4. Recherche par mot-clé textuel (ex: "Dentaire")', () async {
       const filter = HealthSearchFilter(
-        query: 'Pasteur',
+        query: 'Dentaire',
         limit: 10,
       );
 
@@ -95,10 +95,10 @@ void main() {
       expect(list.isNotEmpty, isTrue);
 
       for (final item in list) {
-        final matches = item.nom.toLowerCase().contains('pasteur') ||
-            item.commune.toLowerCase().contains('pasteur') ||
-            (item.adresse?.toLowerCase().contains('pasteur') ?? false);
-        expect(matches, isTrue, reason: 'Chaque résultat doit contenir la mention Pasteur');
+        final matches = item.nom.toLowerCase().contains('dentaire') ||
+            item.commune.toLowerCase().contains('dentaire') ||
+            (item.adresse?.toLowerCase().contains('dentaire') ?? false);
+        expect(matches, isTrue, reason: 'Chaque résultat doit contenir la mention Dentaire');
       }
     });
 

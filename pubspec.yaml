@@ -1,7 +1,8 @@
 name: sante_dz_medizy
 description: "Application mobile Santé DZ / Medizy - Programme National Sanitaire Algérie (Offline-First)"
 publish_to: 'none'
-version: 1.4.0+14
+version: 1.5.0+36
+
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -32,6 +33,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/images/medizy_logo.png
     - assets/data/sante_dz_bundled.db
     - assets/data/sante_dz_db.json.gz
     - assets/data/medizy_wilayas_index.json

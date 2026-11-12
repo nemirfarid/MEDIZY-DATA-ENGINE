@@ -35,7 +35,7 @@ class HealthFilterBar extends StatelessWidget {
 
         return SingleChildScrollView(
           scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Row(
             children: [
               // 0. Filtre direct "Mes Favoris"
@@ -62,7 +62,7 @@ class HealthFilterBar extends StatelessWidget {
 
               // 1. Sélecteur des 58 Wilayas
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   color: Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(10),
@@ -99,7 +99,7 @@ class HealthFilterBar extends StatelessWidget {
 
               // 2. Sélecteur des Communes (dépendant de la Wilaya)
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   color: selectedWilaya == null ? Colors.grey.shade50 : Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(10),
@@ -143,7 +143,7 @@ class HealthFilterBar extends StatelessWidget {
 
               // 3. Sélecteur de Spécialités
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   color: Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(10),

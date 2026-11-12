@@ -1,0 +1,668 @@
+================================================================================
+RAPPORT D'ALIGNEMENT - WILAYA 11 - Tamanrasset
+Nom arabe: تمنراست
+Date: 2026-11-11 03:02:09
+================================================================================
+
+RÉSUMÉ:
+  - Communes traitées: 5
+  - Établissements total: 309
+  - Coordonnées vérifiées: 0
+  - Écarts détectés: 309
+  - Taux de validation: 0.0%
+
+================================================================================
+DÉTAIL PAR COMMUNE:
+================================================================================
+
+
+📍 COMMUNE: Abelsa (ar: ابلسة)
+   Établissements: 70 | Vérifiés: 0 | Écarts: 70
+   ⚠️ DÉTAILS ÉCARTS:
+  ⚠️ Cabinet Dentaire Dr Aissani: distance 1174.0km du centre commune (coords: 34.908400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9084,4.0916
+  ⚠️ Cabinet Dentaire Dr Baaziz: distance 1173.7km du centre commune (coords: 34.905600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9056,4.0944
+  ⚠️ Cabinet Dentaire Dr Belkacem: distance 1173.2km du centre commune (coords: 34.901400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9014,4.0986
+  ⚠️ Cabinet Dentaire Dr Boudiaf: distance 1175.1km du centre commune (coords: 34.918200, 4.081800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9182,4.0818
+  ⚠️ Cabinet Dentaire Dr Bounoua: distance 1175.3km du centre commune (coords: 34.919600, 4.080400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9196,4.0804
+  ⚠️ Cabinet Dentaire Dr Bouziane: distance 1175.4km du centre commune (coords: 34.921000, 4.079000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.921,4.079
+  ⚠️ Cabinet Dentaire Dr Chellali: distance 1173.8km du centre commune (coords: 34.907000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.093
+  ⚠️ Cabinet Dentaire Dr Dahmani: distance 1174.2km du centre commune (coords: 34.909800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9098,4.0902
+  ⚠️ Cabinet Dentaire Dr Hamdani: distance 1174.8km du centre commune (coords: 34.915400, 4.084600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9154,4.0846
+  ⚠️ Cabinet Dentaire Dr Kaddour: distance 1173.5km du centre commune (coords: 34.904200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9042,4.0958
+  ⚠️ Cabinet Dentaire Dr Khelifi: distance 1173.4km du centre commune (coords: 34.902800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9028,4.0972
+  ⚠️ Cabinet Dentaire Dr Mansouri: distance 1174.3km du centre commune (coords: 34.911200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9112,4.0888
+  ⚠️ Cabinet Dentaire Dr Mekki: distance 1175.0km du centre commune (coords: 34.916800, 4.083200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9168,4.0832
+  ⚠️ Cabinet Dentaire Dr Slimani: distance 1174.5km du centre commune (coords: 34.912600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9126,4.0874
+  ⚠️ Cabinet Dentaire Dr Zitouni: distance 1174.6km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet Médical Dr Benali (Médecine Générale): distance 1172.1km du centre commune (coords: 34.892000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.108
+  ⚠️ Cabinet Médical Dr Bounoua (Médecine Générale): distance 1172.2km du centre commune (coords: 34.893000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.893,4.107
+  ⚠️ Cabinet Médical Dr Bouras (Médecine Générale): distance 1172.6km du centre commune (coords: 34.896000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.896,4.104
+  ⚠️ Cabinet Médical Dr Chellali (Médecine Générale): distance 1172.5km du centre commune (coords: 34.895000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.895,4.105
+  ⚠️ Cabinet Médical Dr Hachemi (Médecine Générale): distance 1172.4km du centre commune (coords: 34.894000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.894,4.106
+  ⚠️ Cabinet Médical Dr Haddad (Médecine Générale): distance 1172.8km du centre commune (coords: 34.898000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.898,4.102
+  ⚠️ Cabinet Médical Dr Hamdani (Médecine Générale): distance 1172.7km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+  ⚠️ Cabinet Médical Dr Khelifi (Médecine Générale): distance 1172.9km du centre commune (coords: 34.899000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.899,4.101
+  ⚠️ Cabinet Médical Dr Mansouri (Médecine Générale): distance 1172.0km du centre commune (coords: 34.891000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.891,4.109
+  ⚠️ Cabinet Médical Dr Mokhtari (Médecine Générale): distance 1171.9km du centre commune (coords: 34.890000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.89,4.11
+  ⚠️ Cabinet d'Orthopédie Dr Benali: distance 1173.7km du centre commune (coords: 34.906000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.106
+  ⚠️ Cabinet d'Orthopédie Dr Hachemi: distance 1175.0km du centre commune (coords: 34.918000, 4.118000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.918,4.118
+  ⚠️ Cabinet d'Orthopédie Dr Haddad: distance 1174.3km du centre commune (coords: 34.912000, 4.112000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.112
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Benmansour: distance 1175.1km du centre commune (coords: 34.919000, 4.119000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.919,4.119
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Brahimi: distance 1173.8km du centre commune (coords: 34.907000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.107
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Charef: distance 1174.4km du centre commune (coords: 34.913000, 4.113000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.913,4.113
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Sennour: distance 1173.1km du centre commune (coords: 34.901000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.901,4.101
+  ⚠️ Cabinet de Cardiologie Dr Bouras: distance 1174.7km du centre commune (coords: 34.915000, 4.115000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.915,4.115
+  ⚠️ Cabinet de Cardiologie Dr Hachemi: distance 1173.4km du centre commune (coords: 34.903000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.903,4.103
+  ⚠️ Cabinet de Cardiologie Dr Mokhtari: distance 1174.0km du centre commune (coords: 34.909000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.909,4.109
+  ⚠️ Cabinet de Kinésithérapie Dr Boukhatem: distance 1174.2km du centre commune (coords: 34.910000, 4.090000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.09
+  ⚠️ Cabinet de Kinésithérapie Dr Cherif: distance 1173.3km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Cabinet de Kinésithérapie Dr Fekih: distance 1173.7km du centre commune (coords: 34.906000, 4.094000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.094
+  ⚠️ Cabinet de Kinésithérapie Dr Rezzig: distance 1174.6km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet de Médecine Interne Dr Abid: distance 1173.6km du centre commune (coords: 34.905000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.905,4.105
+  ⚠️ Cabinet de Médecine Interne Dr Cherif: distance 1174.2km du centre commune (coords: 34.911000, 4.111000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.911,4.111
+  ⚠️ Cabinet de Médecine Interne Dr Fekih: distance 1174.9km du centre commune (coords: 34.917000, 4.117000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.917,4.117
+  ⚠️ Cabinet de Pneumologie Dr Boukhatem: distance 1173.9km du centre commune (coords: 34.908000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.108
+  ⚠️ Cabinet de Pneumologie Dr Fekih: distance 1173.3km du centre commune (coords: 34.902000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.102
+  ⚠️ Cabinet de Pneumologie Dr Rezzig: distance 1174.6km du centre commune (coords: 34.914000, 4.114000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.114
+  ⚠️ Cabinet de Pédiatrie Dr Benmansour: distance 1173.5km du centre commune (coords: 34.904000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.104
+  ⚠️ Cabinet de Pédiatrie Dr Latreche: distance 1174.1km du centre commune (coords: 34.910000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.11
+  ⚠️ Cabinet de Pédiatrie Dr Sennour: distance 1174.8km du centre commune (coords: 34.916000, 4.116000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.116
+  ⚠️ Cabinet de Soins Infirmiers Abid: distance 1174.0km du centre commune (coords: 34.908000, 4.092000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.092
+  ⚠️ Cabinet de Soins Infirmiers Cherif: distance 1174.4km du centre commune (coords: 34.912000, 4.088000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.088
+  ⚠️ Cabinet de Soins Infirmiers Fekih: distance 1174.9km du centre commune (coords: 34.916000, 4.084000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.084
+  ⚠️ Cabinet de Soins Infirmiers Rezzig: distance 1173.5km du centre commune (coords: 34.904000, 4.096000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.096
+  ⚠️ Centre Anti-Cancer (CAC) - Unité Abelsa: distance 1173.0km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Centre d'Imagerie Médicale Abelsa (Scanner / IRM): distance 1173.0km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Clinique Médico-Chirurgicale Privée Abelsa: distance 1173.0km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EHS Mère-Enfant - Abelsa: distance 1173.0km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EPH de Abelsa (Hôpital Central): distance 1173.0km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Laboratoire d'Analyses Médicales Dr Sennour: distance 1173.2km du centre commune (coords: 34.901200, 4.101400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9012,4.1014
+  ⚠️ Pharmacie Benali: distance 1172.3km du centre commune (coords: 34.893600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8936,4.0944
+  ⚠️ Pharmacie Bounoua: distance 1172.5km du centre commune (coords: 34.895200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8952,4.0958
+  ⚠️ Pharmacie Bouras: distance 1171.3km du centre commune (coords: 34.884000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.884,4.086
+  ⚠️ Pharmacie Chellali: distance 1172.9km du centre commune (coords: 34.898400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8984,4.0986
+  ⚠️ Pharmacie Hachemi: distance 1172.7km du centre commune (coords: 34.896800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8968,4.0972
+  ⚠️ Pharmacie Haddad: distance 1171.6km du centre commune (coords: 34.887200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8872,4.0888
+  ⚠️ Pharmacie Hamdani: distance 1171.5km du centre commune (coords: 34.885600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8856,4.0874
+  ⚠️ Pharmacie Khelifi: distance 1171.8km du centre commune (coords: 34.888800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8888,4.0902
+  ⚠️ Pharmacie Mansouri: distance 1172.2km du centre commune (coords: 34.892000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.093
+  ⚠️ Pharmacie Mokhtari: distance 1172.0km du centre commune (coords: 34.890400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8904,4.0916
+  ⚠️ Polyclinique Abelsa - Secteur 1: distance 1173.3km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Salle de Soins Abelsa Unité 1: distance 1172.7km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+
+📍 COMMUNE: Ain Amguel (ar: عين امقل)
+   Établissements: 0 | Vérifiés: 0 | Écarts: 0
+   ✅ Toutes coordonnées cohérentes
+
+📍 COMMUNE: Idles (ar: أدلس)
+   Établissements: 78 | Vérifiés: 0 | Écarts: 78
+   ⚠️ DÉTAILS ÉCARTS:
+  ⚠️ Cabinet Dentaire Dr Aissani: distance 1074.7km du centre commune (coords: 34.908400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9084,4.0916
+  ⚠️ Cabinet Dentaire Dr Baaziz: distance 1074.3km du centre commune (coords: 34.905600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9056,4.0944
+  ⚠️ Cabinet Dentaire Dr Belkacem: distance 1073.8km du centre commune (coords: 34.901400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9014,4.0986
+  ⚠️ Cabinet Dentaire Dr Boudiaf: distance 1075.9km du centre commune (coords: 34.918200, 4.081800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9182,4.0818
+  ⚠️ Cabinet Dentaire Dr Bounoua: distance 1076.1km du centre commune (coords: 34.919600, 4.080400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9196,4.0804
+  ⚠️ Cabinet Dentaire Dr Bouziane: distance 1076.3km du centre commune (coords: 34.921000, 4.079000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.921,4.079
+  ⚠️ Cabinet Dentaire Dr Chellali: distance 1074.5km du centre commune (coords: 34.907000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.093
+  ⚠️ Cabinet Dentaire Dr Dahmani: distance 1074.9km du centre commune (coords: 34.909800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9098,4.0902
+  ⚠️ Cabinet Dentaire Dr Hamdani: distance 1075.6km du centre commune (coords: 34.915400, 4.084600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9154,4.0846
+  ⚠️ Cabinet Dentaire Dr Kaddour: distance 1074.2km du centre commune (coords: 34.904200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9042,4.0958
+  ⚠️ Cabinet Dentaire Dr Khelifi: distance 1074.0km du centre commune (coords: 34.902800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9028,4.0972
+  ⚠️ Cabinet Dentaire Dr Mansouri: distance 1075.0km du centre commune (coords: 34.911200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9112,4.0888
+  ⚠️ Cabinet Dentaire Dr Mekki: distance 1075.7km du centre commune (coords: 34.916800, 4.083200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9168,4.0832
+  ⚠️ Cabinet Dentaire Dr Slimani: distance 1075.2km du centre commune (coords: 34.912600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9126,4.0874
+  ⚠️ Cabinet Dentaire Dr Zitouni: distance 1075.4km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet Médical Dr Baaziz (Médecine Générale): distance 1072.9km du centre commune (coords: 34.894000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.894,4.106
+  ⚠️ Cabinet Médical Dr Belkacem (Médecine Générale): distance 1073.4km du centre commune (coords: 34.898000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.898,4.102
+  ⚠️ Cabinet Médical Dr Benmansour (Médecine Générale): distance 1072.5km du centre commune (coords: 34.891000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.891,4.109
+  ⚠️ Cabinet Médical Dr Boudiaf (Médecine Générale): distance 1072.6km du centre commune (coords: 34.892000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.108
+  ⚠️ Cabinet Médical Dr Brahimi (Médecine Générale): distance 1073.5km du centre commune (coords: 34.899000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.899,4.101
+  ⚠️ Cabinet Médical Dr Charef (Médecine Générale): distance 1073.0km du centre commune (coords: 34.895000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.895,4.105
+  ⚠️ Cabinet Médical Dr Dahmani (Médecine Générale): distance 1072.4km du centre commune (coords: 34.890000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.89,4.11
+  ⚠️ Cabinet Médical Dr Latreche (Médecine Générale): distance 1073.3km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+  ⚠️ Cabinet Médical Dr Sennour (Médecine Générale): distance 1072.8km du centre commune (coords: 34.893000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.893,4.107
+  ⚠️ Cabinet Médical Dr Zitouni (Médecine Générale): distance 1073.1km du centre commune (coords: 34.896000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.896,4.104
+  ⚠️ Cabinet d'Ophtalmologie Dr Chellali: distance 1074.4km du centre commune (coords: 34.908000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.108
+  ⚠️ Cabinet d'Ophtalmologie Dr Hamdani: distance 1075.5km du centre commune (coords: 34.920000, 4.120000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.92,4.12
+  ⚠️ Cabinet d'Ophtalmologie Dr Khelifi: distance 1073.8km du centre commune (coords: 34.902000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.102
+  ⚠️ Cabinet d'Ophtalmologie Dr Mansouri: distance 1075.0km du centre commune (coords: 34.914000, 4.114000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.114
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Baaziz: distance 1075.6km du centre commune (coords: 34.921000, 4.121000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.921,4.121
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Belkacem: distance 1075.1km du centre commune (coords: 34.915000, 4.115000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.915,4.115
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Boudiaf: distance 1074.5km du centre commune (coords: 34.909000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.909,4.109
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Zitouni: distance 1073.9km du centre commune (coords: 34.903000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.903,4.103
+  ⚠️ Cabinet de Dermatologie Dr Aissani: distance 1074.6km du centre commune (coords: 34.910000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.11
+  ⚠️ Cabinet de Dermatologie Dr Kaddour: distance 1074.0km du centre commune (coords: 34.904000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.104
+  ⚠️ Cabinet de Dermatologie Dr Mekki: distance 1075.7km du centre commune (coords: 34.922000, 4.122000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.922,4.122
+  ⚠️ Cabinet de Dermatologie Dr Slimani: distance 1075.1km du centre commune (coords: 34.916000, 4.116000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.116
+  ⚠️ Cabinet de Gastro-entérologie Dr Bounoua: distance 1074.7km du centre commune (coords: 34.911000, 4.111000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.911,4.111
+  ⚠️ Cabinet de Gastro-entérologie Dr Chellali: distance 1075.8km du centre commune (coords: 34.923000, 4.123000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.923,4.123
+  ⚠️ Cabinet de Gastro-entérologie Dr Hamdani: distance 1074.1km du centre commune (coords: 34.905000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.905,4.105
+  ⚠️ Cabinet de Gastro-entérologie Dr Khelifi: distance 1075.2km du centre commune (coords: 34.917000, 4.117000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.917,4.117
+  ⚠️ Cabinet de Gynécologie Dr Aissani: distance 1076.0km du centre commune (coords: 34.925000, 4.125000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.925,4.125
+  ⚠️ Cabinet de Gynécologie Dr Bouziane: distance 1074.9km du centre commune (coords: 34.913000, 4.113000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.913,4.113
+  ⚠️ Cabinet de Gynécologie Dr Kaddour: distance 1075.4km du centre commune (coords: 34.919000, 4.119000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.919,4.119
+  ⚠️ Cabinet de Gynécologie Dr Mekki: distance 1074.3km du centre commune (coords: 34.907000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.107
+  ⚠️ Cabinet de Gynécologie Dr Slimani: distance 1073.7km du centre commune (coords: 34.901000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.901,4.101
+  ⚠️ Cabinet de Kinésithérapie Dr Benmansour: distance 1075.4km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet de Kinésithérapie Dr Brahimi: distance 1074.4km du centre commune (coords: 34.906000, 4.094000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.094
+  ⚠️ Cabinet de Kinésithérapie Dr Charef: distance 1074.9km du centre commune (coords: 34.910000, 4.090000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.09
+  ⚠️ Cabinet de Kinésithérapie Dr Latreche: distance 1075.9km du centre commune (coords: 34.918000, 4.082000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.918,4.082
+  ⚠️ Cabinet de Kinésithérapie Dr Sennour: distance 1073.9km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Cabinet de Néphrologie Dr Baaziz: distance 1074.2km du centre commune (coords: 34.906000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.106
+  ⚠️ Cabinet de Néphrologie Dr Boudiaf: distance 1075.9km du centre commune (coords: 34.924000, 4.124000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.924,4.124
+  ⚠️ Cabinet de Néphrologie Dr Dahmani: distance 1074.8km du centre commune (coords: 34.912000, 4.112000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.112
+  ⚠️ Cabinet de Néphrologie Dr Zitouni: distance 1075.3km du centre commune (coords: 34.918000, 4.118000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.918,4.118
+  ⚠️ Cabinet de Soins Infirmiers Benmansour: distance 1074.1km du centre commune (coords: 34.904000, 4.096000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.096
+  ⚠️ Cabinet de Soins Infirmiers Brahimi: distance 1075.6km du centre commune (coords: 34.916000, 4.084000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.084
+  ⚠️ Cabinet de Soins Infirmiers Charef: distance 1076.1km du centre commune (coords: 34.920000, 4.080000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.92,4.08
+  ⚠️ Cabinet de Soins Infirmiers Latreche: distance 1074.6km du centre commune (coords: 34.908000, 4.092000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.092
+  ⚠️ Cabinet de Soins Infirmiers Sennour: distance 1075.1km du centre commune (coords: 34.912000, 4.088000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.088
+  ⚠️ Centre Anti-Cancer (CAC) - Unité Idles: distance 1073.6km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Centre d'Imagerie Médicale Idles (Scanner / IRM): distance 1073.6km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Clinique Médico-Chirurgicale Privée Idles: distance 1073.6km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EHS Mère-Enfant - Idles: distance 1073.6km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EPH de Idles (Hôpital Central): distance 1073.6km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Laboratoire d'Analyses Médicales Dr Hachemi: distance 1073.7km du centre commune (coords: 34.901200, 4.101400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9012,4.1014
+  ⚠️ Pharmacie Abid: distance 1073.3km du centre commune (coords: 34.896800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8968,4.0972
+  ⚠️ Pharmacie Aissani: distance 1073.5km du centre commune (coords: 34.898400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8984,4.0986
+  ⚠️ Pharmacie Boukhatem: distance 1073.0km du centre commune (coords: 34.893600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8936,4.0944
+  ⚠️ Pharmacie Bouziane: distance 1073.2km du centre commune (coords: 34.895200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8952,4.0958
+  ⚠️ Pharmacie Cherif: distance 1072.7km du centre commune (coords: 34.890400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8904,4.0916
+  ⚠️ Pharmacie Fekih: distance 1072.1km du centre commune (coords: 34.884000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.884,4.086
+  ⚠️ Pharmacie Kaddour: distance 1072.6km du centre commune (coords: 34.888800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8888,4.0902
+  ⚠️ Pharmacie Mekki: distance 1072.2km du centre commune (coords: 34.885600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8856,4.0874
+  ⚠️ Pharmacie Rezzig: distance 1072.4km du centre commune (coords: 34.887200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8872,4.0888
+  ⚠️ Pharmacie Slimani: distance 1072.9km du centre commune (coords: 34.892000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.093
+  ⚠️ Polyclinique Idles - Secteur 1: distance 1073.9km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Salle de Soins Idles Unité 1: distance 1073.3km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+
+📍 COMMUNE: Tamanrasset (ar: تمنراست)
+   Établissements: 93 | Vérifiés: 0 | Écarts: 93
+   ⚠️ DÉTAILS ÉCARTS:
+  ⚠️ Cabinet Dentaire Dr Abid: distance 1414.7km du centre commune (coords: 34.908400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9084,4.0916
+  ⚠️ Cabinet Dentaire Dr Benali: distance 1416.1km du centre commune (coords: 34.919600, 4.080400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9196,4.0804
+  ⚠️ Cabinet Dentaire Dr Benmansour: distance 1415.9km du centre commune (coords: 34.918200, 4.081800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9182,4.0818
+  ⚠️ Cabinet Dentaire Dr Boukhatem: distance 1416.3km du centre commune (coords: 34.921000, 4.079000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.921,4.079
+  ⚠️ Cabinet Dentaire Dr Bouras: distance 1415.6km du centre commune (coords: 34.915400, 4.084600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9154,4.0846
+  ⚠️ Cabinet Dentaire Dr Brahimi: distance 1414.9km du centre commune (coords: 34.909800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9098,4.0902
+  ⚠️ Cabinet Dentaire Dr Charef: distance 1415.4km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet Dentaire Dr Cherif: distance 1415.2km du centre commune (coords: 34.912600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9126,4.0874
+  ⚠️ Cabinet Dentaire Dr Fekih: distance 1415.7km du centre commune (coords: 34.916800, 4.083200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9168,4.0832
+  ⚠️ Cabinet Dentaire Dr Hachemi: distance 1414.6km du centre commune (coords: 34.907000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.093
+  ⚠️ Cabinet Dentaire Dr Haddad: distance 1414.0km du centre commune (coords: 34.902800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9028,4.0972
+  ⚠️ Cabinet Dentaire Dr Latreche: distance 1413.9km du centre commune (coords: 34.901400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9014,4.0986
+  ⚠️ Cabinet Dentaire Dr Mokhtari: distance 1415.1km du centre commune (coords: 34.911200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9112,4.0888
+  ⚠️ Cabinet Dentaire Dr Rezzig: distance 1414.2km du centre commune (coords: 34.904200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9042,4.0958
+  ⚠️ Cabinet Dentaire Dr Sennour: distance 1414.4km du centre commune (coords: 34.905600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9056,4.0944
+  ⚠️ Cabinet Médical Dr Benali (Médecine Générale): distance 1413.1km du centre commune (coords: 34.895000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.895,4.105
+  ⚠️ Cabinet Médical Dr Bounoua (Médecine Générale): distance 1413.2km du centre commune (coords: 34.896000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.896,4.104
+  ⚠️ Cabinet Médical Dr Bouras (Médecine Générale): distance 1413.6km du centre commune (coords: 34.899000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.899,4.101
+  ⚠️ Cabinet Médical Dr Chellali (Médecine Générale): distance 1413.5km du centre commune (coords: 34.898000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.898,4.102
+  ⚠️ Cabinet Médical Dr Hachemi (Médecine Générale): distance 1413.3km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+  ⚠️ Cabinet Médical Dr Haddad (Médecine Générale): distance 1412.6km du centre commune (coords: 34.891000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.891,4.109
+  ⚠️ Cabinet Médical Dr Hamdani (Médecine Générale): distance 1412.5km du centre commune (coords: 34.890000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.89,4.11
+  ⚠️ Cabinet Médical Dr Khelifi (Médecine Générale): distance 1412.7km du centre commune (coords: 34.892000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.108
+  ⚠️ Cabinet Médical Dr Mansouri (Médecine Générale): distance 1413.0km du centre commune (coords: 34.894000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.894,4.106
+  ⚠️ Cabinet Médical Dr Mokhtari (Médecine Générale): distance 1412.8km du centre commune (coords: 34.893000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.893,4.107
+  ⚠️ Cabinet d'Orthopédie Dr Benali: distance 1415.5km du centre commune (coords: 34.918000, 4.118000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.918,4.118
+  ⚠️ Cabinet d'Orthopédie Dr Bouras: distance 1414.9km du centre commune (coords: 34.912000, 4.112000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.112
+  ⚠️ Cabinet d'Orthopédie Dr Hachemi: distance 1416.7km du centre commune (coords: 34.930000, 4.130000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.93,4.13
+  ⚠️ Cabinet d'Orthopédie Dr Haddad: distance 1416.1km du centre commune (coords: 34.924000, 4.124000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.924,4.124
+  ⚠️ Cabinet d'Orthopédie Dr Mokhtari: distance 1414.3km du centre commune (coords: 34.906000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.106
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Benmansour: distance 1413.8km du centre commune (coords: 34.901000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.901,4.101
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Brahimi: distance 1415.6km du centre commune (coords: 34.919000, 4.119000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.919,4.119
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Charef: distance 1416.2km du centre commune (coords: 34.925000, 4.125000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.925,4.125
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Latreche: distance 1414.4km du centre commune (coords: 34.907000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.107
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Sennour: distance 1415.0km du centre commune (coords: 34.913000, 4.113000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.913,4.113
+  ⚠️ Cabinet de Cardiologie Dr Benali: distance 1414.0km du centre commune (coords: 34.903000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.903,4.103
+  ⚠️ Cabinet de Cardiologie Dr Bouras: distance 1416.4km du centre commune (coords: 34.927000, 4.127000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.927,4.127
+  ⚠️ Cabinet de Cardiologie Dr Hachemi: distance 1415.2km du centre commune (coords: 34.915000, 4.115000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.915,4.115
+  ⚠️ Cabinet de Cardiologie Dr Haddad: distance 1414.6km du centre commune (coords: 34.909000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.909,4.109
+  ⚠️ Cabinet de Cardiologie Dr Mokhtari: distance 1415.8km du centre commune (coords: 34.921000, 4.121000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.921,4.121
+  ⚠️ Cabinet de Kinésithérapie Dr Aissani: distance 1415.9km du centre commune (coords: 34.918000, 4.082000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.918,4.082
+  ⚠️ Cabinet de Kinésithérapie Dr Bouziane: distance 1414.9km du centre commune (coords: 34.910000, 4.090000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.09
+  ⚠️ Cabinet de Kinésithérapie Dr Kaddour: distance 1415.4km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet de Kinésithérapie Dr Mekki: distance 1414.4km du centre commune (coords: 34.906000, 4.094000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.094
+  ⚠️ Cabinet de Kinésithérapie Dr Slimani: distance 1413.9km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Cabinet de Médecine Interne Dr Abid: distance 1415.4km du centre commune (coords: 34.917000, 4.117000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.917,4.117
+  ⚠️ Cabinet de Médecine Interne Dr Boukhatem: distance 1414.2km du centre commune (coords: 34.905000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.905,4.105
+  ⚠️ Cabinet de Médecine Interne Dr Cherif: distance 1416.0km du centre commune (coords: 34.923000, 4.123000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.923,4.123
+  ⚠️ Cabinet de Médecine Interne Dr Fekih: distance 1416.6km du centre commune (coords: 34.929000, 4.129000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.929,4.129
+  ⚠️ Cabinet de Médecine Interne Dr Rezzig: distance 1414.8km du centre commune (coords: 34.911000, 4.111000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.911,4.111
+  ⚠️ Cabinet de Pneumologie Dr Abid: distance 1413.9km du centre commune (coords: 34.902000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.102
+  ⚠️ Cabinet de Pneumologie Dr Boukhatem: distance 1415.7km du centre commune (coords: 34.920000, 4.120000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.92,4.12
+  ⚠️ Cabinet de Pneumologie Dr Cherif: distance 1414.5km du centre commune (coords: 34.908000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.108
+  ⚠️ Cabinet de Pneumologie Dr Fekih: distance 1415.1km du centre commune (coords: 34.914000, 4.114000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.114
+  ⚠️ Cabinet de Pneumologie Dr Rezzig: distance 1416.3km du centre commune (coords: 34.926000, 4.126000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.926,4.126
+  ⚠️ Cabinet de Pédiatrie Dr Benmansour: distance 1415.3km du centre commune (coords: 34.916000, 4.116000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.116
+  ⚠️ Cabinet de Pédiatrie Dr Brahimi: distance 1414.1km du centre commune (coords: 34.904000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.104
+  ⚠️ Cabinet de Pédiatrie Dr Charef: distance 1414.7km du centre commune (coords: 34.910000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.11
+  ⚠️ Cabinet de Pédiatrie Dr Latreche: distance 1415.9km du centre commune (coords: 34.922000, 4.122000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.922,4.122
+  ⚠️ Cabinet de Pédiatrie Dr Sennour: distance 1416.5km du centre commune (coords: 34.928000, 4.128000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.928,4.128
+  ⚠️ Cabinet de Soins Infirmiers Aissani: distance 1414.7km du centre commune (coords: 34.908000, 4.092000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.092
+  ⚠️ Cabinet de Soins Infirmiers Bouziane: distance 1416.1km du centre commune (coords: 34.920000, 4.080000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.92,4.08
+  ⚠️ Cabinet de Soins Infirmiers Kaddour: distance 1414.2km du centre commune (coords: 34.904000, 4.096000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.096
+  ⚠️ Cabinet de Soins Infirmiers Mekki: distance 1415.6km du centre commune (coords: 34.916000, 4.084000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.084
+  ⚠️ Cabinet de Soins Infirmiers Slimani: distance 1415.2km du centre commune (coords: 34.912000, 4.088000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.088
+  ⚠️ Centre Anti-Cancer (CAC) - Unité Tamanrasset: distance 1413.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Centre d'Imagerie Médicale Tamanrasset (Scanner / IRM): distance 1413.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Clinique Médico-Chirurgicale Privée Tamanrasset: distance 1413.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EHS Mère-Enfant - Tamanrasset: distance 1413.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EPH de Tamanrasset (Hôpital Central): distance 1413.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Laboratoire d'Analyses Médicales Dr Baaziz: distance 1413.9km du centre commune (coords: 34.902400, 4.102800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9024,4.1028
+  ⚠️ Laboratoire d'Analyses Médicales Dr Fekih: distance 1414.0km du centre commune (coords: 34.903600, 4.104200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9036,4.1042
+  ⚠️ Laboratoire d'Analyses Médicales Dr Haddad: distance 1413.8km du centre commune (coords: 34.901200, 4.101400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9012,4.1014
+  ⚠️ Pharmacie Benali: distance 1412.7km du centre commune (coords: 34.890400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8904,4.0916
+  ⚠️ Pharmacie Bounoua: distance 1412.9km du centre commune (coords: 34.892000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.093
+  ⚠️ Pharmacie Bouras: distance 1413.4km du centre commune (coords: 34.896800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8968,4.0972
+  ⚠️ Pharmacie Chellali: distance 1413.2km du centre commune (coords: 34.895200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8952,4.0958
+  ⚠️ Pharmacie Hachemi: distance 1413.1km du centre commune (coords: 34.893600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8936,4.0944
+  ⚠️ Pharmacie Haddad: distance 1412.1km du centre commune (coords: 34.884000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.884,4.086
+  ⚠️ Pharmacie Hamdani: distance 1413.5km du centre commune (coords: 34.898400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8984,4.0986
+  ⚠️ Pharmacie Khelifi: distance 1412.3km du centre commune (coords: 34.885600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8856,4.0874
+  ⚠️ Pharmacie Mansouri: distance 1412.6km du centre commune (coords: 34.888800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8888,4.0902
+  ⚠️ Pharmacie Mokhtari: distance 1412.4km du centre commune (coords: 34.887200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8872,4.0888
+  ⚠️ Polyclinique Tamanrasset - Secteur 1: distance 1413.9km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Polyclinique Tamanrasset - Secteur 2: distance 1414.2km du centre commune (coords: 34.904000, 4.096000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.096
+  ⚠️ Polyclinique Tamanrasset - Secteur 3: distance 1414.4km du centre commune (coords: 34.906000, 4.094000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.094
+  ⚠️ Polyclinique Tamanrasset - Secteur 4: distance 1414.7km du centre commune (coords: 34.908000, 4.092000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.092
+  ⚠️ Salle de Soins Tamanrasset Unité 1: distance 1413.3km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+  ⚠️ Salle de Soins Tamanrasset Unité 2: distance 1413.0km du centre commune (coords: 34.894000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.894,4.106
+  ⚠️ Salle de Soins Tamanrasset Unité 3: distance 1412.6km du centre commune (coords: 34.891000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.891,4.109
+  ⚠️ Salle de Soins Tamanrasset Unité 4: distance 1412.2km du centre commune (coords: 34.888000, 4.112000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.888,4.112
+  ⚠️ Salle de Soins Tamanrasset Unité 5: distance 1411.9km du centre commune (coords: 34.885000, 4.115000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.885,4.115
+  ⚠️ Salle de Soins Tamanrasset Unité 6: distance 1411.5km du centre commune (coords: 34.882000, 4.118000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.882,4.118
+
+📍 COMMUNE: Tazrouk (ar: تاظروك)
+   Établissements: 68 | Vérifiés: 0 | Écarts: 68
+   ⚠️ DÉTAILS ÉCARTS:
+  ⚠️ Cabinet Dentaire Dr Aissani: distance 1420.2km du centre commune (coords: 34.918200, 4.081800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9182,4.0818
+  ⚠️ Cabinet Dentaire Dr Baaziz: distance 1419.8km du centre commune (coords: 34.915400, 4.084600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9154,4.0846
+  ⚠️ Cabinet Dentaire Dr Belkacem: distance 1419.2km du centre commune (coords: 34.911200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9112,4.0888
+  ⚠️ Cabinet Dentaire Dr Boudiaf: distance 1418.7km du centre commune (coords: 34.907000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.093
+  ⚠️ Cabinet Dentaire Dr Bounoua: distance 1418.9km du centre commune (coords: 34.908400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9084,4.0916
+  ⚠️ Cabinet Dentaire Dr Bouziane: distance 1419.1km du centre commune (coords: 34.909800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9098,4.0902
+  ⚠️ Cabinet Dentaire Dr Chellali: distance 1420.0km du centre commune (coords: 34.916800, 4.083200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9168,4.0832
+  ⚠️ Cabinet Dentaire Dr Dahmani: distance 1420.4km du centre commune (coords: 34.919600, 4.080400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9196,4.0804
+  ⚠️ Cabinet Dentaire Dr Hamdani: distance 1418.3km du centre commune (coords: 34.904200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9042,4.0958
+  ⚠️ Cabinet Dentaire Dr Kaddour: distance 1419.6km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet Dentaire Dr Khelifi: distance 1419.4km du centre commune (coords: 34.912600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9126,4.0874
+  ⚠️ Cabinet Dentaire Dr Mekki: distance 1418.5km du centre commune (coords: 34.905600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9056,4.0944
+  ⚠️ Cabinet Dentaire Dr Slimani: distance 1417.9km du centre commune (coords: 34.901400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9014,4.0986
+  ⚠️ Cabinet Dentaire Dr Zitouni: distance 1418.1km du centre commune (coords: 34.902800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9028,4.0972
+  ⚠️ Cabinet Médical Dr Abid (Médecine Générale): distance 1416.9km du centre commune (coords: 34.894000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.894,4.106
+  ⚠️ Cabinet Médical Dr Aissani (Médecine Générale): distance 1417.1km du centre commune (coords: 34.895000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.895,4.105
+  ⚠️ Cabinet Médical Dr Boukhatem (Médecine Générale): distance 1416.7km du centre commune (coords: 34.892000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.108
+  ⚠️ Cabinet Médical Dr Bouziane (Médecine Générale): distance 1416.8km du centre commune (coords: 34.893000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.893,4.107
+  ⚠️ Cabinet Médical Dr Cherif (Médecine Générale): distance 1416.4km du centre commune (coords: 34.890000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.89,4.11
+  ⚠️ Cabinet Médical Dr Fekih (Médecine Générale): distance 1417.2km du centre commune (coords: 34.896000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.896,4.104
+  ⚠️ Cabinet Médical Dr Kaddour (Médecine Générale): distance 1417.6km du centre commune (coords: 34.899000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.899,4.101
+  ⚠️ Cabinet Médical Dr Mekki (Médecine Générale): distance 1417.3km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+  ⚠️ Cabinet Médical Dr Rezzig (Médecine Générale): distance 1417.5km du centre commune (coords: 34.898000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.898,4.102
+  ⚠️ Cabinet Médical Dr Slimani (Médecine Générale): distance 1416.5km du centre commune (coords: 34.891000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.891,4.109
+  ⚠️ Cabinet d'Ophtalmologie Dr Bounoua: distance 1419.1km du centre commune (coords: 34.917000, 4.117000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.917,4.117
+  ⚠️ Cabinet d'Ophtalmologie Dr Hamdani: distance 1418.6km du centre commune (coords: 34.911000, 4.111000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.911,4.111
+  ⚠️ Cabinet d'Ophtalmologie Dr Mansouri: distance 1418.1km du centre commune (coords: 34.905000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.905,4.105
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Baaziz: distance 1418.7km du centre commune (coords: 34.912000, 4.112000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.112
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Belkacem: distance 1418.2km du centre commune (coords: 34.906000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.106
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Dahmani: distance 1419.2km du centre commune (coords: 34.918000, 4.118000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.918,4.118
+  ⚠️ Cabinet de Dermatologie Dr Aissani: distance 1417.8km du centre commune (coords: 34.901000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.901,4.101
+  ⚠️ Cabinet de Dermatologie Dr Mekki: distance 1418.8km du centre commune (coords: 34.913000, 4.113000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.913,4.113
+  ⚠️ Cabinet de Dermatologie Dr Slimani: distance 1418.3km du centre commune (coords: 34.907000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.107
+  ⚠️ Cabinet de Gastro-entérologie Dr Bounoua: distance 1417.9km du centre commune (coords: 34.902000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.102
+  ⚠️ Cabinet de Gastro-entérologie Dr Chellali: distance 1418.8km du centre commune (coords: 34.914000, 4.114000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.114
+  ⚠️ Cabinet de Gastro-entérologie Dr Khelifi: distance 1418.4km du centre commune (coords: 34.908000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.108
+  ⚠️ Cabinet de Gynécologie Dr Aissani: distance 1419.0km du centre commune (coords: 34.916000, 4.116000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.116
+  ⚠️ Cabinet de Gynécologie Dr Bouziane: distance 1418.1km du centre commune (coords: 34.904000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.104
+  ⚠️ Cabinet de Gynécologie Dr Kaddour: distance 1418.5km du centre commune (coords: 34.910000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.11
+  ⚠️ Cabinet de Kinésithérapie Dr Boukhatem: distance 1419.1km du centre commune (coords: 34.910000, 4.090000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.09
+  ⚠️ Cabinet de Kinésithérapie Dr Cherif: distance 1418.0km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Cabinet de Kinésithérapie Dr Fekih: distance 1418.5km du centre commune (coords: 34.906000, 4.094000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.094
+  ⚠️ Cabinet de Kinésithérapie Dr Rezzig: distance 1419.6km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet de Néphrologie Dr Boudiaf: distance 1418.9km du centre commune (coords: 34.915000, 4.115000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.915,4.115
+  ⚠️ Cabinet de Néphrologie Dr Dahmani: distance 1418.0km du centre commune (coords: 34.903000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.903,4.103
+  ⚠️ Cabinet de Néphrologie Dr Zitouni: distance 1418.5km du centre commune (coords: 34.909000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.909,4.109
+  ⚠️ Cabinet de Soins Infirmiers Abid: distance 1418.8km du centre commune (coords: 34.908000, 4.092000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.092
+  ⚠️ Cabinet de Soins Infirmiers Cherif: distance 1419.3km du centre commune (coords: 34.912000, 4.088000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.088
+  ⚠️ Cabinet de Soins Infirmiers Fekih: distance 1419.9km du centre commune (coords: 34.916000, 4.084000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.084
+  ⚠️ Cabinet de Soins Infirmiers Rezzig: distance 1418.3km du centre commune (coords: 34.904000, 4.096000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.096
+  ⚠️ Centre Anti-Cancer (CAC) - Unité Tazrouk: distance 1417.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Centre d'Imagerie Médicale Tazrouk (Scanner / IRM): distance 1417.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Clinique Médico-Chirurgicale Privée Tazrouk: distance 1417.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EHS Mère-Enfant - Tazrouk: distance 1417.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EPH de Tazrouk (Hôpital Central): distance 1417.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Laboratoire d'Analyses Médicales Dr Chellali: distance 1417.8km du centre commune (coords: 34.901200, 4.101400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9012,4.1014
+  ⚠️ Pharmacie Abid: distance 1417.4km du centre commune (coords: 34.895200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8952,4.0958
+  ⚠️ Pharmacie Aissani: distance 1417.5km du centre commune (coords: 34.896800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8968,4.0972
+  ⚠️ Pharmacie Boukhatem: distance 1417.1km du centre commune (coords: 34.892000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.093
+  ⚠️ Pharmacie Bouziane: distance 1417.2km du centre commune (coords: 34.893600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8936,4.0944
+  ⚠️ Pharmacie Cherif: distance 1416.8km du centre commune (coords: 34.888800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8888,4.0902
+  ⚠️ Pharmacie Fekih: distance 1417.6km du centre commune (coords: 34.898400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8984,4.0986
+  ⚠️ Pharmacie Kaddour: distance 1416.7km du centre commune (coords: 34.887200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8872,4.0888
+  ⚠️ Pharmacie Mekki: distance 1416.4km du centre commune (coords: 34.884000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.884,4.086
+  ⚠️ Pharmacie Rezzig: distance 1416.6km du centre commune (coords: 34.885600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8856,4.0874
+  ⚠️ Pharmacie Slimani: distance 1417.0km du centre commune (coords: 34.890400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8904,4.0916
+  ⚠️ Polyclinique Tazrouk - Secteur 1: distance 1418.0km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Salle de Soins Tazrouk Unité 1: distance 1417.3km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+
+================================================================================
+LISTE COMPLÈTE DES ÉCARTS POUR REVUE MANUELLE:
+================================================================================
+
+
+--- Abelsa ---
+  ⚠️ Cabinet Dentaire Dr Aissani: distance 1174.0km du centre commune (coords: 34.908400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9084,4.0916
+  ⚠️ Cabinet Dentaire Dr Baaziz: distance 1173.7km du centre commune (coords: 34.905600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9056,4.0944
+  ⚠️ Cabinet Dentaire Dr Belkacem: distance 1173.2km du centre commune (coords: 34.901400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9014,4.0986
+  ⚠️ Cabinet Dentaire Dr Boudiaf: distance 1175.1km du centre commune (coords: 34.918200, 4.081800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9182,4.0818
+  ⚠️ Cabinet Dentaire Dr Bounoua: distance 1175.3km du centre commune (coords: 34.919600, 4.080400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9196,4.0804
+  ⚠️ Cabinet Dentaire Dr Bouziane: distance 1175.4km du centre commune (coords: 34.921000, 4.079000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.921,4.079
+  ⚠️ Cabinet Dentaire Dr Chellali: distance 1173.8km du centre commune (coords: 34.907000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.093
+  ⚠️ Cabinet Dentaire Dr Dahmani: distance 1174.2km du centre commune (coords: 34.909800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9098,4.0902
+  ⚠️ Cabinet Dentaire Dr Hamdani: distance 1174.8km du centre commune (coords: 34.915400, 4.084600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9154,4.0846
+  ⚠️ Cabinet Dentaire Dr Kaddour: distance 1173.5km du centre commune (coords: 34.904200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9042,4.0958
+  ⚠️ Cabinet Dentaire Dr Khelifi: distance 1173.4km du centre commune (coords: 34.902800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9028,4.0972
+  ⚠️ Cabinet Dentaire Dr Mansouri: distance 1174.3km du centre commune (coords: 34.911200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9112,4.0888
+  ⚠️ Cabinet Dentaire Dr Mekki: distance 1175.0km du centre commune (coords: 34.916800, 4.083200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9168,4.0832
+  ⚠️ Cabinet Dentaire Dr Slimani: distance 1174.5km du centre commune (coords: 34.912600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9126,4.0874
+  ⚠️ Cabinet Dentaire Dr Zitouni: distance 1174.6km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet Médical Dr Benali (Médecine Générale): distance 1172.1km du centre commune (coords: 34.892000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.108
+  ⚠️ Cabinet Médical Dr Bounoua (Médecine Générale): distance 1172.2km du centre commune (coords: 34.893000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.893,4.107
+  ⚠️ Cabinet Médical Dr Bouras (Médecine Générale): distance 1172.6km du centre commune (coords: 34.896000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.896,4.104
+  ⚠️ Cabinet Médical Dr Chellali (Médecine Générale): distance 1172.5km du centre commune (coords: 34.895000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.895,4.105
+  ⚠️ Cabinet Médical Dr Hachemi (Médecine Générale): distance 1172.4km du centre commune (coords: 34.894000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.894,4.106
+  ⚠️ Cabinet Médical Dr Haddad (Médecine Générale): distance 1172.8km du centre commune (coords: 34.898000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.898,4.102
+  ⚠️ Cabinet Médical Dr Hamdani (Médecine Générale): distance 1172.7km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+  ⚠️ Cabinet Médical Dr Khelifi (Médecine Générale): distance 1172.9km du centre commune (coords: 34.899000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.899,4.101
+  ⚠️ Cabinet Médical Dr Mansouri (Médecine Générale): distance 1172.0km du centre commune (coords: 34.891000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.891,4.109
+  ⚠️ Cabinet Médical Dr Mokhtari (Médecine Générale): distance 1171.9km du centre commune (coords: 34.890000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.89,4.11
+  ⚠️ Cabinet d'Orthopédie Dr Benali: distance 1173.7km du centre commune (coords: 34.906000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.106
+  ⚠️ Cabinet d'Orthopédie Dr Hachemi: distance 1175.0km du centre commune (coords: 34.918000, 4.118000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.918,4.118
+  ⚠️ Cabinet d'Orthopédie Dr Haddad: distance 1174.3km du centre commune (coords: 34.912000, 4.112000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.112
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Benmansour: distance 1175.1km du centre commune (coords: 34.919000, 4.119000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.919,4.119
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Brahimi: distance 1173.8km du centre commune (coords: 34.907000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.107
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Charef: distance 1174.4km du centre commune (coords: 34.913000, 4.113000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.913,4.113
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Sennour: distance 1173.1km du centre commune (coords: 34.901000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.901,4.101
+  ⚠️ Cabinet de Cardiologie Dr Bouras: distance 1174.7km du centre commune (coords: 34.915000, 4.115000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.915,4.115
+  ⚠️ Cabinet de Cardiologie Dr Hachemi: distance 1173.4km du centre commune (coords: 34.903000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.903,4.103
+  ⚠️ Cabinet de Cardiologie Dr Mokhtari: distance 1174.0km du centre commune (coords: 34.909000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.909,4.109
+  ⚠️ Cabinet de Kinésithérapie Dr Boukhatem: distance 1174.2km du centre commune (coords: 34.910000, 4.090000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.09
+  ⚠️ Cabinet de Kinésithérapie Dr Cherif: distance 1173.3km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Cabinet de Kinésithérapie Dr Fekih: distance 1173.7km du centre commune (coords: 34.906000, 4.094000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.094
+  ⚠️ Cabinet de Kinésithérapie Dr Rezzig: distance 1174.6km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet de Médecine Interne Dr Abid: distance 1173.6km du centre commune (coords: 34.905000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.905,4.105
+  ⚠️ Cabinet de Médecine Interne Dr Cherif: distance 1174.2km du centre commune (coords: 34.911000, 4.111000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.911,4.111
+  ⚠️ Cabinet de Médecine Interne Dr Fekih: distance 1174.9km du centre commune (coords: 34.917000, 4.117000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.917,4.117
+  ⚠️ Cabinet de Pneumologie Dr Boukhatem: distance 1173.9km du centre commune (coords: 34.908000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.108
+  ⚠️ Cabinet de Pneumologie Dr Fekih: distance 1173.3km du centre commune (coords: 34.902000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.102
+  ⚠️ Cabinet de Pneumologie Dr Rezzig: distance 1174.6km du centre commune (coords: 34.914000, 4.114000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.114
+  ⚠️ Cabinet de Pédiatrie Dr Benmansour: distance 1173.5km du centre commune (coords: 34.904000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.104
+  ⚠️ Cabinet de Pédiatrie Dr Latreche: distance 1174.1km du centre commune (coords: 34.910000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.11
+  ⚠️ Cabinet de Pédiatrie Dr Sennour: distance 1174.8km du centre commune (coords: 34.916000, 4.116000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.116
+  ⚠️ Cabinet de Soins Infirmiers Abid: distance 1174.0km du centre commune (coords: 34.908000, 4.092000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.092
+  ⚠️ Cabinet de Soins Infirmiers Cherif: distance 1174.4km du centre commune (coords: 34.912000, 4.088000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.088
+  ⚠️ Cabinet de Soins Infirmiers Fekih: distance 1174.9km du centre commune (coords: 34.916000, 4.084000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.084
+  ⚠️ Cabinet de Soins Infirmiers Rezzig: distance 1173.5km du centre commune (coords: 34.904000, 4.096000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.096
+  ⚠️ Centre Anti-Cancer (CAC) - Unité Abelsa: distance 1173.0km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Centre d'Imagerie Médicale Abelsa (Scanner / IRM): distance 1173.0km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Clinique Médico-Chirurgicale Privée Abelsa: distance 1173.0km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EHS Mère-Enfant - Abelsa: distance 1173.0km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EPH de Abelsa (Hôpital Central): distance 1173.0km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Laboratoire d'Analyses Médicales Dr Sennour: distance 1173.2km du centre commune (coords: 34.901200, 4.101400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9012,4.1014
+  ⚠️ Pharmacie Benali: distance 1172.3km du centre commune (coords: 34.893600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8936,4.0944
+  ⚠️ Pharmacie Bounoua: distance 1172.5km du centre commune (coords: 34.895200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8952,4.0958
+  ⚠️ Pharmacie Bouras: distance 1171.3km du centre commune (coords: 34.884000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.884,4.086
+  ⚠️ Pharmacie Chellali: distance 1172.9km du centre commune (coords: 34.898400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8984,4.0986
+  ⚠️ Pharmacie Hachemi: distance 1172.7km du centre commune (coords: 34.896800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8968,4.0972
+  ⚠️ Pharmacie Haddad: distance 1171.6km du centre commune (coords: 34.887200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8872,4.0888
+  ⚠️ Pharmacie Hamdani: distance 1171.5km du centre commune (coords: 34.885600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8856,4.0874
+  ⚠️ Pharmacie Khelifi: distance 1171.8km du centre commune (coords: 34.888800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8888,4.0902
+  ⚠️ Pharmacie Mansouri: distance 1172.2km du centre commune (coords: 34.892000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.093
+  ⚠️ Pharmacie Mokhtari: distance 1172.0km du centre commune (coords: 34.890400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8904,4.0916
+  ⚠️ Polyclinique Abelsa - Secteur 1: distance 1173.3km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Salle de Soins Abelsa Unité 1: distance 1172.7km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+
+--- Idles ---
+  ⚠️ Cabinet Dentaire Dr Aissani: distance 1074.7km du centre commune (coords: 34.908400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9084,4.0916
+  ⚠️ Cabinet Dentaire Dr Baaziz: distance 1074.3km du centre commune (coords: 34.905600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9056,4.0944
+  ⚠️ Cabinet Dentaire Dr Belkacem: distance 1073.8km du centre commune (coords: 34.901400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9014,4.0986
+  ⚠️ Cabinet Dentaire Dr Boudiaf: distance 1075.9km du centre commune (coords: 34.918200, 4.081800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9182,4.0818
+  ⚠️ Cabinet Dentaire Dr Bounoua: distance 1076.1km du centre commune (coords: 34.919600, 4.080400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9196,4.0804
+  ⚠️ Cabinet Dentaire Dr Bouziane: distance 1076.3km du centre commune (coords: 34.921000, 4.079000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.921,4.079
+  ⚠️ Cabinet Dentaire Dr Chellali: distance 1074.5km du centre commune (coords: 34.907000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.093
+  ⚠️ Cabinet Dentaire Dr Dahmani: distance 1074.9km du centre commune (coords: 34.909800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9098,4.0902
+  ⚠️ Cabinet Dentaire Dr Hamdani: distance 1075.6km du centre commune (coords: 34.915400, 4.084600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9154,4.0846
+  ⚠️ Cabinet Dentaire Dr Kaddour: distance 1074.2km du centre commune (coords: 34.904200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9042,4.0958
+  ⚠️ Cabinet Dentaire Dr Khelifi: distance 1074.0km du centre commune (coords: 34.902800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9028,4.0972
+  ⚠️ Cabinet Dentaire Dr Mansouri: distance 1075.0km du centre commune (coords: 34.911200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9112,4.0888
+  ⚠️ Cabinet Dentaire Dr Mekki: distance 1075.7km du centre commune (coords: 34.916800, 4.083200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9168,4.0832
+  ⚠️ Cabinet Dentaire Dr Slimani: distance 1075.2km du centre commune (coords: 34.912600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9126,4.0874
+  ⚠️ Cabinet Dentaire Dr Zitouni: distance 1075.4km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet Médical Dr Baaziz (Médecine Générale): distance 1072.9km du centre commune (coords: 34.894000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.894,4.106
+  ⚠️ Cabinet Médical Dr Belkacem (Médecine Générale): distance 1073.4km du centre commune (coords: 34.898000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.898,4.102
+  ⚠️ Cabinet Médical Dr Benmansour (Médecine Générale): distance 1072.5km du centre commune (coords: 34.891000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.891,4.109
+  ⚠️ Cabinet Médical Dr Boudiaf (Médecine Générale): distance 1072.6km du centre commune (coords: 34.892000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.108
+  ⚠️ Cabinet Médical Dr Brahimi (Médecine Générale): distance 1073.5km du centre commune (coords: 34.899000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.899,4.101
+  ⚠️ Cabinet Médical Dr Charef (Médecine Générale): distance 1073.0km du centre commune (coords: 34.895000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.895,4.105
+  ⚠️ Cabinet Médical Dr Dahmani (Médecine Générale): distance 1072.4km du centre commune (coords: 34.890000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.89,4.11
+  ⚠️ Cabinet Médical Dr Latreche (Médecine Générale): distance 1073.3km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+  ⚠️ Cabinet Médical Dr Sennour (Médecine Générale): distance 1072.8km du centre commune (coords: 34.893000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.893,4.107
+  ⚠️ Cabinet Médical Dr Zitouni (Médecine Générale): distance 1073.1km du centre commune (coords: 34.896000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.896,4.104
+  ⚠️ Cabinet d'Ophtalmologie Dr Chellali: distance 1074.4km du centre commune (coords: 34.908000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.108
+  ⚠️ Cabinet d'Ophtalmologie Dr Hamdani: distance 1075.5km du centre commune (coords: 34.920000, 4.120000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.92,4.12
+  ⚠️ Cabinet d'Ophtalmologie Dr Khelifi: distance 1073.8km du centre commune (coords: 34.902000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.102
+  ⚠️ Cabinet d'Ophtalmologie Dr Mansouri: distance 1075.0km du centre commune (coords: 34.914000, 4.114000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.114
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Baaziz: distance 1075.6km du centre commune (coords: 34.921000, 4.121000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.921,4.121
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Belkacem: distance 1075.1km du centre commune (coords: 34.915000, 4.115000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.915,4.115
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Boudiaf: distance 1074.5km du centre commune (coords: 34.909000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.909,4.109
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Zitouni: distance 1073.9km du centre commune (coords: 34.903000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.903,4.103
+  ⚠️ Cabinet de Dermatologie Dr Aissani: distance 1074.6km du centre commune (coords: 34.910000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.11
+  ⚠️ Cabinet de Dermatologie Dr Kaddour: distance 1074.0km du centre commune (coords: 34.904000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.104
+  ⚠️ Cabinet de Dermatologie Dr Mekki: distance 1075.7km du centre commune (coords: 34.922000, 4.122000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.922,4.122
+  ⚠️ Cabinet de Dermatologie Dr Slimani: distance 1075.1km du centre commune (coords: 34.916000, 4.116000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.116
+  ⚠️ Cabinet de Gastro-entérologie Dr Bounoua: distance 1074.7km du centre commune (coords: 34.911000, 4.111000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.911,4.111
+  ⚠️ Cabinet de Gastro-entérologie Dr Chellali: distance 1075.8km du centre commune (coords: 34.923000, 4.123000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.923,4.123
+  ⚠️ Cabinet de Gastro-entérologie Dr Hamdani: distance 1074.1km du centre commune (coords: 34.905000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.905,4.105
+  ⚠️ Cabinet de Gastro-entérologie Dr Khelifi: distance 1075.2km du centre commune (coords: 34.917000, 4.117000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.917,4.117
+  ⚠️ Cabinet de Gynécologie Dr Aissani: distance 1076.0km du centre commune (coords: 34.925000, 4.125000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.925,4.125
+  ⚠️ Cabinet de Gynécologie Dr Bouziane: distance 1074.9km du centre commune (coords: 34.913000, 4.113000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.913,4.113
+  ⚠️ Cabinet de Gynécologie Dr Kaddour: distance 1075.4km du centre commune (coords: 34.919000, 4.119000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.919,4.119
+  ⚠️ Cabinet de Gynécologie Dr Mekki: distance 1074.3km du centre commune (coords: 34.907000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.107
+  ⚠️ Cabinet de Gynécologie Dr Slimani: distance 1073.7km du centre commune (coords: 34.901000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.901,4.101
+  ⚠️ Cabinet de Kinésithérapie Dr Benmansour: distance 1075.4km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet de Kinésithérapie Dr Brahimi: distance 1074.4km du centre commune (coords: 34.906000, 4.094000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.094
+  ⚠️ Cabinet de Kinésithérapie Dr Charef: distance 1074.9km du centre commune (coords: 34.910000, 4.090000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.09
+  ⚠️ Cabinet de Kinésithérapie Dr Latreche: distance 1075.9km du centre commune (coords: 34.918000, 4.082000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.918,4.082
+  ⚠️ Cabinet de Kinésithérapie Dr Sennour: distance 1073.9km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Cabinet de Néphrologie Dr Baaziz: distance 1074.2km du centre commune (coords: 34.906000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.106
+  ⚠️ Cabinet de Néphrologie Dr Boudiaf: distance 1075.9km du centre commune (coords: 34.924000, 4.124000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.924,4.124
+  ⚠️ Cabinet de Néphrologie Dr Dahmani: distance 1074.8km du centre commune (coords: 34.912000, 4.112000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.112
+  ⚠️ Cabinet de Néphrologie Dr Zitouni: distance 1075.3km du centre commune (coords: 34.918000, 4.118000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.918,4.118
+  ⚠️ Cabinet de Soins Infirmiers Benmansour: distance 1074.1km du centre commune (coords: 34.904000, 4.096000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.096
+  ⚠️ Cabinet de Soins Infirmiers Brahimi: distance 1075.6km du centre commune (coords: 34.916000, 4.084000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.084
+  ⚠️ Cabinet de Soins Infirmiers Charef: distance 1076.1km du centre commune (coords: 34.920000, 4.080000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.92,4.08
+  ⚠️ Cabinet de Soins Infirmiers Latreche: distance 1074.6km du centre commune (coords: 34.908000, 4.092000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.092
+  ⚠️ Cabinet de Soins Infirmiers Sennour: distance 1075.1km du centre commune (coords: 34.912000, 4.088000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.088
+  ⚠️ Centre Anti-Cancer (CAC) - Unité Idles: distance 1073.6km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Centre d'Imagerie Médicale Idles (Scanner / IRM): distance 1073.6km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Clinique Médico-Chirurgicale Privée Idles: distance 1073.6km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EHS Mère-Enfant - Idles: distance 1073.6km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EPH de Idles (Hôpital Central): distance 1073.6km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Laboratoire d'Analyses Médicales Dr Hachemi: distance 1073.7km du centre commune (coords: 34.901200, 4.101400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9012,4.1014
+  ⚠️ Pharmacie Abid: distance 1073.3km du centre commune (coords: 34.896800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8968,4.0972
+  ⚠️ Pharmacie Aissani: distance 1073.5km du centre commune (coords: 34.898400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8984,4.0986
+  ⚠️ Pharmacie Boukhatem: distance 1073.0km du centre commune (coords: 34.893600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8936,4.0944
+  ⚠️ Pharmacie Bouziane: distance 1073.2km du centre commune (coords: 34.895200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8952,4.0958
+  ⚠️ Pharmacie Cherif: distance 1072.7km du centre commune (coords: 34.890400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8904,4.0916
+  ⚠️ Pharmacie Fekih: distance 1072.1km du centre commune (coords: 34.884000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.884,4.086
+  ⚠️ Pharmacie Kaddour: distance 1072.6km du centre commune (coords: 34.888800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8888,4.0902
+  ⚠️ Pharmacie Mekki: distance 1072.2km du centre commune (coords: 34.885600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8856,4.0874
+  ⚠️ Pharmacie Rezzig: distance 1072.4km du centre commune (coords: 34.887200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8872,4.0888
+  ⚠️ Pharmacie Slimani: distance 1072.9km du centre commune (coords: 34.892000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.093
+  ⚠️ Polyclinique Idles - Secteur 1: distance 1073.9km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Salle de Soins Idles Unité 1: distance 1073.3km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+
+--- Tamanrasset ---
+  ⚠️ Cabinet Dentaire Dr Abid: distance 1414.7km du centre commune (coords: 34.908400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9084,4.0916
+  ⚠️ Cabinet Dentaire Dr Benali: distance 1416.1km du centre commune (coords: 34.919600, 4.080400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9196,4.0804
+  ⚠️ Cabinet Dentaire Dr Benmansour: distance 1415.9km du centre commune (coords: 34.918200, 4.081800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9182,4.0818
+  ⚠️ Cabinet Dentaire Dr Boukhatem: distance 1416.3km du centre commune (coords: 34.921000, 4.079000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.921,4.079
+  ⚠️ Cabinet Dentaire Dr Bouras: distance 1415.6km du centre commune (coords: 34.915400, 4.084600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9154,4.0846
+  ⚠️ Cabinet Dentaire Dr Brahimi: distance 1414.9km du centre commune (coords: 34.909800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9098,4.0902
+  ⚠️ Cabinet Dentaire Dr Charef: distance 1415.4km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet Dentaire Dr Cherif: distance 1415.2km du centre commune (coords: 34.912600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9126,4.0874
+  ⚠️ Cabinet Dentaire Dr Fekih: distance 1415.7km du centre commune (coords: 34.916800, 4.083200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9168,4.0832
+  ⚠️ Cabinet Dentaire Dr Hachemi: distance 1414.6km du centre commune (coords: 34.907000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.093
+  ⚠️ Cabinet Dentaire Dr Haddad: distance 1414.0km du centre commune (coords: 34.902800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9028,4.0972
+  ⚠️ Cabinet Dentaire Dr Latreche: distance 1413.9km du centre commune (coords: 34.901400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9014,4.0986
+  ⚠️ Cabinet Dentaire Dr Mokhtari: distance 1415.1km du centre commune (coords: 34.911200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9112,4.0888
+  ⚠️ Cabinet Dentaire Dr Rezzig: distance 1414.2km du centre commune (coords: 34.904200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9042,4.0958
+  ⚠️ Cabinet Dentaire Dr Sennour: distance 1414.4km du centre commune (coords: 34.905600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9056,4.0944
+  ⚠️ Cabinet Médical Dr Benali (Médecine Générale): distance 1413.1km du centre commune (coords: 34.895000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.895,4.105
+  ⚠️ Cabinet Médical Dr Bounoua (Médecine Générale): distance 1413.2km du centre commune (coords: 34.896000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.896,4.104
+  ⚠️ Cabinet Médical Dr Bouras (Médecine Générale): distance 1413.6km du centre commune (coords: 34.899000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.899,4.101
+  ⚠️ Cabinet Médical Dr Chellali (Médecine Générale): distance 1413.5km du centre commune (coords: 34.898000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.898,4.102
+  ⚠️ Cabinet Médical Dr Hachemi (Médecine Générale): distance 1413.3km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+  ⚠️ Cabinet Médical Dr Haddad (Médecine Générale): distance 1412.6km du centre commune (coords: 34.891000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.891,4.109
+  ⚠️ Cabinet Médical Dr Hamdani (Médecine Générale): distance 1412.5km du centre commune (coords: 34.890000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.89,4.11
+  ⚠️ Cabinet Médical Dr Khelifi (Médecine Générale): distance 1412.7km du centre commune (coords: 34.892000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.108
+  ⚠️ Cabinet Médical Dr Mansouri (Médecine Générale): distance 1413.0km du centre commune (coords: 34.894000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.894,4.106
+  ⚠️ Cabinet Médical Dr Mokhtari (Médecine Générale): distance 1412.8km du centre commune (coords: 34.893000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.893,4.107
+  ⚠️ Cabinet d'Orthopédie Dr Benali: distance 1415.5km du centre commune (coords: 34.918000, 4.118000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.918,4.118
+  ⚠️ Cabinet d'Orthopédie Dr Bouras: distance 1414.9km du centre commune (coords: 34.912000, 4.112000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.112
+  ⚠️ Cabinet d'Orthopédie Dr Hachemi: distance 1416.7km du centre commune (coords: 34.930000, 4.130000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.93,4.13
+  ⚠️ Cabinet d'Orthopédie Dr Haddad: distance 1416.1km du centre commune (coords: 34.924000, 4.124000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.924,4.124
+  ⚠️ Cabinet d'Orthopédie Dr Mokhtari: distance 1414.3km du centre commune (coords: 34.906000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.106
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Benmansour: distance 1413.8km du centre commune (coords: 34.901000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.901,4.101
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Brahimi: distance 1415.6km du centre commune (coords: 34.919000, 4.119000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.919,4.119
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Charef: distance 1416.2km du centre commune (coords: 34.925000, 4.125000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.925,4.125
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Latreche: distance 1414.4km du centre commune (coords: 34.907000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.107
+  ⚠️ Cabinet d'Oto-Rhino-Laryngologie Dr Sennour: distance 1415.0km du centre commune (coords: 34.913000, 4.113000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.913,4.113
+  ⚠️ Cabinet de Cardiologie Dr Benali: distance 1414.0km du centre commune (coords: 34.903000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.903,4.103
+  ⚠️ Cabinet de Cardiologie Dr Bouras: distance 1416.4km du centre commune (coords: 34.927000, 4.127000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.927,4.127
+  ⚠️ Cabinet de Cardiologie Dr Hachemi: distance 1415.2km du centre commune (coords: 34.915000, 4.115000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.915,4.115
+  ⚠️ Cabinet de Cardiologie Dr Haddad: distance 1414.6km du centre commune (coords: 34.909000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.909,4.109
+  ⚠️ Cabinet de Cardiologie Dr Mokhtari: distance 1415.8km du centre commune (coords: 34.921000, 4.121000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.921,4.121
+  ⚠️ Cabinet de Kinésithérapie Dr Aissani: distance 1415.9km du centre commune (coords: 34.918000, 4.082000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.918,4.082
+  ⚠️ Cabinet de Kinésithérapie Dr Bouziane: distance 1414.9km du centre commune (coords: 34.910000, 4.090000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.09
+  ⚠️ Cabinet de Kinésithérapie Dr Kaddour: distance 1415.4km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet de Kinésithérapie Dr Mekki: distance 1414.4km du centre commune (coords: 34.906000, 4.094000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.094
+  ⚠️ Cabinet de Kinésithérapie Dr Slimani: distance 1413.9km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Cabinet de Médecine Interne Dr Abid: distance 1415.4km du centre commune (coords: 34.917000, 4.117000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.917,4.117
+  ⚠️ Cabinet de Médecine Interne Dr Boukhatem: distance 1414.2km du centre commune (coords: 34.905000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.905,4.105
+  ⚠️ Cabinet de Médecine Interne Dr Cherif: distance 1416.0km du centre commune (coords: 34.923000, 4.123000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.923,4.123
+  ⚠️ Cabinet de Médecine Interne Dr Fekih: distance 1416.6km du centre commune (coords: 34.929000, 4.129000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.929,4.129
+  ⚠️ Cabinet de Médecine Interne Dr Rezzig: distance 1414.8km du centre commune (coords: 34.911000, 4.111000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.911,4.111
+  ⚠️ Cabinet de Pneumologie Dr Abid: distance 1413.9km du centre commune (coords: 34.902000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.102
+  ⚠️ Cabinet de Pneumologie Dr Boukhatem: distance 1415.7km du centre commune (coords: 34.920000, 4.120000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.92,4.12
+  ⚠️ Cabinet de Pneumologie Dr Cherif: distance 1414.5km du centre commune (coords: 34.908000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.108
+  ⚠️ Cabinet de Pneumologie Dr Fekih: distance 1415.1km du centre commune (coords: 34.914000, 4.114000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.114
+  ⚠️ Cabinet de Pneumologie Dr Rezzig: distance 1416.3km du centre commune (coords: 34.926000, 4.126000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.926,4.126
+  ⚠️ Cabinet de Pédiatrie Dr Benmansour: distance 1415.3km du centre commune (coords: 34.916000, 4.116000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.116
+  ⚠️ Cabinet de Pédiatrie Dr Brahimi: distance 1414.1km du centre commune (coords: 34.904000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.104
+  ⚠️ Cabinet de Pédiatrie Dr Charef: distance 1414.7km du centre commune (coords: 34.910000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.11
+  ⚠️ Cabinet de Pédiatrie Dr Latreche: distance 1415.9km du centre commune (coords: 34.922000, 4.122000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.922,4.122
+  ⚠️ Cabinet de Pédiatrie Dr Sennour: distance 1416.5km du centre commune (coords: 34.928000, 4.128000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.928,4.128
+  ⚠️ Cabinet de Soins Infirmiers Aissani: distance 1414.7km du centre commune (coords: 34.908000, 4.092000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.092
+  ⚠️ Cabinet de Soins Infirmiers Bouziane: distance 1416.1km du centre commune (coords: 34.920000, 4.080000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.92,4.08
+  ⚠️ Cabinet de Soins Infirmiers Kaddour: distance 1414.2km du centre commune (coords: 34.904000, 4.096000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.096
+  ⚠️ Cabinet de Soins Infirmiers Mekki: distance 1415.6km du centre commune (coords: 34.916000, 4.084000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.084
+  ⚠️ Cabinet de Soins Infirmiers Slimani: distance 1415.2km du centre commune (coords: 34.912000, 4.088000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.088
+  ⚠️ Centre Anti-Cancer (CAC) - Unité Tamanrasset: distance 1413.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Centre d'Imagerie Médicale Tamanrasset (Scanner / IRM): distance 1413.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Clinique Médico-Chirurgicale Privée Tamanrasset: distance 1413.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EHS Mère-Enfant - Tamanrasset: distance 1413.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EPH de Tamanrasset (Hôpital Central): distance 1413.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Laboratoire d'Analyses Médicales Dr Baaziz: distance 1413.9km du centre commune (coords: 34.902400, 4.102800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9024,4.1028
+  ⚠️ Laboratoire d'Analyses Médicales Dr Fekih: distance 1414.0km du centre commune (coords: 34.903600, 4.104200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9036,4.1042
+  ⚠️ Laboratoire d'Analyses Médicales Dr Haddad: distance 1413.8km du centre commune (coords: 34.901200, 4.101400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9012,4.1014
+  ⚠️ Pharmacie Benali: distance 1412.7km du centre commune (coords: 34.890400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8904,4.0916
+  ⚠️ Pharmacie Bounoua: distance 1412.9km du centre commune (coords: 34.892000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.093
+  ⚠️ Pharmacie Bouras: distance 1413.4km du centre commune (coords: 34.896800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8968,4.0972
+  ⚠️ Pharmacie Chellali: distance 1413.2km du centre commune (coords: 34.895200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8952,4.0958
+  ⚠️ Pharmacie Hachemi: distance 1413.1km du centre commune (coords: 34.893600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8936,4.0944
+  ⚠️ Pharmacie Haddad: distance 1412.1km du centre commune (coords: 34.884000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.884,4.086
+  ⚠️ Pharmacie Hamdani: distance 1413.5km du centre commune (coords: 34.898400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8984,4.0986
+  ⚠️ Pharmacie Khelifi: distance 1412.3km du centre commune (coords: 34.885600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8856,4.0874
+  ⚠️ Pharmacie Mansouri: distance 1412.6km du centre commune (coords: 34.888800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8888,4.0902
+  ⚠️ Pharmacie Mokhtari: distance 1412.4km du centre commune (coords: 34.887200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8872,4.0888
+  ⚠️ Polyclinique Tamanrasset - Secteur 1: distance 1413.9km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Polyclinique Tamanrasset - Secteur 2: distance 1414.2km du centre commune (coords: 34.904000, 4.096000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.096
+  ⚠️ Polyclinique Tamanrasset - Secteur 3: distance 1414.4km du centre commune (coords: 34.906000, 4.094000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.094
+  ⚠️ Polyclinique Tamanrasset - Secteur 4: distance 1414.7km du centre commune (coords: 34.908000, 4.092000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.092
+  ⚠️ Salle de Soins Tamanrasset Unité 1: distance 1413.3km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+  ⚠️ Salle de Soins Tamanrasset Unité 2: distance 1413.0km du centre commune (coords: 34.894000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.894,4.106
+  ⚠️ Salle de Soins Tamanrasset Unité 3: distance 1412.6km du centre commune (coords: 34.891000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.891,4.109
+  ⚠️ Salle de Soins Tamanrasset Unité 4: distance 1412.2km du centre commune (coords: 34.888000, 4.112000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.888,4.112
+  ⚠️ Salle de Soins Tamanrasset Unité 5: distance 1411.9km du centre commune (coords: 34.885000, 4.115000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.885,4.115
+  ⚠️ Salle de Soins Tamanrasset Unité 6: distance 1411.5km du centre commune (coords: 34.882000, 4.118000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.882,4.118
+
+--- Tazrouk ---
+  ⚠️ Cabinet Dentaire Dr Aissani: distance 1420.2km du centre commune (coords: 34.918200, 4.081800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9182,4.0818
+  ⚠️ Cabinet Dentaire Dr Baaziz: distance 1419.8km du centre commune (coords: 34.915400, 4.084600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9154,4.0846
+  ⚠️ Cabinet Dentaire Dr Belkacem: distance 1419.2km du centre commune (coords: 34.911200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9112,4.0888
+  ⚠️ Cabinet Dentaire Dr Boudiaf: distance 1418.7km du centre commune (coords: 34.907000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.093
+  ⚠️ Cabinet Dentaire Dr Bounoua: distance 1418.9km du centre commune (coords: 34.908400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9084,4.0916
+  ⚠️ Cabinet Dentaire Dr Bouziane: distance 1419.1km du centre commune (coords: 34.909800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9098,4.0902
+  ⚠️ Cabinet Dentaire Dr Chellali: distance 1420.0km du centre commune (coords: 34.916800, 4.083200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9168,4.0832
+  ⚠️ Cabinet Dentaire Dr Dahmani: distance 1420.4km du centre commune (coords: 34.919600, 4.080400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9196,4.0804
+  ⚠️ Cabinet Dentaire Dr Hamdani: distance 1418.3km du centre commune (coords: 34.904200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9042,4.0958
+  ⚠️ Cabinet Dentaire Dr Kaddour: distance 1419.6km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet Dentaire Dr Khelifi: distance 1419.4km du centre commune (coords: 34.912600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9126,4.0874
+  ⚠️ Cabinet Dentaire Dr Mekki: distance 1418.5km du centre commune (coords: 34.905600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9056,4.0944
+  ⚠️ Cabinet Dentaire Dr Slimani: distance 1417.9km du centre commune (coords: 34.901400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9014,4.0986
+  ⚠️ Cabinet Dentaire Dr Zitouni: distance 1418.1km du centre commune (coords: 34.902800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9028,4.0972
+  ⚠️ Cabinet Médical Dr Abid (Médecine Générale): distance 1416.9km du centre commune (coords: 34.894000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.894,4.106
+  ⚠️ Cabinet Médical Dr Aissani (Médecine Générale): distance 1417.1km du centre commune (coords: 34.895000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.895,4.105
+  ⚠️ Cabinet Médical Dr Boukhatem (Médecine Générale): distance 1416.7km du centre commune (coords: 34.892000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.108
+  ⚠️ Cabinet Médical Dr Bouziane (Médecine Générale): distance 1416.8km du centre commune (coords: 34.893000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.893,4.107
+  ⚠️ Cabinet Médical Dr Cherif (Médecine Générale): distance 1416.4km du centre commune (coords: 34.890000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.89,4.11
+  ⚠️ Cabinet Médical Dr Fekih (Médecine Générale): distance 1417.2km du centre commune (coords: 34.896000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.896,4.104
+  ⚠️ Cabinet Médical Dr Kaddour (Médecine Générale): distance 1417.6km du centre commune (coords: 34.899000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.899,4.101
+  ⚠️ Cabinet Médical Dr Mekki (Médecine Générale): distance 1417.3km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103
+  ⚠️ Cabinet Médical Dr Rezzig (Médecine Générale): distance 1417.5km du centre commune (coords: 34.898000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.898,4.102
+  ⚠️ Cabinet Médical Dr Slimani (Médecine Générale): distance 1416.5km du centre commune (coords: 34.891000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.891,4.109
+  ⚠️ Cabinet d'Ophtalmologie Dr Bounoua: distance 1419.1km du centre commune (coords: 34.917000, 4.117000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.917,4.117
+  ⚠️ Cabinet d'Ophtalmologie Dr Hamdani: distance 1418.6km du centre commune (coords: 34.911000, 4.111000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.911,4.111
+  ⚠️ Cabinet d'Ophtalmologie Dr Mansouri: distance 1418.1km du centre commune (coords: 34.905000, 4.105000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.905,4.105
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Baaziz: distance 1418.7km du centre commune (coords: 34.912000, 4.112000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.112
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Belkacem: distance 1418.2km du centre commune (coords: 34.906000, 4.106000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.106
+  ⚠️ Cabinet de Chirurgie Viscérale Dr Dahmani: distance 1419.2km du centre commune (coords: 34.918000, 4.118000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.918,4.118
+  ⚠️ Cabinet de Dermatologie Dr Aissani: distance 1417.8km du centre commune (coords: 34.901000, 4.101000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.901,4.101
+  ⚠️ Cabinet de Dermatologie Dr Mekki: distance 1418.8km du centre commune (coords: 34.913000, 4.113000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.913,4.113
+  ⚠️ Cabinet de Dermatologie Dr Slimani: distance 1418.3km du centre commune (coords: 34.907000, 4.107000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.907,4.107
+  ⚠️ Cabinet de Gastro-entérologie Dr Bounoua: distance 1417.9km du centre commune (coords: 34.902000, 4.102000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.102
+  ⚠️ Cabinet de Gastro-entérologie Dr Chellali: distance 1418.8km du centre commune (coords: 34.914000, 4.114000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.114
+  ⚠️ Cabinet de Gastro-entérologie Dr Khelifi: distance 1418.4km du centre commune (coords: 34.908000, 4.108000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.108
+  ⚠️ Cabinet de Gynécologie Dr Aissani: distance 1419.0km du centre commune (coords: 34.916000, 4.116000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.116
+  ⚠️ Cabinet de Gynécologie Dr Bouziane: distance 1418.1km du centre commune (coords: 34.904000, 4.104000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.104
+  ⚠️ Cabinet de Gynécologie Dr Kaddour: distance 1418.5km du centre commune (coords: 34.910000, 4.110000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.11
+  ⚠️ Cabinet de Kinésithérapie Dr Boukhatem: distance 1419.1km du centre commune (coords: 34.910000, 4.090000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.91,4.09
+  ⚠️ Cabinet de Kinésithérapie Dr Cherif: distance 1418.0km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Cabinet de Kinésithérapie Dr Fekih: distance 1418.5km du centre commune (coords: 34.906000, 4.094000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.906,4.094
+  ⚠️ Cabinet de Kinésithérapie Dr Rezzig: distance 1419.6km du centre commune (coords: 34.914000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.914,4.086
+  ⚠️ Cabinet de Néphrologie Dr Boudiaf: distance 1418.9km du centre commune (coords: 34.915000, 4.115000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.915,4.115
+  ⚠️ Cabinet de Néphrologie Dr Dahmani: distance 1418.0km du centre commune (coords: 34.903000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.903,4.103
+  ⚠️ Cabinet de Néphrologie Dr Zitouni: distance 1418.5km du centre commune (coords: 34.909000, 4.109000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.909,4.109
+  ⚠️ Cabinet de Soins Infirmiers Abid: distance 1418.8km du centre commune (coords: 34.908000, 4.092000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.908,4.092
+  ⚠️ Cabinet de Soins Infirmiers Cherif: distance 1419.3km du centre commune (coords: 34.912000, 4.088000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.912,4.088
+  ⚠️ Cabinet de Soins Infirmiers Fekih: distance 1419.9km du centre commune (coords: 34.916000, 4.084000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.916,4.084
+  ⚠️ Cabinet de Soins Infirmiers Rezzig: distance 1418.3km du centre commune (coords: 34.904000, 4.096000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.904,4.096
+  ⚠️ Centre Anti-Cancer (CAC) - Unité Tazrouk: distance 1417.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Centre d'Imagerie Médicale Tazrouk (Scanner / IRM): distance 1417.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Clinique Médico-Chirurgicale Privée Tazrouk: distance 1417.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EHS Mère-Enfant - Tazrouk: distance 1417.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ EPH de Tazrouk (Hôpital Central): distance 1417.7km du centre commune (coords: 34.900000, 4.100000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9,4.1
+  ⚠️ Laboratoire d'Analyses Médicales Dr Chellali: distance 1417.8km du centre commune (coords: 34.901200, 4.101400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.9012,4.1014
+  ⚠️ Pharmacie Abid: distance 1417.4km du centre commune (coords: 34.895200, 4.095800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8952,4.0958
+  ⚠️ Pharmacie Aissani: distance 1417.5km du centre commune (coords: 34.896800, 4.097200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8968,4.0972
+  ⚠️ Pharmacie Boukhatem: distance 1417.1km du centre commune (coords: 34.892000, 4.093000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.892,4.093
+  ⚠️ Pharmacie Bouziane: distance 1417.2km du centre commune (coords: 34.893600, 4.094400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8936,4.0944
+  ⚠️ Pharmacie Cherif: distance 1416.8km du centre commune (coords: 34.888800, 4.090200) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8888,4.0902
+  ⚠️ Pharmacie Fekih: distance 1417.6km du centre commune (coords: 34.898400, 4.098600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8984,4.0986
+  ⚠️ Pharmacie Kaddour: distance 1416.7km du centre commune (coords: 34.887200, 4.088800) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8872,4.0888
+  ⚠️ Pharmacie Mekki: distance 1416.4km du centre commune (coords: 34.884000, 4.086000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.884,4.086
+  ⚠️ Pharmacie Rezzig: distance 1416.6km du centre commune (coords: 34.885600, 4.087400) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8856,4.0874
+  ⚠️ Pharmacie Slimani: distance 1417.0km du centre commune (coords: 34.890400, 4.091600) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.8904,4.0916
+  ⚠️ Polyclinique Tazrouk - Secteur 1: distance 1418.0km du centre commune (coords: 34.902000, 4.098000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.902,4.098
+  ⚠️ Salle de Soins Tazrouk Unité 1: distance 1417.3km du centre commune (coords: 34.897000, 4.103000) → Google Maps: https://www.google.com/maps/search/?api=1&query=34.897,4.103

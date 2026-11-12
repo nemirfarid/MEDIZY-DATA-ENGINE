@@ -1,0 +1,100 @@
+{
+  "timestamp": "2026-11-12T11:29:02.215822",
+  "total_facilities": 40752,
+  "to_repair": 30311,
+  "unchanged": 0,
+  "no_commune_match": 10441,
+  "dry_run": false,
+  "sample": [
+    {
+      "id": 1,
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "old_lat": 35.9,
+      "old_lon": 3.1,
+      "new_lat": 27.942,
+      "new_lon": -0.215
+    },
+    {
+      "id": 2,
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "old_lat": 35.9,
+      "old_lon": 3.1,
+      "new_lat": 27.942,
+      "new_lon": -0.215
+    },
+    {
+      "id": 3,
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "old_lat": 35.9,
+      "old_lon": 3.1,
+      "new_lat": 27.942,
+      "new_lon": -0.215
+    },
+    {
+      "id": 4,
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "old_lat": 35.9,
+      "old_lon": 3.1,
+      "new_lat": 27.942,
+      "new_lon": -0.215
+    },
+    {
+      "id": 5,
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "old_lat": 35.9,
+      "old_lon": 3.1,
+      "new_lat": 27.942,
+      "new_lon": -0.215
+    },
+    {
+      "id": 6,
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "old_lat": 35.902,
+      "old_lon": 3.098,
+      "new_lat": 27.942,
+      "new_lon": -0.215
+    },
+    {
+      "id": 7,
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "old_lat": 35.904,
+      "old_lon": 3.096,
+      "new_lat": 27.942,
+      "new_lon": -0.215
+    },
+    {
+      "id": 8,
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "old_lat": 35.906,
+      "old_lon": 3.094,
+      "new_lat": 27.942,
+      "new_lon": -0.215
+    },
+    {
+      "id": 9,
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "old_lat": 35.908,
+      "old_lon": 3.092,
+      "new_lat": 27.942,
+      "new_lon": -0.215
+    },
+    {
+      "id": 10,
+      "wilaya_code": "01",
+      "commune": "Adrar",
+      "old_lat": 35.897,
+      "old_lon": 3.103,
+      "new_lat": 27.942,
+      "new_lon": -0.215
+    }
+  ]
+}

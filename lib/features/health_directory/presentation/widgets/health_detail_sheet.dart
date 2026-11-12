@@ -194,7 +194,7 @@ class _HealthDetailSheetState extends State<HealthDetailSheet> {
               children: [
                 if (isOnDuty)
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                     decoration: BoxDecoration(
                       color: const Color(0xFFFFEBEE),
                       borderRadius: BorderRadius.circular(6),
@@ -219,7 +219,7 @@ class _HealthDetailSheetState extends State<HealthDetailSheet> {
                 if (acceptsChifa)
                   Container(
                     key: const Key('sheet_badge_chifa'),
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                     decoration: BoxDecoration(
                       color: const Color(0xFFE8F5E9),
                       borderRadius: BorderRadius.circular(6),
@@ -243,7 +243,7 @@ class _HealthDetailSheetState extends State<HealthDetailSheet> {
                   ),
                 if (distance != null)
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    padding: EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                     decoration: BoxDecoration(
                       color: Colors.grey.shade100,
                       borderRadius: BorderRadius.circular(6),
@@ -306,7 +306,7 @@ class _HealthDetailSheetState extends State<HealthDetailSheet> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.teal.shade800,
                         foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        padding: EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       ),
                       onPressed: () => _handleCall(context),
@@ -325,7 +325,7 @@ class _HealthDetailSheetState extends State<HealthDetailSheet> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF25D366),
                         foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        padding: EdgeInsets.symmetric(vertical: 12),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       ),
                       onPressed: () => _handleWhatsApp(context),
@@ -343,7 +343,7 @@ class _HealthDetailSheetState extends State<HealthDetailSheet> {
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.teal.shade900,
                       side: BorderSide(color: Colors.teal.shade800, width: 1.5),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      padding: EdgeInsets.symmetric(vertical: 12),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     ),
                     onPressed: () => _handleNavigation(context),
@@ -355,7 +355,7 @@ class _HealthDetailSheetState extends State<HealthDetailSheet> {
 
             // Carnet Médical Local Privé & Notes
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: Colors.grey.shade50,
                 borderRadius: BorderRadius.circular(12),
@@ -395,7 +395,7 @@ class _HealthDetailSheetState extends State<HealthDetailSheet> {
                       hintText: 'Ex: Secrétaire joignable le matin, Dr reçoit sans RDV...',
                       hintStyle: TextStyle(fontSize: 12, color: Colors.grey.shade400),
                       isDense: true,
-                      contentPadding: const EdgeInsets.all(10),
+                      contentPadding: EdgeInsets.all(10),
                       filled: true,
                       fillColor: Colors.white,
                       border: OutlineInputBorder(
@@ -430,7 +430,7 @@ class _HealthDetailSheetState extends State<HealthDetailSheet> {
                         backgroundColor: Colors.teal,
                         foregroundColor: Colors.white,
                         visualDensity: VisualDensity.compact,
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       ),
                     ),

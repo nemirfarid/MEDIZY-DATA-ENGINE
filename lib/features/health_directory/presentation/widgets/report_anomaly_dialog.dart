@@ -112,7 +112,7 @@ class _ReportAnomalyDialogState extends State<ReportAnomalyDialog> {
               initialValue: _selectedType,
               isExpanded: true,
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
               ),
               items: ReportType.values.map((type) {

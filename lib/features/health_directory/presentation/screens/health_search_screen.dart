@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/theme/medizy_theme.dart';
 import '../../state/health_favorites_notifier.dart';
 import '../../state/health_search_notifier.dart';
 import '../../state/health_sync_engine.dart';
@@ -8,7 +9,7 @@ import '../widgets/health_filter_bar.dart';
 import '../widgets/health_professional_card.dart';
 import '../widgets/sync_status_badge.dart';
 
-/// Écran principal de recherche et consultation de l'annuaire de santé
+/// Écran principal de recherche et consultation de l'annuaire de santé (Design Premium)
 class HealthSearchScreen extends StatefulWidget {
   final HealthSearchNotifier notifier;
   final HealthFavoritesNotifier? favoritesNotifier;
@@ -72,15 +73,16 @@ class _HealthSearchScreenState extends State<HealthSearchScreen> {
         : widget.notifier;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: MedizyTheme.background,
       appBar: AppBar(
         title: const Text(
           'Santé DZ / Annuaire National',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
         ),
-        backgroundColor: Colors.teal.shade800,
+        backgroundColor: MedizyTheme.primaryDark,
         foregroundColor: Colors.white,
         elevation: 0,
+        centerTitle: true,
         actions: [
           if (widget.syncEngine != null)
             SyncStatusBadge(syncEngine: widget.syncEngine!),
@@ -98,19 +100,20 @@ class _HealthSearchScreenState extends State<HealthSearchScreen> {
       ),
       body: Column(
         children: [
-          // 1. Champ de recherche textuelle avec icône d'effacement
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 10, 16, 4),
+          // 1. Champ de recherche textuelle avec design Premium
+          Container(
+            color: MedizyTheme.surface,
+            padding: EdgeInsets.fromLTRB(MedizyTheme.spacingM, MedizyTheme.spacingS, MedizyTheme.spacingM, MedizyTheme.spacingM),
             child: TextField(
               key: const Key('search_text_field'),
               controller: _searchController,
               decoration: InputDecoration(
                 hintText: 'Rechercher médecin, pharmacie, clinique...',
-                hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 14),
-                prefixIcon: const Icon(Icons.search, color: Colors.teal),
+                hintStyle: TextStyle(color: MedizyTheme.textSecondary, fontSize: 14),
+                prefixIcon: const Icon(Icons.search, color: MedizyTheme.primary),
                 suffixIcon: _searchController.text.isNotEmpty
                     ? IconButton(
-                        icon: const Icon(Icons.clear, size: 18),
+                        icon: const Icon(Icons.backspace_outlined, size: 18),
                         onPressed: () {
                           _searchController.clear();
                           widget.notifier.onSearchQueryChanged('');
@@ -118,20 +121,20 @@ class _HealthSearchScreenState extends State<HealthSearchScreen> {
                         },
                       )
                     : null,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                 filled: true,
-                fillColor: const Color(0xFFF5F7F8),
+                fillColor: MedizyTheme.background,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Colors.grey.shade200),
+                  borderRadius: BorderRadius.circular(MedizyTheme.borderRadiusM),
+                  borderSide: BorderSide.none,
                 ),
                 enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Colors.grey.shade200),
+                  borderRadius: BorderRadius.circular(MedizyTheme.borderRadiusM),
+                  borderSide: BorderSide.none,
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide(color: Colors.teal.shade700, width: 1.5),
+                  borderRadius: BorderRadius.circular(MedizyTheme.borderRadiusM),
+                  borderSide: const BorderSide(color: MedizyTheme.primary, width: 1.5),
                 ),
               ),
               onChanged: (text) {
@@ -141,7 +144,7 @@ class _HealthSearchScreenState extends State<HealthSearchScreen> {
             ),
           ),
 
-          // 2. Barre de filtres (Wilayas 01-58, Communes, Spécialités, Garde, Favoris)
+          // 2. Barre de filtres
           HealthFilterBar(
             notifier: widget.notifier,
             isFavoritesOnly: _isFavoritesOnly,
@@ -149,7 +152,7 @@ class _HealthSearchScreenState extends State<HealthSearchScreen> {
                 ? (val) => setState(() => _isFavoritesOnly = val)
                 : null,
           ),
-          const Divider(height: 1),
+          const Divider(height: 1, color: Colors.black12),
 
           // 3. Zone principale dynamique : Carte ou Liste selon bascule
           Expanded(
@@ -174,31 +177,49 @@ class _HealthSearchScreenState extends State<HealthSearchScreen> {
                   );
                 }
 
-                // Affichage Vue Liste selon le statut
+                // Affichage Chargement Premium
                 if (!_isFavoritesOnly && state.isLoading) {
-                  return const Center(
-                    key: Key('loading_indicator'),
-                    child: CircularProgressIndicator(),
+                  return Center(
+                    key: const Key('loading_indicator'),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const CircularProgressIndicator(color: MedizyTheme.primary),
+                        const SizedBox(height: MedizyTheme.spacingM),
+                        Text(
+                          'Chargement de l\'annuaire...',
+                          style: TextStyle(color: MedizyTheme.textSecondary, fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
                   );
                 }
 
+                // Affichage Erreur
                 if (!_isFavoritesOnly && state.isError) {
                   return Center(
                     key: const Key('error_view'),
                     child: Padding(
-                      padding: const EdgeInsets.all(24),
+                      padding: EdgeInsets.all(MedizyTheme.spacingL),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.error_outline, size: 48, color: Colors.red.shade400),
-                          const SizedBox(height: 12),
+                          const Icon(Icons.error_outline, size: 48, color: MedizyTheme.error),
+                          const SizedBox(height: MedizyTheme.spacingS),
                           Text(
                             state.failure?.message ?? 'Une erreur est survenue.',
                             textAlign: TextAlign.center,
-                            style: const TextStyle(fontSize: 14, color: Colors.black87),
+                            style: const TextStyle(fontSize: 14, color: MedizyTheme.textPrimary),
                           ),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: MedizyTheme.spacingM),
                           ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: MedizyTheme.primary,
+                              foregroundColor: Colors.white,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(MedizyTheme.borderRadiusS),
+                              ),
+                            ),
                             onPressed: () => widget.notifier.search(isLoadMore: false),
                             child: const Text('Réessayer'),
                           ),
@@ -208,33 +229,34 @@ class _HealthSearchScreenState extends State<HealthSearchScreen> {
                   );
                 }
 
+                // Affichage Liste Vide
                 if (displayedList.isEmpty) {
                   return Center(
                     key: const Key('empty_view'),
                     child: Padding(
-                      padding: const EdgeInsets.all(32),
+                      padding: EdgeInsets.all(MedizyTheme.spacingL),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Icon(
                             _isFavoritesOnly ? Icons.star_border : Icons.search_off,
                             size: 56,
-                            color: Colors.grey.shade400,
+                            color: MedizyTheme.textSecondary,
                           ),
-                          const SizedBox(height: 12),
+                          const SizedBox(height: MedizyTheme.spacingM),
                           Text(
                             _isFavoritesOnly
                                 ? 'Aucun favori enregistré.'
                                 : 'Aucun établissement trouvé pour ces critères.',
-                            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: MedizyTheme.textPrimary),
                           ),
-                          const SizedBox(height: 6),
+                          const SizedBox(height: MedizyTheme.spacingS),
                           Text(
                             _isFavoritesOnly
                                 ? 'Touchez l\'étoile sur une fiche pour l\'ajouter à vos favoris hors-ligne.'
                                 : 'Essayez d\'ajuster vos filtres de Wilaya, Commune ou Spécialité.',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
+                            style: TextStyle(fontSize: 13, color: MedizyTheme.textSecondary),
                           ),
                         ],
                       ),
@@ -244,6 +266,7 @@ class _HealthSearchScreenState extends State<HealthSearchScreen> {
 
                 // Liste des résultats (ou favoris)
                 return RefreshIndicator(
+                  color: MedizyTheme.primary,
                   onRefresh: () async {
                     if (_isFavoritesOnly) {
                       await widget.favoritesNotifier?.initialize();
@@ -254,17 +277,17 @@ class _HealthSearchScreenState extends State<HealthSearchScreen> {
                   child: ListView.builder(
                     key: const Key('results_list_view'),
                     controller: _scrollController,
-                    padding: const EdgeInsets.only(top: 8, bottom: 24),
+                    padding: EdgeInsets.only(top: MedizyTheme.spacingS, bottom: MedizyTheme.spacingL),
                     itemCount: displayedList.length + (!_isFavoritesOnly && state.isLoadingMore ? 1 : 0),
                     itemBuilder: (context, index) {
                       if (index == displayedList.length) {
                         return const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 16),
+                          padding: EdgeInsets.symmetric(vertical: MedizyTheme.spacingM),
                           child: Center(
                             child: SizedBox(
                               width: 24,
                               height: 24,
-                              child: CircularProgressIndicator(strokeWidth: 2),
+                              child: CircularProgressIndicator(strokeWidth: 2, color: MedizyTheme.primary),
                             ),
                           ),
                         );

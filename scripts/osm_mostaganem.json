@@ -1,0 +1,2598 @@
+[
+  {
+    "type": "node",
+    "id": 3203353174,
+    "lat": 35.8971892,
+    "lon": 0.2608647,
+    "tags": {
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 3210621480,
+    "lat": 35.9510252,
+    "lon": 0.1015985,
+    "tags": {
+      "amenity": "doctors"
+    }
+  },
+  {
+    "type": "node",
+    "id": 3692392783,
+    "lat": 36.0992159,
+    "lon": 0.411877,
+    "tags": {
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "Pharmacie Benaamar"
+    }
+  },
+  {
+    "type": "node",
+    "id": 3692422929,
+    "lat": 36.0978155,
+    "lon": 0.4129196,
+    "tags": {
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "Pharmacie Hellal"
+    }
+  },
+  {
+    "type": "node",
+    "id": 3718665681,
+    "lat": 35.8094773,
+    "lon": 0.2098555,
+    "tags": {
+      "addr:city": "Touahria",
+      "addr:postcode": "27013",
+      "addr:street": "CW42",
+      "amenity": "hospital",
+      "name": "Centre médical"
+    }
+  },
+  {
+    "type": "node",
+    "id": 3718761199,
+    "lat": 35.8112966,
+    "lon": 0.2083796,
+    "tags": {
+      "addr:city": "Touahria",
+      "addr:postcode": "27013",
+      "amenity": "doctors",
+      "opening_hours": "08:00-16:00"
+    }
+  },
+  {
+    "type": "node",
+    "id": 3718761208,
+    "lat": 35.8108717,
+    "lon": 0.2083623,
+    "tags": {
+      "addr:city": "Touahria",
+      "addr:postcode": "27013",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "Pharmacie Douach Mohamed",
+      "opening_hours": "09:00-20:00"
+    }
+  },
+  {
+    "type": "node",
+    "id": 3788638318,
+    "lat": 35.7798071,
+    "lon": 0.1878288,
+    "tags": {
+      "amenity": "hospital"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4131364436,
+    "lat": 35.7413963,
+    "lon": 0.5530595,
+    "tags": {
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "Pharmacie Belakhdar",
+      "name:fr": "Pharmacie Belakhdar"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4228665889,
+    "lat": 35.7450924,
+    "lon": 0.5512074,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4232143193,
+    "lat": 35.7451022,
+    "lon": 0.55128,
+    "tags": {
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "Cité Benallou relizane"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4235321199,
+    "lat": 36.1671051,
+    "lon": 0.4384244,
+    "tags": {
+      "amenity": "clinic",
+      "healthcare": "clinic",
+      "name": "EPSP Sidi Lakhdar"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4235347999,
+    "lat": 36.1012142,
+    "lon": 0.4144845,
+    "tags": {
+      "amenity": "doctors",
+      "name": "Pédiatre Dr Ben Tata"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4235356092,
+    "lat": 36.0957606,
+    "lon": 0.3253385,
+    "tags": {
+      "addr:city": "حجاج",
+      "addr:city:ar": "حجاج",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4235356296,
+    "lat": 36.1013238,
+    "lon": 0.4162777,
+    "tags": {
+      "amenity": "doctors",
+      "name": "Gynécologue Dr Ben bernou"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4235356392,
+    "lat": 36.0976189,
+    "lon": 0.4136898,
+    "tags": {
+      "addr:postcode": "27000",
+      "amenity": "doctors",
+      "name": "EPSP SIDI ALI",
+      "opening_hours": "24/7",
+      "phone": "045242775"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4235356393,
+    "lat": 36.1004628,
+    "lon": 0.4160623,
+    "tags": {
+      "addr:city": "سيدي علي",
+      "addr:city:ar": "سيدي علي",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4235356594,
+    "lat": 36.1633789,
+    "lon": 0.4382096,
+    "tags": {
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4235357394,
+    "lat": 36.0952719,
+    "lon": 0.325185,
+    "tags": {
+      "addr:city": "حجاج",
+      "addr:city:ar": "حجاج",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4267284873,
+    "lat": 36.0966948,
+    "lon": 0.4099403,
+    "tags": {
+      "amenity": "hospital",
+      "name": "Hamadou Hocine"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4365500889,
+    "lat": 36.099363,
+    "lon": 0.4220713,
+    "tags": {
+      "addr:country": "DZ",
+      "addr:postcode": "27001",
+      "addr:street": "Mohammed Eldjebli",
+      "amenity": "dentist",
+      "email": "alidente9@gmail.com",
+      "name": "Cabinet Dentaire Dr Boussaid",
+      "opening_hours": "Sa-Th 08:00-17:00",
+      "phone": "044451629"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4399377897,
+    "lat": 35.7528273,
+    "lon": 0.5754497,
+    "tags": {
+      "addr:postcode": "48000",
+      "addr:street": "Cité Satal",
+      "amenity": "clinic",
+      "name": "احمد سيد الناس للحجامه",
+      "name:ar": "احمد سيد الناس للحجامه",
+      "name:fr": "Clinique Ahmed sidennas pour la Hidjama",
+      "opening_hours": "24/7"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4399488292,
+    "lat": 35.7533551,
+    "lon": 0.5765229,
+    "tags": {
+      "addr:postcode": "48000",
+      "addr:street": "Cité Satal",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "Pharmacie Turki",
+      "name:fr": "Pharmacie Turki"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4406702793,
+    "lat": 35.7490537,
+    "lon": 0.5693719,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4406718591,
+    "lat": 35.7501152,
+    "lon": 0.5689956,
+    "tags": {
+      "addr:postcode": "48000",
+      "amenity": "clinic",
+      "name": "Clinique et urgences",
+      "name:fr": "Clinique et urgences"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4406746591,
+    "lat": 35.7492927,
+    "lon": 0.5667164,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4421278089,
+    "lat": 35.7363037,
+    "lon": 0.5607881,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "name": "الحكيم مختاري",
+      "name:ar": "الحكيم مختاري",
+      "name:fr": "Dr Mokhtari"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4438961191,
+    "lat": 36.0958771,
+    "lon": 0.3250874,
+    "tags": {
+      "addr:city": "حجاج",
+      "addr:city:ar": "حجاج",
+      "amenity": "hospital",
+      "healthcare": "hospital",
+      "name": "المؤسسة الصحة العامة حجاج",
+      "name:ar": "المؤسسة الصحة العامة حجاج",
+      "name:fr": "Entreprise publique de la santé publique Hadjadj"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4439520199,
+    "lat": 36.0955568,
+    "lon": 0.3180098,
+    "tags": {
+      "addr:city": "حجاج",
+      "addr:city:ar": "حجاج",
+      "amenity": "clinic",
+      "healthcare": "clinic",
+      "healthcare:speciality": "orthopaedics"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4439522399,
+    "lat": 36.0963197,
+    "lon": 0.3236257,
+    "tags": {
+      "addr:city": "حجاج",
+      "addr:city:ar": "حجاج",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "healthcare:speciality": "general"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4439522400,
+    "lat": 36.0957975,
+    "lon": 0.3254325,
+    "tags": {
+      "addr:city": "حجاج",
+      "addr:city:ar": "حجاج",
+      "amenity": "clinic",
+      "healthcare": "clinic"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4439522401,
+    "lat": 36.0979282,
+    "lon": 0.3256295,
+    "tags": {
+      "addr:city": "حجاج",
+      "addr:city:ar": "حجاج",
+      "amenity": "clinic",
+      "healthcare": "clinic"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4439522599,
+    "lat": 36.095317,
+    "lon": 0.3236464,
+    "tags": {
+      "addr:city": "حجاج",
+      "addr:city:ar": "حجاج",
+      "amenity": "clinic",
+      "healthcare": "clinic"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4439522803,
+    "lat": 36.0963222,
+    "lon": 0.3235308,
+    "tags": {
+      "addr:city": "حجاج",
+      "addr:city:ar": "حجاج",
+      "amenity": "dentist",
+      "healthcare": "dentist"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4439522896,
+    "lat": 36.0997723,
+    "lon": 0.3256146,
+    "tags": {
+      "addr:city": "حجاج",
+      "addr:city:ar": "حجاج",
+      "amenity": "dentist",
+      "healthcare": "dentist"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4475492794,
+    "lat": 36.096952,
+    "lon": 0.4137013,
+    "tags": {
+      "addr:country": "DZ",
+      "amenity": "dentist"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4475492796,
+    "lat": 36.1656197,
+    "lon": 0.4420216,
+    "tags": {
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4475492797,
+    "lat": 36.0998981,
+    "lon": 0.4183428,
+    "tags": {
+      "addr:city": "سيدي علي",
+      "addr:city:ar": "سيدي علي",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4475628700,
+    "lat": 36.1003942,
+    "lon": 0.4281982,
+    "tags": {
+      "addr:city": "سيدي علي",
+      "addr:city:ar": "سيدي علي",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4475663862,
+    "lat": 35.9995444,
+    "lon": 0.3417916,
+    "tags": {
+      "amenity": "clinic",
+      "name": "صحة جوارية",
+      "name:ar": "صحة جوارية"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4475707291,
+    "lat": 36.1650926,
+    "lon": 0.4376052,
+    "tags": {
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4475736290,
+    "lat": 36.0968655,
+    "lon": 0.4184433,
+    "tags": {
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "صيدلية بوعلي",
+      "name:ar": "صيدلية بوعلي (مويسات)",
+      "name:fr": "Pharmacie bouali (Mouissat)"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4475736489,
+    "lat": 36.0998605,
+    "lon": 0.4224094,
+    "tags": {
+      "addr:city": "سيدي علي",
+      "addr:city:ar": "سيدي علي",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4502437890,
+    "lat": 35.7492895,
+    "lon": 0.5667461,
+    "tags": {
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "Pharmacie Mahi",
+      "name:fr": "Pharmacie Mahi"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4512622791,
+    "lat": 35.7062844,
+    "lon": 0.5743154,
+    "tags": {
+      "amenity": "hospital",
+      "name": "Hôpital de Bormadia",
+      "name:fr": "Hôpital de Bormadia"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4520809710,
+    "lat": 35.7363567,
+    "lon": 0.5576349,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "name": "بختي",
+      "name:ar": "بختي",
+      "name:fr": "Pédiatre بختي"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4520843495,
+    "lat": 35.7422845,
+    "lon": 0.5601087,
+    "tags": {
+      "amenity": "doctors",
+      "name": "Centre médical la soeurette",
+      "name:fr": "Centre médical la soeurette"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4520847297,
+    "lat": 35.7435386,
+    "lon": 0.5600401,
+    "tags": {
+      "amenity": "doctors",
+      "name": "Pédiatre Soltani",
+      "name:fr": "Pédiatre Soltani"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4524471095,
+    "lat": 35.747251,
+    "lon": 0.5693865,
+    "tags": {
+      "amenity": "doctors",
+      "name": "Belhadi",
+      "name:fr": "Belhadi"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4524492789,
+    "lat": 35.7471884,
+    "lon": 0.5681351,
+    "tags": {
+      "amenity": "doctors",
+      "name": "Médecin dj. Beldjilali",
+      "name:fr": "Médecin dj. Beldjilali"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4528072790,
+    "lat": 35.7448092,
+    "lon": 0.5518318,
+    "tags": {
+      "amenity": "doctors",
+      "name": "ORL + Spécialiste des reins",
+      "name:fr": "ORL + Spécialiste des reins"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4528433389,
+    "lat": 35.7538241,
+    "lon": 0.5766999,
+    "tags": {
+      "alt_name": "Centre de soins",
+      "amenity": "hospital",
+      "name": "مركز صحي",
+      "name:ar": "مركز صحي",
+      "name:fr": "Centre de santé"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4533976693,
+    "lat": 35.7482117,
+    "lon": 0.5600957,
+    "tags": {
+      "amenity": "clinic",
+      "name": "Médecin Missoum",
+      "name:fr": "Médecin Missoum"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4534000589,
+    "lat": 35.7485866,
+    "lon": 0.5633017,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4534000590,
+    "lat": 35.7411592,
+    "lon": 0.5613378,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "dentist",
+      "healthcare": "dentist"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4534001189,
+    "lat": 35.7409991,
+    "lon": 0.5616283,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4535888890,
+    "lat": 35.712581,
+    "lon": 0.5705185,
+    "tags": {
+      "amenity": "doctors",
+      "name": "Médecin Boukhatem",
+      "name:fr": "Médecin Boukhatem"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4541308689,
+    "lat": 35.7488558,
+    "lon": 0.5676676,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "name": "حكيم شميريك",
+      "name:ar": "حكيم شميريك",
+      "name:fr": "Dr Chmeirik"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4541506792,
+    "lat": 35.7072259,
+    "lon": 0.5724145,
+    "tags": {
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4549356193,
+    "lat": 35.7347192,
+    "lon": 0.5523068,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "pharmacy",
+      "dispensing": "yes",
+      "healthcare": "pharmacy",
+      "name": "صيدلية بو دفير",
+      "name:ar": "صيدلية بو دفير",
+      "name:fr": "Pharmacie Boudefir"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4549356194,
+    "lat": 35.7330666,
+    "lon": 0.5509565,
+    "tags": {
+      "amenity": "hospital",
+      "name": "Urgences",
+      "name:fr": "Urgences"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4549356195,
+    "lat": 35.7332134,
+    "lon": 0.5517254,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "name": "عينة من الدم",
+      "name:ar": "عينة من الدم",
+      "name:fr": "Prise de sang"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4550826495,
+    "lat": 35.7453324,
+    "lon": 0.5592467,
+    "tags": {
+      "addr:country": "DZ",
+      "amenity": "dentist",
+      "name": "Dentiste guerine",
+      "name:fr": "Dentiste guerine"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4563877986,
+    "lat": 35.9184219,
+    "lon": 0.1002132,
+    "tags": {
+      "amenity": "doctors",
+      "name": "ORL"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4571337595,
+    "lat": 35.86622,
+    "lon": 0.0385805,
+    "tags": {
+      "amenity": "pharmacy",
+      "email": "mounyapharm@gmail.com",
+      "healthcare": "pharmacy",
+      "name": "Pharmacie Blidi. A",
+      "name:fr": "Pharmacie Blidi. A",
+      "phone": "+213 45 429 289"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4571605090,
+    "lat": 35.9997688,
+    "lon": 0.2965107,
+    "tags": {
+      "addr:city": "عين تادلس",
+      "addr:city:ar": "عين تادلس",
+      "addr:postcode": "27001",
+      "amenity": "clinic",
+      "healthcare": "clinic"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4579119693,
+    "lat": 36.0005437,
+    "lon": 0.2901525,
+    "tags": {
+      "addr:city": "عين تادلس",
+      "addr:city:ar": "عين تادلس",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4579125492,
+    "lat": 35.9942503,
+    "lon": 0.2928644,
+    "tags": {
+      "addr:city": "عين تادلس",
+      "addr:city:ar": "عين تادلس",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "healthcare:speciality": "dentist",
+      "name": "طبيب أسنان",
+      "name:ar": "طبيب أسنان"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4579125493,
+    "lat": 35.9930875,
+    "lon": 0.2930473,
+    "tags": {
+      "addr:city": "عين تادلس",
+      "addr:city:ar": "عين تادلس",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "healthcare:speciality": "paediatrics",
+      "name": "طبيب أطفال",
+      "name:ar": "طبيب أطفال"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4579125494,
+    "lat": 35.9947152,
+    "lon": 0.2998603,
+    "tags": {
+      "addr:city": "عين تادلس",
+      "addr:city:ar": "عين تادلس",
+      "amenity": "clinic",
+      "healthcare": "clinic"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4579160989,
+    "lat": 35.9933821,
+    "lon": 0.2922482,
+    "tags": {
+      "addr:city": "عين تادلس",
+      "addr:city:ar": "عين تادلس",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "healthcare:speciality": "dentist",
+      "name": "طبيب أسنان",
+      "name:ar": "طبيب أسنان"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4579195006,
+    "lat": 35.9960024,
+    "lon": 0.2970418,
+    "tags": {
+      "addr:city": "عين تادلس",
+      "addr:city:ar": "عين تادلس",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4579198190,
+    "lat": 35.9938668,
+    "lon": 0.293717,
+    "tags": {
+      "addr:city": "عين تادلس",
+      "addr:city:ar": "عين تادلس",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4587278989,
+    "lat": 35.9966383,
+    "lon": 0.2925383,
+    "tags": {
+      "addr:city": "عين تادلس",
+      "addr:city:ar": "عين تادلس",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4587974590,
+    "lat": 35.7127502,
+    "lon": 0.5739705,
+    "tags": {
+      "addr:country": "DZ",
+      "addr:housenumber": "cite 1026",
+      "addr:postcode": "48000",
+      "addr:street": "Évitement de Relizane",
+      "amenity": "pharmacy",
+      "name": "صيدلية عدة بن سكحال",
+      "name:ar": "صيدلية عدة بن سكحال",
+      "name:en": "pharmacie adda ben",
+      "name:fr": "pharmacie"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4590624115,
+    "lat": 35.7473595,
+    "lon": 0.5587641,
+    "tags": {
+      "addr:city": "Relizane",
+      "addr:postcode": "48000",
+      "addr:street": "rue des jardins",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "healthcare:speciality": "general;echographie;goitre;diabete;hta",
+      "name": "dr dabladji farouk",
+      "opening_hours": "08:30-16:30"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4590712689,
+    "lat": 35.7469646,
+    "lon": 0.5628245,
+    "tags": {
+      "addr:country": "DZ",
+      "amenity": "pharmacy",
+      "name": "Pharmacie Beldjilali",
+      "name:fr": "Pharmacie Beldjilali"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4602994493,
+    "lat": 35.8956087,
+    "lon": 0.0753654,
+    "tags": {
+      "addr:country": "DZ",
+      "addr:postcode": "27120",
+      "addr:street": "cité Klouaa CHAREF",
+      "amenity": "pharmacy",
+      "name": "Pharmacie Belhaska"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4622290991,
+    "lat": 35.9168189,
+    "lon": 0.102566,
+    "tags": {
+      "addr:country": "DZ",
+      "amenity": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4622290995,
+    "lat": 35.9201736,
+    "lon": 0.1006817,
+    "tags": {
+      "addr:country": "DZ",
+      "amenity": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4622328391,
+    "lat": 35.9199801,
+    "lon": 0.1017954,
+    "tags": {
+      "addr:country": "DZ",
+      "amenity": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4622328692,
+    "lat": 35.9248464,
+    "lon": 0.0962475,
+    "tags": {
+      "amenity": "hospital",
+      "healthcare": "hospital",
+      "name": "Maternité",
+      "name:fr": "Maternité"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4622544389,
+    "lat": 35.9290342,
+    "lon": 0.0880208,
+    "tags": {
+      "amenity": "clinic",
+      "healthcare": "clinic",
+      "name": "Clinique ophtalmo",
+      "name:fr": "Clinique ophtalmo"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4622557389,
+    "lat": 35.9301449,
+    "lon": 0.0896302,
+    "tags": {
+      "addr:country": "DZ",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4810404623,
+    "lat": 35.7277807,
+    "lon": 0.5534656,
+    "tags": {
+      "addr:country": "DZ",
+      "addr:street": "Évitement de Relizane",
+      "amenity": "pharmacy",
+      "name:fr": "Boukhris Fethi"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4810421721,
+    "lat": 35.727759,
+    "lon": 0.5536552,
+    "tags": {
+      "addr:postcode": "48000",
+      "addr:street": "Rue Benyamina Benaouda",
+      "amenity": "doctors",
+      "email": "bebe48000@yahoo.fr",
+      "internet_access": "wlan",
+      "name:fr": "Doc. Kadari pédiatre",
+      "phone": "0557513198"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4945453024,
+    "lat": 36.1665443,
+    "lon": 0.4426818,
+    "tags": {
+      "addr:country": "DZ",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "pharmacie Kaid",
+      "name:ar": "pharmacie Kaid"
+    }
+  },
+  {
+    "type": "node",
+    "id": 4951844735,
+    "lat": 35.7056622,
+    "lon": 0.5740789,
+    "tags": {
+      "addr:country": "DZ",
+      "amenity": "pharmacy",
+      "name": "Benakhla Abderrahmane",
+      "name:fr": "Benakhla Abderrahmane"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5012304821,
+    "lat": 36.1152995,
+    "lon": 0.3176301,
+    "tags": {
+      "amenity": "clinic",
+      "name": "مركز صحي",
+      "name:ar": "مركز صحي"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5030649923,
+    "lat": 35.7423499,
+    "lon": 0.5603764,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5071376521,
+    "lat": 35.7456774,
+    "lon": 0.5477599,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "صيدلية شاقور",
+      "name:ar": "صيدلية شاقور",
+      "name:fr": "Pharmacie Chakour"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5082488836,
+    "lat": 35.7320769,
+    "lon": 0.563449,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5082489027,
+    "lat": 35.7292744,
+    "lon": 0.5623722,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5432744122,
+    "lat": 35.9287677,
+    "lon": 0.1047364,
+    "tags": {
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "name": "أمراض نفسية+عيون+أطفال+نساءعامة",
+      "name:ar": "أمراض نفسية+عيون+أطفال+نساءعامة"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5536282322,
+    "lat": 35.919059,
+    "lon": 0.0963374,
+    "tags": {
+      "amenity": "clinic",
+      "name": "Clinique Kharroubi"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5563075222,
+    "lat": 35.7416846,
+    "lon": 0.5470213,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5602385523,
+    "lat": 35.9319861,
+    "lon": 0.1138652,
+    "tags": {
+      "addr:country": "DZ",
+      "addr:street": "Rue Djebili Mohamed",
+      "amenity": "pharmacy",
+      "name": "صيدلية بطيوي",
+      "name:ar": "صيدلية بطيوي",
+      "name:fr": "Pharmacie Bettioui",
+      "phone": "045203419"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5640099223,
+    "lat": 35.9546677,
+    "lon": 0.0924348,
+    "tags": {
+      "amenity": "pharmacy",
+      "name:fr": "Pharmacie"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5640099225,
+    "lat": 35.9460749,
+    "lon": 0.0959212,
+    "tags": {
+      "amenity": "pharmacy",
+      "name:fr": "Pharmacie"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5646302525,
+    "lat": 35.9568264,
+    "lon": 0.0941627,
+    "tags": {
+      "amenity": "doctors",
+      "name": "مستوصف",
+      "name:ar": "مستوصف",
+      "name:fr": "Dispensaire"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5646302527,
+    "lat": 35.9334819,
+    "lon": 0.0962882,
+    "tags": {
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "name:fr": "Laboratoir médical"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5646304729,
+    "lat": 35.9318071,
+    "lon": 0.0904934,
+    "tags": {
+      "addr:city": "مستغانم",
+      "addr:city:ar": "مستغانم",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5646309732,
+    "lat": 35.9554346,
+    "lon": 0.0922087,
+    "tags": {
+      "amenity": "doctors",
+      "name": "عيادة طبية",
+      "name:ar": "عيادة طبية",
+      "name:fr": "Cabinet médical"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5646309733,
+    "lat": 35.9315667,
+    "lon": 0.0906299,
+    "tags": {
+      "addr:city": "مستغانم",
+      "addr:city:ar": "مستغانم",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5646316022,
+    "lat": 35.9301208,
+    "lon": 0.0880113,
+    "tags": {
+      "addr:country": "DZ",
+      "amenity": "pharmacy",
+      "name:fr": "Pharmacie bouguelmouna"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5669775021,
+    "lat": 35.9316797,
+    "lon": 0.1382439,
+    "tags": {
+      "addr:country": "DZ",
+      "amenity": "pharmacy",
+      "name": "Malik"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5669791222,
+    "lat": 35.9974543,
+    "lon": 0.2934645,
+    "tags": {
+      "addr:city": "عين تادلس",
+      "addr:city:ar": "عين تادلس",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "تدلاوي",
+      "name:ar": "تدلاوي",
+      "name:en": "Tadlaouti",
+      "name:fr": "Pharmacie Tadlaouti"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5669811921,
+    "lat": 35.9967762,
+    "lon": 0.2925775,
+    "tags": {
+      "addr:city": "عين تادلس",
+      "addr:city:ar": "عين تادلس",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "زمور",
+      "name:ar": "زمور",
+      "name:fr": "Zemour"
+    }
+  },
+  {
+    "type": "node",
+    "id": 5711163726,
+    "lat": 35.9153879,
+    "lon": 0.1019931,
+    "tags": {
+      "addr:city": "Mostaganem",
+      "addr:housenumber": "Cité 5 juillet Bloc 201 N°13",
+      "addr:postcode": "27000",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "healthcare:speciality": "Endocrinologie_Diabétologie",
+      "name": "Dr SOUFIR - Endocrinologue"
+    }
+  },
+  {
+    "type": "node",
+    "id": 6144831885,
+    "lat": 35.7424474,
+    "lon": 0.5603883,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "name": "بلميرة طبيب أطفال",
+      "name:ar": "بلميرة طبيب أطفال",
+      "name:en": "Pediatre Belmira",
+      "name:fr": "Pédiatre Belmira"
+    }
+  },
+  {
+    "type": "node",
+    "id": 6158587185,
+    "lat": 35.7443377,
+    "lon": 0.5604338,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "name": "بلعربي أمراض القلب",
+      "name:ar": "بلعربي أمراض القلب",
+      "name:en": "Belarbi Cardiologue",
+      "name:fr": "Belarbi.F Cardiologue"
+    }
+  },
+  {
+    "type": "node",
+    "id": 6158660186,
+    "lat": 35.7460119,
+    "lon": 0.5618885,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "name": "بن شيبوط الحبيب",
+      "name:ar": "بن شيبوط الحبيب",
+      "name:en": "Benchibout Habib",
+      "name:fr": "Benchibout Habib",
+      "operator": "الحبيب بن شيبوط",
+      "operator:ar": "الحبيب بن شيبوط"
+    }
+  },
+  {
+    "type": "node",
+    "id": 6158725285,
+    "lat": 35.7474249,
+    "lon": 0.5590227,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "pharmacy",
+      "healthcare": "pharmacy",
+      "name": "طوبال جنات",
+      "name:ar": "طوبال جنات",
+      "name:en": "Toubal Djenet PA",
+      "name:fr": "Toubal Djenet"
+    }
+  },
+  {
+    "type": "node",
+    "id": 6158749386,
+    "lat": 35.7411971,
+    "lon": 0.5588492,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "healthcare:speciality": "internal",
+      "name": "الطب الداخلي البحري",
+      "name:ar": "الطب الداخلي البحري",
+      "name:en": "Bahri Interniste",
+      "name:fr": "Bahri médecine interne"
+    }
+  },
+  {
+    "type": "node",
+    "id": 6224999085,
+    "lat": 35.7454859,
+    "lon": 0.5619338,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "name": "بهلول محمد مهدي",
+      "name:ar": "بهلول محمد مهدي",
+      "name:fr": "Bahloul Mohamed Mehdi Cardiologue"
+    }
+  },
+  {
+    "type": "node",
+    "id": 6227336385,
+    "lat": 35.8401202,
+    "lon": 0.1703532,
+    "tags": {
+      "addr:housenumber": "18",
+      "addr:postcode": "27018",
+      "addr:street": "Cité Abdelaziz Rue Larbi Benmhidi",
+      "amenity": "doctors",
+      "email": "aekareg@hotmail.com",
+      "internet_access": "wlan",
+      "name": "Dr.REGUIEG. رقيق الدكتور",
+      "name:ar": "Dr.REGUIEG. رقيق الدكتور",
+      "opening_hours": "Su-Th 08:00-17:00; Sa 08:00-13:00",
+      "phone": "045489183",
+      "website": "https://cabinet-medicochirurgical-drreguieg.business.site"
+    }
+  },
+  {
+    "type": "node",
+    "id": 6239946585,
+    "lat": 35.7394181,
+    "lon": 0.5601216,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:postcode": "48000",
+      "amenity": "doctors",
+      "email": "mbm.psychiatre@gmail.com",
+      "healthcare": "doctor",
+      "name": "نهج وهران",
+      "name:ar": "نهج وهران",
+      "name:fr": "rue d'oran",
+      "phone": "213559395043"
+    }
+  },
+  {
+    "type": "node",
+    "id": 6831694624,
+    "lat": 35.7388383,
+    "lon": 0.5489516,
+    "tags": {
+      "amenity": "doctors",
+      "email": "hafidmaazouz2@gmail.com",
+      "healthcare": "doctor",
+      "healthcare:speciality": "orthopaedics",
+      "name": "الحکیم معزوز حفیظ",
+      "name:ar": "الحکیم معزوز حفیظ",
+      "name:en": "Docteur Maazouz Hafid",
+      "phone": "+213 046 71 69 02; +213 06 74 50 36 05"
+    }
+  },
+  {
+    "type": "node",
+    "id": 6965905185,
+    "lat": 35.7321765,
+    "lon": 0.5604548,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "hospital",
+      "healthcare": "hospital",
+      "name": "العيادة المتعددة الخدمات غليزان",
+      "name:ar": "العيادة المتعددة الخدمات غليزان",
+      "name:en": "EPSP Relizane",
+      "name:fr": "EPSP Relizane"
+    }
+  },
+  {
+    "type": "node",
+    "id": 7276528185,
+    "lat": 35.7400148,
+    "lon": 0.5559863,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "healthcare:speciality": "paediatrics",
+      "name": "معروف",
+      "name:ar": "معروف",
+      "name:en": "Maarouf",
+      "name:fr": "Maarouf"
+    }
+  },
+  {
+    "type": "node",
+    "id": 7276528186,
+    "lat": 35.7423697,
+    "lon": 0.5482964,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "healthcare:speciality": "cardiology",
+      "name": "طيبي طبيب القلب",
+      "name:ar": "طيبي طبيب القلب",
+      "name:en": "Cardiologue Taibi",
+      "name:fr": "Taibi Cardiologue"
+    }
+  },
+  {
+    "type": "node",
+    "id": 7276528285,
+    "lat": 35.7430486,
+    "lon": 0.5506236,
+    "tags": {
+      "amenity": "doctors",
+      "name": "Cardiologue",
+      "name:en": "Bouhaddou abdelkrim",
+      "name:fr": "Bouhaddou Cardiologue"
+    }
+  },
+  {
+    "type": "node",
+    "id": 7276528685,
+    "lat": 35.7463435,
+    "lon": 0.5615898,
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "healthcare:speciality": "psychiatry",
+      "name": "الطب النفسي غارد محمد",
+      "name:ar": "الطب النفسي غارد محمد",
+      "name:en": "Psychiatry Garde Muhammad",
+      "name:fr": "Psychiatre Garde Mouhammad"
+    }
+  },
+  {
+    "type": "node",
+    "id": 7664019385,
+    "lat": 35.7434193,
+    "lon": 0.5544288,
+    "tags": {
+      "amenity": "doctors",
+      "name": "طبيب الأمراض الصدرية و الحساسية",
+      "name:ar": "طبيب الأمراض الصدرية و الحساسية",
+      "name:en": "Docteur Pnoeumo allergo Ben Ahmed",
+      "name:fr": "Dr Benahmed pnoeumo"
+    }
+  },
+  {
+    "type": "node",
+    "id": 7664108485,
+    "lat": 35.7440315,
+    "lon": 0.5543319,
+    "tags": {
+      "amenity": "doctors",
+      "name": "طبيب مختص في أمراض الأذن الأنف و الحنجرة",
+      "name:ar": "طبيب مختص في أمراض الأذن الأنف و الحنجرة",
+      "name:en": "Docteur ORL",
+      "name:fr": "Mouley Slimane Fethi"
+    }
+  },
+  {
+    "type": "node",
+    "id": 7666460587,
+    "lat": 35.7475676,
+    "lon": 0.5578396,
+    "tags": {
+      "amenity": "doctors",
+      "healthcare": "doctor",
+      "name": "طبيب الأمراض العقلية",
+      "name:ar": "طبيب الأمراض العقلية",
+      "name:en": "Psychiatre",
+      "name:fr": "Docteur Rahmouni Psychiatre"
+    }
+  },
+  {
+    "type": "node",
+    "id": 7666475285,
+    "lat": 35.7473603,
+    "lon": 0.5587977,
+    "tags": {
+      "amenity": "doctors",
+      "name": "الواوي طبيب القلب",
+      "name:ar": "الواوي طبيب القلب",
+      "name:en": "Cardiologue",
+      "name:fr": "El Ouaoui cardio"
+    }
+  },
+  {
+    "type": "node",
+    "id": 7934725885,
+    "lat": 35.739404,
+    "lon": 0.5624291,
+    "tags": {
+      "amenity": "doctors",
+      "name": "مزيان نجيبة",
+      "name:ar": "مزيان نجيبة",
+      "name:en": "Meziane Psychiatre",
+      "name:fr": "Meziane Taher Meziane"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8043947886,
+    "lat": 35.9199953,
+    "lon": 0.1031073,
+    "tags": {
+      "amenity": "doctors",
+      "name": "ben tâta Amel"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8047192185,
+    "lat": 35.9199727,
+    "lon": 0.1020518,
+    "tags": {
+      "amenity": "doctors",
+      "name:fr": "dr djalmoudi Sara"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8047192285,
+    "lat": 35.9450571,
+    "lon": 0.0953595,
+    "tags": {
+      "amenity": "doctors",
+      "name:fr": "dr khdim Mouhammad souadi"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8137365617,
+    "lat": 35.7363752,
+    "lon": 0.5608673,
+    "tags": {
+      "amenity": "doctors",
+      "name": "طب داخلي",
+      "name:ar": "طب داخلي",
+      "name:en": "Interniste",
+      "name:fr": "Interniste medjahed Farid"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898120,
+    "lat": 35.7434881,
+    "lon": 0.5501035,
+    "tags": {
+      "amenity": "pharmacy",
+      "name:fr": "Hamza k"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898220,
+    "lat": 35.7450545,
+    "lon": 0.5485206,
+    "tags": {
+      "amenity": "clinic",
+      "name:fr": "Salle de soins"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898221,
+    "lat": 35.7429054,
+    "lon": 0.5572931,
+    "tags": {
+      "amenity": "pharmacy",
+      "name:fr": "Kaddouri H"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898419,
+    "lat": 35.7445359,
+    "lon": 0.5510659,
+    "tags": {
+      "amenity": "doctors",
+      "name:fr": "Merouchi nour Eddine"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898420,
+    "lat": 35.7373675,
+    "lon": 0.5469121,
+    "tags": {
+      "amenity": "pharmacy",
+      "name:fr": "Oumrani Aek"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898421,
+    "lat": 35.7343061,
+    "lon": 0.5633358,
+    "tags": {
+      "addr:city": "غليزان",
+      "amenity": "pharmacy",
+      "name": "متوسطة النقيب أبو الحسن",
+      "name:ar": "متوسطة النقيب أبو الحسن",
+      "name:fr": "Bouabdellah i"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898617,
+    "lat": 35.7433878,
+    "lon": 0.5544857,
+    "tags": {
+      "amenity": "pharmacy",
+      "name:fr": "Beldjilali m"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898618,
+    "lat": 35.7283623,
+    "lon": 0.5636017,
+    "tags": {
+      "amenity": "pharmacy",
+      "name:fr": "Ziane Abdelhamid"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898619,
+    "lat": 35.7310248,
+    "lon": 0.5634652,
+    "tags": {
+      "amenity": "pharmacy",
+      "name:fr": "Larad m"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898620,
+    "lat": 35.7450303,
+    "lon": 0.5577177,
+    "tags": {
+      "amenity": "pharmacy",
+      "name:fr": "Gadi M"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898717,
+    "lat": 35.745171,
+    "lon": 0.5495143,
+    "tags": {
+      "amenity": "doctors",
+      "name:fr": "Benzaoucha L"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898718,
+    "lat": 35.7364308,
+    "lon": 0.5609812,
+    "tags": {
+      "amenity": "pharmacy",
+      "name:fr": "Bendoubaba N"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8583898817,
+    "lat": 35.7419068,
+    "lon": 0.5604279,
+    "tags": {
+      "amenity": "doctors",
+      "name:fr": "Merine sassi mourad"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8741935817,
+    "lat": 35.7354212,
+    "lon": 0.5575066,
+    "tags": {
+      "amenity": "doctors",
+      "name": "الصدر و الحساسية",
+      "name:en": "Pneumo allergo",
+      "name:fr": "Medani pneumo"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8741935818,
+    "lat": 35.74142,
+    "lon": 0.5533466,
+    "tags": {
+      "amenity": "doctors",
+      "name": "طبيبة أطفال حواش",
+      "name:en": "Pediatre Hawach",
+      "name:fr": "Pédiatre Hawach"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8904912761,
+    "lat": 35.9306588,
+    "lon": 0.0910227,
+    "tags": {
+      "amenity": "clinic",
+      "healthcare": "vaccination_centre",
+      "healthcare:speciality": "vaccination;covid19",
+      "name": "Chapiteau de Vaccination Covid19",
+      "vaccination": "covid19"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8917672917,
+    "lat": 35.7255299,
+    "lon": 0.5331717,
+    "tags": {
+      "amenity": "pharmacy",
+      "name:fr": "TAYEB M'hamed"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8917724517,
+    "lat": 35.7460195,
+    "lon": 0.5531179,
+    "tags": {
+      "amenity": "doctors",
+      "name:fr": "BENKADA M"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8917724617,
+    "lat": 35.7450279,
+    "lon": 0.5498801,
+    "tags": {
+      "amenity": "doctors",
+      "name:fr": "BENHATCHI A"
+    }
+  },
+  {
+    "type": "node",
+    "id": 8984080290,
+    "lat": 35.9257584,
+    "lon": 0.1123118,
+    "tags": {
+      "amenity": "clinic",
+      "healthcare": "vaccination_centre",
+      "healthcare:speciality": "vaccination;covid19",
+      "name": "Centre de vaccination",
+      "vaccination": "covid19"
+    }
+  },
+  {
+    "type": "node",
+    "id": 9215009718,
+    "lat": 35.7466007,
+    "lon": 0.5585177,
+    "tags": {
+      "amenity": "doctors",
+      "name:fr": "BOUKHATEM L"
+    }
+  },
+  {
+    "type": "node",
+    "id": 9250218417,
+    "lat": 35.7451741,
+    "lon": 0.5531243,
+    "tags": {
+      "amenity": "doctors",
+      "name": "باي احمد",
+      "name:en": "ORL Baya",
+      "name:fr": "Baya ORL"
+    }
+  },
+  {
+    "type": "node",
+    "id": 9322331517,
+    "lat": 35.7449519,
+    "lon": 0.5542156,
+    "tags": {
+      "amenity": "pharmacy",
+      "name:fr": "CHAFIA KH"
+    }
+  },
+  {
+    "type": "node",
+    "id": 9592845017,
+    "lat": 35.742078,
+    "lon": 0.561056,
+    "tags": {
+      "amenity": "doctors",
+      "name:fr": "KHEDIM Aek"
+    }
+  },
+  {
+    "type": "node",
+    "id": 9842795817,
+    "lat": 35.7362896,
+    "lon": 0.5424062,
+    "tags": {
+      "amenity": "doctors",
+      "name:fr": "MANSOURI A"
+    }
+  },
+  {
+    "type": "node",
+    "id": 9985600118,
+    "lat": 35.9545878,
+    "lon": 0.0978456,
+    "tags": {
+      "amenity": "hospital",
+      "name": "13 - hospital"
+    }
+  },
+  {
+    "type": "node",
+    "id": 10103454218,
+    "lat": 35.7306589,
+    "lon": 0.5596179,
+    "tags": {
+      "amenity": "doctors",
+      "name": "Medjahed F"
+    }
+  },
+  {
+    "type": "node",
+    "id": 10103454318,
+    "lat": 35.7054589,
+    "lon": 0.5720639,
+    "tags": {
+      "amenity": "pharmacy",
+      "name": "Labed Med"
+    }
+  },
+  {
+    "type": "node",
+    "id": 10103454617,
+    "lat": 35.7345814,
+    "lon": 0.5573558,
+    "tags": {
+      "amenity": "doctors",
+      "name": "TAYEB M",
+      "name:fr": "Dr Tayeb M"
+    }
+  },
+  {
+    "type": "node",
+    "id": 10186029018,
+    "lat": 35.7434041,
+    "lon": 0.5544929,
+    "tags": {
+      "amenity": "pharmacy",
+      "name": "BELDJILAL Mhamed",
+      "name:fr": "Beldjilal Mhamed"
+    }
+  },
+  {
+    "type": "node",
+    "id": 10576534241,
+    "lat": 35.7324822,
+    "lon": 0.553304,
+    "tags": {
+      "amenity": "doctors",
+      "name": "Cabinet Dr Kadari Pédiatre",
+      "name:en": "Pediatre",
+      "name:fr": "Cabinet Dr Kadari Pédiatre"
+    }
+  },
+  {
+    "type": "node",
+    "id": 10687055705,
+    "lat": 35.7416446,
+    "lon": 0.5606752,
+    "tags": {
+      "amenity": "pharmacy",
+      "name": "OUIS S",
+      "name:fr": "Ouis S"
+    }
+  },
+  {
+    "type": "node",
+    "id": 12837130197,
+    "lat": 35.7490102,
+    "lon": 0.5586076,
+    "tags": {
+      "amenity": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 12839654254,
+    "lat": 35.7937502,
+    "lon": 0.5242029,
+    "tags": {
+      "amenity": "pharmacy",
+      "name": "HADJ SMAHA Pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 12846563606,
+    "lat": 35.743802,
+    "lon": 0.5628589,
+    "tags": {
+      "amenity": "pharmacy",
+      "name": "Pharmacie Ouis",
+      "name:fr": "Pharmacie Ouis"
+    }
+  },
+  {
+    "type": "node",
+    "id": 12846960752,
+    "lat": 35.7498494,
+    "lon": 0.5400333,
+    "tags": {
+      "amenity": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 12846995376,
+    "lat": 35.7501389,
+    "lon": 0.5443114,
+    "tags": {
+      "amenity": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 12848629409,
+    "lat": 35.7262209,
+    "lon": 0.5599916,
+    "tags": {
+      "amenity": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 12850477449,
+    "lat": 35.7164609,
+    "lon": 0.5213463,
+    "tags": {
+      "amenity": "pharmacy",
+      "name": "Pharmacie Benlahcene Farid",
+      "name:ar": "صيدلية بن لحسن فريد"
+    }
+  },
+  {
+    "type": "node",
+    "id": 12850477450,
+    "lat": 35.7150606,
+    "lon": 0.5185944,
+    "tags": {
+      "amenity": "pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 12850906377,
+    "lat": 35.7112451,
+    "lon": 0.5719864,
+    "tags": {
+      "amenity": "pharmacy",
+      "name": "Bendjemaa Ibrahim Pharmacy"
+    }
+  },
+  {
+    "type": "node",
+    "id": 13691297301,
+    "lat": 35.7433351,
+    "lon": 0.559476,
+    "tags": {
+      "amenity": "pharmacy"
+    }
+  },
+  {
+    "type": "way",
+    "id": 293126911,
+    "center": {
+      "lat": 35.7327581,
+      "lon": 0.5510827
+    },
+    "nodes": [
+      2966920251,
+      2966919838,
+      2966919945,
+      2966919951,
+      2966920150,
+      2966920141,
+      2966920199,
+      2966920254,
+      2966920182,
+      2966919932,
+      2966920285,
+      2966919936,
+      2966920228,
+      2966920235,
+      12847166033,
+      2966920194,
+      2966920208,
+      2966920154,
+      2966920013,
+      2966919939,
+      2966919911,
+      2966920251
+    ],
+    "tags": {
+      "addr:city": "غليزان",
+      "addr:city:ar": "غليزان",
+      "addr:postcode": "48000",
+      "amenity": "hospital",
+      "emergency": "yes",
+      "healthcare": "hospital",
+      "name": "مستشفى محمد بوضياف",
+      "name:ar": "مستشفى محمد بوضياف",
+      "name:en": "Mohamed Boudiaf Hospital",
+      "name:fr": "Hôpital Mohamed Boudiaf"
+    }
+  },
+  {
+    "type": "way",
+    "id": 314175825,
+    "center": {
+      "lat": 36.00071,
+      "lon": 0.2885151
+    },
+    "nodes": [
+      3202221808,
+      3202221809,
+      3202221810,
+      3202221811,
+      3202221808
+    ],
+    "tags": {
+      "addr:city": "عين تادلس",
+      "addr:city:ar": "عين تادلس",
+      "amenity": "hospital",
+      "emergency": "yes",
+      "healthcare": "hospital",
+      "name": "مستشفى العجال أبو الأطرش",
+      "name:ar": "مستشفى العجال أبو الأطرش",
+      "name:fr": "Hôpital Adjel Bellatrach"
+    }
+  },
+  {
+    "type": "way",
+    "id": 314979467,
+    "center": {
+      "lat": 35.9449685,
+      "lon": 0.0990699
+    },
+    "nodes": [
+      3210619794,
+      3210619795,
+      3210619796,
+      3210619797,
+      3210619798,
+      3210619799,
+      3210619794
+    ],
+    "tags": {
+      "addr:city": "Mostaganem",
+      "amenity": "hospital",
+      "healthcare:speciality": "psychiatry",
+      "name": "Hôpital psychiatrique",
+      "name:ar": "مستشفى الأمراض العقلية",
+      "name:fr": "Hôpital psychiatrique"
+    }
+  },
+  {
+    "type": "way",
+    "id": 314980270,
+    "center": {
+      "lat": 35.9452883,
+      "lon": 0.0974939
+    },
+    "nodes": [
+      3210632309,
+      10934314207,
+      12451608586,
+      3210632310,
+      3210632311,
+      3210632312,
+      3210632313,
+      3210632314,
+      3210632315,
+      3210632316,
+      3210632317,
+      3210632318,
+      3210632319,
+      3210632320,
+      3210632321,
+      3210632322,
+      3210632309
+    ],
+    "tags": {
+      "addr:postcode": "27000",
+      "amenity": "hospital",
+      "emergency": "yes",
+      "healthcare": "hospital",
+      "healthcare:speciality": "emergency",
+      "name": "Urgences",
+      "name:ar": "الإستعجالات الطبية",
+      "name:fr": "Urgences",
+      "opening_hours": "24/7"
+    }
+  },
+  {
+    "type": "way",
+    "id": 315303334,
+    "center": {
+      "lat": 35.7486537,
+      "lon": 0.2667516
+    },
+    "nodes": [
+      3214139577,
+      3214139578,
+      3214139579,
+      3214139580,
+      3214139577
+    ],
+    "tags": {
+      "amenity": "hospital",
+      "name": "EPH Bouguirat"
+    }
+  },
+  {
+    "type": "way",
+    "id": 353726794,
+    "center": {
+      "lat": 35.9366597,
+      "lon": 0.0987357
+    },
+    "nodes": [
+      3595419226,
+      3595419228,
+      3595419229,
+      3595419227,
+      3595419226
+    ],
+    "tags": {
+      "amenity": "clinic",
+      "barrier": "wall",
+      "healthcare": "clinic",
+      "name": "Clinique Benosmane"
+    }
+  },
+  {
+    "type": "way",
+    "id": 365184191,
+    "center": {
+      "lat": 36.0966773,
+      "lon": 0.4095818
+    },
+    "nodes": [
+      3692280983,
+      3692280984,
+      3692280985,
+      3692280986,
+      3692280987,
+      3692280988,
+      3692280989,
+      3692280990,
+      3692280991,
+      3692280983
+    ],
+    "tags": {
+      "amenity": "hospital"
+    }
+  },
+  {
+    "type": "way",
+    "id": 455577053,
+    "center": {
+      "lat": 35.9346415,
+      "lon": 0.0941617
+    },
+    "nodes": [
+      4519675849,
+      4519675850,
+      4519675851,
+      4519675852,
+      4519675853,
+      4519675854,
+      4519675855,
+      4519675856,
+      4519675859,
+      4519675857,
+      4519675849
+    ],
+    "tags": {
+      "addr:city": "Mostaganem",
+      "addr:postcode": "27000",
+      "amenity": "hospital",
+      "emergency": "yes",
+      "healthcare": "hospital",
+      "name": "Hôpital Ernesto Che Guevara"
+    }
+  },
+  {
+    "type": "way",
+    "id": 561771007,
+    "center": {
+      "lat": 35.9626168,
+      "lon": 0.1045488
+    },
+    "nodes": [
+      5416415842,
+      5416415843,
+      5416415844,
+      5416415857,
+      5416415845,
+      3691891124,
+      3691891123,
+      5416415846,
+      5416415847,
+      5416415848,
+      5416415849,
+      5416415850,
+      5416415851,
+      5416415852,
+      5416415853,
+      5416415842
+    ],
+    "tags": {
+      "addr:city": "Mostaganem",
+      "amenity": "hospital",
+      "healthcare": "hospital",
+      "name": "Hôpital de Kharouba",
+      "name:ar": "مستشفى خروبة",
+      "name:fr": "Hôpital de Kharouba"
+    }
+  },
+  {
+    "type": "way",
+    "id": 574790962,
+    "center": {
+      "lat": 35.9243186,
+      "lon": 0.0776779
+    },
+    "nodes": [
+      5516560890,
+      5516560891,
+      5516560892,
+      5516560893,
+      5516560890
+    ],
+    "tags": {
+      "amenity": "clinic",
+      "building": "yes",
+      "healthcare": "clinic",
+      "healthcare:speciality": "ophthalmology",
+      "name": "Clinique D'ophtalmologie DAR EL BASSAR",
+      "name:ar": "عيادة طب وجراحة العيون دار البصر",
+      "name:fr": "Clinique D'ophtalmologie DAR EL BASSAR"
+    }
+  },
+  {
+    "type": "way",
+    "id": 782988680,
+    "center": {
+      "lat": 35.8095057,
+      "lon": 0.2098315
+    },
+    "nodes": [
+      7311882997,
+      7311882998,
+      7311882999,
+      7311883000,
+      7311882997
+    ],
+    "tags": {
+      "amenity": "hospital",
+      "healthcare": "hospital",
+      "name": "Centre médical"
+    }
+  },
+  {
+    "type": "way",
+    "id": 783000814,
+    "center": {
+      "lat": 35.7798067,
+      "lon": 0.1876666
+    },
+    "nodes": [
+      7311994982,
+      7311994983,
+      7311994984,
+      7312008685,
+      7312008686,
+      7312008687,
+      7312008688,
+      7312008689,
+      7312008690,
+      7312008691,
+      7312008692,
+      7312008693,
+      7312008694,
+      7312008695,
+      7312008696,
+      7311994982
+    ],
+    "tags": {
+      "amenity": "hospital",
+      "healthcare": "hospital"
+    }
+  },
+  {
+    "type": "way",
+    "id": 783044476,
+    "center": {
+      "lat": 36.0961042,
+      "lon": 0.3251296
+    },
+    "nodes": [
+      7312397178,
+      7312397179,
+      7312397180,
+      7312397181,
+      7312397178
+    ],
+    "tags": {
+      "addr:city": "حجاج",
+      "addr:city:ar": "حجاج",
+      "amenity": "hospital",
+      "healthcare": "hospital",
+      "name": "المؤسسة الصحة العامة حجاج",
+      "name:ar": "المؤسسة الصحة العامة حجاج",
+      "name:fr": "Entreprise publique de la santé publique Hadjadj"
+    }
+  },
+  {
+    "type": "way",
+    "id": 783054824,
+    "center": {
+      "lat": 35.7063541,
+      "lon": 0.5743677
+    },
+    "nodes": [
+      7312486952,
+      7312486953,
+      7312486954,
+      7312486955,
+      7312486952
+    ],
+    "tags": {
+      "amenity": "hospital",
+      "healthcare": "hospital",
+      "name": "Hôpital de Bormadia"
+    }
+  },
+  {
+    "type": "way",
+    "id": 783081061,
+    "center": {
+      "lat": 35.7538109,
+      "lon": 0.5767665
+    },
+    "nodes": [
+      7312776228,
+      7312776229,
+      7312776230,
+      7312776231,
+      7312776228
+    ],
+    "tags": {
+      "alt_name": "Centre de soins",
+      "amenity": "hospital",
+      "healthcare": "hospital",
+      "name": "مركز صحي",
+      "name:ar": "مركز صحي",
+      "name:fr": "Centre de santé"
+    }
+  },
+  {
+    "type": "way",
+    "id": 783084296,
+    "center": {
+      "lat": 35.9247826,
+      "lon": 0.096135
+    },
+    "nodes": [
+      7312814824,
+      7312814825,
+      7312814826,
+      7312814827,
+      7312814824
+    ],
+    "tags": {
+      "amenity": "hospital",
+      "healthcare": "hospital",
+      "name": "Maternité"
+    }
+  },
+  {
+    "type": "way",
+    "id": 783904004,
+    "center": {
+      "lat": 35.7320426,
+      "lon": 0.5605567
+    },
+    "nodes": [
+      7322162147,
+      7322162148,
+      7322162149,
+      7322162150,
+      7322162147
+    ],
+    "tags": {
+      "amenity": "hospital",
+      "healthcare": "hospital",
+      "name": "العيادة المتعددة الخدمات غليزان",
+      "name:ar": "العيادة المتعددة الخدمات غليزان",
+      "name:fr": "Polyclinique de Relizane"
+    }
+  },
+  {
+    "type": "way",
+    "id": 1176944123,
+    "center": {
+      "lat": 35.9805376,
+      "lon": 0.1707636
+    },
+    "nodes": [
+      5669775121,
+      10934245585,
+      10934245816,
+      10934245409,
+      5669775121
+    ],
+    "tags": {
+      "addr:country": "DZ",
+      "amenity": "pharmacy",
+      "building": "yes",
+      "name": "Hydra",
+      "source": "FB: Algerie Mapper Team : (Superadlen)"
+    }
+  },
+  {
+    "type": "way",
+    "id": 1387024381,
+    "center": {
+      "lat": 35.7500904,
+      "lon": 0.5688717
+    },
+    "nodes": [
+      12840184858,
+      4454025130,
+      12840184857,
+      12840184856,
+      12840184859,
+      12840184858
+    ],
+    "tags": {
+      "amenity": "clinic",
+      "name": "Clinique multiservices (SOC)"
+    }
+  },
+  {
+    "type": "way",
+    "id": 1388040916,
+    "center": {
+      "lat": 35.7218738,
+      "lon": 0.5355353
+    },
+    "nodes": [
+      12849146270,
+      12849146269,
+      12849146268,
+      12849146267,
+      12849146266,
+      12849146265,
+      12849146264,
+      12849146263,
+      12849146270
+    ],
+    "tags": {
+      "amenity": "clinic"
+    }
+  }
+]

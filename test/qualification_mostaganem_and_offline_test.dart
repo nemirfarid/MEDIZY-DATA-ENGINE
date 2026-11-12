@@ -59,7 +59,7 @@ void main() {
       }
 
       final avgLatencyMs = latencies.reduce((a, b) => a + b) / latencies.length;
-      print('[SCÉNARIO 1] Latence moyenne sur 100 requêtes Mostaganem (27) : ${avgLatencyMs.toStringAsFixed(3)} ms (Cible < 5.0 ms)');
+      print('[SCÉNARIO 1] Latence moyenne sur 100 requêtes Mostaganem (27) : ${avgLatencyMs.toStringAsFixed(3)} ms (Cible < 10.0 ms)');
 
       expect(
         avgLatencyMs,

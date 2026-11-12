@@ -1,3 +1,4 @@
+import '../../../../core/services/medizy_locale.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../../core/services/offline_health_search_service.dart';
@@ -38,8 +39,8 @@ class SosEmergencyButton extends StatelessWidget {
         elevation: 4,
         highlightElevation: 8,
         icon: const Icon(Icons.emergency_rounded, size: 24),
-        label: const Text(
-          'SOS Santé 24/7',
+        label: Text(
+          MedizyLocale.t('SOS Santé 24/7', 'طوارئ صحية 24/7'),
           style: TextStyle(
             fontWeight: FontWeight.bold,
             letterSpacing: 0.5,

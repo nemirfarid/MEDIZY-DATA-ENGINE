@@ -1,0 +1,84 @@
+{
+  "wilaya01_communes": [
+    {
+      "nom_fr": "Adrar",
+      "latitude": 27.942,
+      "longitude": -0.215
+    },
+    {
+      "nom_fr": "Akabli",
+      "latitude": 26.826,
+      "longitude": 1.16
+    },
+    {
+      "nom_fr": "Aoulef",
+      "latitude": 26.624,
+      "longitude": 0.862
+    },
+    {
+      "nom_fr": "Bouda",
+      "latitude": 28.017,
+      "longitude": -1.188
+    },
+    {
+      "nom_fr": "Fenoughil",
+      "latitude": 27.611,
+      "longitude": -1.242
+    },
+    {
+      "nom_fr": "In Zghmir",
+      "latitude": 27.241,
+      "longitude": -1.332
+    },
+    {
+      "nom_fr": "Ouled Ahmed Timmi",
+      "latitude": 27.98,
+      "longitude": -0.702
+    },
+    {
+      "nom_fr": "Reggane",
+      "latitude": 25.383,
+      "longitude": -2.03
+    },
+    {
+      "nom_fr": "Sali",
+      "latitude": 26.74,
+      "longitude": -2.039
+    },
+    {
+      "nom_fr": "Sebaa",
+      "latitude": 28.255,
+      "longitude": -0.038
+    },
+    {
+      "nom_fr": "Tamantit",
+      "latitude": 27.529,
+      "longitude": -1.325
+    },
+    {
+      "nom_fr": "Tamest",
+      "latitude": 27.448,
+      "longitude": -1.409
+    },
+    {
+      "nom_fr": "Timekten",
+      "latitude": 26.826,
+      "longitude": 1.16
+    },
+    {
+      "nom_fr": "Tit",
+      "latitude": 27.029,
+      "longitude": 1.458
+    },
+    {
+      "nom_fr": "Tsabit",
+      "latitude": 28.679,
+      "longitude": -1.284
+    },
+    {
+      "nom_fr": "Zaouiet Kounta",
+      "latitude": 27.241,
+      "longitude": -1.332
+    }
+  ]
+}

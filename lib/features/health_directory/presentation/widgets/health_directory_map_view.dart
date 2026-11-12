@@ -127,7 +127,7 @@ class _HealthDirectoryMapViewState extends State<HealthDirectoryMapView> {
             borderRadius: BorderRadius.circular(20),
             color: Colors.white,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -147,7 +147,7 @@ class _HealthDirectoryMapViewState extends State<HealthDirectoryMapView> {
                       key: const Key('clear_directory_category_chip'),
                       onTap: widget.onClearCategory,
                       child: Icon(
-                        Icons.cancel,
+                        Icons.remove_circle_outline,
                         size: 18,
                         color: Colors.grey.shade600,
                       ),
@@ -202,7 +202,7 @@ class _HealthDirectoryMapViewState extends State<HealthDirectoryMapView> {
               });
             },
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
               decoration: BoxDecoration(
                 color: Colors.teal.shade800,
                 borderRadius: BorderRadius.circular(18),

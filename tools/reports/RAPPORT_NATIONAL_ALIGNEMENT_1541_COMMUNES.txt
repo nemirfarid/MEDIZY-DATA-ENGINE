@@ -1,0 +1,135 @@
+================================================================================
+RAPPORT NATIONAL D'ALIGNEMENT - 1541 COMMUNES - 58 WILAYAS
+Medizy - Annuaire Sanitaire National Algérie
+Date: 2026-11-11 03:56:46
+================================================================================
+
+STATISTIQUES GLOBALES:
+  - Wilayas traitées: 58/58
+  - Communes traitées: 1541/1541
+  - Établissements total: 30533
+  - Coordonnées vérifiées: 0
+  - Écarts de coordonnées: 30533
+  - Taux de validation global: 0.0%
+
+================================================================================
+RÉSUMÉ PAR WILAYA:
+================================================================================
+
+  01 - Adrar                | Communes:  16 | Établissements:   783 | Vérifiés:     0 | Écarts:  783 | Taux:   0.0%
+  02 - Chlef                | Communes:  35 | Établissements:  1127 | Vérifiés:     0 | Écarts: 1127 | Taux:   0.0%
+  03 - Laghouat             | Communes:  24 | Établissements:   759 | Vérifiés:     0 | Écarts:  759 | Taux:   0.0%
+  04 - Oum El Bouaghi       | Communes:  29 | Établissements:   687 | Vérifiés:     0 | Écarts:  687 | Taux:   0.0%
+  05 - Batna                | Communes:  61 | Établissements:  1208 | Vérifiés:     0 | Écarts: 1208 | Taux:   0.0%
+  06 - Béjaïa               | Communes:  52 | Établissements:   846 | Vérifiés:     0 | Écarts:  846 | Taux:   0.0%
+  07 - Biskra               | Communes:  27 | Établissements:   661 | Vérifiés:     0 | Écarts:  661 | Taux:   0.0%
+  08 - Béchar               | Communes:  12 | Établissements:   386 | Vérifiés:     0 | Écarts:  386 | Taux:   0.0%
+  09 - Blida                | Communes:  25 | Établissements:   675 | Vérifiés:     0 | Écarts:  675 | Taux:   0.0%
+  10 - Bouira               | Communes:  45 | Établissements:   684 | Vérifiés:     0 | Écarts:  684 | Taux:   0.0%
+  11 - Tamanrasset          | Communes:   5 | Établissements:   309 | Vérifiés:     0 | Écarts:  309 | Taux:   0.0%
+  12 - Tébessa              | Communes:  28 | Établissements:   373 | Vérifiés:     0 | Écarts:  373 | Taux:   0.0%
+  13 - Tlemcen              | Communes:  53 | Établissements:  1043 | Vérifiés:     0 | Écarts: 1043 | Taux:   0.0%
+  14 - Tiaret               | Communes:  42 | Établissements:   894 | Vérifiés:     0 | Écarts:  894 | Taux:   0.0%
+  15 - Tizi Ouzou           | Communes:  67 | Établissements:  1045 | Vérifiés:     0 | Écarts: 1045 | Taux:   0.0%
+  16 - Alger                | Communes:  57 | Établissements:  1354 | Vérifiés:     0 | Écarts: 1354 | Taux:   0.0%
+  17 - Djelfa               | Communes:  36 | Établissements:   883 | Vérifiés:     0 | Écarts:  883 | Taux:   0.0%
+  18 - Jijel                | Communes:  28 | Établissements:   750 | Vérifiés:     0 | Écarts:  750 | Taux:   0.0%
+  19 - Sétif                | Communes:  60 | Établissements:   869 | Vérifiés:     0 | Écarts:  869 | Taux:   0.0%
+  20 - Saïda                | Communes:  16 | Établissements:   582 | Vérifiés:     0 | Écarts:  582 | Taux:   0.0%
+  21 - Skikda               | Communes:  38 | Établissements:   887 | Vérifiés:     0 | Écarts:  887 | Taux:   0.0%
+  22 - Sidi Bel Abbès       | Communes:  52 | Établissements:   823 | Vérifiés:     0 | Écarts:  823 | Taux:   0.0%
+  23 - Annaba               | Communes:  12 | Établissements:   517 | Vérifiés:     0 | Écarts:  517 | Taux:   0.0%
+  24 - Guelma               | Communes:  34 | Établissements:   549 | Vérifiés:     0 | Écarts:  549 | Taux:   0.0%
+  25 - Constantine          | Communes:  12 | Établissements:   533 | Vérifiés:     0 | Écarts:  533 | Taux:   0.0%
+  26 - Médéa                | Communes:  64 | Établissements:   821 | Vérifiés:     0 | Écarts:  821 | Taux:   0.0%
+  27 - Mostaganem           | Communes:  32 | Établissements:  1053 | Vérifiés:     0 | Écarts: 1053 | Taux:   0.0%
+  28 - M'Sila               | Communes:  47 | Établissements:   651 | Vérifiés:     0 | Écarts:  651 | Taux:   0.0%
+  29 - Mascara              | Communes:  47 | Établissements:   838 | Vérifiés:     0 | Écarts:  838 | Taux:   0.0%
+  30 - Ouargla              | Communes:   8 | Établissements:   426 | Vérifiés:     0 | Écarts:  426 | Taux:   0.0%
+  31 - Oran                 | Communes:  26 | Établissements:   870 | Vérifiés:     0 | Écarts:  870 | Taux:   0.0%
+  32 - El Bayadh            | Communes:  22 | Établissements:   369 | Vérifiés:     0 | Écarts:  369 | Taux:   0.0%
+  33 - Illizi               | Communes:   4 | Établissements:   254 | Vérifiés:     0 | Écarts:  254 | Taux:   0.0%
+  34 - Bordj Bou Arreridj   | Communes:  34 | Établissements:   254 | Vérifiés:     0 | Écarts:  254 | Taux:   0.0%
+  35 - Boumerdès            | Communes:  32 | Établissements:   341 | Vérifiés:     0 | Écarts:  341 | Taux:   0.0%
+  36 - El Tarf              | Communes:  24 | Établissements:   525 | Vérifiés:     0 | Écarts:  525 | Taux:   0.0%
+  37 - Tindouf              | Communes:   2 | Établissements:   168 | Vérifiés:     0 | Écarts:  168 | Taux:   0.0%
+  38 - Tissemsilt           | Communes:  22 | Établissements:   264 | Vérifiés:     0 | Écarts:  264 | Taux:   0.0%
+  39 - El Oued              | Communes:  22 | Établissements:   349 | Vérifiés:     0 | Écarts:  349 | Taux:   0.0%
+  40 - Khenchela            | Communes:  21 | Établissements:   519 | Vérifiés:     0 | Écarts:  519 | Taux:   0.0%
+  41 - Souk Ahras           | Communes:  26 | Établissements:   341 | Vérifiés:     0 | Écarts:  341 | Taux:   0.0%
+  42 - Tipaza               | Communes:  28 | Établissements:   445 | Vérifiés:     0 | Écarts:  445 | Taux:   0.0%
+  43 - Mila                 | Communes:  32 | Établissements:   531 | Vérifiés:     0 | Écarts:  531 | Taux:   0.0%
+  44 - Aïn Defla            | Communes:  36 | Établissements:   173 | Vérifiés:     0 | Écarts:  173 | Taux:   0.0%
+  45 - Naâma                | Communes:  12 | Établissements:   183 | Vérifiés:     0 | Écarts:  183 | Taux:   0.0%
+  46 - Aïn Témouchent       | Communes:  28 | Établissements:   176 | Vérifiés:     0 | Écarts:  176 | Taux:   0.0%
+  47 - Ghardaïa             | Communes:  10 | Établissements:   263 | Vérifiés:     0 | Écarts:  263 | Taux:   0.0%
+  48 - Relizane             | Communes:  38 | Établissements:   265 | Vérifiés:     0 | Écarts:  265 | Taux:   0.0%
+  49 - Timimoun             | Communes:  10 | Établissements:   349 | Vérifiés:     0 | Écarts:  349 | Taux:   0.0%
+  50 - Bordj Badji Mokhtar  | Communes:   2 | Établissements:   177 | Vérifiés:     0 | Écarts:  177 | Taux:   0.0%
+  51 - Ouled Djellal        | Communes:   6 | Établissements:   266 | Vérifiés:     0 | Écarts:  266 | Taux:   0.0%
+  52 - Béni Abbès           | Communes:   9 | Établissements:   173 | Vérifiés:     0 | Écarts:  173 | Taux:   0.0%
+  53 - In Guezzam           | Communes:   3 | Établissements:    84 | Vérifiés:     0 | Écarts:   84 | Taux:   0.0%
+  54 - Touggourt            | Communes:   2 | Établissements:     0 | Vérifiés:     0 | Écarts:    0 | Taux:   0.0%
+  55 - El M'Ghair           | Communes:  13 | Établissements:   178 | Vérifiés:     0 | Écarts:  178 | Taux:   0.0%
+  56 - El Meniaa            | Communes:   2 | Établissements:     0 | Vérifiés:     0 | Écarts:    0 | Taux:   0.0%
+  57 - Djanet               | Communes:   8 | Établissements:     0 | Vérifiés:     0 | Écarts:    0 | Taux:   0.0%
+  58 - In Salah             | Communes:   3 | Établissements:     0 | Vérifiés:     0 | Écarts:    0 | Taux:   0.0%
+
+================================================================================
+WILAYAS AVEC ÉCARTS SIGNIFICATIFS (>5%):
+================================================================================
+
+  ⚠️ 01 - Adrar: 783/783 (100.0%)
+  ⚠️ 02 - Chlef: 1127/1127 (100.0%)
+  ⚠️ 03 - Laghouat: 759/759 (100.0%)
+  ⚠️ 04 - Oum El Bouaghi: 687/687 (100.0%)
+  ⚠️ 05 - Batna: 1208/1208 (100.0%)
+  ⚠️ 06 - Béjaïa: 846/846 (100.0%)
+  ⚠️ 07 - Biskra: 661/661 (100.0%)
+  ⚠️ 08 - Béchar: 386/386 (100.0%)
+  ⚠️ 09 - Blida: 675/675 (100.0%)
+  ⚠️ 10 - Bouira: 684/684 (100.0%)
+  ⚠️ 11 - Tamanrasset: 309/309 (100.0%)
+  ⚠️ 12 - Tébessa: 373/373 (100.0%)
+  ⚠️ 13 - Tlemcen: 1043/1043 (100.0%)
+  ⚠️ 14 - Tiaret: 894/894 (100.0%)
+  ⚠️ 15 - Tizi Ouzou: 1045/1045 (100.0%)
+  ⚠️ 16 - Alger: 1354/1354 (100.0%)
+  ⚠️ 17 - Djelfa: 883/883 (100.0%)
+  ⚠️ 18 - Jijel: 750/750 (100.0%)
+  ⚠️ 19 - Sétif: 869/869 (100.0%)
+  ⚠️ 20 - Saïda: 582/582 (100.0%)
+  ⚠️ 21 - Skikda: 887/887 (100.0%)
+  ⚠️ 22 - Sidi Bel Abbès: 823/823 (100.0%)
+  ⚠️ 23 - Annaba: 517/517 (100.0%)
+  ⚠️ 24 - Guelma: 549/549 (100.0%)
+  ⚠️ 25 - Constantine: 533/533 (100.0%)
+  ⚠️ 26 - Médéa: 821/821 (100.0%)
+  ⚠️ 27 - Mostaganem: 1053/1053 (100.0%)
+  ⚠️ 28 - M'Sila: 651/651 (100.0%)
+  ⚠️ 29 - Mascara: 838/838 (100.0%)
+  ⚠️ 30 - Ouargla: 426/426 (100.0%)
+  ⚠️ 31 - Oran: 870/870 (100.0%)
+  ⚠️ 32 - El Bayadh: 369/369 (100.0%)
+  ⚠️ 33 - Illizi: 254/254 (100.0%)
+  ⚠️ 34 - Bordj Bou Arreridj: 254/254 (100.0%)
+  ⚠️ 35 - Boumerdès: 341/341 (100.0%)
+  ⚠️ 36 - El Tarf: 525/525 (100.0%)
+  ⚠️ 37 - Tindouf: 168/168 (100.0%)
+  ⚠️ 38 - Tissemsilt: 264/264 (100.0%)
+  ⚠️ 39 - El Oued: 349/349 (100.0%)
+  ⚠️ 40 - Khenchela: 519/519 (100.0%)
+  ⚠️ 41 - Souk Ahras: 341/341 (100.0%)
+  ⚠️ 42 - Tipaza: 445/445 (100.0%)
+  ⚠️ 43 - Mila: 531/531 (100.0%)
+  ⚠️ 44 - Aïn Defla: 173/173 (100.0%)
+  ⚠️ 45 - Naâma: 183/183 (100.0%)
+  ⚠️ 46 - Aïn Témouchent: 176/176 (100.0%)
+  ⚠️ 47 - Ghardaïa: 263/263 (100.0%)
+  ⚠️ 48 - Relizane: 265/265 (100.0%)
+  ⚠️ 49 - Timimoun: 349/349 (100.0%)
+  ⚠️ 50 - Bordj Badji Mokhtar: 177/177 (100.0%)
+  ⚠️ 51 - Ouled Djellal: 266/266 (100.0%)
+  ⚠️ 52 - Béni Abbès: 173/173 (100.0%)
+  ⚠️ 53 - In Guezzam: 84/84 (100.0%)
+  ⚠️ 55 - El M'Ghair: 178/178 (100.0%)

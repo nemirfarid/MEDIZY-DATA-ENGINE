@@ -1,3 +1,4 @@
+import '../../../core/services/medizy_locale.dart';
 import 'package:flutter/material.dart';
 import '../../../core/constants/algeria_wilayas.dart';
 
@@ -45,7 +46,7 @@ class _WilayaPickerSheetState extends State<WilayaPickerSheet> {
           Container(
             width: 40,
             height: 4,
-            margin: const EdgeInsets.symmetric(vertical: 12),
+            margin: EdgeInsets.symmetric(vertical: 12),
             decoration: BoxDecoration(
               color: Colors.grey.shade300,
               borderRadius: BorderRadius.circular(2),
@@ -54,15 +55,15 @@ class _WilayaPickerSheetState extends State<WilayaPickerSheet> {
 
           // En-tête
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 6),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Sélectionner une Wilaya',
+                      MedizyLocale.t('Sélectionner une Wilaya', 'اختر ولاية'),
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -78,7 +79,7 @@ class _WilayaPickerSheetState extends State<WilayaPickerSheet> {
                 TextButton.icon(
                   onPressed: () => Navigator.pop(context, null), // Réinitialise à Vue Nationale
                   icon: const Icon(Icons.public, size: 18),
-                  label: const Text('Toute l\'Algérie (36 417 fiches)'),
+                  label: Text(MedizyLocale.t('Toute l\'Algérie (59 658 fiches)', 'كامل الجزائر (59 658 هيكل صحي)')),
                   style: TextButton.styleFrom(foregroundColor: Colors.teal.shade800),
                 ),
               ],
@@ -87,7 +88,7 @@ class _WilayaPickerSheetState extends State<WilayaPickerSheet> {
 
           // Champ de recherche rapide
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Rechercher par numéro ou nom (ex: 27, Mostaganem)...',

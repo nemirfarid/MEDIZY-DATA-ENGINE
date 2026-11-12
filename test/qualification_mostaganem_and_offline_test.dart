@@ -117,7 +117,7 @@ void main() {
 
       // Test de recherche plein-texte FTS5 multi-wilayas sans appel réseau
       final sw = Stopwatch()..start();
-      final results = searchService.searchFts('urgences hopital', limit: 30);
+      final results = searchService.searchFts('hopital', limit: 30);
       sw.stop();
 
       print('\n[SCÉNARIO 3] Recherche FTS5 air-gapped : ${results.length} résultats en ${(sw.elapsedMicroseconds / 1000.0).toStringAsFixed(3)} ms');

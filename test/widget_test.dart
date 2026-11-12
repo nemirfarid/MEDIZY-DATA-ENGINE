@@ -10,13 +10,13 @@ void main() {
       ),
     );
 
-    // Vérifie le logo circulaire avec coeur bien-être et le nom Medizy
-    expect(find.byIcon(Icons.favorite_rounded), findsOneWidget);
+    // Vérifie le logo Medizy (Image.asset)
+    expect(find.byType(Image), findsOneWidget);
     // Vérifie l'absence absolue de croix médicale (+)
     expect(find.byIcon(Icons.local_hospital), findsNothing);
     expect(find.byIcon(Icons.add), findsNothing);
     // Vérifie la typographie et les textes officiels Medizy
-    expect(find.text('Medizy'), findsOneWidget);
+    expect(find.text('MEDIZY'), findsOneWidget);
     expect(find.text('Votre santé au quotidien'), findsOneWidget);
     expect(find.text('Initialisation du registre sanitaire national...'), findsOneWidget);
   });

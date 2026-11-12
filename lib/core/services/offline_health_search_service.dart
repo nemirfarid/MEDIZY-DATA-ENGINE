@@ -50,16 +50,16 @@ class OfflineHealthSearchService {
 
     // PrÃ©paration des requÃªtes frÃ©quentes pour Ã©liminer l'overhead de compilation SQL (< 1 ms)
     _ftsStmt = _db!.prepare('''
-      SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
-      FROM facilities_fts
-      WHERE facilities_fts MATCH ?
+      SELECT id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+      FROM facilities
+      WHERE nom LIKE ? OR categorie LIKE ? OR wilaya LIKE ? OR commune LIKE ?
       LIMIT ?;
     ''');
 
     _ftsBenchStmt = _db!.prepare('''
-      SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
-      FROM facilities_fts
-      WHERE facilities_fts MATCH ?
+      SELECT id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+      FROM facilities
+      WHERE nom LIKE ? OR categorie LIKE ? OR wilaya LIKE ? OR commune LIKE ?
       LIMIT 20;
     ''');
 
@@ -175,16 +175,19 @@ class OfflineHealthSearchService {
     if (query.trim().isEmpty) return [];
 
     final ftsMatch = formatFtsMatch(query);
+    if (ftsMatch.isEmpty) return [];
 
-    final ResultSet results = (_ftsStmt != null)
-        ? _ftsStmt!.select([ftsMatch, limit])
-        : db.select('''
-            SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
-            FROM facilities_fts
-            WHERE facilities_fts MATCH ?
-            LIMIT ?;
-          ''', [ftsMatch, limit]);
+    final sql = '''
+      SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
+             f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
+      FROM facilities f
+      JOIN facilities_fts ft ON f.id = ft.rowid
+      WHERE facilities_fts MATCH ?
+      ORDER BY rank
+      LIMIT ?;
+    ''';
 
+    final ResultSet results = db.select(sql, [ftsMatch, limit]);
     return results.map((row) => HealthFacility.fromMap(row)).toList();
   }
 
@@ -290,66 +293,121 @@ class OfflineHealthSearchService {
     String? nomCol = 'f.nom',
   }) {
     final cat = category.trim().toLowerCase();
-    switch (cat) {
-      case 'dentiste':
-        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
-        params.addAll(['dentiste', '%dentist%', '%dentaire%']);
-        break;
-      case 'pharmacie':
-        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
-        params.addAll(['pharmacie', '%pharmacie%', '%officine%']);
-        break;
-      case 'laboratoire':
-        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
-        params.addAll(['laboratoire', '%laboratoire%', '%analyse%']);
-        break;
-      case 'imagerie':
-        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
-        params.addAll(['imagerie', '%imagerie%', '%radiolog%', '%scanner%']);
-        break;
-      case 'pédiatre':
-      case 'pediatre':
-        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
-        params.addAll(['pédiatre', '%pédiat%', '%pediat%']);
-        break;
-      case 'cardiologue':
-        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ?)');
-        params.addAll(['cardiologue', '%cardio%']);
-        break;
-      case 'généraliste':
-      case 'generaliste':
-        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
-        params.addAll(['généraliste', '%généralist%', '%generalist%', '%cabinet médical%', '%médecin%']);
-        break;
-      case 'clinique':
-        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
-        params.addAll(['clinique', '%clinique%', '%hôpital%', '%hopital%']);
-        break;
-      case 'gynécologue':
-      case 'gynecologue':
-        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
-        params.addAll(['gynécologue', '%gynéco%', '%gyneco%']);
-        break;
-      case 'ophtalmologue':
-      case 'ophtalmo':
-        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ?)');
-        params.addAll(['ophtalmologue', '%ophtalmo%']);
-        break;
-      case 'urgences':
-      case 'urgence':
-        if (nomCol != null) {
-          sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($nomCol) LIKE ? OR LOWER($nomCol) LIKE ? OR LOWER($nomCol) LIKE ?)');
-          params.addAll(['%urgence%', '%urgenc%', '%garde%', '%24/24%']);
-        } else {
-          sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ?)');
-          params.addAll(['%urgence%', '%hopital%']);
-        }
-        break;
-      default:
-        sb.writeln('  AND (LOWER($col) = ? OR LOWER($col) LIKE ?)');
-        params.addAll([cat, '%$cat%']);
-        break;
+    final nc = nomCol ?? col;
+
+    if (cat.contains('dentist') || cat.contains('dentaire') || cat.contains('stomatolog')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($nc) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%dentist%', '%dentaire%', '%dentist%', '%dentaire%']);
+    } else if (cat.contains('pharmac') || cat.contains('officine')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%pharmac%', '%officine%', '%pharmac%']);
+    } else if (cat.contains('laboratoire') || cat.contains('analyse') || cat.contains('biolog')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($nc) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%laboratoire%', '%analyse%', '%laboratoire%', '%analyse%']);
+    } else if (cat.contains('imagerie') || cat.contains('radio') || cat.contains('scanner') || cat.contains('irm')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($nc) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%imagerie%', '%radio%', '%scanner%', '%imagerie%', '%radio%']);
+    } else if (cat.contains('pédiatr') || cat.contains('pediatr') || cat.contains('enfant')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($nc) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%pediatr%', '%pédiatr%', '%pediatr%', '%pédiatr%']);
+    } else if (cat.contains('cardio') || cat.contains('coeur')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%cardio%', '%cardio%']);
+    } else if (cat.contains('ophtalmo') || cat.contains('yeux') || cat.contains('vision')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%ophtalm%', '%opticien%', '%ophtalm%']);
+    } else if (cat.contains('gynéco') || cat.contains('gyneco') || cat.contains('matern')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($nc) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%gyneco%', '%gynéco%', '%matern%', '%gyneco%', '%gynéco%']);
+    } else if (cat.contains('dermat')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%dermat%', '%dermat%']);
+    } else if (cat.contains('orthopéd') || cat.contains('orthoped')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($nc) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%orthoped%', '%orthopéd%', '%orthoped%', '%orthopéd%']);
+    } else if (cat.contains('gastro')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%gastro%', '%gastro%']);
+    } else if (cat.contains('pneumo')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%pneumo%', '%pneumo%']);
+    } else if (cat.contains('orl') || cat.contains('rhino')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($nc) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%orl%', '%rhino%', '%orl%', '%rhino%']);
+    } else if (cat.contains('psych')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%psych%', '%psych%']);
+    } else if (cat.contains('kiné') || cat.contains('kine') || cat.contains('paraméd') || cat.contains('paramed') || cat.contains('physio')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($nc) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%kine%', '%kiné%', '%paramed%', '%kine%', '%kiné%']);
+    } else if (cat.contains('clinique') || cat.contains('hopital') || cat.contains('hôpital') || cat.contains('chu') || cat.contains('eph')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($nc) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%clinique%', '%hopital%', '%hôpital%', '%clinique%', '%hopital%']);
+    } else if (cat.contains('urgenc') || cat.contains('garde') || cat.contains('24/24')) {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($nc) LIKE ? OR LOWER($nc) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%urgence%', '%urgenc%', '%garde%', '%24/24%']);
+    } else if (cat.contains('généralist') || cat.contains('generalist')) {
+      // Filtrage strict pour les Médecins Généralistes : exclure expressément les spécialistes (pédiatre, dentiste, etc.)
+      sb.writeln('''
+        AND (
+          (LOWER($col) LIKE ? OR LOWER($col) LIKE ? OR LOWER($col) = 'medecin' OR LOWER($col) = 'médecin' OR LOWER($col) LIKE ?)
+          AND LOWER($col) NOT LIKE '%pédiatr%'
+          AND LOWER($col) NOT LIKE '%pediatr%'
+          AND LOWER($col) NOT LIKE '%dentist%'
+          AND LOWER($col) NOT LIKE '%dentaire%'
+          AND LOWER($col) NOT LIKE '%cardio%'
+          AND LOWER($col) NOT LIKE '%gynéco%'
+          AND LOWER($col) NOT LIKE '%gyneco%'
+          AND LOWER($col) NOT LIKE '%ophtalm%'
+          AND LOWER($col) NOT LIKE '%dermat%'
+          AND LOWER($nc) NOT LIKE '%pédiatr%'
+          AND LOWER($nc) NOT LIKE '%pediatr%'
+          AND LOWER($nc) NOT LIKE '%dentist%'
+          AND LOWER($nc) NOT LIKE '%dentaire%'
+          AND LOWER($nc) NOT LIKE '%cardio%'
+          AND LOWER($nc) NOT LIKE '%gynéco%'
+          AND LOWER($nc) NOT LIKE '%gyneco%'
+          AND LOWER($nc) NOT LIKE '%ophtalm%'
+          AND LOWER($nc) NOT LIKE '%dermat%'
+        )
+      ''');
+      params.addAll(['%generalist%', '%généralist%', '%cabinet medical%']);
+    } else {
+      sb.writeln('  AND (LOWER($col) LIKE ? OR LOWER($nc) LIKE ?)');
+      params.addAll(['%$cat%', '%$cat%']);
     }
+  }
+
+  /// Ajoute la clause WHERE pour filtrer les établissements d'urgence/garde
+  static void _appendEmergencyClause(
+    StringBuffer sb,
+    List<dynamic> params, {
+    String col = 'categorie',
+    String? nomCol = 'nom',
+  }) {
+    final nc = nomCol ?? col;
+    sb.writeln('  AND (');
+    sb.writeln('    LOWER($nomCol) LIKE ? OR');
+    sb.writeln('    LOWER($nomCol) LIKE ? OR');
+    sb.writeln('    LOWER($nomCol) LIKE ? OR');
+    sb.writeln('    LOWER($nomCol) LIKE ? OR');
+    sb.writeln('    LOWER($nomCol) LIKE ? OR');
+    sb.writeln('    LOWER($col) LIKE ? OR');
+    sb.writeln('    LOWER($col) LIKE ? OR');
+    sb.writeln('    LOWER($col) LIKE ? OR');
+    sb.writeln('    LOWER($col) LIKE ?');
+    sb.writeln('  )');
+    params.addAll([
+      '%urgenc%',
+      '%garde%',
+      '%24/24%',
+      '%chu%',
+      '%eph%',
+      '%hopital%',
+      '%hôpital%',
+      '%polyclinique%',
+      '%urgence%',
+    ]);
   }
 
   /// Recherche instantanée des urgences les plus proches dans un rayon de 10 km (SOS Santé 24/7)
@@ -490,9 +548,33 @@ class OfflineHealthSearchService {
   // ===========================================================================
 
   /// Recherche multi-critÃ¨res : FTS5, code wilaya, catÃ©gorie, urgence et rayon
-  List<HealthFacility> searchHybrid({
+    /// Recupere la liste ordonnee et dedoublee des communes pour une Wilaya donnee (depuis le referentiel officiel des 1541 communes)
+  List<String> getCommunesForWilaya(String? wilayaCode) {
+    if (wilayaCode == null || wilayaCode.isEmpty) return [];
+    try {
+      final codeStr = wilayaCode.padLeft(2, '0');
+      final results = db.select(
+        'SELECT DISTINCT nom_fr FROM communes WHERE wilaya_code = ? OR wilaya_code = ? ORDER BY nom_fr ASC;',
+        [codeStr, int.tryParse(wilayaCode)?.toString() ?? wilayaCode],
+      );
+      if (results.isNotEmpty) {
+        return results.map((r) => (r['nom_fr'] as String).trim()).where((c) => c.isNotEmpty).toList();
+      }
+      // Fallback sur facilities si la table communes n'a pas cette wilaya
+      final facResults = db.select(
+        'SELECT DISTINCT commune FROM facilities WHERE wilaya_code = ? AND commune IS NOT NULL AND TRIM(commune) != "" ORDER BY commune ASC;',
+        [codeStr],
+      );
+      return facResults.map((r) => (r['commune'] as String).trim()).where((c) => c.isNotEmpty).toList();
+    } catch (_) {
+      return [];
+    }
+  }
+
+List<HealthFacility> searchHybrid({
     String? query,
     String? wilayaCode,
+    String? commune,
     String? category,
     bool onlyEmergency = false,
     double? userLat,
@@ -500,10 +582,8 @@ class OfflineHealthSearchService {
     double radiusKm = 10.0,
     int limit = 50,
   }) {
-    // Vue nationale sans filtre wilaya : charger toutes les fiches (sans contrainte spatiale)
-    if ((query == null || query.trim().isEmpty) &&
-        (wilayaCode == null || wilayaCode.isEmpty) &&
-        (userLat == null || userLon == null)) {
+    // 1. Priorité aux filtres explicites Wilaya / Commune / Catégorie
+    if ((wilayaCode != null && wilayaCode.isNotEmpty) || (commune != null && commune.isNotEmpty)) {
       final sb = StringBuffer();
       sb.writeln('''
         SELECT id, place_id, nom, categorie, wilaya, wilaya_code, commune,
@@ -513,24 +593,42 @@ class OfflineHealthSearchService {
       ''');
       final params = <dynamic>[];
 
+      if (wilayaCode != null && wilayaCode.isNotEmpty) {
+        sb.writeln('  AND wilaya_code = ?');
+        params.add(wilayaCode.padLeft(2, '0'));
+      }
+      if (commune != null && commune.isNotEmpty) {
+        sb.writeln('  AND commune LIKE ?');
+        params.add('%' + commune.trim() + '%');
+      }
+
       if (category != null && category.isNotEmpty) {
         appendCategoryClause(sb, params, category, col: 'categorie', nomCol: 'nom');
       }
 
+      if (onlyEmergency) {
+        _appendEmergencyClause(sb, params);
+      }
+
       sb.writeln('ORDER BY nom ASC LIMIT ?;');
-      params.add(limit > 0 ? limit : 100000); // Pas de limite stricte en vue nationale
+      params.add(limit > 0 ? limit : 10000);
 
       final ResultSet results = db.select(sb.toString(), params);
       var facilities = results.map((r) => HealthFacility.fromMap(r)).toList();
 
-      if (onlyEmergency) {
-        facilities = facilities.where((f) => f.isEmergencyOrOnDuty).toList();
+      if (userLat != null && userLon != null) {
+        for (final fac in facilities) {
+          fac.distanceKm = double.parse(
+            calculateHaversineKm(userLat, userLon, fac.latitude, fac.longitude).toStringAsFixed(2),
+          );
+        }
+        facilities.sort((a, b) => (a.distanceKm ?? 0).compareTo(b.distanceKm ?? 0));
       }
 
       return facilities;
     }
 
-    // Vue nationale avec géolocalisation présente mais sans filtre wilaya/texte : charger tout le pays
+    // 2. Vue nationale sans filtre wilaya ni commune
     if ((query == null || query.trim().isEmpty) &&
         (wilayaCode == null || wilayaCode.isEmpty)) {
       final sb = StringBuffer();
@@ -553,7 +651,7 @@ class OfflineHealthSearchService {
       var facilities = results.map((r) => HealthFacility.fromMap(r)).toList();
 
       if (onlyEmergency) {
-        facilities = facilities.where((f) => f.isEmergencyOrOnDuty).toList();
+        _appendEmergencyClause(sb, params);
       }
 
       if (userLat != null && userLon != null) {
@@ -586,15 +684,15 @@ class OfflineHealthSearchService {
       return res.take(limit).toList();
     }
 
-    // Si du texte est fourni, utiliser FTS5
+    // Si du texte est fourni, utiliser FTS5 pour la recherche plein texte
     if (query != null && query.trim().isNotEmpty) {
-      final ftsMatch = formatFtsMatch(query);
+      final ftsMatch = OfflineHealthSearchService.formatFtsMatch(query);
       final sb = StringBuffer();
       sb.writeln('''
         SELECT f.id, f.place_id, f.nom, f.categorie, f.wilaya, f.wilaya_code, f.commune,
                f.adresse, f.telephone, f.site_web, f.note, f.nombre_avis, f.latitude, f.longitude, f.source
         FROM facilities f
-        JOIN facilities_fts fts ON f.id = fts.rowid
+        JOIN facilities_fts ft ON f.id = ft.rowid
         WHERE facilities_fts MATCH ?
       ''');
 
@@ -604,12 +702,20 @@ class OfflineHealthSearchService {
         sb.writeln('  AND f.wilaya_code = ?');
         params.add(wilayaCode);
       }
+      if (commune != null && commune.isNotEmpty) {
+        sb.writeln('  AND f.commune LIKE ?');
+        params.add('%' + commune.trim() + '%');
+      }
 
       if (category != null && category.isNotEmpty) {
         appendCategoryClause(sb, params, category, col: 'f.categorie', nomCol: 'f.nom');
       }
 
-      sb.writeln('ORDER BY fts.rank LIMIT ?;');
+      if (onlyEmergency) {
+        _appendEmergencyClause(sb, params);
+      }
+
+      sb.writeln('LIMIT ?;');
       params.add(limit * 2);
 
       final ResultSet results = db.select(sb.toString(), params);
@@ -622,10 +728,6 @@ class OfflineHealthSearchService {
           );
         }
         facilities.sort((a, b) => (a.distanceKm ?? 0).compareTo(b.distanceKm ?? 0));
-      }
-
-      if (onlyEmergency) {
-        facilities = facilities.where((f) => f.isEmergencyOrOnDuty).toList();
       }
 
       return facilities.take(limit).toList();
@@ -644,6 +746,10 @@ class OfflineHealthSearchService {
     if (wilayaCode != null && wilayaCode.isNotEmpty) {
       sb.writeln('  AND wilaya_code = ?');
       params.add(wilayaCode);
+    }
+    if (commune != null && commune.isNotEmpty) {
+      sb.writeln('  AND commune LIKE ?');
+      params.add('%' + commune.trim() + '%');
     }
 
     if (category != null && category.isNotEmpty) {
@@ -701,22 +807,22 @@ class OfflineHealthSearchService {
 
     // Warmup du cache SQLite
     for (final q in queries.take(5)) {
-      final match = formatFtsMatch(q);
-      _ftsBenchStmt?.select([match]);
+      final cleanQuery = '%$q%';
+      _ftsBenchStmt?.select([cleanQuery, cleanQuery, cleanQuery, cleanQuery]);
     }
 
     final stopwatch = Stopwatch()..start();
     for (final q in queries) {
-      final match = formatFtsMatch(q);
+      final cleanQuery = '%$q%';
       if (_ftsBenchStmt != null) {
-        _ftsBenchStmt!.select([match]);
+        _ftsBenchStmt!.select([cleanQuery, cleanQuery, cleanQuery, cleanQuery]);
       } else {
         db.select('''
-          SELECT rowid AS id, nom, categorie, wilaya, commune, telephone, latitude, longitude
-          FROM facilities_fts
-          WHERE facilities_fts MATCH ?
+          SELECT id, nom, categorie, wilaya, commune, telephone, latitude, longitude
+          FROM facilities
+          WHERE nom LIKE ? OR categorie LIKE ? OR wilaya LIKE ? OR commune LIKE ?
           LIMIT 20;
-        ''', [match]);
+        ''', [cleanQuery, cleanQuery, cleanQuery, cleanQuery]);
       }
     }
     stopwatch.stop();

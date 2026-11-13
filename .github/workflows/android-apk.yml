@@ -27,6 +27,19 @@ jobs:
         run: flutter config --jdk-dir="$JAVA_HOME"
       - name: Restore Android project scaffolding
         run: flutter create --platforms android --org dz.medizy --project-name medizy_mobile mobile
+      - name: Enable network access for directory map tiles
+        working-directory: mobile
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path("android/app/src/main/AndroidManifest.xml")
+          s=p.read_text()
+          marker='<manifest '
+          if 'android.permission.INTERNET' not in s:
+              s=s.replace('<application', '  <uses-permission android:name="android.permission.INTERNET" />\\n  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />\\n  <application', 1)
+          p.write_text(s)
+          PY
       - name: Restore committed Flutter app files
         run: git checkout $GITHUB_SHA -- mobile/pubspec.yaml mobile/lib/main.dart mobile/analysis_options.yaml mobile/test/widget_test.dart
       - name: Install MEDIZY launcher icon and splash (no Pillow dependency)
@@ -74,6 +87,14 @@ jobs:
           PY
       - name: Bundle compressed healthcare directory
         run: mkdir -p mobile/assets && cp mobile/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz mobile/assets/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz
+      - name: Verify healthcare dataset before packaging
+        shell: bash
+        run: |
+          gzip -t mobile/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz
+          echo "Compressed dataset size: $(stat -c%s mobile/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz) bytes"
+          echo "CSV records (including header): $(gzip -dc mobile/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz | wc -l)"
+          echo "CSV header:"
+          gzip -dc mobile/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz | head -n 1
       - name: Resolve dependencies
         working-directory: mobile
         run: flutter pub get

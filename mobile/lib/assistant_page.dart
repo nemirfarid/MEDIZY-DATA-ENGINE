@@ -81,10 +81,11 @@ class _AssistantPageState extends State<AssistantPage> {
           answer = (first['message'] as Map)['content']?.toString();
         }
       }
-      if (answer == null || answer.trim().isEmpty) {
+      final answerText = answer?.trim() ?? '';
+      if (answerText.isEmpty) {
         throw Exception('Réponse vide');
       }
-      setState(() => result = answer.trim());
+      setState(() => result = answerText);
     } catch (e) {
       setState(() => error =
           'Connexion impossible : $e. Vérifie que FreeLLMAPI est démarré et que l’URL est accessible depuis le téléphone.');

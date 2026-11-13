@@ -19,14 +19,14 @@ const muted = Color(0xFF8C7A8D);
 void main() => runApp(const MedizyApp());
 
 List<Map<String,String>> _parseDirectoryIsolate(List<int> input) {
-  final text = utf8.decode(gzip.decode(input), allowMalformed: true).replaceFirst('\\uFEFF','');
-  final firstLine = text.split(RegExp(r'\\r?\\n')).firstWhere((line)=>line.trim().isNotEmpty,orElse:()=> '');
+  final text = utf8.decode(gzip.decode(input), allowMalformed: true).replaceFirst('\uFEFF','');
+  final firstLine = text.split(RegExp(r'\r?\n')).firstWhere((line)=>line.trim().isNotEmpty,orElse:()=> '');
   final commaCount = ','.allMatches(firstLine).length;
   final semicolonCount = ';'.allMatches(firstLine).length;
-  final tabCount = '\\t'.allMatches(firstLine).length;
+  final tabCount = '\t'.allMatches(firstLine).length;
   final delimiter = semicolonCount > commaCount && semicolonCount >= tabCount
       ? ';'
-      : tabCount > commaCount ? '\\t' : ',';
+      : tabCount > commaCount ? '\t' : ',';
   final rows = CsvToListConverter(fieldDelimiter:delimiter,shouldParseNumbers:false).convert(text);
   if (rows.length < 2 || rows.first.length < 2) {
     throw FormatException('Format CSV invalide : séparateur ou colonnes non reconnus.');

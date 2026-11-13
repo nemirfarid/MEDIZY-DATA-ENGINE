@@ -24,12 +24,8 @@ List<Map<String,String>> _parseDirectoryIsolate(List<int> input) {
   if (rows.length < 2) return <Map<String,String>>[];
   final headers = rows.first.map((v) => v.toString().trim()).toList();
   String norm(String v) => v.toLowerCase().replaceAll('é','e').replaceAll('è','e').replaceAll('ê','e').replaceAll('ë','e').replaceAll('à','a').replaceAll('â','a').replaceAll('î','i').replaceAll('ï','i').replaceAll('ô','o').replaceAll('ù','u').replaceAll('û','u').replaceAll('ç','c').replaceAll(RegExp(r'[^a-z0-9]'), '');
-  const wanted = ['nom','name','structure','etablissement','designation','categorie','category','type','nature','wilaya','commune','ville','city','adresse','address','latitude','lat','longitude','lon','lng','telephone','phone','tel'];
-  final keep = <int>{if (headers.isNotEmpty) 0};
-  for (var i=0;i<headers.length;i++) {
-    final h=norm(headers[i]);
-    if (wanted.any((w)=>h==norm(w)||h.contains(norm(w)))) keep.add(i);
-  }
+  // Preserve every source column in SQLite; do not silently discard directory fields.
+  final keep = List<int>.generate(headers.length,(i)=>i);
   final result=<Map<String,String>>[];
   for(final row in rows.skip(1)) {
     if(row.every((v)=>v.toString().trim().isEmpty)) continue;

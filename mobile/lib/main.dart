@@ -98,7 +98,7 @@ class S {
   List<double> get _gpsPair {
     final value=g(['gps']);
     if(value==null)return const <double>[];
-    final matches=RegExp(r'-?\\d+(?:[.,]\\d+)?').allMatches(value);
+    final matches=RegExp(r'-?\d+(?:[.,]\d+)?').allMatches(value);
     final values=matches.map((m)=>double.tryParse(m.group(0)!.replaceAll(',','.'))).whereType<double>().toList();
     return values.length>=2?values.take(2).toList():const <double>[];
   }

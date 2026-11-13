@@ -94,7 +94,7 @@ jobs:
           echo "Compressed dataset size: $(stat -c%s mobile/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz) bytes"
           echo "CSV records (including header): $(gzip -dc mobile/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz | wc -l)"
           echo "CSV header:"
-          gzip -dc mobile/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz | head -n 1
+          gzip -dc mobile/Annuaire_Sante_Algerie_UNIQUE_MASTER_PREMIUM.csv.gz | sed -n '1p'
       - name: Resolve dependencies
         working-directory: mobile
         run: flutter pub get

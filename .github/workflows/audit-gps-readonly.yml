@@ -1,0 +1,36 @@
+name: MEDIZY Read-only GPS Audit
+on:
+  workflow_dispatch:
+  push:
+    branches: [fix/android-build]
+    paths:
+      - 'tools/audit_gps_readonly.py'
+      - '.github/workflows/audit-gps-readonly.yml'
+      - 'assets/data/sante_dz_bundled.db'
+permissions:
+  contents: read
+  actions: read
+jobs:
+  gps-audit:
+    name: Audit 40k GPS records without modifying database
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact branch snapshot
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+      - name: Run read-only SQLite audit
+        run: |
+          python3 tools/audit_gps_readonly.py | tee gps-audit-console.txt
+          test -s gps-audit-output/gps-audit-summary.json
+          test -s gps-audit-output/gps-audit-facilities.csv
+      - name: Upload GPS audit reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: medizy-gps-audit-${{ github.run_number }}
+          path: |
+            gps-audit-output/gps-audit-summary.json
+            gps-audit-output/gps-audit-facilities.csv
+            gps-audit-console.txt
+          retention-days: 30

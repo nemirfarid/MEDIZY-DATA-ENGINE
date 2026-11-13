@@ -72,9 +72,22 @@ class S {
   final Map<String,String> d;
   String get name=>g(['nom','name','structure','etablissement','établissement','designation','désignation'])??'Structure de santé';
   String get type=>g(['categorie','catégorie','type','category','nature'])??'Autres';
-  String get wilaya=>g(['wilaya'])??'';
-  String get commune=>g(['commune','ville','city'])??'';
-  String get address=>g(['adresse','address'])??'';
+  String? get _combinedLocation {
+    for(final e in d.entries) {
+      final k=e.key.toLowerCase();
+      if(k.contains('wilaya')&&k.contains('commune')&&k.contains('adresse')&&e.value.trim().isNotEmpty)return e.value.trim();
+    }
+    return null;
+  }
+  String? _locationPart(String label) {
+    final value=_combinedLocation;
+    if(value==null)return null;
+    final match=RegExp('$label\\s*[:：=\\-]\\s*([^|;,]+)',caseSensitive:false).firstMatch(value);
+    return match?.group(1)?.trim();
+  }
+  String get wilaya=>_locationPart('wilaya')??(_combinedLocation==null?g(['wilaya'])??'':'');
+  String get commune=>_locationPart('commune')??(_combinedLocation==null?g(['commune','ville','city'])??'':'');
+  String get address=>_locationPart('adresse')??(_combinedLocation==null?g(['adresse','address'])??'':'');
   String? g(List<String> aliases) {
     String n(String x)=>x.toLowerCase().replaceAll('é','e').replaceAll('è','e').replaceAll('ê','e').replaceAll('ë','e').replaceAll('à','a').replaceAll('â','a').replaceAll('î','i').replaceAll('ï','i').replaceAll('ô','o').replaceAll('ù','u').replaceAll('û','u').replaceAll('ç','c').replaceAll(RegExp(r'[^a-z0-9]'),'');
     for(final e in d.entries) { if(aliases.any((x)=>n(x)==n(e.key))&&e.value.trim().isNotEmpty)return e.value.trim(); }
@@ -82,8 +95,15 @@ class S {
     return null;
   }
   double? numv(List<String> aliases) { final v=g(aliases); return v==null?null:double.tryParse(v.replaceAll(',','.').replaceAll(RegExp(r'[^0-9.\-]'),'')); }
-  double? get lat=>numv(['latitude','lat']);
-  double? get lon=>numv(['longitude','lon','lng']);
+  List<double> get _gpsPair {
+    final value=g(['gps']);
+    if(value==null)return const <double>[];
+    final matches=RegExp(r'-?\\d+(?:[.,]\\d+)?').allMatches(value);
+    final values=matches.map((m)=>double.tryParse(m.group(0)!.replaceAll(',','.'))).whereType<double>().toList();
+    return values.length>=2?values.take(2).toList():const <double>[];
+  }
+  double? get lat=>numv(['latitude','lat'])??(_gpsPair.length>=2?_gpsPair[0]:null);
+  double? get lon=>numv(['longitude','lon','lng'])??(_gpsPair.length>=2?_gpsPair[1]:null);
   String get text=>d.values.join(' ').toLowerCase();
 }
 

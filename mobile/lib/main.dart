@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io' show gzip;
 import 'package:csv/csv.dart';
 import 'package:flutter/foundation.dart' show compute;
 import 'package:flutter/material.dart';

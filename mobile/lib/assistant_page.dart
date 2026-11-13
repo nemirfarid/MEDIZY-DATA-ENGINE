@@ -74,10 +74,13 @@ class _AssistantPageState extends State<AssistantPage> {
       }
       final j = jsonDecode(r.body) as Map<String, dynamic>;
       final choices = j['choices'] as List?;
-      final answer = (choices != null && choices.isNotEmpty)
-          ? (choices.first['message'] as Map<String, dynamic>?)?['content']
-              ?.toString()
-          : null;
+      String? answer;
+      if (choices != null && choices.isNotEmpty) {
+        final first = choices.first;
+        if (first is Map && first['message'] is Map) {
+          answer = (first['message'] as Map)['content']?.toString();
+        }
+      }
       if (answer == null || answer.trim().isEmpty) {
         throw Exception('Réponse vide');
       }

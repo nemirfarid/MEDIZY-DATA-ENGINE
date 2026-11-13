@@ -19,9 +19,18 @@ const muted = Color(0xFF8C7A8D);
 void main() => runApp(const MedizyApp());
 
 List<Map<String,String>> _parseDirectoryIsolate(List<int> input) {
-  final text = utf8.decode(gzip.decode(input), allowMalformed: true);
-  final rows = const CsvToListConverter(shouldParseNumbers: false).convert(text);
-  if (rows.length < 2) return <Map<String,String>>[];
+  final text = utf8.decode(gzip.decode(input), allowMalformed: true).replaceFirst('\\uFEFF','');
+  final firstLine = text.split(RegExp(r'\\r?\\n')).firstWhere((line)=>line.trim().isNotEmpty,orElse:()=> '');
+  final commaCount = ','.allMatches(firstLine).length;
+  final semicolonCount = ';'.allMatches(firstLine).length;
+  final tabCount = '\\t'.allMatches(firstLine).length;
+  final delimiter = semicolonCount > commaCount && semicolonCount >= tabCount
+      ? ';'
+      : tabCount > commaCount ? '\\t' : ',';
+  final rows = CsvToListConverter(fieldDelimiter:delimiter,shouldParseNumbers:false).convert(text);
+  if (rows.length < 2 || rows.first.length < 2) {
+    throw FormatException('Format CSV invalide : séparateur ou colonnes non reconnus.');
+  }
   final headers = rows.first.map((v) => v.toString().trim()).toList();
   String norm(String v) => v.toLowerCase().replaceAll('é','e').replaceAll('è','e').replaceAll('ê','e').replaceAll('ë','e').replaceAll('à','a').replaceAll('â','a').replaceAll('î','i').replaceAll('ï','i').replaceAll('ô','o').replaceAll('ù','u').replaceAll('û','u').replaceAll('ç','c').replaceAll(RegExp(r'[^a-z0-9]'), '');
   // Preserve every source column in SQLite; do not silently discard directory fields.
@@ -214,11 +223,15 @@ class HS extends State<Home> {
   IconData iconFor(String type) {
     final v=type.toLowerCase();
     if(v.contains('pharm'))return Icons.medication_outlined;
-    if(v.contains('labor')||v.contains('analys'))return Icons.science_outlined;
+    if(v.contains('labor')||v.contains('analys')||v.contains('biolog'))return Icons.science_outlined;
     if(v.contains('dent'))return Icons.sentiment_satisfied_alt_outlined;
     if(v.contains('clin'))return Icons.business_outlined;
-    if(v.contains('hospital')||v.contains('hôpital'))return Icons.apartment_rounded;
-    if(v.contains('cabinet')||v.contains('médecin'))return Icons.person_outline_rounded;
+    if(v.contains('hospital')||v.contains('hôpital')||v.contains('ep h'))return Icons.apartment_rounded;
+    if(v.contains('cabinet')||v.contains('médecin')||v.contains('medical'))return Icons.person_outline_rounded;
+    if(v.contains('centre')||v.contains('santé')||v.contains('soin'))return Icons.health_and_safety_outlined;
+    if(v.contains('radiol')||v.contains('imagerie'))return Icons.monitor_heart_outlined;
+    if(v.contains('matern'))return Icons.child_friendly_outlined;
+    if(v.contains('urgence'))return Icons.emergency_outlined;
     return Icons.health_and_safety_outlined;
   }
 

@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-const Color _navy = Color(0xFF102A43);
-const Color _teal = Color(0xFF0F9D96);
-const Color _mint = Color(0xFFE7F6F3);
-const Color _muted = Color(0xFF6B7C8F);
+const Color _navy = Color(0xFF49364F);
+const Color _teal = Color(0xFFC05A83);
+const Color _mint = Color(0xFFFBE8EF);
+const Color _muted = Color(0xFF8C7A8D);
 
 class AssistantPage extends StatefulWidget {
   const AssistantPage({super.key});
@@ -100,10 +100,10 @@ class _AssistantPageState extends State<AssistantPage> {
         hintText: hint,
         prefixIcon: prefix,
         filled: true,
-        fillColor: const Color(0xFFF6F9FA),
+        fillColor: const Color(0xFFFFF8FA),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Color(0xFFE6EDF1)),
+          borderSide: const BorderSide(color: Color(0xFFF2E5EB)),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
@@ -123,7 +123,7 @@ class _AssistantPageState extends State<AssistantPage> {
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [Color(0xFF123B55), Color(0xFF087E83)],
+                colors: [Color(0xFF765477), Color(0xFFC05A83)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -139,7 +139,7 @@ class _AssistantPageState extends State<AssistantPage> {
                     Text(
                       'MEDIZY INTELLIGENCE',
                       style: TextStyle(
-                        color: Color(0xFFD6F2EF),
+                        color: Color(0xFFFFEAF1),
                         fontSize: 10,
                         letterSpacing: 1.3,
                         fontWeight: FontWeight.w800,
@@ -273,14 +273,14 @@ class _AssistantPageState extends State<AssistantPage> {
             Container(
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
-                color: const Color(0xFFFFF4E8),
+                color: const Color(0xFFFFF2F6),
                 borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: const Color(0xFFFFE0BC)),
+                border: Border.all(color: const Color(0xFFF4D5E0)),
               ),
               child: Text(
                 error!,
                 style: const TextStyle(
-                  color: Color(0xFF87501D),
+                  color: Color(0xFF86546C),
                   fontSize: 12,
                   height: 1.4,
                 ),
@@ -294,7 +294,7 @@ class _AssistantPageState extends State<AssistantPage> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: const Color(0xFFDDEFEA)),
+                border: Border.all(color: const Color(0xFFF0DCE5)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

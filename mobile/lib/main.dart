@@ -170,10 +170,43 @@ class HS extends State<Home> {
       const Expanded(child:Text('Explorer par catégorie',style:TextStyle(color:navy,fontSize:15,fontWeight:FontWeight.w800))),
       Text('${filtered.length} résultats',style:const TextStyle(color:muted,fontSize:11,fontWeight:FontWeight.w600)),
     ])),
-    SizedBox(height:43,child:ListView.separated(padding:const EdgeInsets.symmetric(horizontal:18),scrollDirection:Axis.horizontal,itemCount:cats.length,separatorBuilder:(_,__)=>const SizedBox(width:7),itemBuilder:(context,index){
-      final value=cats[index],selected=cat==value;
-      return ChoiceChip(label:Text(value),selected:selected,onSelected:(_)=>setState(()=>cat=value),labelStyle:TextStyle(color:selected?teal:muted,fontSize:11,fontWeight:FontWeight.w700),backgroundColor:Colors.white,selectedColor:mint,side:BorderSide(color:selected?const Color(0xFFF0C8D8):const Color(0xFFF0E4EA)),showCheckmark:false,padding:const EdgeInsets.symmetric(horizontal:7));
-    })),
+    SizedBox(height:166,child:GridView.builder(
+      padding:const EdgeInsets.symmetric(horizontal:18),
+      gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:2,mainAxisExtent:74,crossAxisSpacing:9,mainAxisSpacing:8),
+      itemCount:cats.length,
+      itemBuilder:(context,index){
+        final value=cats[index],selected=cat==value;
+        final count=value=='Toutes'?data.length:data.where((s)=>s.type.toLowerCase()==value.toLowerCase()).length;
+        return Material(
+          color:Colors.white,
+          borderRadius:BorderRadius.circular(17),
+          child:InkWell(
+            borderRadius:BorderRadius.circular(17),
+            onTap:()=>setState(()=>cat=value),
+            child:Container(
+              padding:const EdgeInsets.symmetric(horizontal:11,vertical:9),
+              decoration:BoxDecoration(
+                borderRadius:BorderRadius.circular(17),
+                border:Border.all(color:selected?teal.withOpacity(.55):const Color(0xFFF0E4EA),width:selected?1.4:1),
+                boxShadow:[BoxShadow(color:navy.withOpacity(.025),blurRadius:8,offset:const Offset(0,3))],
+              ),
+              child:Row(children:[
+                Container(width:43,height:43,decoration:BoxDecoration(
+                  gradient:LinearGradient(colors:selected?[const Color(0xFFE6A0B8),const Color(0xFFB75B85)]:[mint,const Color(0xFFFFF2F6)]),
+                  borderRadius:BorderRadius.circular(14),
+                ),child:Icon(value=='Toutes'?Icons.local_hospital_outlined:iconFor(value),color:selected?Colors.white:teal,size:23)),
+                const SizedBox(width:9),
+                Expanded(child:Column(mainAxisAlignment:MainAxisAlignment.center,crossAxisAlignment:CrossAxisAlignment.start,children:[
+                  Text(value,maxLines:1,overflow:TextOverflow.ellipsis,style:TextStyle(color:navy,fontSize:11,fontWeight:selected?FontWeight.w900:FontWeight.w700)),
+                  const SizedBox(height:3),
+                  Text('$count structures',style:const TextStyle(color:muted,fontSize:9,fontWeight:FontWeight.w600)),
+                ])),
+              ]),
+            ),
+          ),
+        );
+      },
+    )),
     const Padding(padding:EdgeInsets.fromLTRB(20,15,20,8),child:Text('Structures de santé',style:TextStyle(color:navy,fontSize:15,fontWeight:FontWeight.w800))),
     Expanded(child:list(filtered)),
   ]));
